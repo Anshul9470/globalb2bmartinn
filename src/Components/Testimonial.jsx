@@ -872,27 +872,41 @@ import "./tesi.css";
 
 // Import required modules
 import { Pagination, Navigation } from "swiper/modules";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const youtubeVideos = [
     {
-        videoId: "1T8ynVW2ZbI", // The new video ID
-        thumbnail: "/assets/saffron-buyer.jpeg", // Add appropriate thumbnail for this video
-        feedbackText: "Join Now!", // Optional feedback text
+        videoId: "1T8ynVW2ZbI",
+        thumbnail: "/assets/saffron-buyer.jpeg",
+        name: "Sanjeev",
+        position: "Verified Buyer",
+        review: "GlobalB2BMart has completely transformed how we source products. The quality of suppliers is unmatched!",
+        rating: 5,
     },
     {
         videoId: "v0Xbf2DJdks",
         thumbnail: "/assets/plastic-itemsb2b.jpeg",
-        feedbackText: "Join Now", // Add your text here
+        name: "Naveen",
+        position: "Business Owner",
+        review: "The wide range of verified suppliers available on this platform has been a massive game changer for us.",
+        rating: 5,
     },
     {
         videoId: "7-He-f1X7tQ",
         thumbnail: "/assets/ghena-kitchenss.jpeg",
-        feedbackText: "Join Now", // Add your text here
+        name: "Raghav",
+        position: "Wholesale Dealer",
+        review: "User-friendly interface and incredible support. Finding reliable leads has never been easier. Highly recommended!",
+        rating: 5,
     },
     {
         videoId: "ARYXZnS-h1A",
         thumbnail: "/assets/alovera-gel.jpeg",
-        feedbackText: "Join Now", // Add your text here
+        name: "Himesh",
+        position: "Retailer",
+        review: "Setting up my B2B profile and connecting with global customers was so effortless. Fantastic platform!",
+        rating: 5,
     },
 ];
 
@@ -933,8 +947,8 @@ export default function Testimonial() {
                                     className="video-thumbnail"
                                     onClick={() => handlePlay(index)} // On click, start playing the video
                                 >
+                                    <div className="play-overlay"><FontAwesomeIcon icon={faPlay} /></div>
                                     <img
-                                        style={{ marginTop: "20px" }}
                                         src={video.thumbnail}
                                         alt={`Thumbnail for video ${index + 1}`}
                                         className="thumbnail-image"
@@ -942,8 +956,8 @@ export default function Testimonial() {
                                 </div>
                             ) : (
                                 <iframe
-                                    width="720"
-                                    height="405"
+                                    width="100%"
+                                    height="100%"
                                     src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1`}
                                     title={`YouTube Video ${index + 1}`}
                                     frameBorder="0"
@@ -955,8 +969,22 @@ export default function Testimonial() {
                                 ></iframe>
                             )}
 
-                            {/* Add the feedback text with animation */}
-                            <div className="video-feedback-text">{video.feedbackText}</div>
+                            {/* Add the rich testimonial data */}
+                            <div className="testimonial-content-wrapper">
+                                <div className="stars-container">
+                                    {[...Array(video.rating)].map((_, i) => (
+                                        <FontAwesomeIcon key={i} icon={faStar} className="star-icon" />
+                                    ))}
+                                </div>
+                                <p className="testimonial-review-text">"{video.review}"</p>
+                                <div className="testimonial-author-box">
+                                    <div className="author-details">
+                                        <h4 className="author-name">{video.name}</h4>
+                                        <span className="author-position">{video.position}</span>
+                                    </div>
+                                    <div className="join-now-small">Verify</div>
+                                </div>
+                            </div>
                         </div>
                     </SwiperSlide>
                 ))}
