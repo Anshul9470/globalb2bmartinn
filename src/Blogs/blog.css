@@ -1,0 +1,196 @@
+.blog-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.blog-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.blog-main {
+  display: flex;
+  width: 1162px;
+  gap: 20px;
+}
+
+.blog-article {
+  flex: 3;
+  line-height: 1.6;
+}
+
+.blog-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.blog-intro,
+.blog-body,
+.blog-conclusion {
+  margin-bottom: 20px;
+}
+
+.blog-intro p,
+.blog-body p,
+.blog-conclusion p {
+  margin-bottom: 15px;
+}
+
+.blog-body ul,
+.blog-body ol {
+  margin-bottom: 15px;
+}
+
+.blog-sidebar {
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+.blog-sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.blog-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.blog-sidebar li {
+  margin-bottom: 10px;
+}
+
+.blog-sidebar a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1rem;
+}
+
+.blog-sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .blog-header h1 {
+    font-size: 2rem;
+  }
+
+  .blog-main {
+    flex-direction: column;
+    width: auto;
+  }
+
+  .blog-sidebar {
+    flex-basis: auto;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .blog-sidebar {
+    padding: 10px;
+  }
+
+  .blog-sidebar h2 {
+    font-size: 1.2rem;
+  }
+
+  .blog-sidebar a {
+    font-size: 0.9rem;
+  }
+}
+
+.next-btn {
+  background-color: rgb(247, 191, 86);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.next-btn:hover {
+  background-color: #0056b3;
+  color: #f4f4f4;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.onion-link {
+  color: blue !important;
+}
+
+/* Styling for the blog intro container */
+.blog-intro {
+  max-width: 1200px;
+  margin: 50px auto; /* Center the content */
+  padding: 20px;
+  background-color: #fff; /* White background for contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 10px; /* Rounded corners for modern look */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+/* Add hover effect for the container */
+.blog-intro:hover {
+  transform: translateY(-10px); /* Slight lift on hover */
+}
+
+/* Styling for the heading */
+h2.section-title {
+  color: #ff7e28; /* Blue color for heading */
+  font-size: 1.5rem; /* Large, modern font size */
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 2px; /* Spaced-out text for modern feel */
+}
+
+/* Styling for the paragraph */
+p.section-title {
+  font-style: italic;
+  font-size: 1rem; /* Modern font size */
+  line-height: 1.6; /* Good line spacing for readability */
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* Add some subtle animation */
+.blog-intro {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.sub-heading {
+  color: #000;
+}

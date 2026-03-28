@@ -1,0 +1,179 @@
+/* Container for the landing page */
+/* .landing-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+} */
+.landing-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../../public/assets/mainbanner1.jpeg"); /* Replace with the actual image URL */
+  background-size: cover; /* Makes sure the image covers the entire container */
+  background-position: center; /* Ensures the image is centered */
+  background-repeat: no-repeat; /* Prevents repeating the image */
+}
+
+/* Box structure */
+.box {
+  display: flex;
+  width: 60%;
+  height: 60vh;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Left side (40%) */
+.box-left {
+  width: 40%;
+  background-color: #f1a80b87;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.button {
+  display: inline-block;
+  width: 80%;
+  margin: 10px 0;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.button-register {
+  background-color: #3498db;
+}
+
+.button-requirement {
+  background-color: #2ecc71;
+}
+
+.button-home {
+  background-color: #e74c3c;
+}
+
+/* Right side (60%) */
+.box-right {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.form input {
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-submit {
+  padding: 10px;
+  font-size: 1rem;
+  color: white;
+  background-color: #2980b9;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-submit:hover {
+  background-color: #1c5d99;
+}
+
+/* Thank you message */
+.thank-you-message {
+  font-size: 1.5rem;
+  color: #27ae60;
+  text-align: center;
+}
+
+/* Extra small devices (phones, 500px and below) */
+@media screen and (max-width: 500px) {
+  .box {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .box-left,
+  .box-right {
+    width: 100%;
+  }
+
+  .box-left {
+    justify-content: space-evenly;
+  }
+
+  .form input {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .button {
+    width: 95%;
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .button-submit {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .thank-you-message {
+    font-size: 1rem;
+  }
+}
+.welcome-port {
+  font-size: 30px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  opacity: 0;
+  animation: fadeInSlideUp 2s ease-in-out forwards;
+  animation-delay: 0.5s;
+}
+
+.b2b-welcome {
+  font-size: 22px;
+  color: #555;
+  text-align: center;
+  margin: 0;
+  opacity: 0;
+  animation: fadeInSlideUp 2s ease-in-out forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

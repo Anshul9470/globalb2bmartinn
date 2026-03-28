@@ -1,0 +1,36 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.14.0
+        cache: 'npm'
+    - run: npm ci
+    
+    - name: Build application
+      run: CI=false npm run build
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1
+    
+    - name: Upload to S3
+      run: cd build && aws s3 cp . s3://glob2bmart.cloud --recursive
+
+    - name: Invalidate CDN
+      run: aws cloudfront create-invalidation --distribution-id E1BYGK5PXKKAPP --paths '/*'
+    

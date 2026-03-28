@@ -1,0 +1,101 @@
+.card-containerx {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.cardx {
+    width: calc(15% - 20px);
+    margin-bottom: 20px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); */
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+    /* padding: 10px 7px; */
+    height: 300px;
+}
+
+.card-detailsx {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+
+/* .cardx:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+} */
+
+.cardx img {
+    /* width: 100%;
+    height: 155px;
+    border-radius: 70%; */
+    /* width: 100%;
+    height: 108px;
+    border-radius: 12%; */
+    width: 100%;
+    height: 200px;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    .cardx img {
+        width: 100%;
+        height: 200px;
+        border-radius: 25%;
+    }
+
+    .card img {
+        border-radius: 25%;
+    }
+}
+
+
+.cardx-details {
+    padding: 20px;
+}
+
+.cardx-details h2 {
+    margin-top: 0;
+}
+
+.card-detailsx h3 {
+    font-weight: lighter;
+    margin-top: 10px;
+}
+
+.card-detailsx h3:hover {
+    color: rgb(246, 175, 42);
+    /* border: 1px solid black; */
+}
+
+@media screen and (max-width: 768px) {
+    .cardx {
+        width: calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cardx {
+        width: calc(100% - 20px);
+    }
+}
+
+.cardx-image {
+    transition: transform 0.3s ease-in-out;
+    /* Add transition for smooth effect */
+}
+
+.cardx-image:hover {
+    transform: scale(1.2);
+    /* Zoom out effect on hover */
+}
+
+.cardx img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}

@@ -1,0 +1,414 @@
+/* styles.css */
+
+/* Footer container */
+
+.footBg {
+  background: #050a18; /* Dark Navy Blue */
+  color: rgba(255, 255, 255, 0.85);
+  padding: 60px 40px 20px 40px;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Modern Systematic Footer Layout - Centered & Clean */
+.footLinkWrap {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto !important;
+  padding: 60px 20px 0 20px;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .footLinkWrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .footLinkWrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Company Information & Logo */
+.company-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  grid-column: 1 / -1; /* Span full width for center alignment */
+  margin-bottom: 40px;
+  border-right: none;
+  padding-right: 0;
+}
+
+.footer-logo {
+  max-width: 260px;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.footer-logo:hover {
+  transform: scale(1.05) translateY(-5px);
+}
+
+.footer-desc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* Category & Title Styling */
+.footer-links h2 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Centered Gradient Underline */
+.footer-links h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff8c00 0%, #38bdf8 100%);
+  border-radius: 4px;
+}
+
+/* Link Styling */
+.linkNormal {
+  display: block;
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-decoration: none !important;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-weight: 400;
+}
+
+.linkNormal:hover {
+  color: #38bdf8 !important; 
+  transform: translateY(-3px);
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* Centered & Clean Bottom Navigation Area */
+.tk23-ft-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin-top: 40px !important;
+}
+
+/* Force absolute centering for all lists */
+.bottom-main-links, .bottom-sub-links {
+  list-style: none;
+  padding: 0 !important; /* Remove any default padding */
+  margin: 0 0 30px 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 30px;
+  flex-wrap: wrap;
+  width: 100% !important;
+}
+
+.bottom-sub-links {
+  margin-top: 30px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Perfect Symmetry for Categories Capsule */
+.categories-bar {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 15px 45px;
+  border-radius: 100px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 25px;
+  margin: 20px auto !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: fit-content !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 1200px) {
+  .categories-bar {
+    border-radius: 30px;
+    padding: 20px 30px;
+  }
+}
+
+@media (max-width: 850px) {
+  .categories-bar {
+    flex-direction: column !important;
+    gap: 15px !important;
+    padding: 25px !important;
+  }
+  .cat-label {
+    border-right: none !important;
+    padding-right: 0 !important;
+    margin-bottom: 5px;
+  }
+}
+
+.cat-label {
+  color: #ff8c00 !important;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  border-right: 2px solid rgba(255, 255, 255, 0.15);
+  padding-right: 25px;
+  line-height: 1;
+}
+
+.categories-list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 20px;
+}
+
+.linkNormal2 {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 0.92rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.linkNormal2:hover {
+  color: #38bdf8 !important;
+  transform: translateY(-2px);
+}
+
+/* Copyright & Divider */
+.hr {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 60px 0 30px 0;
+  width: 100%;
+}
+
+.lastBar {
+  padding-bottom: 50px;
+  text-align: center !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.text-col {
+  color: rgba(255, 255, 255, 0.45) !important;
+  font-size: 0.92rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+.text-col:hover {
+  color: #ff8c00 !important;
+}
+
+.copy-text {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.9rem;
+  margin-top: 15px;
+  display: block;
+}
+
+/* Header Section Icons */
+.head-icon {
+  margin-right: 12px;
+  font-size: 0.9em;
+  color: #ff8c00; /* Orange for heading icons */
+  opacity: 0.8;
+}
+
+/* Contact Section Refinement */
+.contact-section {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px !important;
+  text-align: center !important;
+  align-items: center !important;
+}
+
+.contact-item {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.contact-icon {
+  color: #38bdf8; /* Light Blue for contact icons */
+  font-size: 1.1rem;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.address-text {
+  max-width: 250px;
+  margin-bottom: 0 !important;
+}
+
+.contact-item:hover .contact-icon {
+  color: #ff8c00;
+  transform: scale(1.2);
+}
+
+/* Centered Layout Support */
+.footLinkWrap.row {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.footLinkWrap > div {
+  padding: 0 !important;
+}
+
+.cat-label {
+  color: #3b82f6 !important;
+  font-weight: 700;
+  margin-right: 12px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* Horizontal Rule */
+hr {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 40px 0;
+}
+
+/* Navigation List */
+.tk23-ft-nav {
+  padding: 10px 0;
+}
+
+.tk23-ft-nav ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px 25px;
+}
+
+.tk23-ft-nav ul li {
+  position: relative;
+}
+
+.tk23-ft-nav ul li a {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.tk23-ft-nav ul li a:hover {
+  color: #3b82f6;
+}
+
+/* Category Section */
+.tk23-ft-lang1 {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 30px 0;
+}
+
+.tk23-ft-lang1 li span {
+  font-weight: 600;
+  color: #3b82f6 !important;
+}
+
+/* Copyright Bar */
+.lastBar {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.trademark p {
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.trademark:hover p {
+  color: #ffffff !important;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+  .footLinkWrap {
+    justify-content: flex-start;
+    gap: 40px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footBg {
+    padding: 40px 20px;
+  }
+  
+  .footer-links {
+    min-width: 45%;
+  }
+
+  .tk23-ft-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* Fixed form bar (Book A Call) */
+.fixed-form-bar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: right top;
+  background: #fbbf24; /* Amber yellow */
+  padding: 12px 25px;
+  cursor: pointer;
+  z-index: 1000;
+  border-radius: 8px 8px 0 0;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.fixed-form-bar:hover {
+  background: #f59e0b;
+}
+
+.call-us-text {
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 1px;
+}

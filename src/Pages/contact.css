@@ -1,0 +1,182 @@
+.contact-head {
+    padding: 50px 0 130px;
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.col-12 {
+    max-width: 100%;
+    flex-basis: 100%;
+}
+
+.contact-head h1 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.contact-head .tagline {
+    font-size: 15px;
+    font-weight: 300;
+    color: #fff;
+}
+
+@media (max-width: 1366px) {
+    .container {
+        max-width: 1290px;
+    }
+}
+
+.contact-us {
+    position: relative;
+    top: -70px;
+}
+
+.col-6 {
+    max-width: 50%;
+    flex-basis: 50%;
+}
+
+[class*=col-],
+.col {
+    padding: 0 15px;
+}
+
+.contact-info {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 40px 30px;
+    height: 100%;
+    border-radius: 7px;
+}
+
+.contact-info .title-icon {
+    text-align: center;
+    font-size: 29px;
+    color: var(--primarycolor);
+    margin-bottom: 12px;
+}
+
+.contact-info .title {
+    text-align: center;
+    font-size: 17px;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 22px;
+}
+
+.contact-details {
+    color: #666;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+}
+
+.contact-details li {
+    margin-bottom: 7px;
+    display: block;
+}
+
+.contact-details li p {
+    padding-left: 22px;
+    position: relative;
+    display: inline-block;
+}
+
+.contact-details li p:after {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    font-size: 16px;
+    color: #999;
+    vertical-align: middle;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .contact-head h1 {
+        font-size: 32px;
+    }
+
+    .contact-head .tagline {
+        font-size: 14px;
+    }
+
+    .contact-info {
+        padding: 35px 25px;
+    }
+
+    .contact-info .title-icon {
+        font-size: 26px;
+    }
+
+    .contact-info .title {
+        font-size: 16px;
+    }
+
+    .contact-details {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 992px) {
+    .col-6 {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .contact-us {
+        top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-head {
+        padding: 30px 0 80px;
+    }
+
+    .contact-info {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-head h1 {
+        font-size: 28px;
+    }
+
+    .contact-head .tagline {
+        font-size: 13px;
+    }
+
+    .contact-info {
+        padding: 25px 15px;
+    }
+
+    .contact-info .title-icon {
+        font-size: 24px;
+    }
+
+    .contact-info .title {
+        font-size: 15px;
+    }
+
+    .contact-details {
+        font-size: 12px;
+    }
+
+    .contact-details li p {
+        padding-left: 18px;
+    }
+
+    .contact-details li p:after {
+        font-size: 14px;
+    }
+}

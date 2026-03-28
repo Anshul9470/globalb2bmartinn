@@ -1,0 +1,671 @@
+.prices-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.prices-container:hover {
+    box-shadow: 0 4px 8px rgba(55, 7, 7, 0.2);
+}
+
+.price-card {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+
+
+    gap: 4;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.price-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.price-card p {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.price-card button {
+    background-color: #fb743f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.packages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    font-size: 30px;
+    color: #d58261;
+}
+
+.price-card button:hover {
+    background-color: #d58261;
+}
+
+.price-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.price-card li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 5px;
+}
+
+.price-card li:last-child {
+    border-bottom: none;
+}
+
+@media (min-width: 600px) {
+    .price-card {
+        width: calc(50% - 25px);
+    }
+}
+
+@media (min-width: 900px) {
+    .price-card {
+        width: calc(0 - 25px);
+    }
+}
+
+.info-text {
+    /* color: blue; */
+    cursor: pointer;
+    /* text-decoration: underline; */
+}
+
+.info-popup {
+    position: absolute;
+    bottom: 380px;
+    font-size: 7px;
+    left: 0;
+    background-color: white;
+    /* border: 1px solid #ddd; */
+    color: red;
+    padding: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* .info-popup p {
+    color: white;
+
+} */
+
+.info-popup button {
+    margin-top: 10px;
+}
+
+
+/* 
+
+#membership-banner {
+    background-image: url(https://www.worldmartexport.com/static/img/banner/banner-3.jpg);
+
+}
+
+.page-banner-area::before {
+    position: absolute;
+    content: "";
+    background: #0e2641;
+    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+@media (min-width: 1200px) {
+    .col-xl-12 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.breadcrumb-title {
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+}
+
+
+.breadcrumb-two ul li {
+    display: inline-block;
+    padding: 0px 8px;
+    position: relative;
+}
+
+
+.breadcrumb-two ul li:not(:last-child)::after {
+    position: absolute;
+    color: #999;
+    content: "\f715";
+    font-size: 8px;
+    right: -8px;
+    top: 1px;
+    font-family: "Font Awesome 5 pro";
+    transform: rotate(-110deg);
+}
+
+.breadcrumb-two ul li {
+    display: inline-block;
+    padding: 0px 8px;
+    position: relative;
+}
+
+.breadcrumb-two ul li span {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 24px;
+} */
+
+/* General Styles for the Banner */
+.page-banner-area {
+    position: relative;
+    width: 100%;
+    padding: 60px 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
+/* .page-banner-height {
+    min-height: 300px;
+    
+} */
+
+.page-banner-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Optional: to add a semi-transparent background */
+    border-radius: 10px;
+}
+
+.breadcrumb-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.breadcrumb-two {
+    margin-top: 10px;
+}
+
+.breadcrumb-trail {
+    display: inline-block;
+}
+
+.breadcrumb-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-menu li {
+    display: inline;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.breadcrumb-menu li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.breadcrumb-menu li a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-menu li:after {
+    content: ">";
+    margin-left: 10px;
+    color: #fff;
+}
+
+.breadcrumb-menu li:last-child:after {
+    content: "";
+    margin-left: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .page-banner-height {
+        padding: 40px 0;
+    }
+
+    .breadcrumb-title {
+        font-size: 28px;
+    }
+
+    .breadcrumb-menu li {
+        font-size: 14px;
+    }
+}
+
+/* Background Image */
+#membership-banner {
+    background-image: url(https://d29mccy1gg0mfm.cloudfront.net/checksigma/2024/01/fizvizz-blog-post-image-1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 280px;
+    /* Replace with your image URL */
+}
+
+section {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 55px 0;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+}
+
+@media (min-width: 576px) {
+    .col-sm-4 {
+        flex: 0 0 auto;
+        width: 33.3333333333%;
+    }
+}
+
+.col-sm-4:nth-child(1) .card,
+.col-sm-4:nth-child(1) .card .title .fas {
+    background: linear-gradient(-45deg, #f403d1, #645bf6);
+    -webkit-border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.price-card {
+    color: 'red'
+}
+
+.prices-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+    cursor: pointer;
+
+}
+
+.prices-container:hover {
+    box-shadow: 0 4px 8px rgba(55, 7, 7, 0.2);
+}
+
+.price-card {
+    background-color: #a1d0eb;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+
+
+    gap: 4;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.price-card h2 {
+    font-size: 1.5em;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.price-card p {
+    font-size: 1em;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.price-card button {
+    background-color: #fb743f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.packages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    font-size: 30px;
+    color: #d58261;
+}
+
+.price-card button:hover {
+    background-color: #d58261;
+}
+
+.price-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.price-card li {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 5px;
+}
+
+.price-card li:last-child {
+    border-bottom: none;
+}
+
+@media (min-width: 600px) {
+    .price-card {
+        width: calc(50% - 25px);
+    }
+}
+
+@media (min-width: 900px) {
+    .price-card {
+        width: calc(35% - 25px);
+    }
+}
+
+/* Container Styles */
+/* .prices-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px;
+    cursor: pointer;
+} */
+.prices-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 34px;
+    /* padding: 11px; */
+    cursor: pointer;
+    /* background-image: url('https://assets-global.website-files.com/65d8c9e3ba873d10ee956eec/65d8c9e3ba873d10ee9571ff_Blog%20Banners%20Running%20Doc%20(10).jpg'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.pricesx-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    /* padding: 11px; */
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Individual Card Styles */
+.price-card {
+    background-color: #c5e0ef;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    /* max-width: 300px; */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card Hover Effects */
+.price-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Title Styles */
+.price-card h2 {
+    font-size: 1.75em;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Price Text Styles */
+.price-card p.pricess {
+    font-size: 1.25em;
+    text-align: center;
+    color: #fb743f;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+.price-card button {
+    background-color: #fb743f;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.price-card button:hover {
+    background-color: #d58261;
+}
+
+/* List Styles */
+.price-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.price-card li {
+    /* border-bottom: 1px solid #ddd;
+    padding: 10px 5px;
+    font-size: 0.95em;
+    color: #555; */
+
+    border-bottom: 1px solid #ddd;
+    padding: 11px 4px;
+    font-size: 0.95em;
+    color: #555;
+
+}
+
+.price-card li:last-child {
+    border-bottom: none;
+}
+
+/* Header Styles */
+.packages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    font-size: 2em;
+    color: #d58261;
+}
+
+/* Media Queries for Responsiveness */
+@media (min-width: 600px) {
+    .price-card {
+        width: calc(50% - 25px);
+    }
+}
+
+@media (min-width: 900px) {
+    .price-card {
+        width: calc(35% - 25px);
+    }
+}
+
+/* Popup Form Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.popup-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
+}
+
+.popup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-form label {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.popup-form input {
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.popup-form button {
+    background-color: #fb743f;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+}
+
+.popup-form button:hover {
+    background-color: #d58261;
+}
+
+.payment-detail {
+    color: #333;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+
+.pross-title:hover::after {
+    content: "Based On Current Availablitiy";
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 9px;
+    white-space: nowrap;
+}
+
+.prosss-title:hover::after {
+    content: "Business Page Handling with 24 Post in a Year";
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 9px;
+    white-space: nowrap;
+}

@@ -1,0 +1,83 @@
+.circle-slide {
+    text-align: center;
+    font-size: 18px;
+    border-radius: 50%;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-slide img {
+
+    display: block;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper {
+    width: 100%;
+    height: 300px;
+    margin: 20px auto;
+}
+
+.append-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.append-buttons button {
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #007aff;
+    color: #007aff;
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin: 0 10px;
+    font-size: 13px;
+}
+
+.swiper-container {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+}
+
+.circle-slide {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* 
+.swiper-slide img {
+    width: 1300px !important;
+    height: 130px !important;
+    object-fit: cover;
+} */
+.swiper-slide img {
+    display: block;
+    width: 130px !important;
+    height: 130px !important;
+    /* height: auto; */
+    object-fit: cover;
+}
+
+.city-img {
+    display: block;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+}
+
+#view-all:hover {
+    color: red;
+}

@@ -1,0 +1,46 @@
+.b2b-container {
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.b2b-header {
+  background: linear-gradient(120deg, #007bff, #00c2ff);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.b2b-header h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.b2b-header p {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.b2b-section {
+  padding: 60px 20px;
+  max-width: 960px;
+  margin: auto;
+}
+
+.b2b-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.alt-bg {
+  background-color: #f9f9f9;
+}
+
+.b2b-footer {
+  background-color: #222;
+  color: #bbb;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}

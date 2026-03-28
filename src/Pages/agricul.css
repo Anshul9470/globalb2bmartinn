@@ -1,0 +1,137 @@
+.l1-section {
+  padding: 20px;
+}
+
+@media (max-width: 1366px) {
+  .container {
+    max-width: 1290px;
+  }
+}
+
+.l1-box-wrap {
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-bottom: 15px;
+}
+
+.col-4 {
+  max-width: 33.3%;
+  flex-basis: 33.3%;
+  margin-top: 20px;
+}
+
+.l1-box {
+  background: #fff;
+  background: #f7f1f1;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* Smooth transition for all properties */
+}
+
+.l1-box:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Add box shadow */
+  transform: scale(1.05);
+  /* Slightly increase the size */
+}
+
+.l1-box .l1-heading {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.l1-box .l1-heading a {
+  font-size: 16px;
+  color: rgb(54, 111, 246);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 95%;
+  display: block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex ul li:hover a {
+  color: red;
+}
+
+.l1-box .l1-heading a:hover {
+  color: red;
+}
+
+.l1-box figure {
+  line-height: 1px;
+  width: 95px;
+  height: 95px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.l1-box figure img {
+  width: 95px;
+  height: auto;
+  border-radius: 105px;
+  transition: 0.3s ease-in-out;
+  object-fit: scale-down;
+}
+
+.l1-box ul {
+  padding-left: 12px;
+}
+
+.l1-box li {
+  line-height: 1px;
+  margin-bottom: 4px;
+}
+
+.l1-box ul a {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.content-page {
+  font-size: 15px;
+  line-height: 21px;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.pagetitle {
+  /* display: flex; */
+  justify-content: center;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagetitle h1 {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 600;
+  color: orange;
+}
+
+/* Adjust to 2 cards per row when screen width is less than 800px */
+@media (max-width: 800px) {
+  .col-4 {
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+}
+
+/* Adjust to 1 card per row when screen width is less than 410px */
+@media (max-width: 410px) {
+  .col-4 {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
