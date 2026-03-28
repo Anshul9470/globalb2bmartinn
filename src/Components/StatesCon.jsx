@@ -1,12 +1,12 @@
-// import React, { useState } from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Link } from "react-router-dom";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-// import "swiper/css";
-// import "swiper/css/pagination";
-// import "swiper/css/navigation";
-// import "swiper/css/navigation";
+import React, { useState, useEffect, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "./allcat.css";
 
 // // import required modules
 // import "./allcat.css";
@@ -286,19 +286,6 @@
 // }
 
 
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import "swiper/css/navigation";
-
-// import required modules
-import "./allcat.css";
 
 const countrylist = [
   { id: 1, name: "United Kingdom", image: "/assets/ukss.jpeg", link: "/uk" },
@@ -512,99 +499,135 @@ export default function StateCon() {
     }
   };
 
+  const [parallaxY, setParallaxY] = useState(0);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    let animationFrameId;
+
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      
+      animationFrameId = requestAnimationFrame(() => {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+
+        // Check if section is visible in viewport
+        if (rect.top <= viewportHeight && rect.bottom >= 0) {
+          // Calculate scroll progress from 0 (entered bottom) to 1 (leaving top)
+          const scrollProgress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+          
+          // Map to a pixel offset range (-100 to +100)
+          const maxMovement = 200; 
+          const offset = (scrollProgress - 0.5) * maxMovement * -1;
+          
+          setParallaxY(offset);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Trigger initial state
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
     <>
-      <Link to={"/all/country"}>
-        <button
-          id="view-all"
-          style={{
-            float: "right",
-            backgroundColor: "transparent",
-            color: "black",
-            border: "none",
-            marginRight: "29px",
-            marginTop: "30px",
-            cursor: "pointer",
-          }}
-        >
-          View All <FontAwesomeIcon icon={faArrowRight} />
-        </button>
-      </Link>
+      <div className="country-section" ref={sectionRef}>
+        <div 
+          className="parallax-bg" 
+          style={{ transform: `translate3d(0, ${parallaxY}px, 0)` }}
+        ></div>
+        <div className="section-overlay"></div>
+        <div className="country-content">
+          <h1 className="country-title">Find Suppliers By Countries</h1>
+          <p className="country-subtitle">
+            The perfect way to Choose your Countries Business Directory
+          </p>
 
-      <div style={{ padding: "5px 10px" }}>
-        <h2 style={{ padding: "10px 20px" }}>
-          Find suppliers by <span style={{ color: "orange" }}> Country</span>{" "}
-        </h2>
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={10}
-          pagination={{ clickable: true }}
-          onSwiper={setSwiperInstance}
-          onReachEnd={handleReachEnd}
-          onReachBeginning={handleReachStart}
-          breakpoints={{
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            768: { slidesPerView: 4, spaceBetween: 40 },
-            1024: { slidesPerView: 7, spaceBetween: 30 },
-          }}
-          className="mySwiper"
-        >
-          {countrylist.map((countries) => (
-            <SwiperSlide key={`countries-${countries.id}`}>
-              <Link to={countries.link}>
-                <div className="card">
-                  <img src={countries.image} alt={countries.name} />
-                  <p>{countries.name}</p>
-                </div>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div className="market-container">
-          <div className="market-header">
-            <h1 className="market-main-title">
-              Welcome to GlobalB2BMart: Best B2B Portal in India
-            </h1>
-            <p className="market-subtitle">
-              GlobalB2BMart is India's leading B2B portal. We make a smooth path
-              between a buyer and a supplier. We mainly focus on expanding the
-              business of our clients and increasing their sales in the Indian
-              as well as global markets. Designed for manufacturers, suppliers,
-              and exporters, these features ensure you stay ahead in a
-              competitive global marketplace.
-            </p>
-          </div>
-
-          <div className="faq-grid">
-            {faqData.map((item, index) => (
-              <div
-                key={index}
-                className={`faq-item ${activeIndex === index ? "active" : ""}`}
-              >
-                <div
-                  className="faq-question"
-                  onClick={() => toggleAccordion(index)}
-                >
-                  <span>{item.title}</span>
-                  <FontAwesomeIcon
-                    icon={activeIndex === index ? faChevronUp : faChevronDown}
-                    className="faq-icon"
-                  />
-                </div>
-                {activeIndex === index && (
-                  <div className="faq-answer">{item.content}</div>
-                )}
-              </div>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            pagination={{ clickable: true }}
+            onSwiper={setSwiperInstance}
+            onReachEnd={handleReachEnd}
+            onReachBeginning={handleReachStart}
+            navigation={true}
+            breakpoints={{
+              320: { slidesPerView: 2, spaceBetween: 20 },
+              640: { slidesPerView: 3, spaceBetween: 30 },
+              768: { slidesPerView: 5, spaceBetween: 40 },
+              1024: { slidesPerView: 6, spaceBetween: 30 },
+            }}
+            className="country-swiper"
+          >
+            {countrylist.map((countries) => (
+              <SwiperSlide key={`countries-${countries.id}`}>
+                <Link to={countries.link} className="country-card">
+                  <div className="country-flag-wrapper">
+                    <img src={countries.image} alt={countries.name} />
+                  </div>
+                  <span className="country-name">{countries.name}</span>
+                </Link>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
 
-          <div className="market-footer">
-            <p>
-              At GlobalB2BMart, our mission is simple: to help businesses with
-              all they need to succeed. Sign up today and take that next step
-              towards business growth and success!
-            </p>
+          <div className="view-all-btn-wrapper">
+            <Link to="/all/country" className="view-all-countries-btn">
+              View All Countries
+            </Link>
           </div>
+        </div>
+      </div>
+      <div className="market-container">
+        <div className="market-header">
+          <h1 className="market-main-title">
+            Welcome to GlobalB2BMart: Best B2B Portal in India
+          </h1>
+          <p className="market-subtitle">
+            GlobalB2BMart is India's leading B2B portal. We make a smooth path
+            between a buyer and a supplier. We mainly focus on expanding the
+            business of our clients and increasing their sales in the Indian
+            as well as global markets. Designed for manufacturers, suppliers,
+            and exporters, these features ensure you stay ahead in a
+            competitive global marketplace.
+          </p>
+        </div>
+
+        <div className="faq-grid">
+          {faqData.map((item, index) => (
+            <div
+              key={index}
+              className={`faq-item ${activeIndex === index ? "active" : ""}`}
+            >
+              <div
+                className="faq-question"
+                onClick={() => toggleAccordion(index)}
+              >
+                <span>{item.title}</span>
+                <FontAwesomeIcon
+                  icon={activeIndex === index ? faChevronUp : faChevronDown}
+                  className="faq-icon"
+                />
+              </div>
+              {activeIndex === index && (
+                <div className="faq-answer">{item.content}</div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="market-footer">
+          <p>
+            At GlobalB2BMart, our mission is simple: to help businesses with
+            all they need to succeed. Sign up today and take that next step
+            towards business growth and success!
+          </p>
         </div>
       </div>
     </>

@@ -900,6 +900,17 @@ const products = [
 ];
 
 export default function Allcategory() {
+  const [parallaxY, setParallaxY] = React.useState(0);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setParallaxY(scrollPosition * 0.15); // Adjust speed
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <section className="why-partner-section">
@@ -1001,7 +1012,15 @@ export default function Allcategory() {
       </section> */}
 
       <section className="Simple-steps">
-        <video controls autoPlay muted loop playsInline className="bg-video">
+        <video 
+          controls 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className="bg-video"
+          style={{ transform: `translateY(${(parallaxY * 0.4) - 50}px)` }} 
+        >
           <source src="/assets/mainvideo.mp4" type="video/mp4" />
         </video>
 
