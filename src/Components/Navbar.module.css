@@ -313,13 +313,58 @@ option {
 /* Navbar.module.css */
 
 /* Navbar.module.css */
-.header {
+/* Redundant header styles removed to fix layout truncation */
+
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: linear-gradient(180deg, #7966ca 0%, #ff3434 100%);
-  border-radius: 20px 20px 0 0;
-  padding: 20px;
-  color: white;
-  height: 500px;
+  height: 100%;
+  background: #000;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.heroVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skipVideoBtn {
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+  background: rgba(255, 165, 0, 0.4);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.skipVideoBtn:hover {
+  background: rgba(255, 165, 0, 0.9);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(255, 165, 0, 0.3);
+}
+
+.skipVideoBtn:active {
+  transform: scale(0.95);
 }
 
 .navbar {
@@ -542,12 +587,24 @@ button[type="submit"] {
 .header {
   font-family: "Inter", sans-serif;
   color: #fff;
-  background-image: url("/public/assets/B2BFlags.png");
+  background-image: url("/assets/B2BFlags.png"); /* Removed 'public/' */
   background-repeat: no-repeat;
   background-size: cover;
-  /* background: linear-gradient(180deg, #ddd9f0 0%, #2c1f1f 100%); */
+  background-position: center;
+  background-attachment: fixed; /* Parallax effect */
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden; /* Prevent horizontal scroll */
   padding-bottom: 50px;
+  width: 100%;
+}
+
+.contentWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  z-index: 10;
 }
 
 /* Overlay */

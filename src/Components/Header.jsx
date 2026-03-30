@@ -1646,127 +1646,184 @@
 
 //  Here is new Code
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import gsap from "gsap";
 import styles from "./Navbar.module.css";
 
 function Header() {
+  const [selectedOption, setSelectedOption] = useState("products");
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSelectChange = (event) => setSelectedOption(event.target.value);
+  const handleInputChange = (event) => setSearchQuery(event.target.value);
+
+  // Search Submit Handler
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const query = searchQuery.toLowerCase();
+    const nonRedirectPaths = ["/usa", "/dubai", "/australia", "/germany", "/china", "/uk", "/canada", "/saudiarabia", "/oman"];
+    const isNonRedirectPath = nonRedirectPaths.includes(window.location.pathname);
+    
+    // Using a simplified mapping but maintaining original logic
+    const keywordToPathMapping = {
+      products: { acid: "/chemicals", agriculture: "/agriculture", fruits: "/apple-seller" },
+      buyer: { furniture: "furniture-buyer" },
+      company: { "sagar trading company": "sagartrading-comp" }
+    };
+    
+    let path = `/${selectedOption}`;
+    let matched = false;
+    const keywordToPath = keywordToPathMapping[selectedOption] || {};
+    for (const [keyword, keywordPath] of Object.entries(keywordToPath)) {
+      if (query.includes(keyword)) { path = keywordPath; matched = true; break; }
+    }
+    if (!matched) path = "/register-buyer";
+    if (!isNonRedirectPath) navigate(`${path}?search=${searchQuery}`);
+  };
+
+  const videoOverlayRef = useRef(null);
+  const [isVideoFinished, setIsVideoFinished] = useState(false);
+
+  const handleVideoEnd = () => {
+    gsap.to(videoOverlayRef.current, {
+      opacity: 0,
+      duration: 1.5,
+      ease: "power2.out",
+      onComplete: () => {
+        setIsVideoFinished(true);
+      },
+    });
+  };
+
+  const skipVideo = () => {
+    gsap.to(videoOverlayRef.current, {
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      onComplete: () => {
+        setIsVideoFinished(true);
+      },
+    });
+  };
+
   return (
     <header className={styles.header}>
-      <nav className={styles.navbar}>
-        {/* Logo Section */}
-        <div className={styles.logo}>
-          <Link to="/">
-            <img src="/assets/b2b-logo.png" alt="GlobalB2B" />
-          </Link>
+      {/* Video Overlay - conditionally rendered */}
+      {!isVideoFinished && (
+        <div ref={videoOverlayRef} className={styles.videoOverlay}>
+          <video
+            className={styles.heroVideo}
+            autoPlay
+            muted
+            onEnded={handleVideoEnd}
+            playsInline
+          >
+            <source src="/assets/banner_video.mp4" type="video/mp4" />
+          </video>
+          <button className={styles.skipVideoBtn} onClick={skipVideo}>
+            Skip Intro
+          </button>
         </div>
+      )}
 
-        <ul className={styles.navLinks}>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register-buyer">Post Your Requirement</Link>
-          </li>
-          <li>
-            <Link to="/packages">Join Free</Link>
-          </li>
-        </ul>
-      </nav>
+      {/* Main Content - Always Visible */}
+      <div className={styles.contentWrapper}>
+        <nav className={styles.navbar}>
+          <Link to="/" className={styles.logo}>
+            <img width={300} height={70} src="/assets/Globalb2bmart.png" alt="b2bmart" />
+          </Link>
 
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1>
-            <span
-              style={{
-                color: "orange",
-                fontSize: "3.2rem",
-                WebkitTextStroke: "1.5px black",
-                fontWeight: "bold",
-                display: "inline-block",
-                // transform: "rotate(-3deg)",
-              }}
-            >
-              Connect Smarter, Trade
-            </span>
-            <span
-              style={{
-                color: "white",
-                WebkitTextStroke: "1.5px black",
-                fontSize: "3.2rem",
-                fontWeight: "bold",
-                display: "inline-block",
-                // transform: "rotate(3deg)",
-                marginLeft: "8px",
-              }}
-            >
-              Faster, Grow Bigger.
-            </span>
-          </h1>
-
-          <div className={styles.searchBar}>
+          <form onSubmit={handleFormSubmit} className={styles.searchForm}>
+            <select className={styles.selection} value={selectedOption} onChange={handleSelectChange}>
+              <option value="products">Products</option>
+              <option value="buyer">Buyer</option>
+              <option value="company">Company</option>
+            </select>
             <input
               type="text"
-              placeholder="Search here..."
+              placeholder="Search your product or requirement..."
+              value={searchQuery}
+              onChange={handleInputChange}
               className={styles.searchInput}
             />
-            <i className="fas fa-search"></i>
-          </div>
-        </div>
+            <button type="submit" className={styles.searchBtn}>🔍</button>
+          </form>
 
-        <div className={styles.featuredSection}>
-          <h2>Featured Industries & Products</h2>
-          <div className={styles.featuredGrid}>
-            <div className={styles.featureCard}>
-              <Link to="/agriculture-farm-tools-suppliers">
-                <img
-                  src="/assets/fruits-and-vegetables1.jpg"
-                  alt="Agriculture & Food"
-                />
-              </Link>
-              <Link to="/agriculture-farm-tools-suppliers">
-                <p>Agriculture & Food</p>
-              </Link>
-            </div>
-            {/* <Link to="/industrySupplies">
-              <div className={styles.featureCard}>
-                <img src="/assets/hd-tool.jpg" alt="Industrial Supplies" />
-                <p>Industrial Supplies</p>
-              </div>
-            </Link> */}
-            <Link to="/best-furnitures-supplier-in-india">
-              <div className={styles.featureCard}>
-                <img src="/assets/fu1.jpeg" alt="Furniture" />
-                <p>Furnitures</p>
-              </div>
-            </Link>
-            <Link to="/clothing-apparel-suppliers">
-              <div className={styles.featureCard}>
-                <img src="/assets/textile-ai.jpg" alt="Textiles & Apparel" />
-                <p>Textiles & Apparel</p>
-              </div>
-            </Link>
-            <Link to="/gifts-items">
-              <div className={styles.featureCard}>
-                <img src="/assets/gift-new1.jpg" alt="Electronics" />
-                <p>GIfts</p>
-              </div>
-            </Link>
-            <div className={styles.ExploreMoreCard}>
-              <Link
-                to="/homeSupplies"
-                className={styles.exploreLink}
-                aria-label="Explore more"
-              >
-                Explore More
-              </Link>
+          <div className={styles.navLinks}>
+            <Link to="/login">Log in</Link>
+            <Link to="/register-buyer">Buyers</Link>
+            <Link to="/register-Company">Register Company</Link>
+          </div>
+        </nav>
+
+        <section className={styles.heroSection}>
+          <div className={styles.heroContent}>
+            <h1>
+              <span style={{ color: "orange", fontSize: "3.2rem", WebkitTextStroke: "1.5px black", fontWeight: "bold", display: "inline-block" }}>
+                Connect Smarter, Trade
+              </span>
+              <span style={{ color: "white", WebkitTextStroke: "1.5px black", fontSize: "3.2rem", fontWeight: "bold", display: "inline-block", marginLeft: "8px" }}>
+                Faster, Grow Bigger.
+              </span>
+            </h1>
+            <div className={styles.buttonGroup}>
+              <Link to="/globalb2b-prices" className={styles.btnPrimary}>Analyze Growth</Link>
+              <Link to="/register-buyer" className={styles.btnOrange}>Post Your Requirement</Link>
+              <Link to="/register-company" className={styles.btnGold}>Register as Company</Link>
             </div>
           </div>
-        </div>
-      </section>
+
+          <div className={styles.featuredSection}>
+            <h2>What are you looking for?</h2>
+            <div className={styles.featuredGrid}>
+              <Link to="/agriculture-farm-tools-suppliers">
+                <div className={styles.featureCard}>
+                   <img src="/assets/fruits-and-vegetables1.jpg" alt="Agriculture" />
+                   <p>Agriculture & Food</p>
+                </div>
+              </Link>
+              <Link to="/best-furnitures-supplier-in-india">
+                <div className={styles.featureCard}>
+                  <img src="/assets/fu1.jpeg" alt="Furniture" />
+                  <p>Furnitures</p>
+                </div>
+              </Link>
+              <Link to="/clothing-apparel-suppliers">
+                <div className={styles.featureCard}>
+                  <img src="/assets/textile-ai.jpg" alt="Textiles" />
+                  <p>Textiles & Apparel</p>
+                </div>
+              </Link>
+              <Link to="/gifts-items">
+                <div className={styles.featureCard}>
+                  <img src="/assets/gift-new1.jpg" alt="Gifts" />
+                  <p>Gifts</p>
+                </div>
+              </Link>
+              <div className={styles.ExploreMoreCard}>
+                <Link to="/homeSupplies" className={styles.exploreLink}>Explore More</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Trusted By Section */}
+        <section className={styles.trustedSection}>
+          <p>Trusted by Global Businesses</p>
+          <div className={styles.brandLogos}>
+            <img src="/assets/brand1.png" alt="Brand" />
+            <img src="/assets/brand2.png" alt="Brand" />
+            <img src="/assets/brand3.png" alt="Brand" />
+            <img src="/assets/brand4.png" alt="Brand" />
+            <img src="/assets/brand5.png" alt="Brand" />
+          </div>
+        </section>
+      </div>
     </header>
   );
 }
 
 export default Header;
+
