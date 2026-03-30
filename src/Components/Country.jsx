@@ -30,46 +30,89 @@ export default function Country() {
         setSlides([...slides, newCard]);
     };
 
-    return (<>
-        <h2 style={{ margin: '10px 20px' }}>Find suppliers by State</h2>
-        <a href="/">
-            <button id='view-all' style={{ float: 'right', backgroundColor: 'transparent', color: 'black', border: 'none', marginRight: '29px', cursor: 'pointer' }}>View All <FontAwesomeIcon icon={faArrowRight} /></button>
-        </a>
-        <div className="swiper-container">
-            <div className="swiper-wrapper">
+    const sectionRef = useRef(null);
+    const [parallaxY, setParallaxY] = useState(0);
+
+    // Parallax scroll effect
+    React.useEffect(() => {
+        let animationFrameId;
+
+        const handleScroll = () => {
+            if (!sectionRef.current) return;
+            
+            const rect = sectionRef.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            
+            // Check if element is in viewport
+            if (rect.top <= viewportHeight && rect.bottom >= 0) {
+                // Calculate scroll percentage relative to element position
+                const scrollPercentage = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+                // Move background in opposite direction (parallax effect)
+                // Range from -15% to 15% of container height
+                const yPos = (scrollPercentage - 0.5) * 80; // pixels
+                setParallaxY(yPos);
+            }
+        };
+
+        const onScroll = () => {
+            animationFrameId = requestAnimationFrame(handleScroll);
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        // Initial call
+        handleScroll();
+
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+
+    return (
+        <div className="country-section state-modern-section" ref={sectionRef} style={{ background: '#fff4eb' }}>
+            <div 
+                className="parallax-bg-state" 
+                style={{ transform: `translate3d(0, ${parallaxY}px, 0)` }}
+            ></div>
+            <div className="section-overlay"></div>
+            
+            <div className="country-content">
+                <h1 className="country-title">Find Suppliers By State</h1>
+                <p className="country-subtitle" style={{ color: '#4a3f35' }}>
+                    The perfect way to choose your State Business Directory
+                </p>
+
                 <Swiper
-                    slidesPerView={10} // Default slides per view for larger screens
-                    spaceBetween={10}
+                    slidesPerView={1}
+                    spaceBetween={30}
                     pagination={{ clickable: true }}
                     navigation={true}
-                    className="mySwiper"
                     breakpoints={{
-                        // Responsive breakpoints
-                        1024: {
-                            slidesPerView: 7, // Render 6 cards per view on tablets
-                        },
-                        768: {
-                            slidesPerView: 4, // Render 4 cards per view on mobile landscape
-                        },
-                        210: {
-                            slidesPerView: 3, // Render 3 cards per view on mobile portrait
-                        },
+                        320: { slidesPerView: 2, spaceBetween: 20 },
+                        640: { slidesPerView: 3, spaceBetween: 30 },
+                        768: { slidesPerView: 5, spaceBetween: 40 },
+                        1024: { slidesPerView: 6, spaceBetween: 30 },
                     }}
+                    className="country-swiper"
                 >
                     {slides.map((card) => (
                         <SwiperSlide key={card.id}>
-                            <div className="swiper-slide circle-slide">
-                                <a href={`#cardxx${card.id}`}>
-                                    <img width={180} height={180} style={{ borderRadius: '50%' }} src={card.imageUrl} alt={card.title} />
-                                    <span>{card.title}</span>
-                                </a>
-                            </div>
+                            <a href={`#cardxx${card.id}`} className="country-card">
+                                <div className="country-flag-wrapper state-flag-wrapper">
+                                    <img src={card.imageUrl} alt={card.title} />
+                                </div>
+                                <span className="country-name" style={{ color: '#2b2218' }}>{card.title}</span>
+                            </a>
                         </SwiperSlide>
                     ))}
                 </Swiper>
+                
+                <div className="view-all-btn-wrapper">
+                    <a href="/" className="view-all-countries-btn" style={{ background: '#ff7a00', boxShadow: '0 8px 30px rgba(255, 122, 0, 0.4)' }}>
+                        View All States <FontAwesomeIcon icon={faArrowRight} style={{ marginLeft: '10px' }} />
+                    </a>
+                </div>
             </div>
-
         </div>
-    </>
     );
 }
