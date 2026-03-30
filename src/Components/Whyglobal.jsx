@@ -117,113 +117,132 @@
 
 // export default Whyglobal
 
-import React from 'react'
-import './whyglobal.css'
+import React from 'react';
+import './whyglobal.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faGlobeAmericas, 
+  faBolt, 
+  faShieldHalved, 
+  faChartLine,
+  faAddressCard,
+  faMagnifyingGlass,
+  faComments,
+  faHandshake
+} from '@fortawesome/free-solid-svg-icons';
 
 const Whyglobal = () => {
     return (
         <>
-<section class="trade-section">
-  <div class="trade-container">
+<section className="trade-section">
+  <div className="trade-container">
     
-    <div class="trade-header fade-in">
+    <div className="trade-header fade-in">
       <h1>Global Trade Platform</h1>
       <p>Connect with verified buyers and sellers worldwide.<br />Start trading in 4 simple steps.</p>
     </div>
 
-    <div class="trade-grid">
+    <div className="trade-grid">
       
-    
-      <div class="why-trade-card slide-up">
-        <div class="why-trade-header">
+      <div className="why-trade-card slide-up">
+        <div className="why-trade-header">
           <h2>Why Trade With Us?</h2>
-          <p>Experience the difference</p>
+          <p>Experience the difference with our premium services</p>
         </div>
         
-        <div class="features-grid">
-          <div class="feature-item">
-            <div class="feature-icon">🌍</div>
+        <div className="features-grid">
+          <div className="feature-item">
+            <div className="feature-icon">
+              <FontAwesomeIcon icon={faGlobeAmericas} />
+            </div>
             <h3>Global Reach</h3>
-            <p>Access markets in 150+ countries with verified partners</p>
+            <p style={{ textAlign: 'justify' }}>Access markets in 150+ countries around the globe with verified, high-quality business partners.</p>
           </div>
           
-          <div class="feature-item">
-            <div class="feature-icon">⚡</div>
+          <div className="feature-item">
+            <div className="feature-icon">
+              <FontAwesomeIcon icon={faBolt} />
+            </div>
             <h3>Fast Deals</h3>
-            <p>Close deals 3x faster with our streamlined process</p>
+            <p style={{ textAlign: 'justify' }}>Close deals 3x faster with our streamlined and highly optimized negotiation process.</p>
           </div>
           
-          <div class="feature-item">
-            <div class="feature-icon">🔒</div>
+          <div className="feature-item">
+            <div className="feature-icon">
+              <FontAwesomeIcon icon={faShieldHalved} />
+            </div>
             <h3>Secure Payments</h3>
-            <p>Protected transactions with escrow services</p>
+            <p style={{ textAlign: 'justify' }}>Experience 100% protected and reliable transactions through our integrated escrow services.</p>
           </div>
           
-          <div class="feature-item">
-            <div class="feature-icon">📈</div>
+          <div className="feature-item">
+            <div className="feature-icon">
+              <FontAwesomeIcon icon={faChartLine} />
+            </div>
             <h3>Growth Tools</h3>
-            <p>Analytics and insights to grow your business</p>
+            <p style={{ textAlign: 'justify' }}>Leverage advanced analytics, market insights, and tools specialized for business scalability.</p>
           </div>
         </div>
       </div>
 
       
-      <div class="how-trade-section slide-up">
-        <div class="how-trade-header">
+      <div className="how-trade-section slide-up">
+        <div className="how-trade-header">
           <h2>How to Start Trading</h2>
-          <p>Get started in 4 simple steps</p>
+          <p>Get started seamlessly in 4 simple steps</p>
         </div>
         
-        <div class="steps-grid">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-icon">📝</div>
-            <h3>Register Account</h3>
-            <p>Create your business profile in minutes with verification</p>
-            <a href="#" class="step-action">Get Started</a>
+        <div className="steps-grid">
+          <div className="step-card">
+            <div className="step-number">1</div>
+            <div className="step-icon">
+              <FontAwesomeIcon icon={faAddressCard} />
+            </div>
+            <div className="step-content">
+               <h3>Register Account</h3>
+               <p>Create your professional business profile in minutes with our fast verification process.</p>
+            </div>
+            <a href="#" className="step-action">Get Started</a>
           </div>
           
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-icon">🔍</div>
-            <h3>Find Partners</h3>
-            <p>Browse verified buyers and sellers in your industry</p>
-            <a href="#" class="step-action">Explore</a>
+          <div className="step-card">
+            <div className="step-number">2</div>
+            <div className="step-icon">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </div>
+            <div className="step-content">
+               <h3>Find Partners</h3>
+               <p>Browse through an extensive list of verified buyers and sellers in your specific industry.</p>
+            </div>
+            <a href="#" className="step-action">Explore</a>
           </div>
           
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-icon">💬</div>
-            <h3>Connect & Negotiate</h3>
-            <p>Use our secure platform to discuss terms and pricing</p>
-            <a href="#" class="step-action">Connect</a>
+          <div className="step-card">
+            <div className="step-number">3</div>
+            <div className="step-icon">
+               <FontAwesomeIcon icon={faComments} />
+            </div>
+            <div className="step-content">
+               <h3>Connect & Negotiate</h3>
+               <p>Use our real-time, secure platform communication to easily discuss terms and pricing.</p>
+            </div>
+            <a href="#" className="step-action">Connect</a>
           </div>
           
-          <div class="step-card">
-            <div class="step-number">4</div>
-            <div class="step-icon">🤝</div>
-            <h3>Close Deal</h3>
-            <p>Finalize with secure payments and logistics support</p>
-            <a href="#" class="step-action">Trade Now</a>
+          <div className="step-card">
+            <div className="step-number">4</div>
+            <div className="step-icon">
+               <FontAwesomeIcon icon={faHandshake} />
+            </div>
+            <div className="step-content">
+               <h3>Close Deal</h3>
+               <p>Finalize your contracts with guaranteed secure payments and comprehensive logistics support.</p>
+            </div>
+            <a href="#" className="step-action">Trade Now</a>
           </div>
         </div>
       </div>
     </div>
-
-    {/* <div class="trade-stats fade-in">
-      <div class="stat-item">
-        <div class="stat-number">50K+</div>
-        <div class="stat-label">Verified Businesses</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">$2B+</div>
-        <div class="stat-label">Annual Trade Volume</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">150+</div>
-        <div class="stat-label">Countries Served</div>
-      </div>
-    </div> */}
 
   </div>
 </section>

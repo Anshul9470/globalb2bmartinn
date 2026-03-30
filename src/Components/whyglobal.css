@@ -726,11 +726,10 @@ section {
 .trade-section {
   position: relative;
   width: 100%;
-  padding: 80px 0;
-  /* background: linear-gradient(135deg, #4da6ff 0%, #764ba2 100%); */
-  background: linear-gradient(135deg, #143481 0%, #143481 100%);
-  background: #007bff;
+  padding: 100px 0;
+  background: linear-gradient(135deg, #0f4c81 0%, #062240 100%);
   overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .trade-section::before {
@@ -740,15 +739,16 @@ section {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
-  background-size: cover;
+  background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(255,255,255,0.05) 0%, transparent 40%);
+  z-index: 1;
 }
 
 /* Container Styles */
 .trade-container {
   width: 100%;
-  max-width: 1400px;
-  padding: 0 20px;
+  max-width: 1350px;
+  padding: 0 24px;
   margin: 0 auto;
   position: relative;
   z-index: 2;
@@ -757,319 +757,260 @@ section {
 /* Header Section */
 .trade-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
 
 .trade-header h1 {
   font-size: 3.5rem;
   font-weight: 800;
-  color: white;
-  margin-bottom: 15px;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .trade-header p {
-  font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 600px;
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 650px;
   margin: 0 auto;
   line-height: 1.6;
 }
 
-/* Main Grid Layout - Equal Half Width */
+/* Main Grid Layout */
 .trade-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Equal half width */
-  gap: 30px;
-  align-items: stretch; /* Make both containers equal height */
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: stretch;
 }
 
-/* Why Trade Section - Left Half */
-.why-trade-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 20px 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  height: 100%; /* Take full height of grid cell */
+/* Shared Card Styles */
+.why-trade-card,
+.how-trade-section {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
-  min-height: 550px; /* Fixed rectangular height */
 }
 
-.why-trade-header {
-  text-align: center;
-  margin-bottom: 20px;
+.why-trade-header, 
+.how-trade-header {
+  text-align: left;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 20px;
 }
 
-.why-trade-header h2 {
+.why-trade-header h2,
+.how-trade-header h2 {
   font-size: 2rem;
-  font-weight: 700;
-  color: #2d3748;
-  margin-bottom: 10px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #0f172a, #334155);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.why-trade-header p {
-  color: #718096;
-  font-size: 1.1rem;
+.why-trade-header p,
+.how-trade-header p {
+  color: #64748b;
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
-/* Features Grid */
+/* Features Grid (Left Side) */
 .features-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border-radius: 16px;
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  flex-grow: 1; /* Take remaining space */
+  gap: 20px;
+  flex-grow: 1;
 }
 
 .feature-item {
-  padding: 20px 20px 20px 20px;
-  text-align: center;
-  position: relative;
-  transition: all 0.3s ease;
-  background: white;
+  padding: 24px;
+  border-radius: 20px;
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-start;
 }
 
 .feature-item:hover {
-  transform: translateY(-5px);
-  background: #f7fafc;
-  z-index: 2;
-}
-
-.feature-item:nth-child(odd) {
-  border-right: 1px solid #e2e8f0;
-}
-
-.feature-item:nth-child(-n+2) {
-  border-bottom: 1px solid #e2e8f0;
+  transform: translateY(-6px);
+  background: #ffffff;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
+  border-color: #e2e8f0;
 }
 
 .feature-icon {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 20px;
-  /* background: linear-gradient(135deg, #667eea, #764ba2); */
-  background: linear-gradient(135deg, #143481 0%, #143481 100%);
-  background: #007bff;
-  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  margin-bottom: 18px;
   color: white;
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 123, 255, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover .feature-icon {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .feature-item h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #2d3748;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
   margin-bottom: 10px;
 }
 
 .feature-item p {
-  font-size: 0.9rem;
-  color: #718096;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
 }
 
-/* How Trade Section - Right Half */
-.how-trade-section {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 40px 35px 15px 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  height: 50%; /* Take full height of grid cell */
+/* Steps Grid (Right Side) */
+.steps-grid {
   display: flex;
   flex-direction: column;
-  min-height: 450px; /* Fixed rectangular height matching left side */
-}
-
-.how-trade-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.how-trade-header h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #2d3748;
-  margin-bottom: 10px;
-}
-
-.how-trade-header p {
-  color: #718096;
-  font-size: 1.1rem;
-}
-
-/* Steps Grid */
-.steps-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  flex-grow: 1; /* Take remaining space */
-  /* height: 50vh; */
+  gap: 16px;
+  flex-grow: 1;
 }
 
 .step-card {
-  background: white;
-  padding: 10px;
-  border-radius: 16px;
   display: flex;
   align-items: center;
   gap: 20px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 18px 20px;
+  background: #ffffff;
+  border-radius: 20px;
   border: 1px solid #f1f5f9;
-  flex: 1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .step-card:hover {
   transform: translateX(8px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e1;
+  background: #fcfcfc;
 }
 
 .step-number {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #fb923c, #ea580c);
   color: white;
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.2rem;
-  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 6px 12px rgba(234, 88, 12, 0.25);
   flex-shrink: 0;
 }
 
+.step-card:nth-child(even) .step-number {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  box-shadow: 0 6px 12px rgba(14, 165, 233, 0.25);
+}
+
 .step-icon {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  background: #f1f5f9;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  color: white;
-  box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+  font-size: 1.4rem;
   flex-shrink: 0;
+  color: #475569;
 }
 
 .step-content {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .step-card h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 4px 0;
 }
 
 .step-card p {
   font-size: 0.9rem;
-  color: #718096;
-  line-height: 1.5;
-  margin-bottom: 0;
+  color: #64748b;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .step-action {
-  display: inline-flex;
-  padding: 10px 20px;
-  /* background: linear-gradient(135deg, #667eea, #764ba2); */
-  background: linear-gradient(135deg, #143481 0%, #143481 100%);
+  padding: 12px 24px;
   background: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 10px;
+  color: #ffffff;
+  border-radius: 12px;
   font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-  align-items: center;
-  justify-content: center;
-  min-width: 100px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s;
   flex-shrink: 0;
+  margin-left: auto;
+  min-width: 120px;
+  text-align: center;
 }
 
 .step-action:hover {
+  background: #0056b3;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-/* Stats Section */
-.trade-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 60px;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.stat-item {
-  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
   color: white;
 }
 
-.stat-number {
-  font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 10px;
-  background: linear-gradient(135deg, #fff, #e2e8f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-.stat-label {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  font-weight: 500;
+.slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
   .trade-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .why-trade-card,
-  .how-trade-section {
-    min-height: auto; /* Remove fixed height on smaller screens */
-  }
-  
-  .steps-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .trade-stats {
-    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
   }
 }
 
 @media (max-width: 768px) {
-  .trade-section {
-    padding: 60px 0;
-  }
-  
   .trade-header h1 {
     font-size: 2.5rem;
   }
@@ -1078,134 +1019,34 @@ section {
     grid-template-columns: 1fr;
   }
   
-  .feature-item:nth-child(odd) {
-    border-right: none;
-  }
-  
   .step-card {
-    flex-direction: column;
-    text-align: center;
+    flex-wrap: wrap;
     gap: 15px;
   }
   
-  .trade-stats {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 30px 20px;
+  .step-content {
+    width: 100%;
+    order: 3;
   }
   
-  .why-trade-card,
-  .how-trade-section {
-    padding: 30px 20px;
+  .step-action {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .trade-container {
-    padding: 0 15px;
+  .trade-section {
+    padding: 60px 0;
   }
   
   .trade-header h1 {
     font-size: 2rem;
   }
   
-  .trade-header p {
-    font-size: 1.1rem;
-  }
-  
-  .feature-item,
-  .step-card {
-    padding: 25px 20px;
-  }
-  
-  .step-action {
-    min-width: 120px;
+  .why-trade-card,
+  .how-trade-section {
+    padding: 24px;
   }
 }
-
-/* Animation Classes */
-.fade-in {
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-.slide-up {
-  animation: slideUp 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Ensure both containers are perfectly rectangular and equal */
-.trade-grid > * {
-  min-height: 550px;
-}
-
-@media (max-width: 1200px) {
-  .trade-grid > * {
-    min-height: auto;
-  }
-}
-
-/* .trade-section {
-    max-height: 100vh;
-    height: auto;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-.why-trade-card,
-.how-trade-section {
-    height: auto;
-    min-height: auto;
-}
-.trade-section {
-    max-height: 100vh;
-    padding: 40px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.why-trade-card,
-.how-trade-section {
-    max-height: 100vh;
-    height: auto;
-    min-height: auto;
-    overflow: hidden;
-}
-.slide-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.6s ease-out;
-}
-
-.slide-up.visible {
-    opacity: 1;
-    transform: translateY(0px);
-}
-.trade-section {
-    max-height: 100vh;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-} */
