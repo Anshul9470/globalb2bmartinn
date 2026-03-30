@@ -133,19 +133,42 @@
   border-radius: 16px; /* Sharper, more B2B professional corners */
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.04), 0 4px 10px rgba(0, 0, 0, 0.02); /* Slight color touch in shadow */
   position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.08); /* Faint blue border for a touch of color */
   cursor: pointer;
+}
+
+/* Glassy Shine Overlay */
+.video-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  z-index: 25;
+  pointer-events: none;
 }
 
 .video-container:hover {
   transform: translateY(-8px); /* Subtle lift */
-  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.08), 0 5px 15px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.12), 0 5px 15px rgba(37, 99, 235, 0.05); /* Blue glowing shadow */
+}
+
+.video-container:hover::after {
+  animation: shine-sweep 1s ease-in-out; /* Shine triggers on hover */
+}
+
+@keyframes shine-sweep {
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
 
 /* ------------------------------
@@ -239,7 +262,7 @@
 ------------------------------ */
 .testimonial-content-wrapper {
   padding: 28px 28px;
-  background: #ffffff;
+  background: linear-gradient(to bottom, #ffffff 0%, #f8fbff 100%); /* Halka sa light blue touch */
   display: flex;
   flex-direction: column;
   flex-grow: 1; /* Pushes to the bottom to equalize heights */
