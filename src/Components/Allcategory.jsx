@@ -827,7 +827,7 @@ const products = [
     path: "/pipeseller",
   },
   {
-    id: 7,
+    id: 16,
     title: "Spices",
     image: "./assets/ai-spices.jpg",
     items: ["Almonds", "Cashews", "Raisins", "Walnuts"],
