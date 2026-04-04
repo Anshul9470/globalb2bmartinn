@@ -713,28 +713,6 @@
 
 //       {/* ===== Simple Steps Section ===== */}
 //       <div className="simple-steps">
-//         <div className="steps-header">
-//           <h2>Simple Steps to Start Your B2B Journey</h2>
-//           <Link to="/register-Company" className="join-btn">
-//             Join GlobalB2BMart Today
-//           </Link>
-//         </div>
-//         <div className="steps-grid">
-//           <div className="step-card">
-//             <div className="step-icon">
-//               <UserPlus />
-//             </div>
-//             <h4>1. Register for Free</h4>
-//             <p>Fast & easy business registration process.</p>
-//           </div>
-//           <div className="step-card">
-//             <div className="step-icon">
-//               <ClipboardList />
-//             </div>
-//             <h4>2. List or Post</h4>
-//             <p>Showcase your products or services easily.</p>
-//           </div>
-//           <div className="step-card">
 //             <div className="step-icon">
 //               <Users />
 //             </div>
@@ -755,14 +733,28 @@ const products = [
     id: 1,
     title: "Pulses",
     image: "./assets/ai-pulses.jpg",
-
+    items: [
+      "Moong Dal",
+      "Masoor Dal",
+      "Chana Dal",
+      "Toor Dal",
+      "Urad Dal",
+      "Black Matpe",
+    ],
     path: "/agroproducts",
   },
   {
     id: 2,
     title: "Saree",
     image: "./assets/sareesii.png",
-    items: ["Fresh Potato", "Red Potato", "Baby Potato", "Frozen Potato"],
+    items: [
+      "Silk Saree",
+      "Cotton Saree",
+      "Banarasi Saree",
+      "Georgette Saree",
+      "Chiffon Saree",
+      "Party Wear",
+    ],
     path: "/sareesdealer",
   },
   {
@@ -770,10 +762,12 @@ const products = [
     title: "Rice",
     image: "./assets/ricemain.png",
     items: [
-      "Handmade Leather Bags",
-      "Travel Bags",
-      "Office Leather Bags",
-      "Ladies Leather Bags",
+      "Basmati Rice",
+      "Sella Rice",
+      "Brown Rice",
+      "Jasmine Rice",
+      "Parboiled Rice",
+      "Broken Rice",
     ],
     path: "/rice-seller",
   },
@@ -782,17 +776,27 @@ const products = [
     title: "Egg Shell Powder",
     image: "./assets/eggshellpowder.png",
     items: [
-      "Organic Banana Powder",
-      "Dried Banana Chips",
-      "Banana Extract",
-      "Banana Puree",
+      "Natural Egg Powder",
+      "Calcium Carbonate",
+      "Soil Fertilizer",
+      "Poultry Feed",
+      "Cosmetic Grade",
+      "Industrial Powder",
     ],
+    path: "/eggshell-details",
   },
   {
     id: 5,
     title: "Cable Tie",
     image: "./assets/ai-cable-tie.jpg",
-    items: ["Copper Cable", "Aluminium Cable", "Power Cable", "Flexible Wire"],
+    items: [
+      "Nylon Cable Ties",
+      "Stainless Steel Ties",
+      "Reusable Ties",
+      "UV Protected Ties",
+      "Self-Locking Ties",
+      "Heavy Duty Ties",
+    ],
     path: "/wiresuppliers",
   },
   {
@@ -800,10 +804,12 @@ const products = [
     title: "Fruits Powder",
     image: "./assets/fruitspowder.png",
     items: [
-      "Trolley Suitcase",
-      "Hard Case Suitcase",
-      "Soft Case Suitcase",
-      "Travel Luggage",
+      "Mango Powder",
+      "Strawberry Powder",
+      "Orange Powder",
+      "Pineapple Powder",
+      "Banana Powder",
+      "Guava Powder",
     ],
     path: "/fruitscomponent",
   },
@@ -811,7 +817,14 @@ const products = [
     id: 7,
     title: "Dry Fruits",
     image: "./assets/dry-fruit-ai.jpg",
-    items: ["Almonds", "Cashews", "Raisins", "Walnuts"],
+    items: [
+      "Premium Almonds",
+      "Roasted Cashews",
+      "Green Pistachios",
+      "Black Raisins",
+      "Shelled Walnuts",
+      "Dried Figs",
+    ],
     path: "/dryfruitsmanu",
   },
   {
@@ -819,10 +832,12 @@ const products = [
     title: "PVC Pipes",
     image: "./assets/pvcpipes.png",
     items: [
-      "Designer Curtains",
-      "Cotton Curtains",
-      "Blackout Curtains",
-      "Printed Curtains",
+      "UPVC Plumbing Pipes",
+      "CPVC Hot/Cold Pipes",
+      "Electrical Conduit",
+      "SWR Drainage Pipes",
+      "Agricultural Pipes",
+      "Plumbing Fittings",
     ],
     path: "/pipeseller",
   },
@@ -830,7 +845,14 @@ const products = [
     id: 16,
     title: "Spices",
     image: "./assets/ai-spices.jpg",
-    items: ["Almonds", "Cashews", "Raisins", "Walnuts"],
+    items: [
+      "Turmeric Powder",
+      "Red Chilli Powder",
+      "Cumin Seeds",
+      "Coriander Powder",
+      "Cardamom Pods",
+      "Black Pepper",
+    ],
     path: "/spices-dealers",
   },
   {
@@ -838,10 +860,12 @@ const products = [
     title: "Handicrafts",
     image: "./assets/handicraft.png",
     items: [
-      "Sewing Needles",
-      "Knitting Needles",
-      "Embroidery Needles",
-      "Medical Needles",
+      "Wooden Home Decor",
+      "Metal Art Crafts",
+      "Pottery & Ceramics",
+      "Eco Jute Bags",
+      "Bamboo Crafts",
+      "Hand-painted Art",
     ],
     path: "/handicraftItems",
   },
@@ -849,7 +873,14 @@ const products = [
     id: 10,
     title: "Desi Ghee",
     image: "./assets/ghee-ai.jpg",
-    items: ["Cow Ghee", "Buffalo Ghee", "Organic Ghee", "A2 Ghee"],
+    items: [
+      "Pure Cow Ghee",
+      "Buffalo Ghee",
+      "Organic Farm Ghee",
+      "A2 Vedic Ghee",
+      "Clarified Butter",
+      "Traditional Ghee",
+    ],
     path: "/ghee-seller",
   },
   {
@@ -857,10 +888,12 @@ const products = [
     title: " Herbal Products",
     image: "./assets/herbalproducts.png",
     items: [
-      "Kashmiri Saffron",
-      "Iranian Saffron",
-      "Mongra Saffron",
-      "Lacha Saffron",
+      "Aloe Vera Gel",
+      "Neem Leaf Powder",
+      "Ashwagandha Root",
+      "Pure Tulsi Drops",
+      "Morning Herbal Tea",
+      "Essential Oils",
     ],
     path: "/hearbal-seller",
   },
@@ -868,14 +901,28 @@ const products = [
     id: 12,
     title: "Plastic Product",
     image: "./assets/plasticproduct.png",
-    items: ["Durum Wheat", "Whole Wheat", "Sharbati Wheat", "Wheat Flour"],
+    items: [
+      "PET Plastic Bottles",
+      "Storage Organizers",
+      "Industrial Polybags",
+      "Moulded Trays",
+      "Kitchenware sets",
+      "Heavy Containers",
+    ],
     path: "/plastic",
   },
   {
     id: 13,
     title: "Furniture",
     image: "./assets/furniture.png",
-    items: ["Yellow Maize", "White Maize", "Sweet Corn", "Maize Flour"],
+    items: [
+      "Ergonomic Chairs",
+      "Luxury Sofa Sets",
+      "Solid Wood Dining",
+      "Modern Bed Frames",
+      "Wooden Cabinets",
+      "Royal Recliners",
+    ],
     path: "/best-furniture-suppliers-in-india",
   },
   {
@@ -883,10 +930,12 @@ const products = [
     title: "Shirts",
     image: "./assets/shirts.png",
     items: [
-      "Stainless Steel Wiremesh",
-      "Welded Wiremesh",
-      "Hexagonal Wiremesh",
-      "GI Wiremesh",
+      "Cotton Formal Shirts",
+      "Casual Denim Shirts",
+      "Slim Fit Design",
+      "Premium Checked",
+      "Linen Shirts",
+      "Party Wear Shirts",
     ],
     path: "/garmentdedealer",
   },
@@ -894,8 +943,43 @@ const products = [
     id: 15,
     title: "Gold Jewelry",
     image: "./assets/goldjellerw.png",
-    items: ["Resistance Bands", "Loop Bands", "Pull-Up Bands", "Yoga Bands"],
+    items: [
+      "Royal Necklace Set",
+      "Designer Bangles",
+      "Diamond Rings",
+      "Gold Earrings",
+      "Traditional Jhumka",
+      "Custom Jewelry",
+    ],
     path: "/jewellery-seller",
+  },
+  {
+    id: 17,
+    title: "Fresh Fruits",
+    image: "./assets/premium_fruits_b2b.png",
+    items: [
+      "Fresh Mangoes",
+      "Crisp Apples",
+      "Sweet Oranges",
+      "Red Grapes",
+      "Green Grapes",
+      "Pomegranates",
+    ],
+    path: "/fruitscomponent",
+  },
+  {
+    id: 18,
+    title: "Vegetable Oils",
+    image: "./assets/premium_oils_b2b.png",
+    items: [
+      "Olive Oil",
+      "Sunflower Oil",
+      "Coconut Oil",
+      "Groundnut Oil",
+      "Mustard Oil",
+      "Soybean Oil",
+    ],
+    path: "/mustard-oil",
   },
 ];
 
@@ -953,8 +1037,12 @@ export default function Allcategory() {
         </h2>
 
         <div className="category-grid">
-          {products.map((product) => (
-            <div className="category-card" key={product.id}>
+          {products.map((product, index) => (
+            <div 
+              className="category-card" 
+              key={product.id} 
+              style={{ '--i': index + 1 }}
+            >
               <div className="category-img">
                 <Link to={product.path || "/"}>
                   <img src={product.image} alt={product.title} />
@@ -963,16 +1051,30 @@ export default function Allcategory() {
 
               <div className="card-content">
                 <h3 className="category-title">{product.title}</h3>
+                
+                <div className="card-meta">
+                  <span className="meta-item">
+                    <span className="meta-dot"></span>
+                    120+ Verified Suppliers
+                  </span>
+                  <span className="meta-item">
+                    <span className="meta-dot"></span>
+                    ISO 9001:2015 Cert.
+                  </span>
+                  <span className="meta-item">
+                    <span className="meta-dot"></span>
+                    Global Export Quality
+                  </span>
+                </div>
 
-                {/* <ul className="item-list">
-                {product.items.map((item, idx) => (
-                  <li key={idx}>
-                    <Link to="/">{item}</Link>
-                  </li>
-                ))}
-              </ul> */}
+                <ul className="item-list">
+                  {product.items && product.items.map((item, idx) => (
+                    <li key={idx} style={{ '--i': idx }}>
+                      <Link to={product.path || "/"}>{item}</Link>
+                    </li>
+                  ))}
+                </ul>
 
-                {/* <Link to="/register-Company" className="view-btn"> */}
                 <Link className="view-btn" to={product.path || "/"}>
                   View Suppliers
                 </Link>
