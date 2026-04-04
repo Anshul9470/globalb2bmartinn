@@ -791,368 +791,138 @@ ol {
 
 /* Style for the fixed bar and toggle button */
 
+/* Corrected and Consolidated Fixed Call Form styles */
 .fixed-form-bar {
   position: fixed;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  width: 20px;
-  height: 100px;
-  background-color: yellow;
+  width: 50px;
+  height: 220px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
   cursor: pointer;
-  z-index: 1000;
-}
-
-.fixed-form-bar::after {
-  content: ">";
-  position: absolute;
-  right: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: black;
-}
-
-/* Style for the form container */
-.fixed-form-container {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 300px;
-  height: 100%;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-  transition: right 0.3s ease;
-}
-
-/* When the form is open */
-.fixed-form-container.open {
-  right: 0;
-}
-
-/* Style for the form inputs */
-.fixed-form-container input,
-.fixed-form-container select {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.fixed-form-container button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.fixed-form-container button:hover {
-  background-color: #0056b3;
-}
-
-/* Style for the fixed bar and toggle button */
-.fixed-form-bar {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 100px;
-  background-color: yellow;
-  cursor: pointer;
-  z-index: 1000;
-  display: none;
-}
-
-.fixed-form-bar::after {
-  content: ">";
-  position: absolute;
-  right: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: black;
-}
-
-/* Style for the form container */
-.fixed-form-container {
-  position: fixed;
-  top: 0;
-  right: -320px;
-  /* Adjust this value to match the width of the form */
-  width: 300px;
-  height: 100%;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-  transition: right 0.3s ease;
-}
-
-/* When the form is open */
-.fixed-form-container.open {
-  right: 0;
-}
-
-/* Style for the form inputs */
-.fixed-form-container input,
-.fixed-form-container select {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.fixed-form-container button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.fixed-form-container button:hover {
-  background-color: #0056b3;
-}
-
-/* Style for the vertical "Call Us Now" bar */
-.vertical-call-bar {
-  position: absolute;
-  top: 50%;
-  left: -40px;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 100px;
-  background-color: orange;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  text-align: center;
-  line-height: 100px;
-  cursor: pointer;
-  transition: left 0.3s ease;
-  margin-top: 30px;
-}
-
-.vertical-call-bar.open {
-  left: 0;
-}
-
-.type-form {
-  color: #000;
-}
-
-/* General style for the form container */
-.fixed-form-container {
-  position: fixed;
-  top: 0;
-  right: -320px;
-  width: 300px;
-  height: 100%;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-  transition: right 0.3s ease;
-}
-
-.fixed-form-container.open {
-  right: 30px;
-}
-
-.fixed-form-container input,
-.fixed-form-container select {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.fixed-form-container button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.fixed-form-container button:hover {
-  background-color: #0056b3;
-}
-
-.type-form {
-  color: #000;
-}
-
-/* Style for the fixed bar and toggle button */
-.fixed-form-bar {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 190px;
-  background-color: yellow;
-  cursor: pointer;
-  z-index: 1000;
-  display: flex;
+  z-index: 9999;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 80px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: -8px 0 25px rgba(30, 58, 138, 0.3);
+  border-radius: 15px 0 0 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: none;
+  backdrop-filter: blur(5px);
 }
 
-.fixed-form-bar .call-us-text {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  text-align: center;
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 19px;
+.fixed-form-bar:hover {
+  width: 60px;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  box-shadow: -10px 0 30px rgba(30, 58, 138, 0.5);
 }
 
-.fixed-form-bar i {
-  font-size: 20px;
-  color: black;
+.fixed-form-bar i.fa-phone-alt {
+  color: #fff;
+  animation: pulse-phone 2s infinite;
 }
 
-.fixed-form-bar {
-  position: fixed;
-  top: 50%;
-  /* right: -170px; */
-  /* Start position off the screen */
-  transform: translateY(-50%);
-  width: 35px;
-  height: 190px;
-  background-color: #ffcd00;
-  cursor: pointer;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: right 0.1s ease;
-  /* Add transition for sliding */
+@keyframes pulse-phone {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .fixed-form-bar.open {
   right: 0;
-  /* Slide in */
 }
 
 .fixed-form-bar .call-us-text {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   text-align: center;
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 19px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Inter', sans-serif;
 }
 
 .fixed-form-bar i {
   font-size: 20px;
-  color: black;
+  color: #ffffff;
+  transition: transform 0.3s;
+}
+
+.fixed-form-bar:hover i {
+  transform: scale(1.15);
 }
 
 .fixed-form-container {
   position: fixed;
   top: 50%;
-  right: -300px;
-  /* Start position off the screen */
+  right: -360px;
   transform: translateY(-50%);
-  width: 300px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: right 0.2s ease 0.1s;
-  /* Add transition for sliding with delay */
+  width: 350px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  transition: right 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  padding: 35px;
+  border-radius: 25px 0 0 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.fixed-form-container.open {
+  right: 50px;
+}
+
+/* Base Styles for inputs inside form */
+.fixed-form-container input,
+.fixed-form-container select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.fixed-form-container button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+}
+
+.fixed-form-container button:hover {
+  background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(30, 58, 138, 0.3);
+}
+
+.type-form {
+  color: #1e3a8a;
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
 }
 
 /* Include Font Awesome */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
 
-.border-animation {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  border: 4px solid transparent;
-  animation: borderColorChange 6s linear infinite;
-}
+/* Removed redundant/broken styles */
 
-@keyframes borderColorChange {
-  0% {
-    border-color: red;
-  }
-
-  10% {
-    border-color: blue;
-  }
-
-  20% {
-    border-color: green;
-  }
-
-  30% {
-    border-color: rgb(30, 91, 176);
-  }
-
-  40% {
-    border-color: rgb(91, 227, 103);
-  }
-
-  50% {
-    border-color: rgb(114, 145, 238);
-  }
-
-  60% {
-    border-color: rgb(174, 219, 138);
-  }
-
-  70% {
-    border-color: rgb(235, 129, 15);
-  }
-
-  80% {
-    border-color: rgb(180, 0, 252);
-  }
-
-  90% {
-    border-color: rgb(0, 173, 253);
-  }
-
-  100% {
-    border-color: rgb(53, 251, 135);
-  }
-}
-
-.fixed-form-bar .call-us-text {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  text-align: center;
-  margin-bottom: 10px;
-  font-weight: bold;
-  margin-top: 31px;
-  font-size: 19px;
-}
-
-.fixed-form-bar i {
-  font-size: 20px;
-  color: black;
-  padding: 6px;
-}
 
 .membership-container {
   max-width: 1200px;

@@ -1,3 +1,7 @@
+
+
+
+
 // import logo from './logo.svg';
 // import './App.css';
 // import Header from './Components/Header';
@@ -73,8 +77,8 @@
 import React from "react";
 import "./App.css";
 // import UnderMentanceLanding from "./Pages/UnderMentanceLanding";
-import Header from "./Components/Header";
 import Topbar from "./Components/Topbar";
+import Header from "./Components/Header";
 import Home from "./Components/Home";
 import Footer from "./Components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -807,1383 +811,1385 @@ function App() {
       <Topbar />
       <Header />
       <ScrollToTop />
-      <AuthProvider>
-        {/* <VideoPopup /> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/landing-page" element={<LandingPages />} />
-          <Route path="/register-buyer" element={<Registration />} />
-          <Route path="/register-company" element={<CompanyRegi />} />
-          <Route path="/dashboard" element={<Dashbord />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-condition" element={<TermsCondition />} />
-          <Route path="/aboutUs" element={<AboutUs />} />
-          <Route path="/packages" element={<Prices />} />
-          <Route path="/contact-us" element={<Contact />} />
-          <Route path="/disclaimer" element={<Disclaimer />} />
-          <Route path="/complaint" element={<Complaint />} />
-          <Route path="/refund" element={<Refund />} />
-          <Route
-            path="/agriculture-farm-tools-suppliers"
-            element={<Agriculture />}
-          />
-          <Route path="/testing" element={<Testing />} />
+      <div className="mainContent">
+        <AuthProvider>
+          {/* <VideoPopup /> */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/landing-page" element={<LandingPages />} />
+            <Route path="/post-requirement" element={<LandingPages />} />
+            <Route path="/register-buyer" element={<Registration />} />
+            <Route path="/register-company" element={<CompanyRegi />} />
+            <Route path="/dashboard" element={<Dashbord />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-condition" element={<TermsCondition />} />
+            <Route path="/aboutUs" element={<AboutUs />} />
+            <Route path="/packages" element={<Prices />} />
+            <Route path="/contact-us" element={<Contact />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
+            <Route path="/complaint" element={<Complaint />} />
+            <Route path="/refund" element={<Refund />} />
+            <Route
+              path="/agriculture-farm-tools-suppliers"
+              element={<Agriculture />}
+            />
+            <Route path="/testing" element={<Testing />} />
 
-          {/* Buyers */}
-          <Route path="/wheat/buyers" element={<WheatBuy />} />
-          <Route path="/dryfruit/buyers" element={<DryFruitBuy />} />
-          <Route
-            path="/decorativeitem/buyers"
-            element={<DecorativeItemBuy />}
-          />
-          <Route path="/coconutoil/buyers" element={<CoconutOilBuy />} />
-          <Route path="/tomato/buyers" element={<TomatoBuy />} />
-          <Route path="/garlic/buyers" element={<GarlicBuy />} />
-          <Route path="/rice/buyers" element={<RiceBuy />} />
-          <Route path="/maize/buyers" element={<MaizeBuy />} />
-          <Route path="/palmoil/buyers" element={<PalmOilBuy />} />
+            {/* Buyers */}
+            <Route path="/wheat/buyers" element={<WheatBuy />} />
+            <Route path="/dryfruit/buyers" element={<DryFruitBuy />} />
+            <Route
+              path="/decorativeitem/buyers"
+              element={<DecorativeItemBuy />}
+            />
+            <Route path="/coconutoil/buyers" element={<CoconutOilBuy />} />
+            <Route path="/tomato/buyers" element={<TomatoBuy />} />
+            <Route path="/garlic/buyers" element={<GarlicBuy />} />
+            <Route path="/rice/buyers" element={<RiceBuy />} />
+            <Route path="/maize/buyers" element={<MaizeBuy />} />
+            <Route path="/palmoil/buyers" element={<PalmOilBuy />} />
 
-          <Route path="/peanut/buyers" element={<PeanutBuy />} />
-          <Route path="/statue/buyers" element={<PolyresinBearBuy />} />
-          <Route path="/eyedrop/buyers" element={<EyeDropsBuy />} />
-          <Route path="/gloves/buyers" element={<SurgicalGlovesBuy />} />
-          <Route path="/pulses/buyers" element={<PulsesBuy />} />
-          <Route
-            path="/green/chilli/buyers"
-            element={<FreshGreenChilliBuy />}
-          />
-          <Route
-            path="/rcc/compounds/buyers"
-            element={<RccCompoundWallBuy />}
-          />
-          <Route
-            path="/ceramicftile/buyers"
-            element={<CeramicFloorTilesBuy />}
-          />
+            <Route path="/peanut/buyers" element={<PeanutBuy />} />
+            <Route path="/statue/buyers" element={<PolyresinBearBuy />} />
+            <Route path="/eyedrop/buyers" element={<EyeDropsBuy />} />
+            <Route path="/gloves/buyers" element={<SurgicalGlovesBuy />} />
+            <Route path="/pulses/buyers" element={<PulsesBuy />} />
+            <Route
+              path="/green/chilli/buyers"
+              element={<FreshGreenChilliBuy />}
+            />
+            <Route
+              path="/rcc/compounds/buyers"
+              element={<RccCompoundWallBuy />}
+            />
+            <Route
+              path="/ceramicftile/buyers"
+              element={<CeramicFloorTilesBuy />}
+            />
 
-          <Route path="/coriander/buyers" element={<CorianderLeavesBuy />} />
-          <Route path="/elevator-buyer" element={<ElevatorServiceBuy />} />
-          <Route path="/tshirt" element={<TshirtBuyer />} />
-          <Route path="/toy-buyer" element={<ToyBuy />} />
-          <Route path="/trophy-buyer" element={<TrophyBuy />} />
-          <Route path="/bat-buyer" element={<BatBuy />} />
-          <Route path="/bottle-buyer" element={<Bottlebuy />} />
-          <Route path="/pharma-buyer" element={<Pharmabuyer />} />
-          <Route path="/perfume" element={<PerfumeBuyer />} />
-          <Route path="/bayleaves/buyers" element={<BayLeavesBuy />} />
-          <Route path="/moringa/buyers" element={<MoringaDryLeavesBuy />} />
-          <Route path="/groundnut/buyers" element={<GroundnutBuy />} />
-          <Route path="/TobaccoLeaves/buyers" element={<TobaccoLeavesBuy />} />
+            <Route path="/coriander/buyers" element={<CorianderLeavesBuy />} />
+            <Route path="/elevator-buyer" element={<ElevatorServiceBuy />} />
+            <Route path="/tshirt" element={<TshirtBuyer />} />
+            <Route path="/toy-buyer" element={<ToyBuy />} />
+            <Route path="/trophy-buyer" element={<TrophyBuy />} />
+            <Route path="/bat-buyer" element={<BatBuy />} />
+            <Route path="/bottle-buyer" element={<Bottlebuy />} />
+            <Route path="/pharma-buyer" element={<Pharmabuyer />} />
+            <Route path="/perfume" element={<PerfumeBuyer />} />
+            <Route path="/bayleaves/buyers" element={<BayLeavesBuy />} />
+            <Route path="/moringa/buyers" element={<MoringaDryLeavesBuy />} />
+            <Route path="/groundnut/buyers" element={<GroundnutBuy />} />
+            <Route path="/TobaccoLeaves/buyers" element={<TobaccoLeavesBuy />} />
 
-          <Route
-            path="/plastic-container/buyers"
-            element={<PlasticContainerBuy />}
-          />
-          <Route path="/Jeerabuy/buyers" element={<JeeraBuy />} />
-          <Route path="/wirebuyer" element={<WireBuyes />} />
-          <Route path="/clothes-buyer" element={<ClothesBuy />} />
-          <Route path="/scrap-buyer" element={<ScrapBuy />} />
-          <Route path="/tape-buyer" element={<TapeBuy />} />
-          <Route path="/sanitary-buyer" element={<SanitaryWareBuyer />} />
-          <Route path="/basgsbuyer" element={<BagsBuy />} />
-          <Route path="/clovebuy/buyers" element={<CloveBuy />} />
-          <Route path="/fennelseeds/buyers" element={<FennelSeedsBuy />} />
-          <Route path="/blackpaper/buyers" element={<BlackPepperBuy />} />
-          <Route path="/redchilli/buyers" element={<RedChilliBuy />} />
-          <Route path="/mustured/buyers" element={<MustardBuy />} />
-          <Route path="/bedsheet/buyers" element={<BedsheetBuy />} />
-          <Route path="/turmeric/buyers" element={<TurmericBuy />} />
-          <Route path="/plant-buyers" element={<CoconutPlantBuy />} />
-          <Route path="/gaslighter/buyers" element={<GasLighterBuy />} />
-          <Route path="/coffeebeanbuyer" element={<CoffeeBeansBuy />} />
-          <Route path="/flourbuyers" element={<FlourBuy />} />
-          <Route path="/agarbatimachine" element={<AgarbattiMachineBuy />} />
-          <Route path="/pastamakingmachine" element={<PastaMachineBuy />} />
-          <Route path="/noodlemachine" element={<NoodleMachineBuy />} />
-          <Route path="/buymachines" element={<MachineBuy />} />
-          <Route path="/fillermachine" element={<FillerMasterbatchBuy />} />
-          <Route path="/applebuy" element={<AppleBuy />} />
-          <Route path="/gheebuy" element={<GheeBuy />} />
-          <Route path="/bananabuy" element={<BananaBuy />} />
-          <Route path="/tshirtbuy" element={<TshirtBuy />} />
-          <Route path="/leggingbuy" element={<LeggingsBuy />} />
-          <Route path="/shortsbuyer" element={<ShortsBuy />} />
-          <Route path="/brasscompobuyer" element={<BrassCoilsBuys />} />
-          <Route path="/cardamombuy" element={<CardamomBuy />} />
-          <Route path="/fabric-buyers" element={<FabricBuy />} />
-          <Route path="/electronic-buyers" element={<ElectronicBuy />} />
-          <Route path="/saree-buyers" element={<SareeBuy />} />
-          <Route path="/garment-buyers" element={<GarmentBuy />} />
+            <Route
+              path="/plastic-container/buyers"
+              element={<PlasticContainerBuy />}
+            />
+            <Route path="/Jeerabuy/buyers" element={<JeeraBuy />} />
+            <Route path="/wirebuyer" element={<WireBuyes />} />
+            <Route path="/clothes-buyer" element={<ClothesBuy />} />
+            <Route path="/scrap-buyer" element={<ScrapBuy />} />
+            <Route path="/tape-buyer" element={<TapeBuy />} />
+            <Route path="/sanitary-buyer" element={<SanitaryWareBuyer />} />
+            <Route path="/basgsbuyer" element={<BagsBuy />} />
+            <Route path="/clovebuy/buyers" element={<CloveBuy />} />
+            <Route path="/fennelseeds/buyers" element={<FennelSeedsBuy />} />
+            <Route path="/blackpaper/buyers" element={<BlackPepperBuy />} />
+            <Route path="/redchilli/buyers" element={<RedChilliBuy />} />
+            <Route path="/mustured/buyers" element={<MustardBuy />} />
+            <Route path="/bedsheet/buyers" element={<BedsheetBuy />} />
+            <Route path="/turmeric/buyers" element={<TurmericBuy />} />
+            <Route path="/plant-buyers" element={<CoconutPlantBuy />} />
+            <Route path="/gaslighter/buyers" element={<GasLighterBuy />} />
+            <Route path="/coffeebeanbuyer" element={<CoffeeBeansBuy />} />
+            <Route path="/flourbuyers" element={<FlourBuy />} />
+            <Route path="/agarbatimachine" element={<AgarbattiMachineBuy />} />
+            <Route path="/pastamakingmachine" element={<PastaMachineBuy />} />
+            <Route path="/noodlemachine" element={<NoodleMachineBuy />} />
+            <Route path="/buymachines" element={<MachineBuy />} />
+            <Route path="/fillermachine" element={<FillerMasterbatchBuy />} />
+            <Route path="/applebuy" element={<AppleBuy />} />
+            <Route path="/gheebuy" element={<GheeBuy />} />
+            <Route path="/bananabuy" element={<BananaBuy />} />
+            <Route path="/tshirtbuy" element={<TshirtBuy />} />
+            <Route path="/leggingbuy" element={<LeggingsBuy />} />
+            <Route path="/shortsbuyer" element={<ShortsBuy />} />
+            <Route path="/brasscompobuyer" element={<BrassCoilsBuys />} />
+            <Route path="/cardamombuy" element={<CardamomBuy />} />
+            <Route path="/fabric-buyers" element={<FabricBuy />} />
+            <Route path="/electronic-buyers" element={<ElectronicBuy />} />
+            <Route path="/saree-buyers" element={<SareeBuy />} />
+            <Route path="/garment-buyers" element={<GarmentBuy />} />
 
-          {/* Categories */}
-          <Route path="/health-beauty" element={<HealthAndBeauty />} />
-          <Route path="/clothing-apparel-suppliers" element={<Fashion />} />
-          <Route
-            path="/industrial-chemicals-cleaning-chemicals"
-            element={<Chemicals />}
-          />
-          <Route path="/gifts-items" element={<Gifts />} />
-          <Route
-            path="/industrial-machinery"
-            element={<IndustrialMachinery />}
-          />
-          <Route
-            path="/best-furnitures-supplier-in-india"
-            element={<Furniture />}
-          />
-          <Route
-            path="/seafood-spices-beverages-dairy-products-snacks-confectionery-nuts-seeds-suppliers"
-            element={<FoodPro />}
-          />
-          <Route path="/jewellery-necklaces-suppliers" element={<Jwellery />} />
-          <Route
-            path="/onion-seeds-dehydrated-onions-white"
-            element={<MainRice />}
-          />
-          <Route path="/company/onions" element={<OnionComp />} />
-          <Route path="/gold-ornaments-buyers" element={<GoldRingBuy />} />
-          <Route path="/buyer/onions" element={<OnionBuy />} />
-          <Route path="/buyer/potato" element={<PotatoBuy />} />
-          <Route path="/handicraft-buyer" element={<HandicraftBuy />} />
-          <Route path="/homeSupplies" element={<HomeSupplies />} />
-          <Route path="/footwear" element={<Footwear />} />
-          <Route path="/granules-buyers" element={<GranulesBuyer />} />
+            {/* Categories */}
+            <Route path="/health-beauty" element={<HealthAndBeauty />} />
+            <Route path="/clothing-apparel-suppliers" element={<Fashion />} />
+            <Route
+              path="/industrial-chemicals-cleaning-chemicals"
+              element={<Chemicals />}
+            />
+            <Route path="/gifts-items" element={<Gifts />} />
+            <Route
+              path="/industrial-machinery"
+              element={<IndustrialMachinery />}
+            />
+            <Route
+              path="/best-furnitures-supplier-in-india"
+              element={<Furniture />}
+            />
+            <Route
+              path="/seafood-spices-beverages-dairy-products-snacks-confectionery-nuts-seeds-suppliers"
+              element={<FoodPro />}
+            />
+            <Route path="/jewellery-necklaces-suppliers" element={<Jwellery />} />
+            <Route
+              path="/onion-seeds-dehydrated-onions-white"
+              element={<MainRice />}
+            />
+            <Route path="/company/onions" element={<OnionComp />} />
+            <Route path="/gold-ornaments-buyers" element={<GoldRingBuy />} />
+            <Route path="/buyer/onions" element={<OnionBuy />} />
+            <Route path="/buyer/potato" element={<PotatoBuy />} />
+            <Route path="/handicraft-buyer" element={<HandicraftBuy />} />
+            <Route path="/homeSupplies" element={<HomeSupplies />} />
+            <Route path="/footwear" element={<Footwear />} />
+            <Route path="/granules-buyers" element={<GranulesBuyer />} />
 
-          <Route path="/electricprodcuts" element={<ElectricProducts />} />
-          <Route path="/industrySupplies" element={<IndustrialSupplies />} />
-          <Route path="/toolsequipment" element={<ToolsAndEquipment />} />
-          {/* Products */}
-          <Route path="/plastic" element={<MainPlastic />} />
-          <Route path="/mask-dealer" element={<MaskComponent />} />
-          <Route path="/shoes-dealer" element={<ShoesBuy />} />
-          <Route path="mobile/accessories" element={<HomeDecor />} />
-          <Route path="steel/utensils" element={<SteelUtensils />} />
-          <Route path="seat/covers" element={<SeatCovers />} />
-          <Route path="salts" element={<Salt />} />
-          <Route path="arts" element={<Arts />} />
-          <Route path="powertools" element={<PowerTools />} />
-          <Route path="pooja/articles" element={<PoojaArticles />} />
-          <Route path="cushion-dealer" element={<CusionComponent />} />
-          <Route path="decorativeItems" element={<DecorativeItems />} />
-          <Route path="sports/accessories" element={<SportsAccessories />} />
-          <Route path="moneyexchange" element={<MoneyExchange />} />
-          <Route path="handicraftItems" element={<HandicraftItems />} />
-          <Route path="texttiledealer" element={<TextileDealers />} />
-          <Route path="garmentdedealer" element={<GarmentDealers />} />
-          <Route path="nacklesdedealer" element={<NecklaseComponent />} />
-          <Route path="coco-powder-dealer" element={<CocoPowderComponent />} />
-          <Route path="entertainmentevents" element={<EntertainmentEvents />} />
-          <Route path="electronicgoods" element={<ElectronicsGoods />} />
-          <Route path="alarm-dealers" element={<AlarmProducts />} />
-          <Route path="bathwaredealers" element={<BathwareSupplier />} />
-          <Route path="valveSupplier" element={<ValveSupplier />} />
-          <Route path="whearsupplier" element={<WheatSupplier />} />
-          <Route
-            path="gymequipmentsupplier"
-            element={<GymEquipmentsSupplier />}
-          />
-          <Route path="agroproducts" element={<AgroProductsSupplier />} />
-          <Route path="copperproducts" element={<CopperSupplier />} />
-          <Route path="eveyelctricbike" element={<EvBikesSupplier />} />
-          <Route path="bagsandbeltdealer" element={<BagsAndBeltsSupplier />} />
-          <Route path="laserproducts" element={<LaserProductsSupplier />} />
-          <Route path="texttlie" element={<CeramicTilesSupplier />} />
+            <Route path="/electricprodcuts" element={<ElectricProducts />} />
+            <Route path="/industrySupplies" element={<IndustrialSupplies />} />
+            <Route path="/toolsequipment" element={<ToolsAndEquipment />} />
+            {/* Products */}
+            <Route path="/plastic" element={<MainPlastic />} />
+            <Route path="/mask-dealer" element={<MaskComponent />} />
+            <Route path="/shoes-dealer" element={<ShoesBuy />} />
+            <Route path="mobile/accessories" element={<HomeDecor />} />
+            <Route path="steel/utensils" element={<SteelUtensils />} />
+            <Route path="seat/covers" element={<SeatCovers />} />
+            <Route path="salts" element={<Salt />} />
+            <Route path="arts" element={<Arts />} />
+            <Route path="powertools" element={<PowerTools />} />
+            <Route path="pooja/articles" element={<PoojaArticles />} />
+            <Route path="cushion-dealer" element={<CusionComponent />} />
+            <Route path="decorativeItems" element={<DecorativeItems />} />
+            <Route path="sports/accessories" element={<SportsAccessories />} />
+            <Route path="moneyexchange" element={<MoneyExchange />} />
+            <Route path="handicraftItems" element={<HandicraftItems />} />
+            <Route path="texttiledealer" element={<TextileDealers />} />
+            <Route path="garmentdedealer" element={<GarmentDealers />} />
+            <Route path="nacklesdedealer" element={<NecklaseComponent />} />
+            <Route path="coco-powder-dealer" element={<CocoPowderComponent />} />
+            <Route path="entertainmentevents" element={<EntertainmentEvents />} />
+            <Route path="electronicgoods" element={<ElectronicsGoods />} />
+            <Route path="alarm-dealers" element={<AlarmProducts />} />
+            <Route path="bathwaredealers" element={<BathwareSupplier />} />
+            <Route path="valveSupplier" element={<ValveSupplier />} />
+            <Route path="whearsupplier" element={<WheatSupplier />} />
+            <Route
+              path="gymequipmentsupplier"
+              element={<GymEquipmentsSupplier />}
+            />
+            <Route path="agroproducts" element={<AgroProductsSupplier />} />
+            <Route path="copperproducts" element={<CopperSupplier />} />
+            <Route path="eveyelctricbike" element={<EvBikesSupplier />} />
+            <Route path="bagsandbeltdealer" element={<BagsAndBeltsSupplier />} />
+            <Route path="laserproducts" element={<LaserProductsSupplier />} />
+            <Route path="texttlie" element={<CeramicTilesSupplier />} />
 
-          <Route path="watertank" element={<WaterTank />} />
-          <Route path="clothes" element={<Clothing />} />
-          <Route path="fabrics" element={<Fabric />} />
-          <Route path="detergent" element={<Detergent />} />
-          <Route path="jutebags" element={<JuteBags />} />
-          <Route path="scrap" element={<Scrap />} />
-          <Route path="hings&nipple" element={<HingsAndNipple />} />
-          <Route path="brasscomponents" element={<BrassComponents />} />
-          <Route path="businesslicense" element={<BusinessLicense />} />
-          <Route path="rugsandcarpets" element={<RugsManufacturer />} />
-          <Route
-            path="leatherproducts"
-            element={<LeatherProductsManufacturer />}
-          />
-          <Route path="pulses" element={<PulsesDealer />} />
-          <Route path="spices-dealers" element={<SpicesFoodProducts />} />
-          <Route path="ironhammer" element={<IronHammer />} />
-          <Route path="rocks/dealer" element={<Rocks />} />
-          <Route path="sanitary/hardware" element={<SanitaryHardware />} />
-          <Route path="raincout/dealer" element={<RainCoutComponent />} />
-          <Route path="plants/dealer" element={<PlantComponent />} />
-          <Route path="caraccessories" element={<CarAccessoriesComponent />} />
-          <Route path="packingclips" element={<PackingClipsComponent />} />
-          <Route path="terracota-comp" element={<TerracotaComponent />} />
-          <Route
-            path="interior/designer"
-            element={<InteriorDesignerComponent />}
-          />
-          <Route path="labequipments" element={<Labequipment />} />
+            <Route path="watertank" element={<WaterTank />} />
+            <Route path="clothes" element={<Clothing />} />
+            <Route path="fabrics" element={<Fabric />} />
+            <Route path="detergent" element={<Detergent />} />
+            <Route path="jutebags" element={<JuteBags />} />
+            <Route path="scrap" element={<Scrap />} />
+            <Route path="hings&nipple" element={<HingsAndNipple />} />
+            <Route path="brasscomponents" element={<BrassComponents />} />
+            <Route path="businesslicense" element={<BusinessLicense />} />
+            <Route path="rugsandcarpets" element={<RugsManufacturer />} />
+            <Route
+              path="leatherproducts"
+              element={<LeatherProductsManufacturer />}
+            />
+            <Route path="pulses" element={<PulsesDealer />} />
+            <Route path="spices-dealers" element={<SpicesFoodProducts />} />
+            <Route path="ironhammer" element={<IronHammer />} />
+            <Route path="rocks/dealer" element={<Rocks />} />
+            <Route path="sanitary/hardware" element={<SanitaryHardware />} />
+            <Route path="raincout/dealer" element={<RainCoutComponent />} />
+            <Route path="plants/dealer" element={<PlantComponent />} />
+            <Route path="caraccessories" element={<CarAccessoriesComponent />} />
+            <Route path="packingclips" element={<PackingClipsComponent />} />
+            <Route path="terracota-comp" element={<TerracotaComponent />} />
+            <Route
+              path="interior/designer"
+              element={<InteriorDesignerComponent />}
+            />
+            <Route path="labequipments" element={<Labequipment />} />
 
-          <Route path="machinemanufacturer" element={<MachineManufacturer />} />
-          <Route path="potatosupplier" element={<PotatoSuppliers />} />
-          <Route path="marineitems" element={<MarineItems />} />
-          <Route path="wiresuppliers" element={<WireSuppliers />} />
-          <Route path="granuless" element={<GranulesSuppliers />} />
-          <Route path="gemstones" element={<GemstonesSuppliers />} />
-          <Route path="bananapowder" element={<BananaPowderSuppliers />} />
-          <Route path="sesameseeds" element={<SesameSeedsSuppliers />} />
-          <Route path="medicinestore" element={<MedicineStore />} />
-          <Route path="doormatestore" element={<DoorMateStore />} />
-          <Route path="hardwarestore" element={<HardwareStore />} />
-          <Route path="pvcrresins" element={<PVCResinStore />} />
+            <Route path="machinemanufacturer" element={<MachineManufacturer />} />
+            <Route path="potatosupplier" element={<PotatoSuppliers />} />
+            <Route path="marineitems" element={<MarineItems />} />
+            <Route path="wiresuppliers" element={<WireSuppliers />} />
+            <Route path="granuless" element={<GranulesSuppliers />} />
+            <Route path="gemstones" element={<GemstonesSuppliers />} />
+            <Route path="bananapowder" element={<BananaPowderSuppliers />} />
+            <Route path="sesameseeds" element={<SesameSeedsSuppliers />} />
+            <Route path="medicinestore" element={<MedicineStore />} />
+            <Route path="doormatestore" element={<DoorMateStore />} />
+            <Route path="hardwarestore" element={<HardwareStore />} />
+            <Route path="pvcrresins" element={<PVCResinStore />} />
 
-          <Route path="tourandtravel" element={<ToursAndTravel />} />
-          <Route path="detergent-buy" element={<DetergentBuy />} />
-          <Route path="herbal-products-buy" element={<HerbalProductsBuy />} />
-          <Route path="maizemanu" element={<YellowMaizeManufacturerStore />} />
-          <Route path="wiremesh" element={<WireMeshManufacturerStore />} />
-          <Route
-            path="suitcasemanufacturer"
-            element={<SuitcaseManufacturerStore />}
-          />
-          <Route
-            path="saffron-manufacturer"
-            element={<SaffronManufacturerStore />}
-          />
-          <Route
-            path="dryfruitsmanu"
-            element={<DryFruitsManufacturerStore />}
-          />
-          <Route
-            path="rcccoverblocks"
-            element={<RccCoverBlocksManufacturerStore />}
-          />
-          <Route
-            path="bucklemanufacturer"
-            element={<BuckleManufacturerStore />}
-          />
-          <Route path="gascontrolstore" element={<GasControlStore />} />
-          <Route path="poulitryfarmstore" element={<PoultryFarmStore />} />
-          <Route
-            path="fertilizermanufacturer"
-            element={<HumicFertilizersStore />}
-          />
+            <Route path="tourandtravel" element={<ToursAndTravel />} />
+            <Route path="detergent-buy" element={<DetergentBuy />} />
+            <Route path="herbal-products-buy" element={<HerbalProductsBuy />} />
+            <Route path="maizemanu" element={<YellowMaizeManufacturerStore />} />
+            <Route path="wiremesh" element={<WireMeshManufacturerStore />} />
+            <Route
+              path="suitcasemanufacturer"
+              element={<SuitcaseManufacturerStore />}
+            />
+            <Route
+              path="saffron-manufacturer"
+              element={<SaffronManufacturerStore />}
+            />
+            <Route
+              path="dryfruitsmanu"
+              element={<DryFruitsManufacturerStore />}
+            />
+            <Route
+              path="rcccoverblocks"
+              element={<RccCoverBlocksManufacturerStore />}
+            />
+            <Route
+              path="bucklemanufacturer"
+              element={<BuckleManufacturerStore />}
+            />
+            <Route path="gascontrolstore" element={<GasControlStore />} />
+            <Route path="poulitryfarmstore" element={<PoultryFarmStore />} />
+            <Route
+              path="fertilizermanufacturer"
+              element={<HumicFertilizersStore />}
+            />
 
-          <Route path="lubricantsupplier" element={<LubricantSupplier />} />
-          <Route path="toysupplier" element={<ToysSupplier />} />
-          <Route path="computerssupllier" element={<ComputerStore />} />
-          <Route path="beautyproductsdealer" element={<BeautyDealer />} />
-          <Route path="footweardealers" element={<FootwearDealers />} />
-          <Route path="candledealers" element={<CandleDealers />} />
-          <Route path="uniform-dealers" element={<UniformDealer />} />
-          <Route path="alovera-dealers" element={<AloeVeraComponent />} />
-          <Route
-            path="best-furniture-suppliers-in-india"
-            element={<FurnitureDealers />}
-          />
-          <Route path="giftsstore" element={<CorporateGiftsStore />} />
-          <Route path="foodproductstore" element={<FoodProductsStore />} />
-          <Route path="tubelights" element={<Tubelights />} />
-          <Route path="teasupplier" element={<TeaSupplierComp />} />
+            <Route path="lubricantsupplier" element={<LubricantSupplier />} />
+            <Route path="toysupplier" element={<ToysSupplier />} />
+            <Route path="computerssupllier" element={<ComputerStore />} />
+            <Route path="beautyproductsdealer" element={<BeautyDealer />} />
+            <Route path="footweardealers" element={<FootwearDealers />} />
+            <Route path="candledealers" element={<CandleDealers />} />
+            <Route path="uniform-dealers" element={<UniformDealer />} />
+            <Route path="alovera-dealers" element={<AloeVeraComponent />} />
+            <Route
+              path="best-furniture-suppliers-in-india"
+              element={<FurnitureDealers />}
+            />
+            <Route path="giftsstore" element={<CorporateGiftsStore />} />
+            <Route path="foodproductstore" element={<FoodProductsStore />} />
+            <Route path="tubelights" element={<Tubelights />} />
+            <Route path="teasupplier" element={<TeaSupplierComp />} />
 
-          <Route path="paints" element={<Paints />} />
-          <Route path="doors" element={<DoorHandleComp />} />
-          <Route path="lifts" element={<LiftComponents />} />
-          <Route path="portableofficecabin" element={<PortableOfficeCabin />} />
-          <Route path="fruitscomponent" element={<FruitComponents />} />
-          <Route path="flourmils" element={<FlourMillComponents />} />
-          <Route
-            path="freightforward"
-            element={<FreightForwardingComponent />}
-          />
-          <Route path="coffee" element={<CoffeeComponent />} />
-          <Route path="dye-seller" element={<DyeSellers />} />
-          <Route path="cow-dung-seller" element={<CowDungs />} />
-          <Route path="stationery" element={<StationeryComponent />} />
-          <Route path="eventplanner" element={<EventPlanner />} />
-          <Route path="stevia-dealer" element={<SteviaDealer />} />
-          <Route path="gaslics" element={<GarlicSupplierStore />} />
-          <Route path="metals-store" element={<MetalFabricationStore />} />
-          <Route path="mustard-oil" element={<MustardOilStore />} />
-          <Route path="diaper-seller" element={<DiaperSeller />} />
-          <Route path="pad-seller" element={<Pad />} />
-          <Route path="handloom" element={<Handloom />} />
-          <Route path="solarpanel" element={<SolarPanels />} />
-          <Route path="sareesdealer" element={<Sarees />} />
-          <Route path="pipeseller" element={<Pipes />} />
-          <Route path="pumpsupplier" element={<Pumpsupplier />} />
-          <Route path="tshirt-seller" element={<TShirts />} />
-          <Route path="undergarment-seller" element={<Undergarments />} />
-          <Route path="rice-seller" element={<RiceDealers />} />
-          <Route path="jewellery-seller" element={<JewelryDealers />} />
-          <Route path="curtains-seller" element={<CurtainDealers />} />
-          <Route path="zipper-seller" element={<ZipperDealers />} />
-          <Route path="utensils-seller" element={<Utensils />} />
-          <Route path="bushes-seller" element={<RobustechAlloysStore />} />
-          <Route path="sugarcane-seller" element={<Sugarcane />} />
-          <Route path="groceries-seller" element={<Groceries />} />
-          <Route path="multanimitti-seller" element={<Multanimiiti />} />
-          <Route path="rudrakh-seller" element={<Rudrakhsh />} />
-          <Route path="wallpapers-seller" element={<WallpapersProviders />} />
-          <Route path="sofa-seller" element={<SofaProvider />} />
-          <Route path="jaggery-seller" element={<JaggeryProviders />} />
-          <Route path="hearbal-seller" element={<HerbalPowderProvider />} />
-          <Route
-            path="greenchilli-seller"
-            element={<GreenChilliesProvider />}
-          />
-          <Route path="ghee-seller" element={<GheeProvider />} />
+            <Route path="paints" element={<Paints />} />
+            <Route path="doors" element={<DoorHandleComp />} />
+            <Route path="lifts" element={<LiftComponents />} />
+            <Route path="portableofficecabin" element={<PortableOfficeCabin />} />
+            <Route path="fruitscomponent" element={<FruitComponents />} />
+            <Route path="flourmils" element={<FlourMillComponents />} />
+            <Route
+              path="freightforward"
+              element={<FreightForwardingComponent />}
+            />
+            <Route path="coffee" element={<CoffeeComponent />} />
+            <Route path="dye-seller" element={<DyeSellers />} />
+            <Route path="cow-dung-seller" element={<CowDungs />} />
+            <Route path="stationery" element={<StationeryComponent />} />
+            <Route path="eventplanner" element={<EventPlanner />} />
+            <Route path="stevia-dealer" element={<SteviaDealer />} />
+            <Route path="gaslics" element={<GarlicSupplierStore />} />
+            <Route path="metals-store" element={<MetalFabricationStore />} />
+            <Route path="mustard-oil" element={<MustardOilStore />} />
+            <Route path="diaper-seller" element={<DiaperSeller />} />
+            <Route path="pad-seller" element={<Pad />} />
+            <Route path="handloom" element={<Handloom />} />
+            <Route path="solarpanel" element={<SolarPanels />} />
+            <Route path="sareesdealer" element={<Sarees />} />
+            <Route path="pipeseller" element={<Pipes />} />
+            <Route path="pumpsupplier" element={<Pumpsupplier />} />
+            <Route path="tshirt-seller" element={<TShirts />} />
+            <Route path="undergarment-seller" element={<Undergarments />} />
+            <Route path="rice-seller" element={<RiceDealers />} />
+            <Route path="jewellery-seller" element={<JewelryDealers />} />
+            <Route path="curtains-seller" element={<CurtainDealers />} />
+            <Route path="zipper-seller" element={<ZipperDealers />} />
+            <Route path="utensils-seller" element={<Utensils />} />
+            <Route path="bushes-seller" element={<RobustechAlloysStore />} />
+            <Route path="sugarcane-seller" element={<Sugarcane />} />
+            <Route path="groceries-seller" element={<Groceries />} />
+            <Route path="multanimitti-seller" element={<Multanimiiti />} />
+            <Route path="rudrakh-seller" element={<Rudrakhsh />} />
+            <Route path="wallpapers-seller" element={<WallpapersProviders />} />
+            <Route path="sofa-seller" element={<SofaProvider />} />
+            <Route path="jaggery-seller" element={<JaggeryProviders />} />
+            <Route path="hearbal-seller" element={<HerbalPowderProvider />} />
+            <Route
+              path="greenchilli-seller"
+              element={<GreenChilliesProvider />}
+            />
+            <Route path="ghee-seller" element={<GheeProvider />} />
 
-          <Route
-            path="sweetcounter-seller"
-            element={<DisplaySweetCounterProvider />}
-          />
-          <Route path="sugar-seller" element={<Sugar />} />
+            <Route
+              path="sweetcounter-seller"
+              element={<DisplaySweetCounterProvider />}
+            />
+            <Route path="sugar-seller" element={<Sugar />} />
 
-          <Route path="apple-seller" element={<AppleComponent />} />
-          <Route path="banana-seller" element={<BananaComponent />} />
-          <Route path="termeric-seller" element={<TermericProducts />} />
-          <Route path="cardamom-seller" element={<Cardamom />} />
-          <Route path="plate-seller" element={<Plates />} />
-          <Route path="kids-dress-seller" element={<Kidwear />} />
-          <Route path="marble-seller" element={<MarbleSupplier />} />
-          <Route path="rental-taxi" element={<AKTravels />} />
-          <Route path="pickle-supplier" element={<PickleComponent />} />
-          <Route path="honey-supplier" element={<HoneyComponent />} />
-          <Route path="lock" element={<LockComponent />} />
-          <Route path="broom" element={<BroomComponent />} />
-          <Route
-            path="suit-collection"
-            element={<BanarasiSuitCollectionComponent />}
-          />
-          <Route
-            path="bottles-supplier"
-            element={<HariniPetBottlesComponent />}
-          />
-          <Route path="solar-energy" element={<SolarEnergyBuy />} />
-          <Route path="pickle-buyer" element={<PicklesBuy />} />
-          <Route path="coco-powder-buyer" element={<CocoBuy />} />
-          <Route path="Beauty-products-buyer" element={<BeautyProductsBuy />} />
-          <Route path="tea-buyer" element={<TeaBuy />} />
-          <Route path="cashew-buyer" element={<CashewBuyer />} />
-          <Route path="cushion-buyer" element={<CushionBuyer />} />
-          <Route path="chair-buyer" element={<ChairBuyer />} />
-          <Route
-            path="mobile-accessories-buyer"
-            element={<MobileAccessoriesBuyer />}
-          />
-          <Route path="shirt-buyer" element={<ShirtBuyer />} />
-          <Route path="pipe-buyer" element={<PipeBuy />} />
-          <Route path="spices-buyer" element={<SpiceBuy />} />
-          <Route path="carpet-buyer" element={<CarpetBuy />} />
-          <Route path="snacks-buyer" element={<SnacksFoodBuy />} />
-          <Route path="paints-buyer" element={<PaintBuy />} />
-          <Route path="sports-buyer" element={<SportsEquipmentBuy />} />
-          <Route path="mango-buyer" element={<MangoBuy />} />
-          <Route path="coconut-buyer" element={<CoconutBuy />} />
-          <Route path="coconut-buyer" element={<CoconutBuy />} />
-          <Route path="terracotta-buyer" element={<TerracottaBuy />} />
-          <Route path="dye-buyer" element={<DyeBuy />} />
-          <Route path="healthcare-products-buyer" element={<HealthcareBuy />} />
-          <Route path="polutary-buyer" element={<PoultryFarmBuyers />} />
-          <Route path="dhoop-buyer" element={<IncenseDhoopConeBuy />} />
-          <Route path="pump-buyer" element={<PumpBuy />} />
-          <Route path="furniture-buyer" element={<FurnitureBuy />} />
-          <Route path="fruit-powder-buyer" element={<FruitPowderBuy />} />
-          <Route path="door-handle-buyer" element={<DoorHandleBuy />} />
-          <Route path="door-locks-buyer" element={<DoorLockBuy />} />
-          <Route
-            path="vegetable-powder-buyer"
-            element={<VegetablePowderBuy />}
-          />
-          {/* Comapnies  here*/}
-          <Route path="/guizhousindor" element={<GuizhouSinodrillsComp />} />
-          <Route
-            path="/megha-manufacturer"
-            element={<MeghaManufactureComp />}
-          />
-          <Route path="/mahir-saniation" element={<MahirSanitationComp />} />
-          <Route
-            path="/balaji-industry"
-            element={<JaiBalajiIndustriesComp />}
-          />
-          <Route path="/esco-lock-comp" element={<EscoLocksComp />} />
-          <Route path="/arshifa-silk" element={<ArishfaSilkComp />} />
-          <Route path="/yasageyser-comp" element={<YasaGeyserComp />} />
-          <Route path="/subhclay-art" element={<ShubhClayArtComp />} />
-          <Route
-            path="/neelkanthexport"
-            element={<NeelkanthExportAndImportComp />}
-          />
-          <Route
-            path="/brindavan-comop"
-            element={<BrindavanUdyogIndiaComp />}
-          />
-          <Route path="/krishna-packcomp" element={<KrishnaPackagingComp />} />
-          <Route
-            path="/sagartrading-comp"
-            element={<SagarTradingCompanyComp />}
-          />
-          <Route path="/etheniccraft-comp" element={<EthenticCraftComp />} />
-          <Route path="/adsplayer-comp" element={<ADSPlayersComp />} />
-          <Route path="/anita-textile" element={<AnitaTextileComp />} />
-          <Route
-            path="/kingwood-handicraft"
-            element={<KingwoodHandicraftsComp />}
-          />
-          <Route
-            path="/virani-enterprises"
-            element={<ViraniEnterprisesComp />}
-          />
-          <Route path="/plastic/company" element={<PlasticComp />} />
-          <Route
-            path="/homedecoration/company"
-            element={<HomeDecorCompany />}
-          />
-          <Route path="/steel/company" element={<SteelCompany />} />
-          <Route path="/herbal/company" element={<HerbalComp />} />
-          <Route path="/seatcovers/company" element={<SeatCoverComp />} />
-          <Route path="/salt/company" element={<SaltComp />} />
-          <Route path="/arts/company" element={<ArtsComp />} />
-          <Route
-            path="/poojaArticles/company"
-            element={<PoojaArticlesComp />}
-          />
-          <Route
-            path="/sportsAccessories/company"
-            element={<SportsAccessoriesComp />}
-          />
-          <Route
-            path="/electribike/company"
-            element={<EveyElectricBikeComp />}
-          />
-          <Route path="/moneyexhange/company" element={<MoneyExchangeComp />} />
-          <Route path="/handicraft/company" element={<HandicraftComp />} />
-          <Route path="/textile/company" element={<TextileComp />} />
+            <Route path="apple-seller" element={<AppleComponent />} />
+            <Route path="banana-seller" element={<BananaComponent />} />
+            <Route path="termeric-seller" element={<TermericProducts />} />
+            <Route path="cardamom-seller" element={<Cardamom />} />
+            <Route path="plate-seller" element={<Plates />} />
+            <Route path="kids-dress-seller" element={<Kidwear />} />
+            <Route path="marble-seller" element={<MarbleSupplier />} />
+            <Route path="rental-taxi" element={<AKTravels />} />
+            <Route path="pickle-supplier" element={<PickleComponent />} />
+            <Route path="honey-supplier" element={<HoneyComponent />} />
+            <Route path="lock" element={<LockComponent />} />
+            <Route path="broom" element={<BroomComponent />} />
+            <Route
+              path="suit-collection"
+              element={<BanarasiSuitCollectionComponent />}
+            />
+            <Route
+              path="bottles-supplier"
+              element={<HariniPetBottlesComponent />}
+            />
+            <Route path="solar-energy" element={<SolarEnergyBuy />} />
+            <Route path="pickle-buyer" element={<PicklesBuy />} />
+            <Route path="coco-powder-buyer" element={<CocoBuy />} />
+            <Route path="Beauty-products-buyer" element={<BeautyProductsBuy />} />
+            <Route path="tea-buyer" element={<TeaBuy />} />
+            <Route path="cashew-buyer" element={<CashewBuyer />} />
+            <Route path="cushion-buyer" element={<CushionBuyer />} />
+            <Route path="chair-buyer" element={<ChairBuyer />} />
+            <Route
+              path="mobile-accessories-buyer"
+              element={<MobileAccessoriesBuyer />}
+            />
+            <Route path="shirt-buyer" element={<ShirtBuyer />} />
+            <Route path="pipe-buyer" element={<PipeBuy />} />
+            <Route path="spices-buyer" element={<SpiceBuy />} />
+            <Route path="carpet-buyer" element={<CarpetBuy />} />
+            <Route path="snacks-buyer" element={<SnacksFoodBuy />} />
+            <Route path="paints-buyer" element={<PaintBuy />} />
+            <Route path="sports-buyer" element={<SportsEquipmentBuy />} />
+            <Route path="mango-buyer" element={<MangoBuy />} />
+            <Route path="coconut-buyer" element={<CoconutBuy />} />
+            <Route path="coconut-buyer" element={<CoconutBuy />} />
+            <Route path="terracotta-buyer" element={<TerracottaBuy />} />
+            <Route path="dye-buyer" element={<DyeBuy />} />
+            <Route path="healthcare-products-buyer" element={<HealthcareBuy />} />
+            <Route path="polutary-buyer" element={<PoultryFarmBuyers />} />
+            <Route path="dhoop-buyer" element={<IncenseDhoopConeBuy />} />
+            <Route path="pump-buyer" element={<PumpBuy />} />
+            <Route path="furniture-buyer" element={<FurnitureBuy />} />
+            <Route path="fruit-powder-buyer" element={<FruitPowderBuy />} />
+            <Route path="door-handle-buyer" element={<DoorHandleBuy />} />
+            <Route path="door-locks-buyer" element={<DoorLockBuy />} />
+            <Route
+              path="vegetable-powder-buyer"
+              element={<VegetablePowderBuy />}
+            />
+            {/* Comapnies  here*/}
+            <Route path="/guizhousindor" element={<GuizhouSinodrillsComp />} />
+            <Route
+              path="/megha-manufacturer"
+              element={<MeghaManufactureComp />}
+            />
+            <Route path="/mahir-saniation" element={<MahirSanitationComp />} />
+            <Route
+              path="/balaji-industry"
+              element={<JaiBalajiIndustriesComp />}
+            />
+            <Route path="/esco-lock-comp" element={<EscoLocksComp />} />
+            <Route path="/arshifa-silk" element={<ArishfaSilkComp />} />
+            <Route path="/yasageyser-comp" element={<YasaGeyserComp />} />
+            <Route path="/subhclay-art" element={<ShubhClayArtComp />} />
+            <Route
+              path="/neelkanthexport"
+              element={<NeelkanthExportAndImportComp />}
+            />
+            <Route
+              path="/brindavan-comop"
+              element={<BrindavanUdyogIndiaComp />}
+            />
+            <Route path="/krishna-packcomp" element={<KrishnaPackagingComp />} />
+            <Route
+              path="/sagartrading-comp"
+              element={<SagarTradingCompanyComp />}
+            />
+            <Route path="/etheniccraft-comp" element={<EthenticCraftComp />} />
+            <Route path="/adsplayer-comp" element={<ADSPlayersComp />} />
+            <Route path="/anita-textile" element={<AnitaTextileComp />} />
+            <Route
+              path="/kingwood-handicraft"
+              element={<KingwoodHandicraftsComp />}
+            />
+            <Route
+              path="/virani-enterprises"
+              element={<ViraniEnterprisesComp />}
+            />
+            <Route path="/plastic/company" element={<PlasticComp />} />
+            <Route
+              path="/homedecoration/company"
+              element={<HomeDecorCompany />}
+            />
+            <Route path="/steel/company" element={<SteelCompany />} />
+            <Route path="/herbal/company" element={<HerbalComp />} />
+            <Route path="/seatcovers/company" element={<SeatCoverComp />} />
+            <Route path="/salt/company" element={<SaltComp />} />
+            <Route path="/arts/company" element={<ArtsComp />} />
+            <Route
+              path="/poojaArticles/company"
+              element={<PoojaArticlesComp />}
+            />
+            <Route
+              path="/sportsAccessories/company"
+              element={<SportsAccessoriesComp />}
+            />
+            <Route
+              path="/electribike/company"
+              element={<EveyElectricBikeComp />}
+            />
+            <Route path="/moneyexhange/company" element={<MoneyExchangeComp />} />
+            <Route path="/handicraft/company" element={<HandicraftComp />} />
+            <Route path="/textile/company" element={<TextileComp />} />
 
-          <Route
-            path="/sharmaplasticcomp/company"
-            element={<SharmaPlasticComp />}
-          />
-          <Route path="/mkhandi/company" element={<MKHandicomp />} />
-          <Route path="/jrcraftcomp/company" element={<JRCraftComp />} />
-          <Route
-            path="/milanentertainmentcomp/company"
-            element={<MilanEntertainmentComp />}
-          />
-          <Route
-            path="/khushielectriccomp/company"
-            element={<KhushiElectronicsComp />}
-          />
-          <Route
-            path="/marvelenterpriceccomp/company"
-            element={<MarvelEnterpriseComp />}
-          />
-          <Route
-            path="/ieengineeringWorksComp/company"
-            element={<IEEngineeringWorksComp />}
-          />
-          <Route
-            path="/jayantipurFlourMillComp/company"
-            element={<JayantipurFlourMillComp />}
-          />
-          <Route
-            path="/singhsportscomp/company"
-            element={<SinghSportsComp />}
-          />
-          <Route
-            path="/bharattradingcomp/company"
-            element={<BharatTradingComp />}
-          />
+            <Route
+              path="/sharmaplasticcomp/company"
+              element={<SharmaPlasticComp />}
+            />
+            <Route path="/mkhandi/company" element={<MKHandicomp />} />
+            <Route path="/jrcraftcomp/company" element={<JRCraftComp />} />
+            <Route
+              path="/milanentertainmentcomp/company"
+              element={<MilanEntertainmentComp />}
+            />
+            <Route
+              path="/khushielectriccomp/company"
+              element={<KhushiElectronicsComp />}
+            />
+            <Route
+              path="/marvelenterpriceccomp/company"
+              element={<MarvelEnterpriseComp />}
+            />
+            <Route
+              path="/ieengineeringWorksComp/company"
+              element={<IEEngineeringWorksComp />}
+            />
+            <Route
+              path="/jayantipurFlourMillComp/company"
+              element={<JayantipurFlourMillComp />}
+            />
+            <Route
+              path="/singhsportscomp/company"
+              element={<SinghSportsComp />}
+            />
+            <Route
+              path="/bharattradingcomp/company"
+              element={<BharatTradingComp />}
+            />
 
-          <Route path="/bhadoi/company" element={<BhadohiArtsWeaveComp />} />
-          <Route path="/woltenergy/company" element={<WoltzEnergyComp />} />
-          <Route path="/divne/company" element={<DivineCeramicaComp />} />
-          <Route path="/fortunesteel/company" element={<FortuneSteelComp />} />
-          <Route
-            path="/nidatannersComp/company"
-            element={<NidaTannersComp />}
-          />
-          <Route path="/sabitrugs/company" element={<SabitRugsComp />} />
-          <Route
-            path="/santoshtrading/company"
-            element={<SantoshTradingComp />}
-          />
-          <Route
-            path="/jaipurartrugs/company"
-            element={<JaipurArtRugsComp />}
-          />
-          <Route path="/rungbeauty/company" element={<RugBeautyComp />} />
-          <Route path="/kingPure/company" element={<KingPureComp />} />
-          <Route path="/smfashion/company" element={<SMFashionsComp />} />
-          <Route
-            path="/ruhanenterprices/company"
-            element={<RuhaanEnterprisesComp />}
-          />
-          <Route path="/vijendercomp/company" element={<VijendraComp />} />
+            <Route path="/bhadoi/company" element={<BhadohiArtsWeaveComp />} />
+            <Route path="/woltenergy/company" element={<WoltzEnergyComp />} />
+            <Route path="/divne/company" element={<DivineCeramicaComp />} />
+            <Route path="/fortunesteel/company" element={<FortuneSteelComp />} />
+            <Route
+              path="/nidatannersComp/company"
+              element={<NidaTannersComp />}
+            />
+            <Route path="/sabitrugs/company" element={<SabitRugsComp />} />
+            <Route
+              path="/santoshtrading/company"
+              element={<SantoshTradingComp />}
+            />
+            <Route
+              path="/jaipurartrugs/company"
+              element={<JaipurArtRugsComp />}
+            />
+            <Route path="/rungbeauty/company" element={<RugBeautyComp />} />
+            <Route path="/kingPure/company" element={<KingPureComp />} />
+            <Route path="/smfashion/company" element={<SMFashionsComp />} />
+            <Route
+              path="/ruhanenterprices/company"
+              element={<RuhaanEnterprisesComp />}
+            />
+            <Route path="/vijendercomp/company" element={<VijendraComp />} />
 
-          <Route
-            path="/faizanCarpetComp/company"
-            element={<FaizanAndSonsCarpetsComp />}
-          />
-          <Route
-            path="/businesslicence/company"
-            element={<BusinessLicenceComp />}
-          />
-          <Route
-            path="/jaiambeenterprises/company"
-            element={<JaiAmbeEnterprisesComp />}
-          />
-          <Route
-            path="/chamundabrass/company"
-            element={<ChamundaBrassComp />}
-          />
-          <Route
-            path="/plastocomp/company"
-            element={<PlastoTechContainersComp />}
-          />
-          <Route
-            path="/jaidevgarment/company"
-            element={<JayDevGarmentsComp />}
-          />
-          <Route
-            path="/amoraenterprises/company"
-            element={<AmorraEnterpriseComp />}
-          />
-          <Route
-            path="/vishwakarma/company"
-            element={<VishwakarmaEnterprisesComp />}
-          />
-          <Route
-            path="/jeevans/company"
-            element={<JeevanSecurityCompanyComp />}
-          />
-          <Route
-            path="/rahulentercomp/company"
-            element={<RahulEnterprisesComp />}
-          />
-          <Route path="/shemoagro/company" element={<SheemoAgroComp />} />
-          <Route
-            path="/shivshakti/company"
-            element={<ShivShaktiLoomtexComp />}
-          />
-          <Route
-            path="/radiantstar/company"
-            element={<RadiantStarVenturesComp />}
-          />
-          <Route
-            path="/bhushanpoly/company"
-            element={<BhushanPolymersComp />}
-          />
-          <Route path="/yugplastic/company" element={<YugPlasticComp />} />
-          <Route path="/fullandfinal/company" element={<FullAndFinalComp />} />
-          <Route
-            path="/jaimaalakhsmi/company"
-            element={<JaiMaaLaxmiTradersComp />}
-          />
-          <Route
-            path="/sribalaji/company"
-            element={<SriBalajiIndustriesComp />}
-          />
-          <Route
-            path="/hariomindustries/company"
-            element={<HariOmIndustriesComp />}
-          />
-          <Route
-            path="/vigneshenterprises/company"
-            element={<VighneshEnterprisesComp />}
-          />
+            <Route
+              path="/faizanCarpetComp/company"
+              element={<FaizanAndSonsCarpetsComp />}
+            />
+            <Route
+              path="/businesslicence/company"
+              element={<BusinessLicenceComp />}
+            />
+            <Route
+              path="/jaiambeenterprises/company"
+              element={<JaiAmbeEnterprisesComp />}
+            />
+            <Route
+              path="/chamundabrass/company"
+              element={<ChamundaBrassComp />}
+            />
+            <Route
+              path="/plastocomp/company"
+              element={<PlastoTechContainersComp />}
+            />
+            <Route
+              path="/jaidevgarment/company"
+              element={<JayDevGarmentsComp />}
+            />
+            <Route
+              path="/amoraenterprises/company"
+              element={<AmorraEnterpriseComp />}
+            />
+            <Route
+              path="/vishwakarma/company"
+              element={<VishwakarmaEnterprisesComp />}
+            />
+            <Route
+              path="/jeevans/company"
+              element={<JeevanSecurityCompanyComp />}
+            />
+            <Route
+              path="/rahulentercomp/company"
+              element={<RahulEnterprisesComp />}
+            />
+            <Route path="/shemoagro/company" element={<SheemoAgroComp />} />
+            <Route
+              path="/shivshakti/company"
+              element={<ShivShaktiLoomtexComp />}
+            />
+            <Route
+              path="/radiantstar/company"
+              element={<RadiantStarVenturesComp />}
+            />
+            <Route
+              path="/bhushanpoly/company"
+              element={<BhushanPolymersComp />}
+            />
+            <Route path="/yugplastic/company" element={<YugPlasticComp />} />
+            <Route path="/fullandfinal/company" element={<FullAndFinalComp />} />
+            <Route
+              path="/jaimaalakhsmi/company"
+              element={<JaiMaaLaxmiTradersComp />}
+            />
+            <Route
+              path="/sribalaji/company"
+              element={<SriBalajiIndustriesComp />}
+            />
+            <Route
+              path="/hariomindustries/company"
+              element={<HariOmIndustriesComp />}
+            />
+            <Route
+              path="/vigneshenterprises/company"
+              element={<VighneshEnterprisesComp />}
+            />
 
-          <Route path="/mdnusery/company" element={<MdNurseryComp />} />
-          <Route
-            path="/whitelabeling/company"
-            element={<TheWhiteLabelingComp />}
-          />
-          <Route path="/modicare/company" element={<ModiCareComp />} />
-          <Route path="/jaipurprime/company" element={<JaipurPrimeComp />} />
-          <Route
-            path="/sabacollection/company"
-            element={<SabyaCollectionComp />}
-          />
-          <Route path="/jaipurhast/company" element={<JaipurHastkarComp />} />
-          <Route
-            path="/sunitaenterprises/company"
-            element={<SunitaEnterprisesComp />}
-          />
-          <Route
-            path="/pihuautomative/company"
-            element={<PihuAutomotiveComp />}
-          />
-          <Route path="/cordniks/company" element={<CrodniksComp />} />
-          <Route
-            path="/rozeetechnistcomp/company"
-            element={<RozeeTechnistComp />}
-          />
-          <Route path="/saquib/company" element={<SaqibComp />} />
-          <Route
-            path="/sterling/company"
-            element={<SterlingManufacturingCoComp />}
-          />
-          <Route
-            path="/krishnaenterprises/company"
-            element={<KrishnaEnterprisesComp />}
-          />
-          <Route
-            path="/pandeygarment/company"
-            element={<PandeyGarmentComp />}
-          />
-          <Route path="/rudraagro/company" element={<RudraAgroFoodComp />} />
-          <Route
-            path="/tabassum/company"
-            element={<TabassumAutomationsComp />}
-          />
-          <Route
-            path="/crystalcreation/company"
-            element={<CrystalCreationComp />}
-          />
-          <Route
-            path="/wellcabling/company"
-            element={<WellcabWindingWireComp />}
-          />
-          <Route
-            path="/suratengineering/company"
-            element={<SuratEngineeringPlasticComp />}
-          />
-          <Route
-            path="/trishula/company"
-            element={<TrishulaGlobalShippingComp />}
-          />
+            <Route path="/mdnusery/company" element={<MdNurseryComp />} />
+            <Route
+              path="/whitelabeling/company"
+              element={<TheWhiteLabelingComp />}
+            />
+            <Route path="/modicare/company" element={<ModiCareComp />} />
+            <Route path="/jaipurprime/company" element={<JaipurPrimeComp />} />
+            <Route
+              path="/sabacollection/company"
+              element={<SabyaCollectionComp />}
+            />
+            <Route path="/jaipurhast/company" element={<JaipurHastkarComp />} />
+            <Route
+              path="/sunitaenterprises/company"
+              element={<SunitaEnterprisesComp />}
+            />
+            <Route
+              path="/pihuautomative/company"
+              element={<PihuAutomotiveComp />}
+            />
+            <Route path="/cordniks/company" element={<CrodniksComp />} />
+            <Route
+              path="/rozeetechnistcomp/company"
+              element={<RozeeTechnistComp />}
+            />
+            <Route path="/saquib/company" element={<SaqibComp />} />
+            <Route
+              path="/sterling/company"
+              element={<SterlingManufacturingCoComp />}
+            />
+            <Route
+              path="/krishnaenterprises/company"
+              element={<KrishnaEnterprisesComp />}
+            />
+            <Route
+              path="/pandeygarment/company"
+              element={<PandeyGarmentComp />}
+            />
+            <Route path="/rudraagro/company" element={<RudraAgroFoodComp />} />
+            <Route
+              path="/tabassum/company"
+              element={<TabassumAutomationsComp />}
+            />
+            <Route
+              path="/crystalcreation/company"
+              element={<CrystalCreationComp />}
+            />
+            <Route
+              path="/wellcabling/company"
+              element={<WellcabWindingWireComp />}
+            />
+            <Route
+              path="/suratengineering/company"
+              element={<SuratEngineeringPlasticComp />}
+            />
+            <Route
+              path="/trishula/company"
+              element={<TrishulaGlobalShippingComp />}
+            />
 
-          <Route path="/shyamtrade/company" element={<ShyamTradingComp />} />
+            <Route path="/shyamtrade/company" element={<ShyamTradingComp />} />
 
-          <Route path="/sakhthitex/company" element={<SakthiTexComp />} />
-          <Route
-            path="/talukdarstore/company"
-            element={<TalukdarStoreComp />}
-          />
-          <Route path="/earthnature/company" element={<EarthsNatureComp />} />
-          <Route path="/ratanhand/company" element={<RatanHandloomComp />} />
-          <Route path="/asha/company" element={<AshaPureHardwareComp />} />
-          <Route path="/rupali/company" element={<RupaliBengalTextileComp />} />
-          <Route path="/manglam/company" element={<ManglamPlastComp />} />
-          <Route path="/mshalai/company" element={<MSHalaiComp />} />
-          <Route path="/vibrant/company" element={<VibrantColortechComp />} />
-          <Route path="/sarikcomp/company" element={<SarikGarmentsComp />} />
-          <Route path="/brindaimapex/company" element={<BrindaImpexComp />} />
+            <Route path="/sakhthitex/company" element={<SakthiTexComp />} />
+            <Route
+              path="/talukdarstore/company"
+              element={<TalukdarStoreComp />}
+            />
+            <Route path="/earthnature/company" element={<EarthsNatureComp />} />
+            <Route path="/ratanhand/company" element={<RatanHandloomComp />} />
+            <Route path="/asha/company" element={<AshaPureHardwareComp />} />
+            <Route path="/rupali/company" element={<RupaliBengalTextileComp />} />
+            <Route path="/manglam/company" element={<ManglamPlastComp />} />
+            <Route path="/mshalai/company" element={<MSHalaiComp />} />
+            <Route path="/vibrant/company" element={<VibrantColortechComp />} />
+            <Route path="/sarikcomp/company" element={<SarikGarmentsComp />} />
+            <Route path="/brindaimapex/company" element={<BrindaImpexComp />} />
 
-          <Route path="/swantextile/company" element={<SwanTextilesComp />} />
-          <Route
-            path="/shidhivinayak/company"
-            element={<SidhhiVinayakMetalComp />}
-          />
-          <Route
-            path="/blacksmith/company"
-            element={<BlacksmithMetalCraftsComp />}
-          />
-          <Route path="/aromaspices/company" element={<AromaSpiceComp />} />
-          <Route
-            path="/advancepoly/company"
-            element={<AdvancePolyPackComp />}
-          />
-          <Route
-            path="/khodalenterprises/company"
-            element={<KhodalEnterprisesComp />}
-          />
-          <Route path="/mizaan/company" element={<MizaanTheTripHouseComp />} />
-          <Route
-            path="/sandeshdurgesh/company"
-            element={<SandeshDurgawaleComp />}
-          />
-          <Route path="/riyancomp/company" element={<RiyonPumpComp />} />
-          <Route path="/vmbliss/company" element={<VmBlissComp />} />
-          <Route
-            path="/laxmi/company"
-            element={<LaxminarainAndCompanyComp />}
-          />
-          <Route
-            path="/jindal/company"
-            element={<JindalPlasticIndustriesComp />}
-          />
-          <Route
-            path="/lidderenterpri/company"
-            element={<LidderEnterprisesComp />}
-          />
-          <Route path="/jaydada/company" element={<JayDadaEnterpriseComp />} />
-          <Route
-            path="/hventerprises/company"
-            element={<HvEnterprisesComp />}
-          />
-          <Route
-            path="/vijayindustrial/company"
-            element={<VijayaIndustriesComp />}
-          />
-          <Route path="/rnmarketing/company" element={<RnMarketingComp />} />
-          <Route path="/shreeshiv/company" element={<ShreeShivShaktiComp />} />
-          <Route
-            path="/exportpalle/company"
-            element={<ExportPalletizationComp />}
-          />
-          <Route path="/oceanvidya/company" element={<OceanVidyaComp />} />
-          <Route path="/noblefashion/company" element={<NobleFashionComp />} />
-          <Route
-            path="/ramcharan/company"
-            element={<RamcharanEnterprisesComp />}
-          />
-          <Route path="/haritext/company" element={<HariTextileComp />} />
-          <Route path="/mauli/company" element={<MauliAgroFarmComp />} />
-          <Route
-            path="/siddhicollec/company"
-            element={<SiddhiCollectionComp />}
-          />
+            <Route path="/swantextile/company" element={<SwanTextilesComp />} />
+            <Route
+              path="/shidhivinayak/company"
+              element={<SidhhiVinayakMetalComp />}
+            />
+            <Route
+              path="/blacksmith/company"
+              element={<BlacksmithMetalCraftsComp />}
+            />
+            <Route path="/aromaspices/company" element={<AromaSpiceComp />} />
+            <Route
+              path="/advancepoly/company"
+              element={<AdvancePolyPackComp />}
+            />
+            <Route
+              path="/khodalenterprises/company"
+              element={<KhodalEnterprisesComp />}
+            />
+            <Route path="/mizaan/company" element={<MizaanTheTripHouseComp />} />
+            <Route
+              path="/sandeshdurgesh/company"
+              element={<SandeshDurgawaleComp />}
+            />
+            <Route path="/riyancomp/company" element={<RiyonPumpComp />} />
+            <Route path="/vmbliss/company" element={<VmBlissComp />} />
+            <Route
+              path="/laxmi/company"
+              element={<LaxminarainAndCompanyComp />}
+            />
+            <Route
+              path="/jindal/company"
+              element={<JindalPlasticIndustriesComp />}
+            />
+            <Route
+              path="/lidderenterpri/company"
+              element={<LidderEnterprisesComp />}
+            />
+            <Route path="/jaydada/company" element={<JayDadaEnterpriseComp />} />
+            <Route
+              path="/hventerprises/company"
+              element={<HvEnterprisesComp />}
+            />
+            <Route
+              path="/vijayindustrial/company"
+              element={<VijayaIndustriesComp />}
+            />
+            <Route path="/rnmarketing/company" element={<RnMarketingComp />} />
+            <Route path="/shreeshiv/company" element={<ShreeShivShaktiComp />} />
+            <Route
+              path="/exportpalle/company"
+              element={<ExportPalletizationComp />}
+            />
+            <Route path="/oceanvidya/company" element={<OceanVidyaComp />} />
+            <Route path="/noblefashion/company" element={<NobleFashionComp />} />
+            <Route
+              path="/ramcharan/company"
+              element={<RamcharanEnterprisesComp />}
+            />
+            <Route path="/haritext/company" element={<HariTextileComp />} />
+            <Route path="/mauli/company" element={<MauliAgroFarmComp />} />
+            <Route
+              path="/siddhicollec/company"
+              element={<SiddhiCollectionComp />}
+            />
 
-          <Route path="/jkgroup/company" element={<JKGroupComp />} />
-          <Route
-            path="/niwarcornercomp/company"
-            element={<NiwarCornerComp />}
-          />
+            <Route path="/jkgroup/company" element={<JKGroupComp />} />
+            <Route
+              path="/niwarcornercomp/company"
+              element={<NiwarCornerComp />}
+            />
 
-          <Route
-            path="/fusionglass/company"
-            element={<FusionGlassConceptComp />}
-          />
-          <Route
-            path="/bkaggriculture/company"
-            element={<BkAgriculturalComp />}
-          />
-          <Route path="/maganmater/company" element={<MagnaMaterComp />} />
-          <Route path="/ambikabio/company" element={<AmbikaBiochemComp />} />
-          <Route
-            path="/kunalworkeng/company"
-            element={<KunalEngineeringWorksComp />}
-          />
-          <Route path="/credoexport/company" element={<CredoExportsComp />} />
-          <Route
-            path="/bhugrainterior/company"
-            element={<BhugraInteriorComp />}
-          />
-          <Route path="/richdecor/company" element={<RichDecorComp />} />
-          <Route
-            path="/saifrudhin/company"
-            element={<SaifuddinEnterpriseComp />}
-          />
-          <Route path="/jaibabametal/company" element={<JaiBabaMetalComp />} />
-          <Route path="/silverfast/company" element={<SilverFastenersComp />} />
-          <Route path="/ravi/company" element={<RaviFastenersComp />} />
-          <Route
-            path="/flonexlubricant/company"
-            element={<FlonexLubricantComp />}
-          />
-          <Route
-            path="/starbrass/company"
-            element={<StarBrassIndustriesComp />}
-          />
-          <Route path="/pksprts/company" element={<PKSportsComp />} />
-          <Route path="/srmsports/company" element={<SRMSportsComp />} />
-          <Route
-            path="/khanbarrel/company"
-            element={<KhanBarrelSuppliersComp />}
-          />
-          <Route
-            path="/shadabcricket/company"
-            element={<ShadabCricketSportComp />}
-          />
-          <Route
-            path="/computeraccessories/company"
-            element={<ComputerAccessoriesComp />}
-          />
+            <Route
+              path="/fusionglass/company"
+              element={<FusionGlassConceptComp />}
+            />
+            <Route
+              path="/bkaggriculture/company"
+              element={<BkAgriculturalComp />}
+            />
+            <Route path="/maganmater/company" element={<MagnaMaterComp />} />
+            <Route path="/ambikabio/company" element={<AmbikaBiochemComp />} />
+            <Route
+              path="/kunalworkeng/company"
+              element={<KunalEngineeringWorksComp />}
+            />
+            <Route path="/credoexport/company" element={<CredoExportsComp />} />
+            <Route
+              path="/bhugrainterior/company"
+              element={<BhugraInteriorComp />}
+            />
+            <Route path="/richdecor/company" element={<RichDecorComp />} />
+            <Route
+              path="/saifrudhin/company"
+              element={<SaifuddinEnterpriseComp />}
+            />
+            <Route path="/jaibabametal/company" element={<JaiBabaMetalComp />} />
+            <Route path="/silverfast/company" element={<SilverFastenersComp />} />
+            <Route path="/ravi/company" element={<RaviFastenersComp />} />
+            <Route
+              path="/flonexlubricant/company"
+              element={<FlonexLubricantComp />}
+            />
+            <Route
+              path="/starbrass/company"
+              element={<StarBrassIndustriesComp />}
+            />
+            <Route path="/pksprts/company" element={<PKSportsComp />} />
+            <Route path="/srmsports/company" element={<SRMSportsComp />} />
+            <Route
+              path="/khanbarrel/company"
+              element={<KhanBarrelSuppliersComp />}
+            />
+            <Route
+              path="/shadabcricket/company"
+              element={<ShadabCricketSportComp />}
+            />
+            <Route
+              path="/computeraccessories/company"
+              element={<ComputerAccessoriesComp />}
+            />
 
-          <Route
-            path="/forevergreen/company"
-            element={<ForeverGreenNurseryComp />}
-          />
-          <Route
-            path="/maapadmawati/company"
-            element={<MAAPadmawatiEnterprisesComp />}
-          />
-          <Route path="/startrader/company" element={<StarTradersComp />} />
-          <Route path="/trnatvbeauty/company" element={<TrnatvaBeautyComp />} />
-          <Route
-            path="/shreeganeshwear/company"
-            element={<ShreeGaneshFootWearComp />}
-          />
-          <Route
-            path="/milapcosmetics/company"
-            element={<MilapCosmeticsComp />}
-          />
-          <Route path="/amodalcandle/company" element={<AmodaCandlesComp />} />
-          <Route path="/pinkroot/company" element={<PinkRootComp />} />
-          <Route path="/kanacomp/company" element={<KANAcreationsComp />} />
-          <Route
-            path="/positiveangle/company"
-            element={<PositiveAngleComp />}
-          />
-          <Route
-            path="/ammaenterprises/company"
-            element={<AmmaEnterprisesComp />}
-          />
-          <Route
-            path="/Slipoverpvtltd/company"
-            element={<SlipoverPvtLtdComp />}
-          />
-          <Route path="/Shoeartindia/company" element={<ShoeArtIndiaComp />} />
-          <Route path="/ColorsQueen/company" element={<ColorsQueenComp />} />
-          <Route
-            path="/ashimafootwear/company"
-            element={<AshimaFootwearComp />}
-          />
-          <Route path="/ruiinovation/company" element={<RUInnovationComp />} />
-          <Route
-            path="/sbjinternational/company"
-            element={<SBJInternationalComp />}
-          />
-          <Route
-            path="/triblelifestyle/company"
-            element={<TribalikaLifestyleComp />}
-          />
+            <Route
+              path="/forevergreen/company"
+              element={<ForeverGreenNurseryComp />}
+            />
+            <Route
+              path="/maapadmawati/company"
+              element={<MAAPadmawatiEnterprisesComp />}
+            />
+            <Route path="/startrader/company" element={<StarTradersComp />} />
+            <Route path="/trnatvbeauty/company" element={<TrnatvaBeautyComp />} />
+            <Route
+              path="/shreeganeshwear/company"
+              element={<ShreeGaneshFootWearComp />}
+            />
+            <Route
+              path="/milapcosmetics/company"
+              element={<MilapCosmeticsComp />}
+            />
+            <Route path="/amodalcandle/company" element={<AmodaCandlesComp />} />
+            <Route path="/pinkroot/company" element={<PinkRootComp />} />
+            <Route path="/kanacomp/company" element={<KANAcreationsComp />} />
+            <Route
+              path="/positiveangle/company"
+              element={<PositiveAngleComp />}
+            />
+            <Route
+              path="/ammaenterprises/company"
+              element={<AmmaEnterprisesComp />}
+            />
+            <Route
+              path="/Slipoverpvtltd/company"
+              element={<SlipoverPvtLtdComp />}
+            />
+            <Route path="/Shoeartindia/company" element={<ShoeArtIndiaComp />} />
+            <Route path="/ColorsQueen/company" element={<ColorsQueenComp />} />
+            <Route
+              path="/ashimafootwear/company"
+              element={<AshimaFootwearComp />}
+            />
+            <Route path="/ruiinovation/company" element={<RUInnovationComp />} />
+            <Route
+              path="/sbjinternational/company"
+              element={<SBJInternationalComp />}
+            />
+            <Route
+              path="/triblelifestyle/company"
+              element={<TribalikaLifestyleComp />}
+            />
 
-          <Route
-            path="/haritrading/company"
-            element={<HariTradingCompanyComp />}
-          />
-          <Route
-            path="/bajrangstoneart/company"
-            element={<BajrangStoneArtsComp />}
-          />
-          <Route
-            path="/florishprofessional/company"
-            element={<FlorishProfessionalComp />}
-          />
-          <Route
-            path="/macronfootwear/company"
-            element={<MacroFootwearComp />}
-          />
-          <Route path="/naturalaroma/company" element={<NaturalAromaComp />} />
-          <Route
-            path="/rbtprivate/company"
-            element={<RBTPPrivateLimitedComp />}
-          />
-          <Route path="/viraniradi/company" element={<ViraniRadiantComp />} />
-          <Route path="/mhhandicraft/company" element={<MHHandicraftsComp />} />
-          <Route
-            path="/walavalkarmasale/company"
-            element={<WalavalkarMasaleComp />}
-          />
-          <Route path="/noxbeat/company" element={<NoxbeatComp />} />
-          <Route
-            path="/inaulenterprises/company"
-            element={<InanulEnterprisesComp />}
-          />
-          <Route
-            path="/varshafabrication/company"
-            element={<VarshaFabricationComp />}
-          />
-          <Route
-            path="/plazachemical/company"
-            element={<PlazaChemicalComp />}
-          />
-          <Route path="/jboverseas/company" element={<JBOverseasComp />} />
-          <Route
-            path="/rjoldiron/company"
-            element={<RJOldIronAndOldTayerComp />}
-          />
-          <Route
-            path="/perfectmech/company"
-            element={<PerfectMechanicalFabComp />}
-          />
-          <Route
-            path="/narmadashiv/company"
-            element={<NarmadaShivlingStoneComp />}
-          />
-          <Route
-            path="/marcorecycling/company"
-            element={<MarcosRecyclingComp />}
-          />
-          <Route path="/newjenfabric/company" element={<NewjenFabricsComp />} />
-          <Route
-            path="/msbasutextile/company"
-            element={<MSBasuTextileComp />}
-          />
-          <Route path="/pharmacity/company" element={<PharmaCityComp />} />
-          <Route path="/mandsons/company" element={<MAndSonsComp />} />
-          <Route
-            path="/tadikondol/company"
-            element={<TadikondaExportsComp />}
-          />
-          <Route
-            path="/joyinternational/company"
-            element={<JoyaInternationalComp />}
-          />
-          <Route path="/winnernippons/company" element={<WinnerNipponComp />} />
-          <Route path="/eagleexports/company" element={<EagleExportsComp />} />
-          <Route
-            path="/heeracollaction/company"
-            element={<HeeraCollectionsComp />}
-          />
-          <Route path="/glamatone/company" element={<GlamstoneCeramicComp />} />
-          <Route
-            path="/protecttiveleather/company"
-            element={<ProtectiveLeatherComp />}
-          />
-          <Route path="/azflowers/company" element={<AZFlowerComp />} />
-          <Route path="/ibsafety/company" element={<AZFlowerComp />} />
-          <Route
-            path="/janakbangles/company"
-            element={<JhankarBangelsComp />}
-          />
-          <Route path="/slothan/company" element={<SlotanSolutionsComp />} />
-          <Route
-            path="/dharmagoodsexports/company"
-            element={<DhramaGoodsExportsComp />}
-          />
-          <Route path="/mrtrading/company" element={<MRTradingComp />} />
-          <Route path="/patnipumps/company" element={<PatniPumpsLLPComp />} />
-          <Route
-            path="/ascentwater/company"
-            element={<AscentWaterPurificationComp />}
-          />
-          <Route
-            path="/shrihaanagroeximxomp/company"
-            element={<ShrihaanAgroEximComp />}
-          />
-          <Route
-            path="/masumenviro/company"
-            element={<MasumanEnviroEngineeringComp />}
-          />
-          <Route
-            path="/bharatprocess/company"
-            element={<BharatProcessEquipmentComp />}
-          />
-          <Route
-            path="/calcuttatrading/company"
-            element={<CalcuttaTradingCentreComp />}
-          />
-          <Route
-            path="/alphapiping/company"
-            element={<AlphaPipingSystemComp />}
-          />
-          <Route path="/srinivas/company" element={<SrinivasaAgenciesComp />} />
-          <Route path="/ozonestudio/company" element={<OzoneStudioComp />} />
-          <Route path="/gopimetali/company" element={<GopiMetalicComp />} />
-          <Route
-            path="/sudhanshu/company"
-            element={<SudarshanAndCompanyComp />}
-          />
-          <Route
-            path="/newindiaglobal/company"
-            element={<NewIndiaGlobalEnterprisesComp />}
-          />
-          <Route
-            path="/jaishreeramrubber/company"
-            element={<JaiShreeRamRubberComp />}
-          />
+            <Route
+              path="/haritrading/company"
+              element={<HariTradingCompanyComp />}
+            />
+            <Route
+              path="/bajrangstoneart/company"
+              element={<BajrangStoneArtsComp />}
+            />
+            <Route
+              path="/florishprofessional/company"
+              element={<FlorishProfessionalComp />}
+            />
+            <Route
+              path="/macronfootwear/company"
+              element={<MacroFootwearComp />}
+            />
+            <Route path="/naturalaroma/company" element={<NaturalAromaComp />} />
+            <Route
+              path="/rbtprivate/company"
+              element={<RBTPPrivateLimitedComp />}
+            />
+            <Route path="/viraniradi/company" element={<ViraniRadiantComp />} />
+            <Route path="/mhhandicraft/company" element={<MHHandicraftsComp />} />
+            <Route
+              path="/walavalkarmasale/company"
+              element={<WalavalkarMasaleComp />}
+            />
+            <Route path="/noxbeat/company" element={<NoxbeatComp />} />
+            <Route
+              path="/inaulenterprises/company"
+              element={<InanulEnterprisesComp />}
+            />
+            <Route
+              path="/varshafabrication/company"
+              element={<VarshaFabricationComp />}
+            />
+            <Route
+              path="/plazachemical/company"
+              element={<PlazaChemicalComp />}
+            />
+            <Route path="/jboverseas/company" element={<JBOverseasComp />} />
+            <Route
+              path="/rjoldiron/company"
+              element={<RJOldIronAndOldTayerComp />}
+            />
+            <Route
+              path="/perfectmech/company"
+              element={<PerfectMechanicalFabComp />}
+            />
+            <Route
+              path="/narmadashiv/company"
+              element={<NarmadaShivlingStoneComp />}
+            />
+            <Route
+              path="/marcorecycling/company"
+              element={<MarcosRecyclingComp />}
+            />
+            <Route path="/newjenfabric/company" element={<NewjenFabricsComp />} />
+            <Route
+              path="/msbasutextile/company"
+              element={<MSBasuTextileComp />}
+            />
+            <Route path="/pharmacity/company" element={<PharmaCityComp />} />
+            <Route path="/mandsons/company" element={<MAndSonsComp />} />
+            <Route
+              path="/tadikondol/company"
+              element={<TadikondaExportsComp />}
+            />
+            <Route
+              path="/joyinternational/company"
+              element={<JoyaInternationalComp />}
+            />
+            <Route path="/winnernippons/company" element={<WinnerNipponComp />} />
+            <Route path="/eagleexports/company" element={<EagleExportsComp />} />
+            <Route
+              path="/heeracollaction/company"
+              element={<HeeraCollectionsComp />}
+            />
+            <Route path="/glamatone/company" element={<GlamstoneCeramicComp />} />
+            <Route
+              path="/protecttiveleather/company"
+              element={<ProtectiveLeatherComp />}
+            />
+            <Route path="/azflowers/company" element={<AZFlowerComp />} />
+            <Route path="/ibsafety/company" element={<AZFlowerComp />} />
+            <Route
+              path="/janakbangles/company"
+              element={<JhankarBangelsComp />}
+            />
+            <Route path="/slothan/company" element={<SlotanSolutionsComp />} />
+            <Route
+              path="/dharmagoodsexports/company"
+              element={<DhramaGoodsExportsComp />}
+            />
+            <Route path="/mrtrading/company" element={<MRTradingComp />} />
+            <Route path="/patnipumps/company" element={<PatniPumpsLLPComp />} />
+            <Route
+              path="/ascentwater/company"
+              element={<AscentWaterPurificationComp />}
+            />
+            <Route
+              path="/shrihaanagroeximxomp/company"
+              element={<ShrihaanAgroEximComp />}
+            />
+            <Route
+              path="/masumenviro/company"
+              element={<MasumanEnviroEngineeringComp />}
+            />
+            <Route
+              path="/bharatprocess/company"
+              element={<BharatProcessEquipmentComp />}
+            />
+            <Route
+              path="/calcuttatrading/company"
+              element={<CalcuttaTradingCentreComp />}
+            />
+            <Route
+              path="/alphapiping/company"
+              element={<AlphaPipingSystemComp />}
+            />
+            <Route path="/srinivas/company" element={<SrinivasaAgenciesComp />} />
+            <Route path="/ozonestudio/company" element={<OzoneStudioComp />} />
+            <Route path="/gopimetali/company" element={<GopiMetalicComp />} />
+            <Route
+              path="/sudhanshu/company"
+              element={<SudarshanAndCompanyComp />}
+            />
+            <Route
+              path="/newindiaglobal/company"
+              element={<NewIndiaGlobalEnterprisesComp />}
+            />
+            <Route
+              path="/jaishreeramrubber/company"
+              element={<JaiShreeRamRubberComp />}
+            />
 
-          <Route
-            path="/SHameeMart/company"
-            element={<SHameemMartGalleryComp />}
-          />
-          <Route path="/kartikay/company" element={<KarthikeyaWaterComp />} />
-          <Route
-            path="/quardgems/company"
-            element={<QudratGemsMineralsComp />}
-          />
+            <Route
+              path="/SHameeMart/company"
+              element={<SHameemMartGalleryComp />}
+            />
+            <Route path="/kartikay/company" element={<KarthikeyaWaterComp />} />
+            <Route
+              path="/quardgems/company"
+              element={<QudratGemsMineralsComp />}
+            />
 
-          <Route
-            path="/giftscompany/company"
-            element={<ManufactureTrophyCorporateGiftsComp />}
-          />
-          <Route
-            path="/gurualankarengineering/company"
-            element={<GuruAlankarEngineeringComp />}
-          />
-          <Route path="/agmecofaucet/company" element={<AgmecoFaucetsComp />} />
-          <Route path="/patrafasion/company" element={<PatraFashionComp />} />
-          <Route path="/prajwal/company" element={<PrajwalPolyplastComp />} />
-          <Route
-            path="/ysenterprises/company"
-            element={<YSEnterprisesComp />}
-          />
-          <Route
-            path="/ysenterprises/company"
-            element={<YSEnterprisesComp />}
-          />
-          <Route path="/neopoly/company" element={<NeoPolyplastComp />} />
-          <Route path="/rajpaint/company" element={<RajyogPaintsComp />} />
-          <Route
-            path="/mohanjalherbal/company"
-            element={<MohanjaliHerbalTradingComp />}
-          />
-          <Route
-            path="/maxifli/company"
-            element={<MaxifloJayHydraulicComp />}
-          />
-          <Route
-            path="/vardhmna/company"
-            element={<VardhmanEnterprisesComp />}
-          />
-          <Route
-            path="/saraswatienterprises/company"
-            element={<SaraswatiEnterprisesComp />}
-          />
-          <Route path="/svpowersys/company" element={<SVPowerSystemComp />} />
-          <Route path="/kkenterprises/company" element={<KKEnterpriseComp />} />
-          <Route
-            path="/bapsitaracomp/company"
-            element={<BapasitaramPolymerComp />}
-          />
-          <Route
-            path="/livtechnology/company"
-            element={<LivTechnologyComp />}
-          />
-          <Route
-            path="/raaveenterprises/company"
-            element={<RaaveEnterprisesComp />}
-          />
-          <Route
-            path="/mahadeventerprisescomp"
-            element={<MahadevEnterprisesComp />}
-          />
-          <Route
-            path="/joinmdatpragjyotitea"
-            element={<JoinMDAtPragjyotishTeaComp />}
-          />
-          <Route
-            path="/bhagyalaxmicomp"
-            element={<BhagyalaxmiProductsComp />}
-          />
-          <Route path="/summerclothcomp" element={<SumerClothCompanyComp />} />
-          <Route
-            path="/umangbadifactory"
-            element={<UmangBadiFactoryTextileComp />}
-          />
-          <Route
-            path="/vardhmanaenterprises"
-            element={<VardhmanEnterprisesComp />}
-          />
-          <Route path="/prakashharwarecomp" element={<PrakashHardwareComp />} />
-          <Route
-            path="/verticalSupportcomp"
-            element={<VerticalSupportsComp />}
-          />
-          <Route
-            path="/kaivalyanorgaincComp"
-            element={<KaivalyaOrganicsComp />}
-          />
-          <Route path="/sunrisePolymercomp" element={<SunrisePolymersComp />} />
-          <Route path="/polyanapipescomp" element={<PolyanaPipesComp />} />
-          <Route
-            path="/kaivalyaorgaincomp"
-            element={<KaivalyaOrganicsComp />}
-          />
-          <Route path="/trothexportscomp" element={<TrothExportsComp />} />
-          <Route path="/bikeshagarbati" element={<BikeshAgarbattiComp />} />
-          <Route path="/mdsuhancompany" element={<MDSuhanExportsComp />} />
-          <Route path="/saisamarthcomp" element={<SaiSamarthLogisticsComp />} />
-          <Route path="/ashifnursery" element={<AshifaNurseryComp />} />
-          <Route path="/veerandcomp" element={<VeerAndCompanyComp />} />
-          <Route path="/cardamonmanu" element={<CardamomManufactureComp />} />
-          <Route
-            path="/lakshaytrading"
-            element={<LakshyaTradingCompanyComp />}
-          />
-          <Route path="/mohamd-comp" element={<MohhaMadMonisComp />} />
-          <Route
-            path="/balajidhoop"
-            element={<ShreeBalajiDhoopTradersComp />}
-          />
-          <Route path="/nisafabcomp" element={<NisaFebricComp />} />
-          <Route
-            path="/groundnutcomp"
-            element={<SanidhyaInternationalComp />}
-          />
-          <Route path="/vishalenter" element={<VishalEnterprisesComp />} />
-          <Route path="/welding" element={<WeldtechCorporationComp />} />
-          <Route
-            path="/chappati-making"
-            element={<BKEngineersChapatiMakingComp />}
-          />
-          <Route path="/perfumes-mech" element={<PerfumePhafciallyComp />} />
-          <Route path="/rajesh-bulb" element={<RajeshBulbComp />} />
-          <Route
-            path="/royal-eneterprises"
-            element={<RoyalEnterprisesComp />}
-          />
-          <Route
-            path="/ambition-indus"
-            element={<AmbitionWeldIndustriesComp />}
-          />
-          <Route path="/aonefiber-comp" element={<AOneFiberMartComp />} />
-          <Route
-            path="/rajasthan-plastic-comp"
-            element={<RajasthanPlasticSyndicateComp />}
-          />
-          <Route path="/newera-comp" element={<NewEraAppliancesComp />} />
-          <Route path="/dakshandcompany" element={<DakshAndCompanyComp />} />
-          <Route path="/smindustrycomp" element={<SMIndustriesComp />} />
-          <Route path="/freshlypicked" element={<FreshhlyPickedComp />} />
-          <Route path="/navkargo" element={<NavkarForgeIndustriesComp />} />
-          <Route
-            path="/triratancomp"
-            element={<TriratnanavyanIntlEximComp />}
-          />
-          <Route path="/bliqesrugs" element={<BilqeesRugsComp />} />
-          <Route path="/navkarcomp" element={<Navkar />} />
-          <Route path="/somosoftluggae" element={<SomoSoftLuggageComp />} />
-          <Route
-            path="/umboodeepadventure"
-            element={<UmboodeepAdventuresComp />}
-          />
-          <Route
-            path="/shreehiralcomp"
-            element={<ShreeHiralalTelUdyogComp />}
-          />
-          <Route
-            path="/sujangracomp"
-            element={<SujangarhTarpaulinTraderComp />}
-          />
-          <Route
-            path="/dhamanienterprises"
-            element={<DhamaniEnterprisesComp />}
-          />
-          <Route
-            path="/shidhatechnology"
-            element={<ShidhaTechnologiesComp />}
-          />
-          <Route path="/abinternational" element={<ABInternationalComp />} />
-          <Route path="/luckeyenterprises" element={<LuckyEnterprisesComp />} />
-          <Route path="/omwoodcomp" element={<OmWoodsComp />} />
-          <Route path="/ridhienterprises" element={<RidhiEnterprisesComp />} />
-          <Route
-            path="/jaimaakalienterprises"
-            element={<JaiMaaKaliElectricalsComp />}
-          />
-          <Route path="/tempoinstru" element={<TempoInstrumentsComp />} />
-          <Route path="/zioninduscomp" element={<ZionIndustriesComp />} />
-          <Route path="/hussaiancomp" element={<HussainEnterprisesComp />} />
-          <Route
-            path="/vishwakrmahandi"
-            element={<ShreeVishwakarmaHandicraftsComp />}
-          />
-          <Route path="/hammercoal" element={<HammercoalComp />} />
-          <Route path="/sharmilapolycomp" element={<ShamaliPolymatsComp />} />
-          <Route path="/hydrocomp" element={<AmolHydroEngineersComp />} />
-          <Route path="/vshandicomp" element={<VSHandicraftsComp />} />
-          <Route
-            path="/jaishreekrishna"
-            element={<JaiShreeKrishnaDecorationComp />}
-          />
-          <Route
-            path="/febrolelevevator"
-            element={<FebrolElevatorEscalatorComp />}
-          />
-          <Route path="/rotechhealth" element={<RotechHealthcareComp />} />
-          <Route path="/easeplushealth" element={<EaseplusHealthcareComp />} />
-          <Route path="/amsons" element={<AMSonsComp />} />
-          <Route path="/lavish" element={<LavishGanwaniComp />} />
-          <Route path="/mokshit" element={<MokshitDrapesComp />} />
-          <Route path="/manishtrading" element={<ManishTradingCoComp />} />
-          <Route path="/geetatextile" element={<GeetaTextilesComp />} />
-          <Route path="/dadudayahosiery" element={<DaduDayalHosieryComp />} />
-          <Route
-            path="/purbaelectriccomp"
-            element={<PurvanshElectricalComp />}
-          />
-          <Route path="/anokhitextile" element={<AnokhiTextileComp />} />
-          <Route path="/dskcomp" element={<DSKDecorComp />} />
-          <Route path="/doorlock" element={<DoorLockAndTradingComp />} />
-          <Route path="/assports" element={<AsSportsCompanyComp />} />
-          <Route path="/ssfabricators" element={<SsFabricatorsComp />} />
-          <Route path="/mbartificial" element={<MBArtificialComp />} />
-          <Route path="/filoscomp" element={<FilosInternationalComp />} />
-          <Route path="/isbbags" element={<ISBBagsComp />} />
-          <Route path="/sunagensy" element={<SunAgencyComp />} />
-          <Route path="/thesescomp" element={<ThesisComp />} />
-          <Route path="/vegetable-supplier" element={<VegetableSupplier />} />
-          <Route path="/mushroom-supplier" element={<MushroomComponent />} />
-          <Route path="/egg-supplier" element={<EggComponent />} />
+            <Route
+              path="/giftscompany/company"
+              element={<ManufactureTrophyCorporateGiftsComp />}
+            />
+            <Route
+              path="/gurualankarengineering/company"
+              element={<GuruAlankarEngineeringComp />}
+            />
+            <Route path="/agmecofaucet/company" element={<AgmecoFaucetsComp />} />
+            <Route path="/patrafasion/company" element={<PatraFashionComp />} />
+            <Route path="/prajwal/company" element={<PrajwalPolyplastComp />} />
+            <Route
+              path="/ysenterprises/company"
+              element={<YSEnterprisesComp />}
+            />
+            <Route
+              path="/ysenterprises/company"
+              element={<YSEnterprisesComp />}
+            />
+            <Route path="/neopoly/company" element={<NeoPolyplastComp />} />
+            <Route path="/rajpaint/company" element={<RajyogPaintsComp />} />
+            <Route
+              path="/mohanjalherbal/company"
+              element={<MohanjaliHerbalTradingComp />}
+            />
+            <Route
+              path="/maxifli/company"
+              element={<MaxifloJayHydraulicComp />}
+            />
+            <Route
+              path="/vardhmna/company"
+              element={<VardhmanEnterprisesComp />}
+            />
+            <Route
+              path="/saraswatienterprises/company"
+              element={<SaraswatiEnterprisesComp />}
+            />
+            <Route path="/svpowersys/company" element={<SVPowerSystemComp />} />
+            <Route path="/kkenterprises/company" element={<KKEnterpriseComp />} />
+            <Route
+              path="/bapsitaracomp/company"
+              element={<BapasitaramPolymerComp />}
+            />
+            <Route
+              path="/livtechnology/company"
+              element={<LivTechnologyComp />}
+            />
+            <Route
+              path="/raaveenterprises/company"
+              element={<RaaveEnterprisesComp />}
+            />
+            <Route
+              path="/mahadeventerprisescomp"
+              element={<MahadevEnterprisesComp />}
+            />
+            <Route
+              path="/joinmdatpragjyotitea"
+              element={<JoinMDAtPragjyotishTeaComp />}
+            />
+            <Route
+              path="/bhagyalaxmicomp"
+              element={<BhagyalaxmiProductsComp />}
+            />
+            <Route path="/summerclothcomp" element={<SumerClothCompanyComp />} />
+            <Route
+              path="/umangbadifactory"
+              element={<UmangBadiFactoryTextileComp />}
+            />
+            <Route
+              path="/vardhmanaenterprises"
+              element={<VardhmanEnterprisesComp />}
+            />
+            <Route path="/prakashharwarecomp" element={<PrakashHardwareComp />} />
+            <Route
+              path="/verticalSupportcomp"
+              element={<VerticalSupportsComp />}
+            />
+            <Route
+              path="/kaivalyanorgaincComp"
+              element={<KaivalyaOrganicsComp />}
+            />
+            <Route path="/sunrisePolymercomp" element={<SunrisePolymersComp />} />
+            <Route path="/polyanapipescomp" element={<PolyanaPipesComp />} />
+            <Route
+              path="/kaivalyaorgaincomp"
+              element={<KaivalyaOrganicsComp />}
+            />
+            <Route path="/trothexportscomp" element={<TrothExportsComp />} />
+            <Route path="/bikeshagarbati" element={<BikeshAgarbattiComp />} />
+            <Route path="/mdsuhancompany" element={<MDSuhanExportsComp />} />
+            <Route path="/saisamarthcomp" element={<SaiSamarthLogisticsComp />} />
+            <Route path="/ashifnursery" element={<AshifaNurseryComp />} />
+            <Route path="/veerandcomp" element={<VeerAndCompanyComp />} />
+            <Route path="/cardamonmanu" element={<CardamomManufactureComp />} />
+            <Route
+              path="/lakshaytrading"
+              element={<LakshyaTradingCompanyComp />}
+            />
+            <Route path="/mohamd-comp" element={<MohhaMadMonisComp />} />
+            <Route
+              path="/balajidhoop"
+              element={<ShreeBalajiDhoopTradersComp />}
+            />
+            <Route path="/nisafabcomp" element={<NisaFebricComp />} />
+            <Route
+              path="/groundnutcomp"
+              element={<SanidhyaInternationalComp />}
+            />
+            <Route path="/vishalenter" element={<VishalEnterprisesComp />} />
+            <Route path="/welding" element={<WeldtechCorporationComp />} />
+            <Route
+              path="/chappati-making"
+              element={<BKEngineersChapatiMakingComp />}
+            />
+            <Route path="/perfumes-mech" element={<PerfumePhafciallyComp />} />
+            <Route path="/rajesh-bulb" element={<RajeshBulbComp />} />
+            <Route
+              path="/royal-eneterprises"
+              element={<RoyalEnterprisesComp />}
+            />
+            <Route
+              path="/ambition-indus"
+              element={<AmbitionWeldIndustriesComp />}
+            />
+            <Route path="/aonefiber-comp" element={<AOneFiberMartComp />} />
+            <Route
+              path="/rajasthan-plastic-comp"
+              element={<RajasthanPlasticSyndicateComp />}
+            />
+            <Route path="/newera-comp" element={<NewEraAppliancesComp />} />
+            <Route path="/dakshandcompany" element={<DakshAndCompanyComp />} />
+            <Route path="/smindustrycomp" element={<SMIndustriesComp />} />
+            <Route path="/freshlypicked" element={<FreshhlyPickedComp />} />
+            <Route path="/navkargo" element={<NavkarForgeIndustriesComp />} />
+            <Route
+              path="/triratancomp"
+              element={<TriratnanavyanIntlEximComp />}
+            />
+            <Route path="/bliqesrugs" element={<BilqeesRugsComp />} />
+            <Route path="/navkarcomp" element={<Navkar />} />
+            <Route path="/somosoftluggae" element={<SomoSoftLuggageComp />} />
+            <Route
+              path="/umboodeepadventure"
+              element={<UmboodeepAdventuresComp />}
+            />
+            <Route
+              path="/shreehiralcomp"
+              element={<ShreeHiralalTelUdyogComp />}
+            />
+            <Route
+              path="/sujangracomp"
+              element={<SujangarhTarpaulinTraderComp />}
+            />
+            <Route
+              path="/dhamanienterprises"
+              element={<DhamaniEnterprisesComp />}
+            />
+            <Route
+              path="/shidhatechnology"
+              element={<ShidhaTechnologiesComp />}
+            />
+            <Route path="/abinternational" element={<ABInternationalComp />} />
+            <Route path="/luckeyenterprises" element={<LuckyEnterprisesComp />} />
+            <Route path="/omwoodcomp" element={<OmWoodsComp />} />
+            <Route path="/ridhienterprises" element={<RidhiEnterprisesComp />} />
+            <Route
+              path="/jaimaakalienterprises"
+              element={<JaiMaaKaliElectricalsComp />}
+            />
+            <Route path="/tempoinstru" element={<TempoInstrumentsComp />} />
+            <Route path="/zioninduscomp" element={<ZionIndustriesComp />} />
+            <Route path="/hussaiancomp" element={<HussainEnterprisesComp />} />
+            <Route
+              path="/vishwakrmahandi"
+              element={<ShreeVishwakarmaHandicraftsComp />}
+            />
+            <Route path="/hammercoal" element={<HammercoalComp />} />
+            <Route path="/sharmilapolycomp" element={<ShamaliPolymatsComp />} />
+            <Route path="/hydrocomp" element={<AmolHydroEngineersComp />} />
+            <Route path="/vshandicomp" element={<VSHandicraftsComp />} />
+            <Route
+              path="/jaishreekrishna"
+              element={<JaiShreeKrishnaDecorationComp />}
+            />
+            <Route
+              path="/febrolelevevator"
+              element={<FebrolElevatorEscalatorComp />}
+            />
+            <Route path="/rotechhealth" element={<RotechHealthcareComp />} />
+            <Route path="/easeplushealth" element={<EaseplusHealthcareComp />} />
+            <Route path="/amsons" element={<AMSonsComp />} />
+            <Route path="/lavish" element={<LavishGanwaniComp />} />
+            <Route path="/mokshit" element={<MokshitDrapesComp />} />
+            <Route path="/manishtrading" element={<ManishTradingCoComp />} />
+            <Route path="/geetatextile" element={<GeetaTextilesComp />} />
+            <Route path="/dadudayahosiery" element={<DaduDayalHosieryComp />} />
+            <Route
+              path="/purbaelectriccomp"
+              element={<PurvanshElectricalComp />}
+            />
+            <Route path="/anokhitextile" element={<AnokhiTextileComp />} />
+            <Route path="/dskcomp" element={<DSKDecorComp />} />
+            <Route path="/doorlock" element={<DoorLockAndTradingComp />} />
+            <Route path="/assports" element={<AsSportsCompanyComp />} />
+            <Route path="/ssfabricators" element={<SsFabricatorsComp />} />
+            <Route path="/mbartificial" element={<MBArtificialComp />} />
+            <Route path="/filoscomp" element={<FilosInternationalComp />} />
+            <Route path="/isbbags" element={<ISBBagsComp />} />
+            <Route path="/sunagensy" element={<SunAgencyComp />} />
+            <Route path="/thesescomp" element={<ThesisComp />} />
+            <Route path="/vegetable-supplier" element={<VegetableSupplier />} />
+            <Route path="/mushroom-supplier" element={<MushroomComponent />} />
+            <Route path="/egg-supplier" element={<EggComponent />} />
 
-          <Route
-            path="/mahaveerglassand-almunium"
-            element={<MahaveerGlassAndAluminiumWorksComp />}
-          />
-          <Route path="/faizan-comp" element={<FaizanZippersComp />} />
-          <Route
-            path="/kanakdhara-comp"
-            element={<KanakdharaEnterprisComp />}
-          />
-          <Route
-            path="/faizanandcarpet"
-            element={<FaizanAndSonsCarpetsComp />}
-          />
-          <Route path="/ravanmeerut" element={<RavanMeerutComp />} />
-          <Route path="/dollarequipment" element={<DollarEquipmentsComp />} />
-          <Route path="/mittiwarecomp" element={<MittiwareIndiaComp />} />
-          <Route path="/akashenterprises" element={<AkashEnterpriseComp />} />
-          <Route path="/robustechalloy" element={<RobustechAlloysComp />} />
-          <Route path="/abhinavhodal" element={<AbhinavHodlaComp />} />
-          <Route path="/abkglobal" element={<ABKGlobalImpexComp />} />
-          <Route path="/optical" element={<OptimalSurgicalsComp />} />
-          <Route path="/amira-metal-comp" element={<AmirajMetalcraftComp />} />
-          <Route path="/omexime" element={<OmEximTradersComp />} />
-          <Route
-            path="/murgun-enterprises"
-            element={<MuruganEnterprisesComp />}
-          />
-          <Route
-            path="/shrinathdistributors"
-            element={<ShriNathDistributorsComp />}
-          />
-          <Route path="/sharda-comp" element={<ShardaIndustriesComp />} />
-          <Route path="/aditya-comp" element={<AditaPackagingsComp />} />
-          <Route path="/radhe-comp" element={<RadhePackagingComp />} />
-          <Route
-            path="isindian-trader-comp"
-            element={<ISIndianTradersComp />}
-          />
-          <Route path="seds-trader-comp" element={<SedsTradersComp />} />
-          <Route
-            path="jk-wallpaper-studio"
-            element={<JKWallpaperStudioComp />}
-          />
-          <Route
-            path="wuhanmzelectronics"
-            element={<WuhanMZElectronicComp />}
-          />
-          <Route path="mystylelookcomp" element={<MyStyleLookComp />} />
-          <Route path="yashenterprisescomp" element={<YashEnterprisesComp />} />
-          <Route path="artiquecraft" element={<ArtiqueCraftComp />} />
-          <Route
-            path="interfacetechnology"
-            element={<InterfaceTechnologiesComp />}
-          />
-          <Route
-            path="valuesplusinternational"
-            element={<ValuePlusInternationalComp />}
-          />
-          <Route path="sspacking" element={<SSPackagingComp />} />
-          <Route path="amfurniturecomp" element={<AMFurnitureComp />} />
-          <Route path="avabiosolution" element={<AVABioSolutionsComp />} />
-          <Route path="mosaicraftcomp" element={<MosaicArtCraftComp />} />
-          <Route path="balajipackingcomp" element={<BalajiPackagingComp />} />
-          <Route path="murarisnackscomp" element={<MurariSnacksComp />} />
-          <Route path="tijtextilecomp" element={<TijTextileComps />} />
-          <Route
-            path="probechoenterprisescomp"
-            element={<ProbechoEnterpriseComp />}
-          />
-          <Route
-            path="shreevaradhavvinayak"
-            element={<ShreeVaradVinayakComp />}
-          />
-          <Route path="balkrushnabiotech" element={<BalkrushnaBiotechComp />} />
-          <Route path="sugagrcomp" element={<GandhiEnterprisesComp />} />
-          <Route path="rudracomp" element={<RudraEnterprisesComp />} />
-          <Route
-            path="businessconsultantcomp"
-            element={<BusinessConsultancyComp />}
-          />
-          <Route
-            path="jiyanshinternational"
-            element={<JiyanshInternationalComp />}
-          />
-          <Route
-            path="ashwani-international"
-            element={<AshwinInternationalsComp />}
-          />
-          <Route path="jhaveri-organic" element={<JhaveriOrganicFarmsComp />} />
-          <Route
-            path="vyankatesh-marketing"
-            element={<VyankateshMarketingComp />}
-          />
-          <Route path="dvp-groups" element={<DVPGroupsComp />} />
-          <Route
-            path="dipakvishwas-dhanger"
-            element={<DipakVishwasDhangarComp />}
-          />
-          <Route path="giriraj-lubricant" element={<GirjeLubricantComp />} />
-          <Route path="ik-enterprises" element={<IkEnterpriseComp />} />
-          <Route
-            path="jai-shree-krishna-glass"
-            element={<JaiShriKrishnaGlassComp />}
-          />
-          <Route path="kk-group" element={<KKGroupComp />} />
-          <Route path="artful-endearous" element={<ArtfulEndeavorComp />} />
-          <Route path="royal-services" element={<RoyalServicesComp />} />
-          <Route path="raveeEnterprises" element={<RaaveeEnterpriseComp />} />
-          <Route path="henanLanguri" element={<HenanLangruiChemicalComp />} />
-          <Route path="toothpaste-supplier" element={<Toothpaste />} />
-          <Route
-            path="shreemahalaxmi-ghee-supplier"
-            element={<ShreeMahalakshmiProductsComp />}
-          />
-          <Route path="shrisairam-supplier" element={<ShriSairamTexComp />} />
-          <Route path="vdenterprises" element={<VdEnterpriseComp />} />
-          <Route path="davi-cmp" element={<DaVinciComp />} />
-          <Route path="hanuman-transport" element={<HanumanTransportComp />} />
-          <Route path="ajindustries" element={<AJRIndustriesComp />} />
+            <Route
+              path="/mahaveerglassand-almunium"
+              element={<MahaveerGlassAndAluminiumWorksComp />}
+            />
+            <Route path="/faizan-comp" element={<FaizanZippersComp />} />
+            <Route
+              path="/kanakdhara-comp"
+              element={<KanakdharaEnterprisComp />}
+            />
+            <Route
+              path="/faizanandcarpet"
+              element={<FaizanAndSonsCarpetsComp />}
+            />
+            <Route path="/ravanmeerut" element={<RavanMeerutComp />} />
+            <Route path="/dollarequipment" element={<DollarEquipmentsComp />} />
+            <Route path="/mittiwarecomp" element={<MittiwareIndiaComp />} />
+            <Route path="/akashenterprises" element={<AkashEnterpriseComp />} />
+            <Route path="/robustechalloy" element={<RobustechAlloysComp />} />
+            <Route path="/abhinavhodal" element={<AbhinavHodlaComp />} />
+            <Route path="/abkglobal" element={<ABKGlobalImpexComp />} />
+            <Route path="/optical" element={<OptimalSurgicalsComp />} />
+            <Route path="/amira-metal-comp" element={<AmirajMetalcraftComp />} />
+            <Route path="/omexime" element={<OmEximTradersComp />} />
+            <Route
+              path="/murgun-enterprises"
+              element={<MuruganEnterprisesComp />}
+            />
+            <Route
+              path="/shrinathdistributors"
+              element={<ShriNathDistributorsComp />}
+            />
+            <Route path="/sharda-comp" element={<ShardaIndustriesComp />} />
+            <Route path="/aditya-comp" element={<AditaPackagingsComp />} />
+            <Route path="/radhe-comp" element={<RadhePackagingComp />} />
+            <Route
+              path="isindian-trader-comp"
+              element={<ISIndianTradersComp />}
+            />
+            <Route path="seds-trader-comp" element={<SedsTradersComp />} />
+            <Route
+              path="jk-wallpaper-studio"
+              element={<JKWallpaperStudioComp />}
+            />
+            <Route
+              path="wuhanmzelectronics"
+              element={<WuhanMZElectronicComp />}
+            />
+            <Route path="mystylelookcomp" element={<MyStyleLookComp />} />
+            <Route path="yashenterprisescomp" element={<YashEnterprisesComp />} />
+            <Route path="artiquecraft" element={<ArtiqueCraftComp />} />
+            <Route
+              path="interfacetechnology"
+              element={<InterfaceTechnologiesComp />}
+            />
+            <Route
+              path="valuesplusinternational"
+              element={<ValuePlusInternationalComp />}
+            />
+            <Route path="sspacking" element={<SSPackagingComp />} />
+            <Route path="amfurniturecomp" element={<AMFurnitureComp />} />
+            <Route path="avabiosolution" element={<AVABioSolutionsComp />} />
+            <Route path="mosaicraftcomp" element={<MosaicArtCraftComp />} />
+            <Route path="balajipackingcomp" element={<BalajiPackagingComp />} />
+            <Route path="murarisnackscomp" element={<MurariSnacksComp />} />
+            <Route path="tijtextilecomp" element={<TijTextileComps />} />
+            <Route
+              path="probechoenterprisescomp"
+              element={<ProbechoEnterpriseComp />}
+            />
+            <Route
+              path="shreevaradhavvinayak"
+              element={<ShreeVaradVinayakComp />}
+            />
+            <Route path="balkrushnabiotech" element={<BalkrushnaBiotechComp />} />
+            <Route path="sugagrcomp" element={<GandhiEnterprisesComp />} />
+            <Route path="rudracomp" element={<RudraEnterprisesComp />} />
+            <Route
+              path="businessconsultantcomp"
+              element={<BusinessConsultancyComp />}
+            />
+            <Route
+              path="jiyanshinternational"
+              element={<JiyanshInternationalComp />}
+            />
+            <Route
+              path="ashwani-international"
+              element={<AshwinInternationalsComp />}
+            />
+            <Route path="jhaveri-organic" element={<JhaveriOrganicFarmsComp />} />
+            <Route
+              path="vyankatesh-marketing"
+              element={<VyankateshMarketingComp />}
+            />
+            <Route path="dvp-groups" element={<DVPGroupsComp />} />
+            <Route
+              path="dipakvishwas-dhanger"
+              element={<DipakVishwasDhangarComp />}
+            />
+            <Route path="giriraj-lubricant" element={<GirjeLubricantComp />} />
+            <Route path="ik-enterprises" element={<IkEnterpriseComp />} />
+            <Route
+              path="jai-shree-krishna-glass"
+              element={<JaiShriKrishnaGlassComp />}
+            />
+            <Route path="kk-group" element={<KKGroupComp />} />
+            <Route path="artful-endearous" element={<ArtfulEndeavorComp />} />
+            <Route path="royal-services" element={<RoyalServicesComp />} />
+            <Route path="raveeEnterprises" element={<RaaveeEnterpriseComp />} />
+            <Route path="henanLanguri" element={<HenanLangruiChemicalComp />} />
+            <Route path="toothpaste-supplier" element={<Toothpaste />} />
+            <Route
+              path="shreemahalaxmi-ghee-supplier"
+              element={<ShreeMahalakshmiProductsComp />}
+            />
+            <Route path="shrisairam-supplier" element={<ShriSairamTexComp />} />
+            <Route path="vdenterprises" element={<VdEnterpriseComp />} />
+            <Route path="davi-cmp" element={<DaVinciComp />} />
+            <Route path="hanuman-transport" element={<HanumanTransportComp />} />
+            <Route path="ajindustries" element={<AJRIndustriesComp />} />
 
-          <Route
-            path="/laborate-technocracy"
-            element={<LaborateTechnocracyComp />}
-          />
-          <Route
-            path="/dairyprocts-supplier"
-            element={<DairyProductsSupplier />}
-          />
-          <Route
-            path="/insurance-provider"
-            element={<InsuranceServicesProvider />}
-          />
-          <Route
-            path="/rudrakhs-sellers"
-            element={<SpiritualProductsProvider />}
-          />
+            <Route
+              path="/laborate-technocracy"
+              element={<LaborateTechnocracyComp />}
+            />
+            <Route
+              path="/dairyprocts-supplier"
+              element={<DairyProductsSupplier />}
+            />
+            <Route
+              path="/insurance-provider"
+              element={<InsuranceServicesProvider />}
+            />
+            <Route
+              path="/rudrakhs-sellers"
+              element={<SpiritualProductsProvider />}
+            />
 
-          {/* Country */}
-          <Route path="usa" element={<Usacountry />} />
-          <Route path="dubai" element={<DubaiCountry />} />
-          <Route path="australia" element={<AustraliaCountry />} />
-          <Route path="germany" element={<GermanyCountry />} />
-          <Route path="china" element={<ChinaCountry />} />
-          <Route path="uk" element={<UkCountry />} />
-          <Route path="canada" element={<CanadaCountry />} />
-          <Route path="saudiarabia" element={<SaudiCountry />} />
-          <Route path="oman" element={<OmanCountry />} />
-          <Route path="singapore" element={<SingaporeCountry />} />
-          <Route path="all/country" element={<AllCountries />} />
-          <Route path="netherland" element={<NetherlandCountry />} />
+            {/* Country */}
+            <Route path="usa" element={<Usacountry />} />
+            <Route path="dubai" element={<DubaiCountry />} />
+            <Route path="australia" element={<AustraliaCountry />} />
+            <Route path="germany" element={<GermanyCountry />} />
+            <Route path="china" element={<ChinaCountry />} />
+            <Route path="uk" element={<UkCountry />} />
+            <Route path="canada" element={<CanadaCountry />} />
+            <Route path="saudiarabia" element={<SaudiCountry />} />
+            <Route path="oman" element={<OmanCountry />} />
+            <Route path="singapore" element={<SingaporeCountry />} />
+            <Route path="all/country" element={<AllCountries />} />
+            <Route path="netherland" element={<NetherlandCountry />} />
 
-          <Route path="globalb2b-prices" element={<Globalb2bPricess />} />
-          {/* Catalog */}
-          <Route path="shoolini-saffron-pvt-ltd" element={<FirstCatlog />} />
-          <Route path="azoliya-cable-tie" element={<SecondCatalog />} />
-          <Route path="new-era-appliances" element={<ThirdCatalog />} />
-          <Route path="sakthi-tex" element={<FourthCatalog />} />
-          <Route path="vikas-sports" element={<FifthCatalog />} />
-          <Route path="abhitech-lift" element={<SixthCatalog />} />
-          <Route path="daksh-and-company" element={<SeventhCatalog />} />
-          <Route path="mahir-sanitation" element={<EightCatalog />} />
-          <Route
-            path="new-jai-shree-krishna-glass-decorators"
-            element={<NineCatalog />}
-          />
-          <Route path="ashifa-nursery" element={<TenthCatalog />} />
-          <Route path="hv-enterprises" element={<EleventhCatalog />} />
-          <Route path="sunrise-tank" element={<TwelthCatalog />} />
-          <Route path="mm-overseas" element={<ThirteenCatalog />} />
-          <Route path="kalptaru-tractor-agro" element={<FourteenCatalog />} />
-          <Route path="Prince-industry" element={<FifteenCatalog />} />
-          <Route
-            path="Om-Enterprises-Painting-Service"
-            element={<SixteenCatalog />}
-          />
-          <Route path="sitaram-enterprise" element={<SeventeenCatalog />} />
-          <Route path="nobaraa-fashion" element={<EighteenCatalogs />} />
-          <Route path="celebria" element={<NineteenCatalogs />} />
-          <Route path="crafter-tapes" element={<TwentyCatalogs />} />
-          <Route path="krishna-packing" element={<TwentyoneCatalogs />} />
-          <Route path="gehena-kitchen" element={<TwentytwoCatalogs />} />
-          <Route path="cleef-empire" element={<TwentythreeCatalog />} />
-          <Route path="samriddh-construction" element={<TwentyfoutCatalog />} />
-          <Route path="pooja-agri-products" element={<Twentyfivecatalog />} />
-          <Route path="divine-manufacturer" element={<TwentySixcatalog />} />
-          {/* Blogs */}
-          {/* <Route
+            <Route path="globalb2b-prices" element={<Globalb2bPricess />} />
+            {/* Catalog */}
+            <Route path="shoolini-saffron-pvt-ltd" element={<FirstCatlog />} />
+            <Route path="azoliya-cable-tie" element={<SecondCatalog />} />
+            <Route path="new-era-appliances" element={<ThirdCatalog />} />
+            <Route path="sakthi-tex" element={<FourthCatalog />} />
+            <Route path="vikas-sports" element={<FifthCatalog />} />
+            <Route path="abhitech-lift" element={<SixthCatalog />} />
+            <Route path="daksh-and-company" element={<SeventhCatalog />} />
+            <Route path="mahir-sanitation" element={<EightCatalog />} />
+            <Route
+              path="new-jai-shree-krishna-glass-decorators"
+              element={<NineCatalog />}
+            />
+            <Route path="ashifa-nursery" element={<TenthCatalog />} />
+            <Route path="hv-enterprises" element={<EleventhCatalog />} />
+            <Route path="sunrise-tank" element={<TwelthCatalog />} />
+            <Route path="mm-overseas" element={<ThirteenCatalog />} />
+            <Route path="kalptaru-tractor-agro" element={<FourteenCatalog />} />
+            <Route path="Prince-industry" element={<FifteenCatalog />} />
+            <Route
+              path="Om-Enterprises-Painting-Service"
+              element={<SixteenCatalog />}
+            />
+            <Route path="sitaram-enterprise" element={<SeventeenCatalog />} />
+            <Route path="nobaraa-fashion" element={<EighteenCatalogs />} />
+            <Route path="celebria" element={<NineteenCatalogs />} />
+            <Route path="crafter-tapes" element={<TwentyCatalogs />} />
+            <Route path="krishna-packing" element={<TwentyoneCatalogs />} />
+            <Route path="gehena-kitchen" element={<TwentytwoCatalogs />} />
+            <Route path="cleef-empire" element={<TwentythreeCatalog />} />
+            <Route path="samriddh-construction" element={<TwentyfoutCatalog />} />
+            <Route path="pooja-agri-products" element={<Twentyfivecatalog />} />
+            <Route path="divine-manufacturer" element={<TwentySixcatalog />} />
+            {/* Blogs */}
+            {/* <Route
             path="indulge-in-luxury-baby-care-bath"
             element={<HealthcareBlogs />}
           />
@@ -2224,9 +2230,10 @@ function App() {
             path="blog-best-b2b-portal-in-india-best-b2b-website-in-india"
             element={<MainBlogs />}
           /> */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </AuthProvider>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
+      </div>
       <Footer />
     </div>
   );

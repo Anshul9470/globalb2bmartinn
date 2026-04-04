@@ -39,6 +39,7 @@ const LandingPages = () => {
       <div className="landing-page-container">
         <div className="box">
           <div className="box-left">
+
             <h3 className="welcome-port">Welcome To GlobalB2B Mart</h3>
             <i>
               <h4 className="b2b-welcome"> World's Best B2B Portal</h4>

@@ -728,7 +728,7 @@ section {
 .trade-section {
   position: relative;
   width: 100%;
-  padding: 120px 0;
+  padding: 20px 0; /* Further reduced from 40px to fix gap */
   /* Light mode base with prominent Orange & Blue shiny gradient touches */
   background: linear-gradient(-45deg, #ffffff, #eff6ff, #fff7ed, #f8fafc);
   background-size: 400% 400%;
@@ -768,13 +768,13 @@ section {
 /* --- Header --- */
 .trade-header {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 25px; /* Further reduced from 40px */
 }
 
 .trade-header h1 {
   font-size: 4rem;
   font-weight: 800;
-  margin-bottom: 24px;
+  margin-bottom: 15px;
   letter-spacing: -1.5px;
   background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
   -webkit-background-clip: text;
@@ -788,7 +788,7 @@ section {
   color: #475569;
   max-width: 700px;
   margin: 0 auto;
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 /* --- Grid Layout --- */
@@ -931,7 +931,7 @@ section {
 .feature-item p {
   font-size: 0.95rem;
   color: #64748b;
-  line-height: 1.7;
+  line-height: 1.4;
   margin: 0;
 }
 

@@ -1,176 +1,162 @@
+/* Registration Container with Dark Overlay */
 .registration-container {
-    display: flex;
-    height: 105vh;
-    width: 100%;
-    background-image: url('../../public/assets/renameres.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 50px;
-    /* Adjust padding as needed */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* background: linear-gradient(135deg, #e7d0b9, #4a3d3d, #d88027); */
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../../public/assets/renameres.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 20px;
+    font-family: 'Inter', -apple-system, sans-serif;
 }
-
-.login-container {
-    width: 50%;
-    padding: 40px;
-    /* background: #f7f1f1; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 
 .regi-container {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 60px;
 }
 
-.login-image {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background: rgba(255, 255, 255, 0.1); */
-    /* background: #f7f1f1; */
-}
-
-.login-image img {
-    width: 100%;
-    height: 100%;
-}
-
-
-.form-group {
-    margin-bottom: 1px;
-}
-
-label {
-    display: block;
-    margin-bottom: 0px;
-}
-
-.reb-text[type="text"],
-.reb-email[type="email"],
-.reb-password[type="password"],
-.reb-number[type="number"],
-.reb-req[type="text"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.buyer-submit {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-
+/* Premium Frosted Glass Container - Dark Modern Theme */
 .glass-container {
-    background: rgba(255, 255, 255, 0.1);
-    /* Lightly colored background */
-    backdrop-filter: blur(10px);
-    /* Blur the background behind the form */
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    /* Soft shadow */
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    /* Light border */
-    text-align: center;
+    background: rgba(15, 23, 42, 0.85); /* Deep Navy Glass */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 28px;
+    padding: 50px 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
-    max-width: 400px;
-    margin-bottom: 100px;
+    max-width: 480px;
+    text-align: left;
 }
 
-.login-image {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    /* background: #f7f1f1; */
+/* Heading Styling */
+.glass-container h3 {
+    font-size: 30px;
+    font-weight: 800;
+    color: #ffffff !important; /* Pure white for visibility */
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-@media (max-width: 766px) {
-    .registration-container {
-        flex-direction: column;
-    }
-
-    .regi-container {
-        width: 100%;
-        padding: 20px;
-    }
-
-    .login-image {
-        display: none;
-        /* Hide the image on small screens */
-    }
-}
-
-@media (max-width: 768px) {
-
-    .regi-container,
-    .login-image {
-        width: 100%;
-        padding: 20px;
-    }
-
-    .regi-container {
-        flex-direction: column;
-    }
-
+/* Form Group & Labels */
+.form-group {
+    margin-bottom: 22px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: -2px !important;
-    font-weight: bold;
-    color: rgb(46, 89, 245) !important;
+    margin-bottom: 8px !important;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #ffffff !important; /* Vibrant White for visibility */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Subtle shadow for depth */
 }
 
-/* .form-group {
-    margin-bottom: 5px !important;
-} */
+/* Inputs & Select Styling */
+.reb-text,
+.reb-email,
+.reb-number,
+.reb-unit {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+    color: #1e293b;
+    outline: none;
+}
 
+.reb-text:focus,
+.reb-email:focus,
+.reb-number:focus,
+.reb-unit:focus {
+    border-color: #2563eb;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* Phone Input Alignment */
 .PhoneInput {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 8px 16px;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.PhoneInput:focus-within {
+    border-color: #2563eb;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
 .PhoneInputInput {
-    flex: 1 1;
-    min-width: 0;
-    display: flex;
-    align-items: center;
+    border: none !important;
+    padding: 6px 0 !important;
+    background: transparent !important;
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Submit Button */
+.buyer-submit {
     width: 100%;
+    padding: 16px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #003366 0%, #004080 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 51, 102, 0.2);
+}
+
+.buyer-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 51, 102, 0.3);
+    filter: brightness(1.1);
+}
+
+/* Responsive Fixes */
+@media (max-width: 600px) {
+    .glass-container {
+        padding: 40px 20px;
+        border-radius: 16px;
+    }
+    
+    .glass-container h3 {
+        font-size: 22px;
+    }
+    
+    .registration-container {
+        padding: 40px 10px;
+    }
+}
+
+/* Custom Success/Helper Messages */
+.submitted-msg {
+    color: #059669;
+    font-weight: 600;
+    margin-top: 15px;
+    text-align: center;
+    background: #ecfdf5;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
 }

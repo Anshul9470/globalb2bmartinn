@@ -73,21 +73,11 @@ const Footer = () => {
     userType: [], // Initialize as an empty array for multiple selections
   });
   const [formOpen, setFormOpen] = useState(false);
-  const [barOpen, setBarOpen] = useState(false);
+  const [barOpen, setBarOpen] = useState(true);
   const [successMessage, setSuccessMessage] = useState("");
 
   const toggleForm = () => {
-    if (!barOpen) {
-      setBarOpen(true);
-      setTimeout(() => {
-        setFormOpen(true);
-      }, 200); // Wait for the bar to slide out first
-    } else {
-      setFormOpen(false);
-      setTimeout(() => {
-        setBarOpen(false);
-      }, 200); // Wait for the form to slide back first
-    }
+    setFormOpen(!formOpen);
   };
   const messageContainerStyle = {
     position: "fixed",
@@ -152,183 +142,149 @@ const Footer = () => {
   };
 
   useEffect(() => {
-    // Create script element
-    var Tawk_API = Tawk_API || {};
-    var Tawk_LoadStart = new Date();
-    var s1 = document.createElement("script");
-    var s0 = document.getElementsByTagName("script")[0];
+    // Tawk.to initialization
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_LoadStart = new Date();
+
+    const s1 = document.createElement("script");
+    const s0 = document.getElementsByTagName("script")[0];
     s1.async = true;
     s1.src = "https://embed.tawk.to/6663436a9a809f19fb3b2618/1hvprun7i";
     s1.charset = "UTF-8";
     s1.setAttribute("crossorigin", "*");
-    s0.parentNode.insertBefore(s1, s0);
+
+    if (s0 && s0.parentNode) {
+      s0.parentNode.insertBefore(s1, s0);
+    } else {
+      document.head.appendChild(s1);
+    }
 
     return () => {
-      // Optional cleanup function
-      s0.parentNode.removeChild(s1);
+      if (s1.parentNode) {
+        s1.parentNode.removeChild(s1);
+      }
     };
   }, []);
+
 
   return (
     <>
       <div className="footBg footerContan">
-        <div className="footLinkWrap row row-cols-1 row-cols-sm-3 row-cols-md-3 row-cols-lg-6">
-          <div className="footer-links company-info">
-            <img 
-              src="/assets/Globalb2bmart.png" 
-              alt="GlobalB2BMart Logo" 
-              className="footer-logo"
-            />
-            <p className="footer-desc">
-              GlobalB2BMart is the premier and fastest-growing online B2B
-              marketplace, connecting small and medium enterprises worldwide for
-              seamless international trade. It supports diverse business needs
-              with advanced tools and services.
-            </p>
-          </div>
-          {/* Other footer links */}
-          <div className="footer-links">
-            <span className="linkBold">
-              <h2><FontAwesomeIcon icon={faHeadset} className="head-icon" /> Support</h2>
-            </span>
-            <div className="footer-links">
-              <Link className="linkNormal" to="/aboutUs">
-                About Us
-              </Link>
+        {/* TOP INFO SECTION - Centered per image */}
+        <div className="footer-top-info">
 
-              <Link className="linkNormal" to="/contact-us">
-                Contact Us
-              </Link>
-              <Link className="linkNormal" to="/contact-us">
-                Help Center
-              </Link>
-              <Link className="linkNormal" to="/privacy-policy">
-                Privacy & Policies
-              </Link>
-            </div>
-          </div>
-          {/* Other footer links */}
+          <p className="footer-description-main">
+            GlobalB2BMart is the premier and fastest-growing online B2B marketplace, 
+            connecting small and medium enterprises worldwide for seamless international trade. 
+            It supports diverse business needs with advanced tools and services.
+          </p>
+        </div>
 
-          {/* Other footer links */}
+        {/* 5-COLUMN GRID - As per image */}
+        <div className="footLinkWrap row row-cols-1 row-cols-md-3 row-cols-lg-5">
+          {/* SUPPORT */}
           <div className="footer-links">
-            <span className="linkBold">
-              <h2><FontAwesomeIcon icon={faUserTag} className="head-icon" /> Sellers</h2>
-            </span>
-            <div className="footer-links">
-              <Link className="linkNormal" to="/register-Company">
-                Display New Products
-              </Link>
-              <Link className="linkNormal" to="/register-buyer">
-                Verified buyers
-              </Link>
-              <Link className="linkNormal" to="/register-Company">
-                Buyers Alerts
-              </Link>
-              <Link className="linkNormal" onClick={scrollUp} to="/">
-                Success Stories
-              </Link>
+            <h2 className="footer-column-title title-blue">SUPPORT</h2>
+            <div className="footer-link-group">
+              <Link className="linkNormal" to="/aboutUs">About Us</Link>
+              <Link className="linkNormal" to="/contact-us">Contact Us</Link>
+              <Link className="linkNormal" to="/contact-us">Help Center</Link>
+              <Link className="linkNormal" to="/privacy-policy">Privacy & Policies</Link>
             </div>
           </div>
-          {/* Other footer links */}
+
+          {/* SELLERS */}
           <div className="footer-links">
-            <span className="linkBold">
-              <h2><FontAwesomeIcon icon={faShoppingCart} className="head-icon" /> Buyers</h2>
-            </span>
-            <div className="footer-links">
-              <Link className="linkNormal" to="/register-buyer">
-                Post Your Requirement
-              </Link>
-              <Link className="linkNormal" onClick={handleClick} to="/">
-                Browse Suppliers
-              </Link>
-              <Link className="linkNormal" to="/disclaimer">
-                Disclaimer
-              </Link>
-              <Link className="linkNormal" to="/complaint">
-                Complaint
-              </Link>
+            <h2 className="footer-column-title title-orange">SELLERS</h2>
+            <div className="footer-link-group">
+              <Link className="linkNormal" to="/register-Company">Display New Products</Link>
+              <Link className="linkNormal" to="/register-buyer">Verified buyers</Link>
+              <Link className="linkNormal" to="/register-Company">Buyers Alerts</Link>
+              <Link className="linkNormal" onClick={scrollUp} to="/">Success Stories</Link>
             </div>
           </div>
+
+          {/* BUYERS */}
           <div className="footer-links">
-            <span className="linkBold">
-              <h2><FontAwesomeIcon icon={faBriefcase} className="head-icon" /> Services</h2>
-            </span>
-            <div className="footer-links">
-              <Link className="linkNormal" to="/login">
-                Login
-              </Link>
-              <Link className="linkNormal" to="/register-Company">
-                Register
-              </Link>
-              <Link className="linkNormal" to="/packages">
-                Membership Plan
-              </Link>
-              <Link className="linkNormal" to="/terms-condition">
-                Terms &amp; Conditions
-              </Link>
+            <h2 className="footer-column-title title-orange">BUYERS</h2>
+            <div className="footer-link-group">
+              <Link className="linkNormal" to="/register-buyer">Post Your Requirement</Link>
+              <Link className="linkNormal" onClick={handleClick} to="/">Browse Suppliers</Link>
+              <Link className="linkNormal" to="/disclaimer">Disclaimer</Link>
+              <Link className="linkNormal" to="/complaint">Complaint</Link>
             </div>
           </div>
+
+          {/* SERVICES */}
           <div className="footer-links">
-            <span className="linkBold">
-              <h2><FontAwesomeIcon icon={faGlobe} className="head-icon" /> Connect us</h2>
-            </span>
-            <div className="footer-links contact-section">
-              <div className="contact-item">
-                <FontAwesomeIcon icon={faPhone} className="contact-icon" />
-                <Link className="linkNormal" to="tel:011-44760532">011-44760532</Link>
+            <h2 className="footer-column-title title-blue">SERVICES</h2>
+            <div className="footer-link-group">
+              <Link className="linkNormal" to="/login">Login</Link>
+              <Link className="linkNormal" to="/register-Company">Register</Link>
+              <Link className="linkNormal" to="/packages">Membership Plan</Link>
+              <Link className="linkNormal" to="/terms-condition">Terms &amp; Conditions</Link>
+            </div>
+          </div>
+
+          {/* CONNECT US */}
+          <div className="footer-links">
+            <h2 className="footer-column-title title-orange">CONNECT US</h2>
+            <div className="footer-link-group contact-column">
+              <div className="footer-contact-item">
+                <FontAwesomeIcon icon={faPhone} className="contact-icon-blue" />
+                <a href="tel:011-44760532" className="linkNormal">011-44760532</a>
               </div>
-              <div className="contact-item">
-                <FontAwesomeIcon icon={faEnvelope} className="contact-icon" />
-                <Link className="linkNormal" to="mailto:sales@globalb2bmart.com">sales@globalb2bmart.com</Link>
+              <div className="footer-contact-item">
+                <FontAwesomeIcon icon={faEnvelope} className="contact-icon-blue" />
+                <a href="mailto:sales@globalb2bmart.com" className="linkNormal">sales@globalb2bmart.com</a>
               </div>
-              <div className="contact-item">
-                <FontAwesomeIcon icon={faLocationDot} className="contact-icon" />
-                <span className="linkNormal address-text">
-                  WebWave Business Pvt Ltd, S-21 First Floor, Ajay Enclave,
-                  Subhash Nagar, New Delhi - 110018, India
-                </span>
+              <div className="footer-contact-item company-name-row">
+                <span className="linkNormal">WebWave Business Pvt</span>
               </div>
             </div>
           </div>
         </div>
-        <hr />        <div className="tk23-ft-nav">
-          <div className="row justify-content-center">
-            <div className="col-md-10">
-              <ul className="text-center bottom-main-links">
-                <li><Link className="text-col" to="/">Home</Link></li>
-                <li><Link className="text-col" to="/register-Company">Sell Offers</Link></li>
-                <li><Link className="text-col" to="/refund">Refund & Return policy</Link></li>
-                <li><Link className="text-col" to="/register-buyer">Buyers</Link></li>
-                <li><Link className="text-col" to="/register-Company">Companies</Link></li>
-                <li><Link className="text-col" to="/packages">Premium Services</Link></li>
-                <li><Link className="text-col" to="/packages" rel="nofollow">Premium Products</Link></li>
-                <li><Link className="linkNormal2" to="/buyer-seller-page">Landing Page</Link></li>
-                <li><Link className="linkNormal2" to="/what-is-B2B-business">Blogs</Link></li>
-              </ul>
 
-              <div className="categories-bar">
-                <span className="cat-label">Categories:</span>
-                <div className="categories-list">
-                  <Link to="/groceries-seller" className="linkNormal2">Foods & Beverage</Link>
-                  <Link to="/best-furniture-suppliers-in-india" className="linkNormal2">Furnitures</Link>
-                  <Link to="/pvcrresins" className="linkNormal2">Chemicals</Link>
-                  <Link to="/jewellery-seller" className="linkNormal2">Jewellery</Link>
-                  <Link to="/steel/utensils" className="linkNormal2">Home Supplies</Link>
-                  <Link to="/giftsstore" className="linkNormal2">Gifts & Crafts</Link>
-                  <Link to="/toolsequipment" className="linkNormal2">Tools & Equipment</Link>
-                </div>
-              </div>
+        <div className="footer-bottom-spacer"></div>
 
-              <ul className="text-center bottom-sub-links">
-                <li><Link className="text-col" to="/aboutUs">About Us</Link></li>
-                <li><Link className="text-col" to="/contact-us">Contact Us</Link></li>
-                <li><Link className="text-col" to="/packages">Membership Plan</Link></li>
-              </ul>
+        {/* RESTORED BOTTOM NAVIGATION SECTION */}
+        <div className="footer-bottom-nav">
+          {/* Main Links Row */}
+          <div className="footer-links-row">
+            <Link to="/">Home</Link>
+            <Link to="/register-Company">Sell Offers</Link>
+            <Link to="/refund">Refund & Return policy</Link>
+            <Link to="/register-buyer">Buyers</Link>
+            <Link to="/register-Company">Companies</Link>
+            <Link to="/packages">Premium Services</Link>
+            <Link to="/packages">Premium Products</Link>
+            <Link to="/buyer-seller-page">Landing Page</Link>
+            <Link to="/what-is-B2B-business">Blogs</Link>
+          </div>
+
+          {/* Categories Pill Bar */}
+          <div className="footer-categories-pill">
+            <span className="pill-title">CATEGORIES:</span>
+            <div className="pill-links-container">
+              <Link to="/groceries-seller">Foods & Beverage</Link>
+              <Link to="/best-furniture-suppliers-in-india">Furnitures</Link>
+              <Link to="/pvcrresins">Chemicals</Link>
+              <Link to="/jewellery-seller">Jewellery</Link>
+              <Link to="/steel/utensils">Home Supplies</Link>
+              <Link to="/giftsstore">Gifts & Crafts</Link>
+              <Link to="/toolsequipment">Tools & Equipment</Link>
             </div>
           </div>
+
+          {/* Sub Links Row */}
+          <div className="footer-links-row sub-links">
+            <Link to="/aboutUs">About Us</Link>
+            <Link to="/contact-us">Contact Us</Link>
+            <Link to="/packages">Membership Plan</Link>
+          </div>
         </div>
-        <hr />
-        <div className="lastBar d-flex justify-content-start justify-content-md-center">
+
+        <div className="lastBar d-flex justify-content-center">
           <p className="trademark">
             <Link to={"https://webwavebusiness.com/"}>
               <p className="text-col">
@@ -343,113 +299,26 @@ const Footer = () => {
                         <i className={`fas ${formOpen ? 'fa-angle-right' : 'fa-angle-left'}`}></i>
                     </div> */}
           <div
-            className={`fixed-form-bar ${barOpen ? "open" : ""}`}
+            className={`fixed-form-bar ${formOpen ? "active" : ""}`}
             onClick={toggleForm}
           >
-            <div className="border-animation">
-              <span style={{ color: "#000" }} className="call-us-text">
-                Book A Call
-              </span>
-              <i
-                className={`fas ${formOpen ? "fa-angle-right" : "fa-angle-left"
-                  }`}
-              ></i>
-            </div>
+            <i className="fas fa-phone-alt"></i>
+            <span className="call-us-text">Book A Call</span>
+            <i className={`fas ${formOpen ? "fa-times" : "fa-chevron-left"}`}></i>
           </div>
 
           <div className={`fixed-form-container ${formOpen ? "open" : ""}`}>
-            {/* <form onSubmit={handleSubmit}>
-                            <img src="./assets/form-logo.png" style={{ width: '190px', display: 'flex', height: '100px', margin: 'auto' }} alt="" />
-                            <label style={{ fontSize: '18px', textAlign: 'center', color: 'green' }} className='type-form'>Don't Miss Out on Our Business Resources</label>
-                            <label style={{ margin: '5px 0px', fontSize: '18px', textAlign: 'center', color: 'orange' }} className='type-form'>Connect with Verified Buyers</label>
-                            <label className='type-form'>
-                                Full Name*
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
-                            <label className='type-form'>
-                                Email Address*
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
-                            <label className='type-form'>
-                                Contact Number*
-                                <input
-                                    type="text"
-                                    name="mobileNumber"
-                                    value={formData.mobileNumber}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
-                            <label className='type-form'>
-                                Product / Supplier*
-                                <input
-                                    type="text"
-                                    name="productSupplier"
-                                    value={formData.productSupplier}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </label>
-                            <label className='type-form'>
-                                I am a*
-                                <div>
-                                    <label className='type-form' style={{ display: 'inline-block', marginRight: '10px' }}>
-                                        <input
-                                            type="checkbox"
-                                            name="userType"
-                                            value="Seller"
-                                            checked={formData.userType.includes("Seller")}
-                                            onChange={handleCheckboxChange}
-                                        />
-                                        Seller
-                                    </label>
-                                    <label className='type-form' style={{ display: 'inline-block' }}>
-                                        <input
-                                            type="checkbox"
-                                            name="userType"
-                                            value="Buyer"
-                                            checked={formData.userType.includes("Buyer")}
-                                            onChange={handleCheckboxChange}
-                                        />
-                                        Buyer
-                                    </label>
-                                </div>
-
-                            </label>
-                            <button type="submit">Submit</button>
-                        </form> */}
-            <div>
+            <div className="form-body">
               {successMessage && (
-                <div style={messageContainerStyle}>{successMessage}</div>
+                <div className="success-banner">{successMessage}</div>
               )}
               <form onSubmit={handleSubmit}>
-                <img
-                  src="./assets/form-logo.png"
-                  style={{
-                    width: "190px",
-                    display: "flex",
-                    height: "100px",
-                    margin: "auto",
-                  }}
-                  alt=""
-                />
                 <label
                   style={{
                     fontSize: "18px",
                     textAlign: "center",
                     color: "green",
+                    marginBottom: "5px",
                   }}
                   className="type-form"
                 >
@@ -457,7 +326,7 @@ const Footer = () => {
                 </label>
                 <label
                   style={{
-                    margin: "5px 0px",
+                    margin: "5px 0px 15px 0px",
                     fontSize: "18px",
                     textAlign: "center",
                     color: "orange",
@@ -466,59 +335,68 @@ const Footer = () => {
                 >
                   Connect with Verified Buyers
                 </label>
+
                 <label className="type-form">
                   Full Name*
                   <input
                     type="text"
                     name="name"
+                    placeholder="Enter your name"
                     value={formData.name}
                     onChange={handleChange}
                     required
                   />
                 </label>
+
                 <label className="type-form">
                   Email Address*
                   <input
                     type="email"
                     name="email"
+                    placeholder="name@company.com"
                     value={formData.email}
                     onChange={handleChange}
                     required
                   />
                 </label>
+
                 <label className="type-form">
                   Contact Number*
                   <input
                     type="text"
                     name="mobileNumber"
+                    placeholder="+1 (555) 000-0000"
                     value={formData.mobileNumber}
                     onChange={handleChange}
                     required
                   />
                 </label>
+
                 <label className="type-form">
                   Product / Supplier*
                   <input
                     type="text"
                     name="productSupplier"
+                    placeholder="What are you looking for?"
                     value={formData.productSupplier}
                     onChange={handleChange}
                     required
                   />
                 </label>
+
                 <label className="type-form">
                   I am a*
-                  <div>
+                  <div style={{ marginTop: "5px" }}>
                     <label
                       className="type-form"
-                      style={{ display: "inline-block", marginRight: "10px" }}
+                      style={{ display: "inline-block", marginRight: "20px" }}
                     >
                       <input
                         type="checkbox"
-                        name="userType"
                         value="Seller"
                         checked={formData.userType.includes("Seller")}
                         onChange={handleCheckboxChange}
+                        style={{ width: "auto", marginRight: "8px" }}
                       />
                       Seller
                     </label>
@@ -528,17 +406,25 @@ const Footer = () => {
                     >
                       <input
                         type="checkbox"
-                        name="userType"
                         value="Buyer"
                         checked={formData.userType.includes("Buyer")}
                         onChange={handleCheckboxChange}
+                        style={{ width: "auto", marginRight: "8px" }}
                       />
                       Buyer
                     </label>
                   </div>
                 </label>
-                <button type="submit">Submit</button>
+
+                <button type="submit" className="submit-btn text-white">
+                  Submit
+                </button>
               </form>
+              <div className="form-footer" style={{ marginTop: "15px" }}>
+                <p style={{ fontSize: "12px", color: "#666" }}>
+                  By submitting, you agree to our Terms & Privacy Policy.
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -8,8 +8,8 @@
 .testimonial-container {
   width: 100%;
   max-width: 1400px;
-  margin: 100px auto;
-  padding: 60px 40px;
+  margin: 15px auto; /* Further reduced from 30px */
+  padding: 30px 40px; /* Further reduced from 40px */
   background: #ffffff;
   border-radius: 40px;
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.04);
@@ -40,7 +40,7 @@
   font-size: 3.5rem;
   font-weight: 800;
   color: #0f172a;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Reduced from 20px */
   position: relative;
   display: inline-block;
   letter-spacing: -0.03em;

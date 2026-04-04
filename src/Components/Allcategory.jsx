@@ -1013,18 +1013,31 @@ export default function Allcategory() {
 
       <section className="Simple-steps">
         <video 
-          controls 
           autoPlay 
           muted 
           loop 
           playsInline 
           className="bg-video"
-          style={{ transform: `translateY(${(parallaxY * 0.4) - 50}px)` }} 
+          style={{ 
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            transform: 'none', // Override CSS transform to prevent incorrect offsets
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            filter: 'brightness(0.9) contrast(1.1)',
+            zIndex: -2,
+            transition: 'opacity 1s ease-in'
+          }} 
         >
           <source src="/assets/mainvideo.mp4" type="video/mp4" />
         </video>
 
-        <div className="overlay"></div>
+        <div className="overlay" style={{ 
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4), rgba(0,0,0,0.4))',
+          pointerEvents: 'none'
+        }}></div>
 
         <div className="content">
           <h2>Simple Steps to Start Your B2B Journey</h2>

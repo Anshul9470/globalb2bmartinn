@@ -1,194 +1,230 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import gsap from "gsap";
 import styles from "./Navbar.module.css";
 
 function Header() {
-  const [selectedOption, setSelectedOption] = useState("products");
   const [searchQuery, setSearchQuery] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
-  const handleSelectChange = (event) => setSelectedOption(event.target.value);
   const handleInputChange = (event) => setSearchQuery(event.target.value);
-
-  // Search Submit Handler
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+  const handleSearch = (type) => {
+    // ... search logic remains same ...
     const query = searchQuery.toLowerCase();
-    
-    // Using a simplified mapping but maintaining original logic
     const keywordToPathMapping = {
-      products: { acid: "/chemicals", agriculture: "/agriculture", fruits: "/apple-seller" },
       buyer: { furniture: "furniture-buyer" },
       company: { "sagar trading company": "sagartrading-comp" }
     };
-    
-    let path = `/${selectedOption}`;
+
+    let path = `/${type === "company" ? "company" : "buyer"}`;
     let matched = false;
-    const keywordToPath = keywordToPathMapping[selectedOption] || {};
-    for (const [keyword, keywordPath] of Object.entries(keywordToPath)) {
-      if (query.includes(keyword)) { path = keywordPath; matched = true; break; }
+    const keywordPathMap = keywordToPathMapping[type] || {};
+
+    for (const [keyword, keywordPath] of Object.entries(keywordPathMap)) {
+      if (query.includes(keyword)) {
+        path = keywordPath;
+        matched = true;
+        break;
+      }
     }
-    
-    // Fallback if no specific keyword matches
-    if (!matched) path = "/register-buyer";
-    
+
+    if (!matched) path = (type === "buyer" ? "/register-buyer" : "/company-profile");
     navigate(`${path}?search=${searchQuery}`);
   };
 
   useEffect(() => {
-    // Initial animations for a premium feel
-    gsap.fromTo(`.${styles.navbar}`, 
-      { opacity: 0, y: -20 },
-      { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
-    );
+    if (isHomePage) {
+      // Direct hero animation to ensure visibility
+      gsap.fromTo(`.${styles.hero}`,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
+      );
 
-    gsap.fromTo(`.${styles.hero} > *`, 
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.3 }
-    );
-
-    // Animate Category Cards
-    gsap.fromTo(`.${styles.categoryCard}`, 
-      { opacity: 0, scale: 0.8, y: 40 },
-      { 
-        opacity: 1, 
-        scale: 1, 
-        y: 0, 
-        duration: 0.8, 
-        stagger: 0.1, 
-        ease: "back.out(1.7)",
-        delay: 0.8 
-      }
-    );
-  }, []);
+      gsap.fromTo(`.${styles.hero} > *`,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.2
+        }
+      );
+    }
+  }, [isHomePage]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className={styles.header}>
-      <video 
-        autoPlay 
-        loop 
-        muted 
-        playsInline 
-        className={styles.videoBg}
-      >
-        <source src="/assets/globevideo.mp4" type="video/mp4" />
-      </video>
-      <div className={styles.heroOverlay}></div>
-      {/* Main Content */}
-      <div className={styles.contentWrapper}>
-        <nav className={styles.navbar}>
-          <Link to="/" className={styles.logo}>
+    <>
+      <header className={`${styles.header} ${!isHomePage ? styles.subHeader : ""}`}>
+        {isHomePage && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className={styles.videoBg}
+            poster="/assets/mainbackground.jpeg"
+          >
+            <source src="/assets/mainvideoo.mp4" type="video/mp4" />
+          </video>
+        )}
+        <div className={styles.heroOverlay}></div>
+        <div className={styles.contentWrapper}>
+          <Link to="/" className={styles.topLogo}>
             <img src="/assets/Globalb2bmart.png" alt="Global B2B Mart" />
-            <span>GlobalB2BMart</span>
           </Link>
 
-          {/* Nav Links Desktop */}
-          <div className={`${styles.navLinks} ${isMenuOpen ? styles.mobileOpen : ""}`}>
-            <Link to="/login" onClick={() => setIsMenuOpen(false)}>Log In</Link>
-            <Link to="/register-buyer" onClick={() => setIsMenuOpen(false)}>Buyers</Link>
-            <Link to="/register-Company" onClick={() => setIsMenuOpen(false)}>Suppliers</Link>
+          <div className={styles.topActions}>
+            <Link to="/post-requirement" className={styles.loginBtn}>
+              <i className="fa fa-paper-plane"></i> POST REQUIREMENT
+            </Link>
+            <Link to="/register-buyer" className={styles.loginBtn}>
+              <i className="fa fa-user-plus"></i> JOIN FREE
+            </Link>
+            <Link to="/login" className={styles.loginBtn}>
+              <i className="fa fa-user"></i> LOGIN
+            </Link>
           </div>
 
-          <div 
-            className={`${styles.hamburger} ${isMenuOpen ? styles.active : ""}`} 
-            onClick={toggleMenu}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
+          <div className={styles.hero}>
+            <h1>
+              Connect Smarter,<br />
+              <span>Trade Faster, Grow Bigger.</span>
+            </h1>
+            <p>
+              The premium destination for global B2B trade. Find verified suppliers and
+              buyers from around the world.
+            </p>
+
+            {/* Trust Badges Section */}
+            <div className={styles.uspSection}>
+              <div className={styles.uspItem}>
+                <div className={styles.uspIcon}><i className="fa fa-check-circle"></i></div>
+                <span>Verified Suppliers</span>
+              </div>
+              <div className={styles.uspItem}>
+                <div className={styles.uspIcon}><i className="fa fa-shield-alt"></i></div>
+                <span>Secure Trade</span>
+              </div>
+              <div className={styles.uspItem}>
+                <div className={styles.uspIcon}><i className="fa fa-globe"></i></div>
+                <span>Global Reach</span>
+              </div>
+              <div className={styles.uspItem}>
+                <div className={styles.uspIcon}><i className="fa fa-bolt"></i></div>
+                <span>Instant Leads</span>
+              </div>
+            </div>
+            {/* Search Bar */}
+            <div className={styles.searchContainer}>
+              <input
+                type="text"
+                placeholder="Search products, suppliers, or requirements..."
+                className={styles.searchInput}
+                value={searchQuery}
+                onChange={handleInputChange}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch("buyer")}
+              />
+              <div className={styles.searchButtons}>
+                <button
+                  className={`${styles.searchBtn} ${styles.btnOrange}`}
+                  onClick={() => handleSearch("buyer")}
+                >
+                  <i className="fa fa-users"></i> GET BUYERS
+                </button>
+                <div className={styles.separator}></div>
+                <button
+                  className={`${styles.searchBtn} ${styles.btnBlue}`}
+                  onClick={() => handleSearch("company")}
+                >
+                  <i className="fa fa-briefcase"></i> GET SELLERS
+                </button>
+              </div>
+            </div>
           </div>
-        </nav>
+        </div>
+      </header>
 
-        <section className={styles.hero}>
-          <h1>Connect Smarter, <span>Trade Faster, Grow Bigger.</span></h1>
-          <p>The premium destination for global B2B trade. Find verified suppliers and buyers from around the world.</p>
-
-          <form onSubmit={handleFormSubmit} className={styles.searchContainer}>
-            <select className={styles.searchSelect} value={selectedOption} onChange={handleSelectChange}>
-              <option value="products">Products</option>
-              <option value="buyer">Buyers</option>
-              <option value="company">Companies</option>
-            </select>
-            <input
-              type="text"
-              placeholder="Search products, suppliers, or requirements..."
-              value={searchQuery}
-              onChange={handleInputChange}
-              className={styles.searchInput}
-            />
-            <button type="submit" className={styles.searchBtn}>
-              <i className="fa fa-search"></i> Search
-            </button>
-          </form>
-
-          <div className={styles.buttonGroup}>
-            <Link to="/globalb2b-prices" className={styles.btnPrimary}>Analyze Growth</Link>
-            <Link to="/register-buyer" className={styles.btnOrange}>Post Requirement</Link>
-            <Link to="/register-company" className={styles.btnGold}>Join as Supplier</Link>
-          </div>
-        </section>
-
+      {/* Featured Categories (Only on Home Page) */}
+      {isHomePage && (
         <section className={styles.featuredSection}>
-          <h2>Explore Premium Categories</h2>
-          <div className={styles.featuredGrid}>
-            <Link to="/agriculture-farm-tools-suppliers" className={styles.categoryCard}>
-              <i className="fa fa-leaf"></i>
-              <h3>Agriculture & Food</h3>
-              <p>Verified farm products & tools</p>
-            </Link>
-            <Link to="/Industrial-Supplies" className={styles.categoryCard}>
-              <i className="fa fa-industry"></i>
-              <h3>Industrial Supplies</h3>
-              <p>Machinery, tools & equipment</p>
-            </Link>
-            <Link to="/Electronics" className={styles.categoryCard}>
-              <i className="fa fa-laptop"></i>
-              <h3>Electronics</h3>
-              <p>Smart gadgets & components</p>
-            </Link>
-            <Link to="/Health-Beauty" className={styles.categoryCard}>
-              <i className="fa fa-heartbeat"></i>
-              <h3>Health & Beauty</h3>
-              <p>Wellness & personal care</p>
-            </Link>
-            <Link to="/clothing-apparel-suppliers" className={styles.categoryCard}>
-              <i className="fa fa-tshirt"></i>
-              <h3>Textiles & Apparel</h3>
-              <p>High-quality garments & fabrics</p>
-            </Link>
-            <Link to="/best-furnitures-supplier-in-india" className={styles.categoryCard}>
-              <i className="fa fa-couch"></i>
-              <h3>Furniture</h3>
-              <p>Premium home & office supplies</p>
-            </Link>
-            <Link to="/gifts-items" className={styles.categoryCard}>
-              <i className="fa fa-gift"></i>
-              <h3>Gifts & Decor</h3>
-              <p>Unique items for every occasion</p>
-            </Link>
-            <Link to="/chemicals" className={styles.categoryCard}>
-              <i className="fa fa-flask"></i>
-              <h3>Chemicals</h3>
-              <p>Industrial chemicals & raw materials</p>
-            </Link>
-            <Link to="/Construction" className={styles.categoryCard}>
-              <i className="fa fa-building"></i>
-              <h3>Construction</h3>
-              <p>Hardware, building materials & tools</p>
-            </Link>
-            <Link to="/homeSupplies" className={styles.categoryCard}>
-              <i className="fa fa-ellipsis-h"></i>
-              <h3>More Categories</h3>
-              <p>Browse 100+ categories</p>
-            </Link>
+          <div className={styles.sectionHeader}>
+            <h2>Explore Premium Categories</h2>
+            <div className={styles.titleUnderline}></div>
+          </div>
+          <div className={styles.categoryGrid}>
+            {[
+              {
+                title: "Agriculture & Food",
+                image: "/assets/agriculture1.jpg",
+                desc: "Verified farm products & tools"
+              },
+              {
+                title: "Industrial Supplies",
+                image: "/assets/industrial_supplies_premium.png",
+                desc: "Machinery, tools & equipment"
+              },
+              {
+                title: "Electronics",
+                image: "/assets/electronics_premium.png",
+                desc: "Smart gadgets & components"
+              },
+              {
+                title: "Health & Beauty",
+                image: "/assets/beauty1.jpeg",
+                desc: "Wellness & personal care"
+              },
+              {
+                title: "Textiles & Apparel",
+                image: "/assets/textile1.jpg",
+                desc: "High-quality garments & fabrics"
+              },
+              {
+                title: "Furniture",
+                image: "/assets/furniture1.jpeg",
+                desc: "Premium home & office supplies"
+              },
+              {
+                title: "Gifts & Decor",
+                image: "/assets/gifts_decor_premium.png",
+                desc: "Unique items for every occasion"
+              },
+              {
+                title: "Chemicals",
+                image: "/assets/chemicals_premium.png",
+                desc: "Industrial chemicals & raw materials"
+              },
+              {
+                title: "Construction",
+                image: "/assets/construction_premium.png",
+                desc: "Hardware, building materials & tools"
+              },
+              {
+                title: "More Categories",
+                image: "/assets/exploremore.png",
+                desc: "Browse 100+ categories"
+              }
+            ].map((cat, idx) => (
+              <Link to="/categories" key={idx} className={styles.categoryCard}>
+                <div className={styles.cardContent}>
+                  <img src={cat.image} alt={cat.title} className={styles.categoryImg} />
+                  <div className={styles.cardOverlay}>
+                    <h3>{cat.title}</h3>
+                    <p>{cat.desc}</p>
+                    <span className={styles.viewMore}>View Suppliers</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
-      </div>
-    </header>
+      )}
+    </>
   );
 }
 

@@ -69,7 +69,7 @@ export default function Country() {
     }, []);
 
     return (
-        <div className="country-section state-modern-section" ref={sectionRef} style={{ background: '#fff4eb' }}>
+        <div className="country-section state-modern-section" ref={sectionRef}>
             <div 
                 className="parallax-bg-state" 
                 style={{ transform: `translate3d(0, ${parallaxY}px, 0)` }}

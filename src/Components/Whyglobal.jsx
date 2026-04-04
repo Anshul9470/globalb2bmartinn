@@ -157,7 +157,7 @@ const Whyglobal = () => {
               <FontAwesomeIcon icon={faGlobeAmericas} />
             </div>
             <h3>Global Reach</h3>
-            <p style={{ textAlign: 'justify' }}>Access markets in 150+ countries around the globe with verified, high-quality business partners.</p>
+            <p>Access markets in 150+ countries around the globe with verified, high-quality business partners.</p>
             <div className="feature-arrow">
               <FontAwesomeIcon icon={faArrowRight} />
             </div>
@@ -168,7 +168,7 @@ const Whyglobal = () => {
               <FontAwesomeIcon icon={faBolt} />
             </div>
             <h3>Fast Deals</h3>
-            <p style={{ textAlign: 'justify' }}>Close deals 3x faster with our streamlined and highly optimized negotiation process.</p>
+            <p>Close deals 3x faster with our streamlined and highly optimized negotiation process.</p>
             <div className="feature-arrow">
               <FontAwesomeIcon icon={faArrowRight} />
             </div>
@@ -179,7 +179,7 @@ const Whyglobal = () => {
               <FontAwesomeIcon icon={faShieldHalved} />
             </div>
             <h3>Secure Payments</h3>
-            <p style={{ textAlign: 'justify' }}>Experience 100% protected and reliable transactions through our integrated escrow services.</p>
+            <p>Experience 100% protected and reliable transactions through our integrated escrow services.</p>
             <div className="feature-arrow">
               <FontAwesomeIcon icon={faArrowRight} />
             </div>
@@ -190,7 +190,7 @@ const Whyglobal = () => {
               <FontAwesomeIcon icon={faChartLine} />
             </div>
             <h3>Growth Tools</h3>
-            <p style={{ textAlign: 'justify' }}>Leverage advanced analytics, market insights, and tools specialized for business scalability.</p>
+            <p>Leverage advanced analytics, market insights, and tools specialized for business scalability.</p>
             <div className="feature-arrow">
               <FontAwesomeIcon icon={faArrowRight} />
             </div>
