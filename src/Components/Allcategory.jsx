@@ -713,28 +713,6 @@
 
 //       {/* ===== Simple Steps Section ===== */}
 //       <div className="simple-steps">
-//         <div className="steps-header">
-//           <h2>Simple Steps to Start Your B2B Journey</h2>
-//           <Link to="/register-Company" className="join-btn">
-//             Join GlobalB2BMart Today
-//           </Link>
-//         </div>
-//         <div className="steps-grid">
-//           <div className="step-card">
-//             <div className="step-icon">
-//               <UserPlus />
-//             </div>
-//             <h4>1. Register for Free</h4>
-//             <p>Fast & easy business registration process.</p>
-//           </div>
-//           <div className="step-card">
-//             <div className="step-icon">
-//               <ClipboardList />
-//             </div>
-//             <h4>2. List or Post</h4>
-//             <p>Showcase your products or services easily.</p>
-//           </div>
-//           <div className="step-card">
 //             <div className="step-icon">
 //               <Users />
 //             </div>
@@ -974,6 +952,34 @@ const products = [
       "Custom Jewelry",
     ],
     path: "/jewellery-seller",
+  },
+  {
+    id: 17,
+    title: "Fresh Fruits",
+    image: "./assets/premium_fruits_b2b.png",
+    items: [
+      "Fresh Mangoes",
+      "Crisp Apples",
+      "Sweet Oranges",
+      "Red Grapes",
+      "Green Grapes",
+      "Pomegranates",
+    ],
+    path: "/fruitscomponent",
+  },
+  {
+    id: 18,
+    title: "Vegetable Oils",
+    image: "./assets/premium_oils_b2b.png",
+    items: [
+      "Olive Oil",
+      "Sunflower Oil",
+      "Coconut Oil",
+      "Groundnut Oil",
+      "Mustard Oil",
+      "Soybean Oil",
+    ],
+    path: "/mustard-oil",
   },
 ];
 
