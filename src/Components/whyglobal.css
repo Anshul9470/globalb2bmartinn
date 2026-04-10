@@ -1,0 +1,1252 @@
+/* section {
+    position: relative;
+    width: 100%;
+    float: left;
+}
+
+
+@media (min-width: 1200px) {
+    .containerxx {
+        max-width: 1300px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: initial;
+    }
+}
+
+
+.containerxx {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+
+.divide_why_and_how {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+.why_trade {
+    width: 30%;
+    height: 100%;
+    float: left;
+    padding: var(--box-gap);
+    padding-left: 0;
+}
+
+
+.common_heading {
+    position: relative;
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.divide_why_and_how .headline_text {
+    width: 100%;
+}
+
+.headline_text {
+    width: 86%;
+    float: left;
+    position: relative;
+    padding-top: 10px;
+}
+
+
+.divide_why_and_how .headline_text:before {
+    width: 100%;
+}
+
+.headline_text:before {
+    position: absolute;
+    content: "";
+    width: 98%;
+    height: 1px;
+    background: #e0e0e0;
+    top: 20px;
+    left: 0;
+}
+
+
+.headline_text h1,
+.headline_text h2,
+.headline_text h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: black;
+    background: #f1f1f1;
+    display: inline-block;
+    padding-right: 25px;
+    position: relative;
+}
+
+.trade_under {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #f7f1f1;
+    /* background-color: #fff; */
+/*    float: left;
+    border-radius: 3px;
+    border-color: 1px solid #e6e6e6;
+}
+
+.why_trade .trade_under:before {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 100%;
+    background: #fff;
+    border-top: 1px solid #e6e6e6;
+    top: 0;
+    left: 50%;
+}
+
+.why_icon {
+    width: 50%;
+    float: left;
+    height: 149px;
+    position: relative;
+    padding: 22px;
+    text-align: center;
+    padding-top: 28px;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.why_text {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+
+
+.why_text p {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 14px;
+    color: black;
+    line-height: 1.2;
+}
+
+.why_trade .trade_under:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    border-top: 1px solid #e6e6e6;
+    top: 50%;
+    left: 0;
+}
+
+.how_trade {
+    width: 70%;
+    height: 100%;
+    float: left;
+
+}
+
+
+.common_heading {
+    position: relative;
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.divide_why_and_how .headline_text {
+    width: 100%;
+}
+
+.headline_text {
+    width: 86%;
+    float: left;
+    position: relative;
+    padding-top: 10px;
+}
+
+.headline_text:before {
+    position: absolute;
+    content: "";
+    width: 98%;
+    height: 1px;
+    background: #e0e0e0;
+    top: 20px;
+    left: 0;
+}
+
+.headline_text h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #343434;
+    background: #f4f4f4;
+    display: inline-block;
+    padding-right: 25px;
+    position: relative;
+}
+
+
+.trade_under {
+    position: relative;
+    width: 100%;
+    height: 100%;
+     background-color: #fff; */
+ /*   background-color: #f7f1f1;
+    float: left;
+    border-radius: 3px;
+    border: 1px solid #e6e6e6;
+}
+
+.how_child {
+    width: 25%;
+    float: left;
+    height: 300px;
+    position: relative;
+    border-right: 1px solid #e6e6e6;
+    padding: 20px;
+    text-align: center;
+    padding-top: 32px;
+}
+
+
+.how_child h3 {
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    float: left;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    position: relative;
+    color: #000;
+}
+
+.how_child p {
+    font-size: 13px;
+    width: 100%;
+    float: left;
+    position: relative;
+    color: #000;
+
+
+}
+
+
+.how_child a {
+    position: absolute;
+    width: 100%;
+    float: left;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #000;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 30px;
+}
+
+
+
+@media (max-width: 768px) {
+
+    .why_trade,
+    .how_trade {
+        width: 100%;
+        ;
+    }
+}*/
+
+/*
+@media (max-width: 640px) {
+
+
+    .how_child {
+        width: 100%;
+        height: 250px;
+    }
+} */
+
+
+
+
+section {
+    position: relative;
+    width: 100%;
+    float: left;
+}
+
+
+@media (min-width: 1200px) {
+    .containerxx {
+        max-width: 1300px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: initial;
+    }
+}
+
+
+.containerxx {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+
+.divide_why_and_how {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+/* .why_trade {
+    width: 30%;
+    height: 100%;
+    float: left;
+    padding: var(--box-gap);
+    padding-left: 0;
+} */
+
+
+.common_heading {
+    position: relative;
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.divide_why_and_how .headline_text {
+    width: 100%;
+}
+
+.headline_text {
+    width: 86%;
+    float: left;
+    position: relative;
+    padding-top: 10px;
+}
+
+
+.divide_why_and_how .headline_text:before {
+    width: 100%;
+}
+
+.headline_text:before {
+    position: absolute;
+    content: "";
+    width: 98%;
+    height: 1px;
+    background: #e0e0e0;
+    top: 20px;
+    left: 0;
+}
+
+
+.headline_text h1,
+.headline_text h2,
+.headline_text h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: black;
+    background: #f1f1f1;
+    display: inline-block;
+    padding-right: 25px;
+    position: relative;
+}
+/* 
+.trade_under {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #ac1c1c;
+    /* background-color: #fff;
+    float: left;
+    border-radius: 3px;
+    border-color: 1px solid #aa2424;
+} 
+*/
+/* .why_trade .trade_under:before {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 100%;
+    background: #fff;
+    border-top: 1px solid #e6e6e6;
+    top: 0;
+    left: 50%;
+} */
+
+/* .why_icon {
+    width: 50%;
+    float: left;
+    height: 149px;
+    position: relative;
+    padding: 22px;
+    text-align: center;
+    padding-top: 28px;
+} */
+
+/* img {
+    vertical-align: middle;
+    border-style: none;
+} */
+
+/* .why_text {
+    width: 100%;
+    float: left;
+    position: relative;
+} */
+
+
+
+.why_text p {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-top: 14px;
+    color: black;
+    line-height: 1.2;
+}
+
+.why_trade .trade_under:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    border-top: 1px solid #e6e6e6;
+    top: 50%;
+    left: 0;
+}
+
+.how_trade {
+    width: 70%;
+    height: 100%;
+    float: left;
+
+}
+
+
+.common_heading {
+    position: relative;
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.divide_why_and_how .headline_text {
+    width: 100%;
+}
+
+.headline_text {
+    width: 86%;
+    float: left;
+    position: relative;
+    padding-top: 10px;
+}
+
+.headline_text:before {
+    position: absolute;
+    content: "";
+    width: 98%;
+    height: 1px;
+    background: #e0e0e0;
+    top: 20px;
+    left: 0;
+}
+
+.headline_text h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #343434;
+    background: #f4f4f4;
+    display: inline-block;
+    padding-right: 25px;
+    position: relative;
+}
+
+
+.trade_under {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* background-color: #fff; */
+    background-color: #f7f1f1;
+    float: left;
+    border-radius: 3px;
+    border: 1px solid #e6e6e6;
+}
+
+.how_child {
+    width: 25%;
+    float: left;
+    height: 300px;
+    position: relative;
+    border-right: 1px solid #e6e6e6;
+    padding: 20px;
+    text-align: center;
+    padding-top: 32px;
+}
+
+
+.how_child h3 {
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    float: left;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    position: relative;
+    color: #000;
+}
+
+.how_child p {
+    font-size: 13px;
+    width: 100%;
+    float: left;
+    position: relative;
+    color: #000;
+
+
+}
+
+
+.how_child a {
+    position: absolute;
+    width: 100%;
+    float: left;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #000;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 30px;
+}
+
+
+
+@media (max-width: 768px) {
+
+    .why_trade,
+    .how_trade {
+        width: 100%;
+        ;
+    }
+}
+
+
+@media (max-width: 640px) {
+
+
+    .how_child {
+        width: 100%;
+        height: 250px;
+    }
+}
+
+/* Container Layout */
+.leads-container {
+  display: flex;
+  padding: 30px;
+  background: #f7f9fc;
+  min-height: 100vh;
+  gap: 30px;
+}
+
+/* Left Stats Panel */
+.leads-left {
+  width: 250px;
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.leads-left h2 {
+  font-size: 18px;
+  margin: 0 0 16px 0;
+  font-weight: 600;
+}
+
+.counter-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ededed;
+}
+
+.counter-item span {
+  font-size: 15px;
+}
+
+/* Right Side Layout */
+.leads-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Bar */
+.leads-header {
+  /* display: flex; */
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.leads-header input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #dadada;
+  font-size: 15px;
+  background: white;
+}
+
+.leads-header select {
+  width: 150px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #dadada;
+  font-size: 15px;
+  background: white;
+}
+
+/* Lead Cards Grid */
+.leads-grid {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); */
+  /* gap: 22px; */
+}
+
+/* Lead Card */
+/* .lead-card {
+  background: #ffffff;
+  padding: 18px 20px;
+  border-radius: 14px;
+  border: 1px solid #e5e5e5;
+  transition: 0.2s;
+} */
+
+.lead-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  border-color: transparent;
+}
+
+.lead-card h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.lead-card p {
+  font-size: 14px;
+  margin: 4px 0;
+  color: #555;
+}
+
+/* Buttons */
+.lead-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-primary:hover {
+  background: #1958c7;
+}
+
+.btn-border {
+  border: 1px solid #276ef1;
+  background: white;
+  color: #276ef1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-border:hover {
+  background: #e8efff;
+}
+
+/* No Leads Message */
+.no-leads {
+  padding: 20px;
+  font-size: 15px;
+  color: #444;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+  .leads-container {
+    flex-direction: column;
+  }
+
+  .leads-left {
+    width: 100%;
+  }
+}
+/* ==============================================================
+   ULTRA PREMIUM TRADE SECTION STYLES
+============================================================== */
+.trade-section {
+  position: relative;
+  width: 100%;
+  padding: 20px 0; /* Further reduced from 40px to fix gap */
+  /* Light mode base with prominent Orange & Blue shiny gradient touches */
+  background: linear-gradient(-45deg, #ffffff, #eff6ff, #fff7ed, #f8fafc);
+  background-size: 400% 400%;
+  animation: bgShine 12s ease infinite;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #0f172a;
+}
+@keyframes bgShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.trade-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* Additional strong radial touches of blue and orange */
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(249, 115, 22, 0.12), transparent 40%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230f172a' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  z-index: 0;
+  pointer-events: none;
+}
+
+.trade-container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 30px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Header --- */
+.trade-header {
+  text-align: center;
+  margin-bottom: 25px; /* Further reduced from 40px */
+}
+
+.trade-header h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  letter-spacing: -1.5px;
+  background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.trade-header p {
+  font-size: 1.3rem;
+  color: #475569;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* --- Grid Layout --- */
+.trade-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: stretch;
+}
+
+/* --- High-end Glassmorphic Cards --- */
+.why-trade-card,
+.how-trade-section {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 30px;
+  padding: 50px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05), 
+              inset 0 1px 0 rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.why-trade-card::before,
+.how-trade-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+  opacity: 0.5;
+}
+
+.why-trade-header, 
+.how-trade-header {
+  margin-bottom: 40px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.why-trade-header::after, 
+.how-trade-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
+
+.why-trade-header h2,
+.how-trade-header h2 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.why-trade-header p,
+.how-trade-header p {
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* --- Left Side: Features --- */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  flex-grow: 1;
+}
+
+.feature-item {
+  padding: 30px;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.feature-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(139, 92, 246, 0));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(59, 130, 246, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 
+              0 0 20px rgba(59, 130, 246, 0.06);
+}
+
+.feature-item:hover::before {
+  opacity: 1;
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: transform 0.5s ease;
+}
+
+.feature-item:hover .feature-icon {
+  transform: rotateY(180deg) scale(1.1);
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.feature-item h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+.feature-item p {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* --- Right Side: Steps --- */
+.steps-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+  position: relative;
+}
+
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 30px; bottom: 30px; left: 34px;
+  width: 2px;
+  background: rgba(0, 0, 0, 0.06);
+  z-index: 0;
+}
+
+.step-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s ease;
+}
+
+.step-card:hover {
+  transform: translateX(10px);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 6px #ffffff;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover .step-number {
+  background: #3b82f6;
+  color: #fff;
+  box-shadow: 0 0 0 6px #ffffff, 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.step-icon {
+  width: 70px;
+  height: 70px;
+  background: #f1f5f9;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  color: #475569;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.step-card:hover .step-icon {
+  color: #fff;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  border-color: transparent;
+  box-shadow: 0 10px 20px rgba(234, 88, 12, 0.25);
+}
+
+.step-card:nth-child(even):hover .step-icon {
+  color: #fff;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  border-color: transparent;
+  box-shadow: 0 10px 20px rgba(14, 165, 233, 0.25);
+}
+
+.step-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.step-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.step-card p {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.step-action {
+  padding: 14px 28px;
+  background: transparent;
+  color: #0284c7;
+  border: 1px solid #0284c7;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin-left: auto;
+  min-width: 130px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.step-action::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(2, 132, 199, 0.1), transparent);
+  transition: all 0.5s ease;
+}
+
+.step-action:hover::before {
+  left: 100%;
+}
+
+.step-action:hover {
+  background: #0284c7;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(2, 132, 199, 0.25);
+  transform: translateY(-2px);
+}
+
+/* --- Entrance Animations --- */
+.fade-in {
+  animation: premiumFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  animation: premiumSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes premiumFadeIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes premiumSlideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1200px) {
+  .trade-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trade-header h1 {
+    font-size: 2.8rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .step-card {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .steps-grid::before {
+    display: none;
+  }
+  
+  .step-number {
+    position: static;
+    transform: none;
+    margin-right: -10px;
+    box-shadow: none;
+  }
+  
+  .step-content {
+    width: 100%;
+    order: 3;
+  }
+  
+  .step-action {
+    margin-left: 0;
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .trade-section {
+    padding: 80px 0;
+  }
+  
+  .trade-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .why-trade-card,
+  .how-trade-section {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+}
+
+/* --- Extra Shine / Glowing Accents --- */
+.trade-container::before {
+  content: '';
+  position: absolute;
+  top: -15%; right: -10%;
+  width: 450px; height: 450px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatOrb 10s ease-in-out infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.trade-container::after {
+  content: '';
+  position: absolute;
+  bottom: -20%; left: -10%;
+  width: 550px; height: 550px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatOrb2 12s ease-in-out infinite alternate;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes floatOrb {
+  0% { transform: translateY(0) scale(1); opacity: 0.5; }
+  100% { transform: translateY(40px) scale(1.1); opacity: 1; }
+}
+
+@keyframes floatOrb2 {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  100% { transform: translate(30px, -30px) scale(1.2); opacity: 1; }
+}
+
+.why-trade-card::after,
+.how-trade-section::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%;
+  width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: skewX(-20deg);
+  animation: shineSweep 8s infinite;
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 30px;
+}
+
+@keyframes shineSweep {
+  0% { left: -150%; }
+  15% { left: 200%; }
+  100% { left: 200%; }
+}
+
+/* --- Moving Arrow for Left Side --- */
+.feature-item {
+  position: relative;
+}
+
+.feature-arrow {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  color: #f97316; /* Orange touch for the arrow */
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.4s ease;
+}
+
+.feature-item:hover .feature-arrow {
+  opacity: 1;
+  animation: moveArrow 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes moveArrow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(8px); }
+}

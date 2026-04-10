@@ -1,0 +1,256 @@
+.company-regi-container {
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    background: linear-gradient(135deg, #e7d0b9, #4a3d3d, #d88027);
+
+}
+
+.glass-container {
+    background: rgba(255, 255, 255, 0.1);
+    /* Lightly colored background */
+    backdrop-filter: blur(10px);
+    /* Blur the background behind the form */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Light border */
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.compani-regi {
+    width: 50%;
+    padding: 40px;
+    /* background: #f7f1f1; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 150px !important;
+}
+
+
+
+@media (max-width: 766px) {
+    .company-regi-container {
+        flex-direction: column;
+    }
+
+    .compani-regi {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .login-image {
+        display: none;
+        /* Hide the image on small screens */
+    }
+}
+
+@media (max-width: 768px) {
+
+    .compani-regi,
+    .login-image {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .compani-regi {
+        flex-direction: column;
+    }
+
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.cl-danger {
+    color: red;
+}
+
+.form-group .com-txt[type="text"],
+.form-group .com-txt[type="email"],
+.form-group .com-txt[type="password"],
+.form-group .com-txt[type="checkbox"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group .com-txt[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+.error {
+    color: #ff0000;
+    font-size: 14px;
+}
+
+.whatsapp-icon {
+    font-size: 20px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.success {
+    color: #009900;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button[type="submit"] {
+    background-color: orange;
+    color: #000;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 531px) {
+    .form-group {
+        display: inline-block;
+        width: 48%;
+        margin-right: 4%;
+    }
+}
+
+/* Media query for responsive layout */
+/* @media (min-width: 531px) {
+    .form-group {
+        display: inline-block;
+        width: 48%;
+        margin-right: 4%;
+    }
+
+    .form-group:nth-child(2n) {
+        margin-right: 0;
+    }
+
+    .form-group:last-child {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 530px) {
+    .form-group {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+    }
+} */
+
+.company-regi-container {
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    background-image: url(../../public/assets/joinsme.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* This ensures the image covers the entire container */
+    background-position: center;
+    /* This centers the image within the container */
+}
+
+.glass-container {
+    background: rgba(255, 255, 255, 0.1);
+    /* Lightly colored background */
+    backdrop-filter: blur(10px);
+    /* Blur the background behind the form */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Light border */
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.compani-regi {
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    /* margin-bottom: 150px !important; */
+}
+
+.login-image {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-top: -207px;
+
+}
+
+/* Style for images within .login-image */
+.login-image img {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Set dimensions for the two rows of images */
+.login-image .image-row {
+    display: flex;
+    justify-content: space-between;
+    /* margin-bottom: 20px; */
+    width: 100%;
+}
+
+.login-image .image-row img {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 766px) {
+    .company-regi-container {
+        flex-direction: column;
+    }
+
+    .compani-regi {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .login-image {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .compani-regi,
+    .login-image {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .compani-regi {
+        flex-direction: column;
+    }
+}
+
+/* Other styles remain the same */
