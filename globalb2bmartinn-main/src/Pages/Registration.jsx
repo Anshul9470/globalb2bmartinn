@@ -1,0 +1,631 @@
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import './registration.css';
+// import Whyglobal from '../Components/Whyglobal';
+
+// const Registration = () => {
+//     const [name, setName] = useState('');
+//     const [email, setEmail] = useState('');
+//     const [city, setCity] = useState('');
+//     const [mobileNumber, setMobileNumber] = useState('');
+//     const [productOrService, setProductOrService] = useState('');
+//     const [quantity, setQuantity] = useState('');
+//     const [unit, setUnit] = useState('kg'); // New state variable for unit
+//     const [submitted, setSubmitted] = useState(false);
+//     const [showLoginLink, setShowLoginLink] = useState(false);
+//     const [mobileError, setMobileError] = useState('');
+
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+
+//         const formData = {
+//             name: name,
+//             email: email,
+//             city: city,
+//             mobileNumber: mobileNumber,
+//             productOrService: productOrService,
+//             quantity: Number(quantity), // Ensure quantity is a number
+//             unit: unit // Send unit as a separate field
+//         };
+
+//         try {
+//             // ${process.env.REACT_APP_API_ENDPOINT}/submit-form
+//             const response = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/register-buyer`, formData);
+
+//             console.log('Form data:', response.data);
+
+//             setName('');
+//             setEmail('');
+//             setMobileNumber('');
+//             setCity('');
+//             setProductOrService('');
+//             setQuantity('');
+//             setUnit('kg'); // Reset unit to default value
+
+//             setShowLoginLink(true);
+//             setSubmitted(true);
+//         } catch (error) {
+//             console.error('Error submitting form:', error);
+//         }
+//     };
+
+//     const handleMobileChange = (e) => {
+//         const value = e.target.value.replace(/\D/, '').slice(0, 10);
+//         setMobileNumber(value);
+//         if (value.length < 10) {
+//             setMobileError('Please enter a correct mobile number.');
+//         } else {
+//             setMobileError('');
+//         }
+//     };
+
+//     return (
+//         <>
+//             <div className="registration-container">
+//                 <div className="regi-container">
+//                     <div className="glass-container">
+//                         <h3 style={{ color: '#000' }} >Post your Buy Requirements</h3>
+//                         <form onSubmit={handleSubmit}>
+//                             <div className="form-group">
+//                                 <label htmlFor="name">Name:</label>
+//                                 <input
+//                                     type="text"
+//                                     className='reb-text'
+//                                     id="name"
+//                                     value={name}
+//                                     onChange={(e) => setName(e.target.value)}
+//                                     required
+//                                 />
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="email">Email:</label>
+//                                 <input
+//                                     type="email"
+//                                     className='reb-email'
+//                                     id="email"
+//                                     value={email}
+//                                     onChange={(e) => setEmail(e.target.value)}
+//                                     required
+//                                 />
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="mobileNumber">City:</label>
+//                                 <input
+//                                     style={{ width: '100%', padding: '10px', fontSize: '16px', border: '1px solid #ccc', borderRadius: '5px' }}
+//                                     type="text"
+//                                     className='reb-text'
+//                                     id="mobileNumber"
+//                                     value={mobileNumber}
+//                                     onChange={handleMobileChange}
+//                                     required
+//                                 />
+//                                 {mobileError && <div style={{ color: 'red', marginTop: '5px' }}>{mobileError}</div>}
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="mobileNumber">Mobile Number:</label>
+//                                 <input
+//                                     style={{ width: '100%', padding: '10px', fontSize: '16px', border: '1px solid #ccc', borderRadius: '5px' }}
+//                                     type="text"
+//                                     className='reb-text'
+//                                     id="mobileNumber"
+//                                     value={mobileNumber}
+//                                     onChange={handleMobileChange}
+//                                     required
+//                                 />
+//                                 {mobileError && <div style={{ color: 'red', marginTop: '5px' }}>{mobileError}</div>}
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="productOrService">Product/Service:</label>
+//                                 <input
+//                                     type="text"
+//                                     className='reb-text'
+//                                     id="productOrService"
+//                                     value={productOrService}
+//                                     onChange={(e) => setProductOrService(e.target.value)}
+//                                     required
+//                                 />
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="quantity">Quantity:</label>
+//                                 <div style={{ display: 'flex', gap: '10px' }}>
+//                                     <input
+//                                         type="number"
+//                                         className='reb-number'
+//                                         id="quantity"
+//                                         value={quantity}
+//                                         onChange={(e) => setQuantity(e.target.value)}
+//                                         required
+//                                         min="0"
+//                                     />
+//                                     <select
+//                                         value={unit}
+//                                         onChange={(e) => setUnit(e.target.value)}
+//                                         required
+//                                         className='reb-unit'
+//                                     >
+//                                         <option value="kg">kg</option>
+//                                         <option value="pcs">pcs</option>
+//                                         <option value="dozen">dozen</option>
+//                                         <option value="meter">meter</option>
+//                                         <option value="ton">ton</option>
+//                                     </select>
+//                                 </div>
+//                             </div>
+//                             <button className='buyer-submit' type="submit">Submit</button>
+//                             {submitted && <div style={{ color: 'green', marginTop: '10px' }}>Form submitted successfully!</div>}
+//                         </form>
+//                         {showLoginLink && <p style={{ marginTop: '10px' }}>Registed With Us As Company <a href="/register-company"> <span style={{ color: 'red' }}>Register Now</span></a></p>}
+//                     </div>
+//                 </div>
+//                 {/* <div className="login-image">
+//                     <img src="./assets/register-us.png" alt="Login" />
+//                 </div> */}
+
+//             </div>
+
+//             <div style={{ marginBottom: '50px' }}>
+//                 <Whyglobal />
+//             </div>
+//         </>
+//     );
+// };
+
+// export default Registration;
+
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import './registration.css';
+// import Whyglobal from '../Components/Whyglobal';
+
+// const Registration = () => {
+//     const [name, setName] = useState('');
+//     const [email, setEmail] = useState('');
+//     const [city, setCity] = useState('');
+//     const [mobileNumber, setMobileNumber] = useState('');
+//     const [productOrService, setProductOrService] = useState('');
+//     const [quantity, setQuantity] = useState('');
+//     const [unit, setUnit] = useState('kg');
+//     const [submitted, setSubmitted] = useState(false);
+//     const [showLoginLink, setShowLoginLink] = useState(false);
+//     const [mobileError, setMobileError] = useState('');
+
+//     const handleSubmit = async (e) => {
+//         e.preventDefault();
+
+//         const formData = {
+//             name: name,
+//             email: email,
+//             city: city,
+//             mobileNumber: mobileNumber,
+//             productOrService: productOrService,
+//             quantity: Number(quantity),
+//             unit: unit
+//         };
+
+//         try {
+//             const response = await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/register-buyer`, formData);
+//             console.log('Form data:', response.data);
+
+//             setName('');
+//             setEmail('');
+//             setCity('');
+//             setMobileNumber('');
+//             setProductOrService('');
+//             setQuantity('');
+//             setUnit('kg');
+//             setShowLoginLink(true);
+//             setSubmitted(true);
+//         } catch (error) {
+//             console.error('Error submitting form:', error);
+//         }
+//     };
+
+//     const handleMobileChange = (e) => {
+//         const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+//         setMobileNumber(value);
+//         if (value.length < 10) {
+//             setMobileError('Please enter a correct mobile number.');
+//         } else {
+//             setMobileError('');
+//         }
+//     };
+
+//     return (
+//         <>
+//             <div className="registration-container">
+//                 <div className="regi-container">
+//                     <div className="glass-container">
+//                         <h3 style={{ color: '#000' }}>Post your Buy Requirements</h3>
+//                         <form onSubmit={handleSubmit}>
+//                             <div className="form-group">
+//                                 <label htmlFor="name">Name:</label>
+//                                 <input
+//                                     type="text"
+//                                     className="reb-text"
+//                                     id="name"
+//                                     value={name}
+//                                     onChange={(e) => setName(e.target.value)}
+//                                     required
+//                                 />
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="email">Email:</label>
+//                                 <input
+//                                     type="email"
+//                                     className="reb-email"
+//                                     id="email"
+//                                     value={email}
+//                                     onChange={(e) => setEmail(e.target.value)}
+//                                     required
+//                                 />
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="city">City:</label>
+//                                 <input
+//                                     type="text"
+//                                     className="reb-text"
+//                                     id="city"
+//                                     value={city}
+//                                     onChange={(e) => setCity(e.target.value)}
+//                                     required
+//                                 />
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="mobileNumber">Mobile Number:</label>
+//                                 <input
+//                                     type="text"
+//                                     className="reb-text"
+//                                     id="mobileNumber"
+//                                     value={mobileNumber}
+//                                     onChange={handleMobileChange}
+//                                     required
+//                                 />
+//                                 {mobileError && <div style={{ color: 'red', marginTop: '5px' }}>{mobileError}</div>}
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="productOrService">Product/Service:</label>
+//                                 <input
+//                                     type="text"
+//                                     className="reb-text"
+//                                     id="productOrService"
+//                                     value={productOrService}
+//                                     onChange={(e) => setProductOrService(e.target.value)}
+//                                     required
+//                                 />
+//                             </div>
+//                             <div className="form-group">
+//                                 <label htmlFor="quantity">Quantity:</label>
+//                                 <div style={{ display: 'flex', gap: '10px' }}>
+//                                     <input
+//                                         type="number"
+//                                         className="reb-number"
+//                                         id="quantity"
+//                                         value={quantity}
+//                                         onChange={(e) => setQuantity(e.target.value)}
+//                                         required
+//                                         min="0"
+//                                     />
+//                                     <select
+//                                         value={unit}
+//                                         onChange={(e) => setUnit(e.target.value)}
+//                                         required
+//                                         className="reb-unit"
+//                                     >
+//                                         <option value="kg">kg</option>
+//                                         <option value="pcs">pcs</option>
+//                                         <option value="dozen">dozen</option>
+//                                         <option value="meter">meter</option>
+//                                         <option value="ton">ton</option>
+//                                     </select>
+//                                 </div>
+//                             </div>
+//                             <button className="buyer-submit" type="submit">Submit</button>
+//                             {submitted && <div style={{ color: 'green', marginTop: '10px' }}>Form submitted successfully!</div>}
+//                         </form>
+//                         {showLoginLink && (
+//                             <p style={{ marginTop: '10px' }}>
+//                                 Registered With Us As Company <a href="/register-company"><span style={{ color: 'red' }}>Register Now</span></a>
+//                             </p>
+//                         )}
+//                     </div>
+//                 </div>
+//             </div>
+//             <div style={{ marginBottom: '50px' }}>
+//                 <Whyglobal />
+//             </div>
+//         </>
+//     );
+// };
+
+// export default Registration;
+import React, { useState } from "react";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import "./registration.css";
+import Whyglobal from "../Components/Whyglobal";
+import { registerBuyer } from "../services/api";
+
+const Registration = () => {
+  const KEYWORDS = [
+        // 1. INDUSTRIAL MACHINERY & TOOLS
+        "Machinery", "Industrial Machinery", "CNC Machines", "Injection Molding", "Packing Machines", "Lathe Machines", "Milling Machines", "Laser Cutting", "Welding Machine", "Industrial Equipment",
+        "Power Tools", "Power Drills", "Grinders", "Impact Wrenches", "Cutting Tools", "Measuring Tapes", "Bearings", "Gears", "Conveyor Belts", "Industrial Chains", "Valves", "Pumps",
+        
+        // 2. ELECTRICAL & ELECTRONICS
+        "Solar Energy", "Solar Panels", "Solar Inverters", "Solar Batteries", "Electronics", "Electric Components", "Microchips", "Resistors", "Capacitors", "PCB Boards", "Transformers",
+        "Switchgears", "Electrical Panels", "Electrical Wires", "Copper Cable", "Generators", "Mobile Accessories", "Bluetooth Speakers", "Smart Watches", "Smart Home Devices",
+        
+        // 3. HEALTHCARE & PHARMACEUTICALS
+        "Pharmaceuticals", "Medicines", "Generic Medicines", "API", "Antibiotics", "Herbal Medicines", "Medical Equipment", "MRI Machines", "X-ray", "Patient Monitors", "Hospital Beds", "Wheelchairs",
+        "Surgical Gloves", "Masks", "PPE Kits", "Diagnostic Kits", "Surgical Instruments",
+        
+        // 4. APPAREL, TEXTILES & FASHION
+        "Fabric", "Textiles", "Cotton", "Polyester", "Denims", "Silk", "Apparel", "Clothing", "Shirts", "T-shirts", "Saree", "Kurtis", "Bedsheets", "Curtains", "Carpets", "Towels", "Handbags", "Footwear",
+        
+        // 5. FOOD, AGRICULTURE & SPICES
+        "Spices", "Turmeric", "Cumin", "Cardamom", "Saffron", "Black Pepper", "Basmati Rice", "Wheat", "Pulses", "Lentils", "Sugar", "Flour", "Mustard Oil", "Sunflower Oil", "Ghee", "Agri Equipment", "Tractors",
+        
+        // 6. BUILDING & CONSTRUCTION
+        "Building Materials", "Cement", "TMT Bars", "Tiles", "Bricks", "Granite", "Marble", "Sanitary Fittings", "Faucets", "Wash Basins", "Plywood", "Laminates", "Paints", "Wallpaper",
+        
+        // 7. CHEMICALS, MINERALS & PLASTIC
+        "Industrial Chemicals", "Acids", "Solvents", "Plastic Granules", "HDPE", "LDPE", "PVC Resin", "Iron Ore", "Quartz", "Talc", "Gypsum",
+        
+        // 8. PACKAGING & PRINTING
+        "Corrugated Boxes", "Plastic Pouches", "BOPP Tapes", "Bubble Wrap", "Printing Machines", "Labeling Machines", "Vacuum Packing", "Office Supplies", "Office Desks", "Industrial Racks",
+        
+        // TRENDING
+        "Jewellery", "Handicrafts", "Gifts & Decor", "Hardware", "Toys", "Sports Equipment", "Computer Hardware", "Agarbatti", "Event Management", "Solar Panel Installation"
+    ];
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(""); // Updated state for phone number
+  const [productOrService, setProductOrService] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [unit, setUnit] = useState("kg");
+  const [submitted, setSubmitted] = useState(false);
+  const [showLoginLink, setShowLoginLink] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  // Handle product/service input with suggestions
+  const handleProductInputChange = (value) => {
+    setProductOrService(value);
+
+    if (value.trim().length > 0) {
+      const filtered = KEYWORDS.filter(k => 
+        k.toLowerCase().includes(value.toLowerCase())
+      ).slice(0, 10);
+      setSuggestions(filtered);
+      setShowSuggestions(true);
+    } else {
+      setSuggestions(["Machinery", "Electronics", "Pharmaceuticals", "Solar Panels", "Textiles"]);
+      setShowSuggestions(true);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setProductOrService(suggestion);
+    setShowSuggestions(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setApiError("");
+
+    if (!phoneNumber) {
+      setPhoneError("Please enter a valid phone number.");
+      return;
+    }
+
+    const formData = {
+      name,
+      email,
+      city,
+      mobileNumber: phoneNumber,
+      productOrService,
+      quantity: Number(quantity),
+      unit,
+    };
+
+    setLoading(true);
+    try {
+      await registerBuyer(formData);
+      setName("");
+      setEmail("");
+      setCity("");
+      setPhoneNumber("");
+      setProductOrService("");
+      setQuantity("");
+      setUnit("kg");
+      setShowLoginLink(true);
+      setSubmitted(true);
+    } catch (error) {
+      setApiError(error.message || "Submission failed. Please try again.");
+      console.error("Error submitting form:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <div className="registration-container">
+        <div className="regi-container">
+          <div className="glass-container">
+            <h3 style={{ color: "#000" }}>Post your Buy Requirements</h3>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Name:</label>
+                <input
+                  type="text"
+                  className="reb-text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  className="reb-email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="city">City:</label>
+                <input
+                  type="text"
+                  className="reb-text"
+                  id="city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="phoneNumber">Mobile Number:</label>
+                <PhoneInput
+                  className="reb-text"
+                  international
+                  defaultCountry="IN"
+                  value={phoneNumber}
+                  onChange={setPhoneNumber}
+                  required
+                />
+                {phoneError && (
+                  <div style={{ color: "red", marginTop: "5px" }}>
+                    {phoneError}
+                  </div>
+                )}
+              </div>
+              <div className="form-group" style={{ position: "relative" }}>
+                <label htmlFor="productOrService">Product/Service:</label>
+                <input
+                  type="text"
+                  className="reb-text"
+                  id="productOrService"
+                  value={productOrService}
+                  onChange={(e) => handleProductInputChange(e.target.value)}
+                  onFocus={() => {
+                    if (!productOrService.trim()) {
+                      setSuggestions(["Machinery", "Electronics", "Pharmaceuticals", "Solar Panels", "Textiles"]);
+                    }
+                    setShowSuggestions(true);
+                  }}
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                  required
+                  placeholder="e.g. Basmati Rice, CNC Machines..."
+                />
+                {showSuggestions && suggestions.length > 0 && (
+                  <ul
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: 0,
+                      right: 0,
+                      backgroundColor: "#fff",
+                      border: "1px solid #ddd",
+                      borderTop: "none",
+                      borderRadius: "0 0 4px 4px",
+                      maxHeight: "150px",
+                      overflowY: "auto",
+                      zIndex: 1000,
+                      listStyle: "none",
+                      margin: 0,
+                      padding: "8px 0",
+                      boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
+                    }}
+                  >
+                    {suggestions.map((suggestion, index) => (
+                      <li
+                        key={index}
+                        onMouseDown={() => handleSuggestionClick(suggestion)}
+                        style={{
+                          padding: "12px 20px",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                          color: "#333",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "10px",
+                          transition: "background 0.2s"
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.backgroundColor = "#f0f0f0";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.backgroundColor = "transparent";
+                        }}
+                      >
+                        <i style={{ marginRight: "8px", color: "#999" }} className="fa fa-search"></i>
+                        {suggestion}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div className="form-group">
+                <label htmlFor="quantity">Quantity:</label>
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <input
+                    type="number"
+                    className="reb-number"
+                    id="quantity"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    required
+                    min="0"
+                  />
+                  <select
+                    value={unit}
+                    onChange={(e) => setUnit(e.target.value)}
+                    required
+                    className="reb-unit"
+                  >
+                    <option value="kg">kg</option>
+                    <option value="pcs">pcs</option>
+                    <option value="dozen">dozen</option>
+                    <option value="meter">meter</option>
+                    <option value="ton">ton</option>
+                    <option value="liter">liter</option>
+                    <option value="container">container</option>
+                  </select>
+                </div>
+              </div>
+              <button className="buyer-submit" type="submit" disabled={loading} style={{ opacity: loading ? 0.7 : 1 }}>
+                {loading ? "Submitting..." : "Submit"}
+              </button>
+              {apiError && <div style={{ color: "red", marginTop: "8px" }}>{apiError}</div>}
+              {submitted && (
+                <div style={{ color: "green", marginTop: "10px" }}>
+                  ✅ Requirement submitted successfully!
+                </div>
+              )}
+            </form>
+            {showLoginLink && (
+              <p style={{ marginTop: "10px" }}>
+                Registered With Us As Company{" "}
+                <a href="/register-company">
+                  <span style={{ color: "red" }}>Register Now</span>
+                </a>
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Registration;

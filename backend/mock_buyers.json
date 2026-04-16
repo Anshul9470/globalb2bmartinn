@@ -1,0 +1,7238 @@
+[
+  {
+    "name": "Vinod Industries",
+    "email": "vinod.mishra87@example.com",
+    "mobileNumber": "9774879652",
+    "city": "Belgaum",
+    "productOrService": "CNC Machines",
+    "quantity": 422,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Hub",
+    "email": "sanjay.reddy38@example.com",
+    "mobileNumber": "9421502453",
+    "city": "Gurgaon",
+    "productOrService": "CNC Machines",
+    "quantity": 723,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Mart",
+    "email": "suresh.gupta89@example.com",
+    "mobileNumber": "9073438628",
+    "city": "Srinagar",
+    "productOrService": "CNC Machines",
+    "quantity": 398,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Group",
+    "email": "kiran.yadav14@example.com",
+    "mobileNumber": "9368728866",
+    "city": "Madurai",
+    "productOrService": "CNC Machines",
+    "quantity": 193,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Mart",
+    "email": "vikram.patel76@example.com",
+    "mobileNumber": "9253634644",
+    "city": "Kochi",
+    "productOrService": "CNC Machines",
+    "quantity": 808,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Corporation",
+    "email": "rajesh.yadav0@example.com",
+    "mobileNumber": "9207864138",
+    "city": "Pune",
+    "productOrService": "CNC Machines",
+    "quantity": 612,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Group",
+    "email": "rahul.verma56@example.com",
+    "mobileNumber": "9774382493",
+    "city": "Kochi",
+    "productOrService": "Injection Molding",
+    "quantity": 206,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Overseas",
+    "email": "sandip.patel98@example.com",
+    "mobileNumber": "9828962746",
+    "city": "Loni",
+    "productOrService": "Injection Molding",
+    "quantity": 344,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Group",
+    "email": "amit.dutta70@example.com",
+    "mobileNumber": "9344613641",
+    "city": "Thane",
+    "productOrService": "Injection Molding",
+    "quantity": 350,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Industries",
+    "email": "prakash.singh17@example.com",
+    "mobileNumber": "9806290616",
+    "city": "Malegaon",
+    "productOrService": "Injection Molding",
+    "quantity": 536,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Systems",
+    "email": "rahul.mehta78@example.com",
+    "mobileNumber": "9174161339",
+    "city": "Saharanpur",
+    "productOrService": "Injection Molding",
+    "quantity": 513,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Industries",
+    "email": "kiran.mehta53@example.com",
+    "mobileNumber": "9659645799",
+    "city": "Kalyan-Dombivli",
+    "productOrService": "Injection Molding",
+    "quantity": 680,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Enterprises",
+    "email": "vijay.reddy87@example.com",
+    "mobileNumber": "9369118582",
+    "city": "Madurai",
+    "productOrService": "Packing Machines",
+    "quantity": 881,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Systems",
+    "email": "sudhir.choudhury18@example.com",
+    "mobileNumber": "9411789045",
+    "city": "Vasai-Virar",
+    "productOrService": "Packing Machines",
+    "quantity": 741,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Pvt Ltd",
+    "email": "sunil.sharma87@example.com",
+    "mobileNumber": "9216398552",
+    "city": "Madurai",
+    "productOrService": "Packing Machines",
+    "quantity": 414,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Systems",
+    "email": "manoj.dutta3@example.com",
+    "mobileNumber": "9428429230",
+    "city": "Jamshedpur",
+    "productOrService": "Packing Machines",
+    "quantity": 75,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Exports",
+    "email": "sandip.bose40@example.com",
+    "mobileNumber": "9497251762",
+    "city": "Dehradun",
+    "productOrService": "Packing Machines",
+    "quantity": 159,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Enterprises",
+    "email": "prakash.yadav35@example.com",
+    "mobileNumber": "9874048075",
+    "city": "Pimpri-Chinchwad",
+    "productOrService": "Packing Machines",
+    "quantity": 653,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Solutions",
+    "email": "anil.aggarwal9@example.com",
+    "mobileNumber": "9050746680",
+    "city": "Varanasi",
+    "productOrService": "Lathe Machines",
+    "quantity": 835,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Pvt Ltd",
+    "email": "sunil.khan77@example.com",
+    "mobileNumber": "9193624598",
+    "city": "Ulhasnagar",
+    "productOrService": "Lathe Machines",
+    "quantity": 822,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Mart",
+    "email": "rajesh.sharma81@example.com",
+    "mobileNumber": "9063265237",
+    "city": "Delhi",
+    "productOrService": "Lathe Machines",
+    "quantity": 603,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Exports",
+    "email": "amit.choudhury6@example.com",
+    "mobileNumber": "9170644671",
+    "city": "Dehradun",
+    "productOrService": "Lathe Machines",
+    "quantity": 334,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Solutions",
+    "email": "manoj.sharma81@example.com",
+    "mobileNumber": "9027989406",
+    "city": "Udaipur",
+    "productOrService": "Lathe Machines",
+    "quantity": 150,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Overseas",
+    "email": "rajesh.choudhury58@example.com",
+    "mobileNumber": "9763066543",
+    "city": "Ulhasnagar",
+    "productOrService": "Lathe Machines",
+    "quantity": 937,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Traders",
+    "email": "dinesh.singh70@example.com",
+    "mobileNumber": "9539497654",
+    "city": "Nellore",
+    "productOrService": "Milling Machines",
+    "quantity": 453,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Overseas",
+    "email": "amit.mehta98@example.com",
+    "mobileNumber": "9193304498",
+    "city": "Kalyan-Dombivli",
+    "productOrService": "Milling Machines",
+    "quantity": 578,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Group",
+    "email": "amit.nair60@example.com",
+    "mobileNumber": "9510992251",
+    "city": "Tirunelveli",
+    "productOrService": "Milling Machines",
+    "quantity": 844,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Traders",
+    "email": "dinesh.malhotra98@example.com",
+    "mobileNumber": "9811162883",
+    "city": "Pune",
+    "productOrService": "Milling Machines",
+    "quantity": 762,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Manufacturing",
+    "email": "sunil.nair13@example.com",
+    "mobileNumber": "9212108749",
+    "city": "Kolhapur",
+    "productOrService": "Milling Machines",
+    "quantity": 149,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Global",
+    "email": "anil.singh17@example.com",
+    "mobileNumber": "9825247335",
+    "city": "Jodhpur",
+    "productOrService": "Milling Machines",
+    "quantity": 284,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Group",
+    "email": "vinod.choudhury79@example.com",
+    "mobileNumber": "9739770352",
+    "city": "Vijayawada",
+    "productOrService": "Laser Cutting",
+    "quantity": 322,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Systems",
+    "email": "ramesh.malhotra10@example.com",
+    "mobileNumber": "9763118955",
+    "city": "Tirunelveli",
+    "productOrService": "Laser Cutting",
+    "quantity": 529,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Mart",
+    "email": "ramesh.jain93@example.com",
+    "mobileNumber": "9008446974",
+    "city": "Raipur",
+    "productOrService": "Laser Cutting",
+    "quantity": 498,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Industries",
+    "email": "prakash.shah13@example.com",
+    "mobileNumber": "9749280174",
+    "city": "Salem",
+    "productOrService": "Laser Cutting",
+    "quantity": 140,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Systems",
+    "email": "ramesh.desai71@example.com",
+    "mobileNumber": "9608606316",
+    "city": "Jaipur",
+    "productOrService": "Laser Cutting",
+    "quantity": 218,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Hub",
+    "email": "amit.dutta90@example.com",
+    "mobileNumber": "9380835512",
+    "city": "Kolhapur",
+    "productOrService": "Laser Cutting",
+    "quantity": 518,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Hub",
+    "email": "prakash.desai0@example.com",
+    "mobileNumber": "9758775986",
+    "city": "Jodhpur",
+    "productOrService": "Power Drills",
+    "quantity": 974,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Group",
+    "email": "ramesh.choudhury14@example.com",
+    "mobileNumber": "9870492235",
+    "city": "Howrah",
+    "productOrService": "Power Drills",
+    "quantity": 930,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Exports",
+    "email": "suresh.trivedi88@example.com",
+    "mobileNumber": "9745616634",
+    "city": "Gurgaon",
+    "productOrService": "Power Drills",
+    "quantity": 777,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Industries",
+    "email": "vinod.trivedi92@example.com",
+    "mobileNumber": "9359829095",
+    "city": "Ajmer",
+    "productOrService": "Power Drills",
+    "quantity": 976,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Solutions",
+    "email": "arun.yadav34@example.com",
+    "mobileNumber": "9024553402",
+    "city": "Kanpur",
+    "productOrService": "Power Drills",
+    "quantity": 702,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Systems",
+    "email": "sanjay.reddy22@example.com",
+    "mobileNumber": "9047642167",
+    "city": "Lucknow",
+    "productOrService": "Power Drills",
+    "quantity": 507,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Manufacturing",
+    "email": "amit.singh4@example.com",
+    "mobileNumber": "9470210268",
+    "city": "Ujjain",
+    "productOrService": "Grinders",
+    "quantity": 805,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Corporation",
+    "email": "vinod.choudhury90@example.com",
+    "mobileNumber": "9735415685",
+    "city": "Coimbatore",
+    "productOrService": "Grinders",
+    "quantity": 367,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Global",
+    "email": "sunil.dutta13@example.com",
+    "mobileNumber": "9140820310",
+    "city": "Jabalpur",
+    "productOrService": "Grinders",
+    "quantity": 768,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Systems",
+    "email": "manoj.choudhury48@example.com",
+    "mobileNumber": "9648839333",
+    "city": "Gorakhpur",
+    "productOrService": "Grinders",
+    "quantity": 787,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Global",
+    "email": "pradeep.dutta55@example.com",
+    "mobileNumber": "9274681380",
+    "city": "Rourkela",
+    "productOrService": "Grinders",
+    "quantity": 638,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Global",
+    "email": "kiran.sharma85@example.com",
+    "mobileNumber": "9349694173",
+    "city": "Dhanbad",
+    "productOrService": "Grinders",
+    "quantity": 89,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Industries",
+    "email": "vijay.dutta86@example.com",
+    "mobileNumber": "9721512967",
+    "city": "Dhanbad",
+    "productOrService": "Impact Wrenches",
+    "quantity": 436,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Systems",
+    "email": "sanjay.nair91@example.com",
+    "mobileNumber": "9789718913",
+    "city": "Ajmer",
+    "productOrService": "Impact Wrenches",
+    "quantity": 923,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Corporation",
+    "email": "vikram.nair88@example.com",
+    "mobileNumber": "9562094737",
+    "city": "Jamnagar",
+    "productOrService": "Impact Wrenches",
+    "quantity": 532,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Group",
+    "email": "prakash.verma26@example.com",
+    "mobileNumber": "9569960179",
+    "city": "Bangalore",
+    "productOrService": "Impact Wrenches",
+    "quantity": 342,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Traders",
+    "email": "vikram.reddy51@example.com",
+    "mobileNumber": "9492793555",
+    "city": "Gulbarga",
+    "productOrService": "Impact Wrenches",
+    "quantity": 692,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Enterprises",
+    "email": "vinod.nair29@example.com",
+    "mobileNumber": "9842164053",
+    "city": "Faridabad",
+    "productOrService": "Impact Wrenches",
+    "quantity": 486,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Global",
+    "email": "rajesh.singh25@example.com",
+    "mobileNumber": "9418111748",
+    "city": "Durgapur",
+    "productOrService": "Cutting Tools",
+    "quantity": 796,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Solutions",
+    "email": "sudhir.choudhury68@example.com",
+    "mobileNumber": "9805501565",
+    "city": "Aligarh",
+    "productOrService": "Cutting Tools",
+    "quantity": 960,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Group",
+    "email": "rahul.dutta0@example.com",
+    "mobileNumber": "9768946050",
+    "city": "Raipur",
+    "productOrService": "Cutting Tools",
+    "quantity": 481,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Enterprises",
+    "email": "prakash.dutta0@example.com",
+    "mobileNumber": "9689884659",
+    "city": "Gulbarga",
+    "productOrService": "Cutting Tools",
+    "quantity": 451,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Enterprises",
+    "email": "anil.gupta16@example.com",
+    "mobileNumber": "9756761028",
+    "city": "Udaipur",
+    "productOrService": "Cutting Tools",
+    "quantity": 719,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Exports",
+    "email": "prakash.khan56@example.com",
+    "mobileNumber": "9306352668",
+    "city": "Pune",
+    "productOrService": "Cutting Tools",
+    "quantity": 113,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Corporation",
+    "email": "rajesh.dutta91@example.com",
+    "mobileNumber": "9664328850",
+    "city": "Jalgaon",
+    "productOrService": "Measuring Tapes",
+    "quantity": 711,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Systems",
+    "email": "ashok.singh79@example.com",
+    "mobileNumber": "9858024206",
+    "city": "Delhi",
+    "productOrService": "Measuring Tapes",
+    "quantity": 688,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Global",
+    "email": "ashok.choudhury44@example.com",
+    "mobileNumber": "9865035961",
+    "city": "Bangalore",
+    "productOrService": "Measuring Tapes",
+    "quantity": 934,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Traders",
+    "email": "prakash.mehta65@example.com",
+    "mobileNumber": "9269463509",
+    "city": "Kolkata",
+    "productOrService": "Measuring Tapes",
+    "quantity": 157,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Systems",
+    "email": "rahul.aggarwal17@example.com",
+    "mobileNumber": "9557724945",
+    "city": "Gaya",
+    "productOrService": "Measuring Tapes",
+    "quantity": 94,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Pvt Ltd",
+    "email": "rajesh.patel34@example.com",
+    "mobileNumber": "9230845673",
+    "city": "Nellore",
+    "productOrService": "Measuring Tapes",
+    "quantity": 665,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Exports",
+    "email": "sanjay.malhotra68@example.com",
+    "mobileNumber": "9861280837",
+    "city": "Gwalior",
+    "productOrService": "Bearings",
+    "quantity": 604,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Hub",
+    "email": "sudhir.trivedi7@example.com",
+    "mobileNumber": "9367738505",
+    "city": "Vadodara",
+    "productOrService": "Bearings",
+    "quantity": 801,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Corporation",
+    "email": "suresh.jain64@example.com",
+    "mobileNumber": "9108893212",
+    "city": "Malegaon",
+    "productOrService": "Bearings",
+    "quantity": 302,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Manufacturing",
+    "email": "sandip.desai23@example.com",
+    "mobileNumber": "9596295418",
+    "city": "Nellore",
+    "productOrService": "Bearings",
+    "quantity": 187,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Mart",
+    "email": "pradeep.reddy95@example.com",
+    "mobileNumber": "9755346808",
+    "city": "Bhilai",
+    "productOrService": "Bearings",
+    "quantity": 398,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Hub",
+    "email": "suresh.patel24@example.com",
+    "mobileNumber": "9804388826",
+    "city": "Bhiwandi",
+    "productOrService": "Bearings",
+    "quantity": 226,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Industries",
+    "email": "manoj.khan2@example.com",
+    "mobileNumber": "9385073790",
+    "city": "Kochi",
+    "productOrService": "Gears",
+    "quantity": 319,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Mart",
+    "email": "rahul.gupta43@example.com",
+    "mobileNumber": "9730936924",
+    "city": "Vasai-Virar",
+    "productOrService": "Gears",
+    "quantity": 664,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Enterprises",
+    "email": "kiran.reddy29@example.com",
+    "mobileNumber": "9850579565",
+    "city": "Bhubaneswar",
+    "productOrService": "Gears",
+    "quantity": 58,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Group",
+    "email": "amit.trivedi20@example.com",
+    "mobileNumber": "9417210047",
+    "city": "Madurai",
+    "productOrService": "Gears",
+    "quantity": 105,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Traders",
+    "email": "sudhir.patel0@example.com",
+    "mobileNumber": "9357447187",
+    "city": "Bhopal",
+    "productOrService": "Gears",
+    "quantity": 846,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Overseas",
+    "email": "vijay.nair7@example.com",
+    "mobileNumber": "9816213299",
+    "city": "Amravati",
+    "productOrService": "Gears",
+    "quantity": 203,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Enterprises",
+    "email": "rajesh.singh95@example.com",
+    "mobileNumber": "9307069055",
+    "city": "Bhilai",
+    "productOrService": "Conveyor Belts",
+    "quantity": 531,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Group",
+    "email": "sandip.nair6@example.com",
+    "mobileNumber": "9797964328",
+    "city": "Jabalpur",
+    "productOrService": "Conveyor Belts",
+    "quantity": 980,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Pvt Ltd",
+    "email": "sandip.patel57@example.com",
+    "mobileNumber": "9221128673",
+    "city": "Ghaziabad",
+    "productOrService": "Conveyor Belts",
+    "quantity": 626,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Industries",
+    "email": "anil.desai80@example.com",
+    "mobileNumber": "9677335448",
+    "city": "Udaipur",
+    "productOrService": "Conveyor Belts",
+    "quantity": 455,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Pvt Ltd",
+    "email": "sunil.yadav56@example.com",
+    "mobileNumber": "9554900327",
+    "city": "Jammu",
+    "productOrService": "Conveyor Belts",
+    "quantity": 535,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Hub",
+    "email": "sunil.gupta39@example.com",
+    "mobileNumber": "9575728839",
+    "city": "Madurai",
+    "productOrService": "Conveyor Belts",
+    "quantity": 934,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Manufacturing",
+    "email": "manoj.patel52@example.com",
+    "mobileNumber": "9218576868",
+    "city": "Noida",
+    "productOrService": "Industrial Chains",
+    "quantity": 570,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Corporation",
+    "email": "sandip.mishra72@example.com",
+    "mobileNumber": "9606252828",
+    "city": "Maheshtala",
+    "productOrService": "Industrial Chains",
+    "quantity": 100,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Overseas",
+    "email": "sunil.bose7@example.com",
+    "mobileNumber": "9047672203",
+    "city": "Agra",
+    "productOrService": "Industrial Chains",
+    "quantity": 710,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Hub",
+    "email": "anil.shah38@example.com",
+    "mobileNumber": "9385739103",
+    "city": "Surat",
+    "productOrService": "Industrial Chains",
+    "quantity": 372,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Solutions",
+    "email": "anil.mehta82@example.com",
+    "mobileNumber": "9217856280",
+    "city": "Amritsar",
+    "productOrService": "Industrial Chains",
+    "quantity": 213,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Group",
+    "email": "amit.patel83@example.com",
+    "mobileNumber": "9352312323",
+    "city": "Jodhpur",
+    "productOrService": "Industrial Chains",
+    "quantity": 340,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Group",
+    "email": "pradeep.singh75@example.com",
+    "mobileNumber": "9191306173",
+    "city": "Ghaziabad",
+    "productOrService": "Valves",
+    "quantity": 700,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Systems",
+    "email": "vinod.jain29@example.com",
+    "mobileNumber": "9219040750",
+    "city": "Cuttack",
+    "productOrService": "Valves",
+    "quantity": 294,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Traders",
+    "email": "sunil.desai83@example.com",
+    "mobileNumber": "9660205055",
+    "city": "Vasai-Virar",
+    "productOrService": "Valves",
+    "quantity": 364,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Traders",
+    "email": "rajesh.gupta55@example.com",
+    "mobileNumber": "9623529199",
+    "city": "Ranchi",
+    "productOrService": "Valves",
+    "quantity": 902,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Group",
+    "email": "rajesh.gupta79@example.com",
+    "mobileNumber": "9215927232",
+    "city": "Amritsar",
+    "productOrService": "Valves",
+    "quantity": 845,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Hub",
+    "email": "sunil.aggarwal74@example.com",
+    "mobileNumber": "9195907159",
+    "city": "Bhiwandi",
+    "productOrService": "Valves",
+    "quantity": 302,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Exports",
+    "email": "vijay.khan21@example.com",
+    "mobileNumber": "9740900862",
+    "city": "Gwalior",
+    "productOrService": "Pumps",
+    "quantity": 318,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Corporation",
+    "email": "suresh.verma17@example.com",
+    "mobileNumber": "9891857152",
+    "city": "Gaya",
+    "productOrService": "Pumps",
+    "quantity": 978,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Manufacturing",
+    "email": "pradeep.jain30@example.com",
+    "mobileNumber": "9475625491",
+    "city": "Vadodara",
+    "productOrService": "Pumps",
+    "quantity": 687,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Group",
+    "email": "sudhir.sharma48@example.com",
+    "mobileNumber": "9863180996",
+    "city": "Jalandhar",
+    "productOrService": "Pumps",
+    "quantity": 53,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Corporation",
+    "email": "kiran.dutta54@example.com",
+    "mobileNumber": "9715669117",
+    "city": "Jamshedpur",
+    "productOrService": "Pumps",
+    "quantity": 67,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Exports",
+    "email": "anil.reddy0@example.com",
+    "mobileNumber": "9721003476",
+    "city": "Kochi",
+    "productOrService": "Pumps",
+    "quantity": 128,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Mart",
+    "email": "rahul.choudhury80@example.com",
+    "mobileNumber": "9312667775",
+    "city": "Guwahati",
+    "productOrService": "Solar Panels",
+    "quantity": 773,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Solutions",
+    "email": "prakash.trivedi29@example.com",
+    "mobileNumber": "9314389729",
+    "city": "Bhavnagar",
+    "productOrService": "Solar Panels",
+    "quantity": 632,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Systems",
+    "email": "amit.nair77@example.com",
+    "mobileNumber": "9385604567",
+    "city": "Bhavnagar",
+    "productOrService": "Solar Panels",
+    "quantity": 422,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Global",
+    "email": "pradeep.mishra95@example.com",
+    "mobileNumber": "9392359580",
+    "city": "Asansol",
+    "productOrService": "Solar Panels",
+    "quantity": 589,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Solutions",
+    "email": "rajesh.verma10@example.com",
+    "mobileNumber": "9882376127",
+    "city": "Solapur",
+    "productOrService": "Solar Panels",
+    "quantity": 802,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Systems",
+    "email": "prakash.dutta46@example.com",
+    "mobileNumber": "9058603429",
+    "city": "Belgaum",
+    "productOrService": "Solar Panels",
+    "quantity": 202,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Solutions",
+    "email": "arun.choudhury90@example.com",
+    "mobileNumber": "9049492790",
+    "city": "Loni",
+    "productOrService": "Inverters",
+    "quantity": 831,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Overseas",
+    "email": "rajesh.yadav22@example.com",
+    "mobileNumber": "9316745826",
+    "city": "Madurai",
+    "productOrService": "Inverters",
+    "quantity": 505,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Industries",
+    "email": "dinesh.trivedi57@example.com",
+    "mobileNumber": "9427153178",
+    "city": "Siliguri",
+    "productOrService": "Inverters",
+    "quantity": 790,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Industries",
+    "email": "kiran.sharma21@example.com",
+    "mobileNumber": "9821888450",
+    "city": "Kalyan-Dombivli",
+    "productOrService": "Inverters",
+    "quantity": 592,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Industries",
+    "email": "sanjay.reddy99@example.com",
+    "mobileNumber": "9409120446",
+    "city": "Solapur",
+    "productOrService": "Inverters",
+    "quantity": 527,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Global",
+    "email": "vinod.choudhury27@example.com",
+    "mobileNumber": "9512635968",
+    "city": "Allahabad",
+    "productOrService": "Inverters",
+    "quantity": 320,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Mart",
+    "email": "amit.bose54@example.com",
+    "mobileNumber": "9769876328",
+    "city": "Bhopal",
+    "productOrService": "Solar Batteries",
+    "quantity": 55,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Enterprises",
+    "email": "prakash.jain54@example.com",
+    "mobileNumber": "9869689543",
+    "city": "Jodhpur",
+    "productOrService": "Solar Batteries",
+    "quantity": 270,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Manufacturing",
+    "email": "sanjay.shah51@example.com",
+    "mobileNumber": "9548467897",
+    "city": "Kalyan-Dombivli",
+    "productOrService": "Solar Batteries",
+    "quantity": 223,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Mart",
+    "email": "sunil.bose37@example.com",
+    "mobileNumber": "9865455414",
+    "city": "Gurgaon",
+    "productOrService": "Solar Batteries",
+    "quantity": 542,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Pvt Ltd",
+    "email": "sunil.singh17@example.com",
+    "mobileNumber": "9697248630",
+    "city": "Bhilai",
+    "productOrService": "Solar Batteries",
+    "quantity": 483,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Corporation",
+    "email": "rajesh.shah56@example.com",
+    "mobileNumber": "9355519079",
+    "city": "Pune",
+    "productOrService": "Solar Batteries",
+    "quantity": 600,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Global",
+    "email": "sandip.reddy49@example.com",
+    "mobileNumber": "9087306463",
+    "city": "Allahabad",
+    "productOrService": "Mounting Structures",
+    "quantity": 162,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Manufacturing",
+    "email": "amit.mehta48@example.com",
+    "mobileNumber": "9509423962",
+    "city": "Salem",
+    "productOrService": "Mounting Structures",
+    "quantity": 733,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Traders",
+    "email": "anil.patel97@example.com",
+    "mobileNumber": "9206757544",
+    "city": "Madurai",
+    "productOrService": "Mounting Structures",
+    "quantity": 185,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Global",
+    "email": "rahul.patel25@example.com",
+    "mobileNumber": "9457666691",
+    "city": "Solapur",
+    "productOrService": "Mounting Structures",
+    "quantity": 565,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Solutions",
+    "email": "vijay.mishra28@example.com",
+    "mobileNumber": "9734883221",
+    "city": "Jalandhar",
+    "productOrService": "Mounting Structures",
+    "quantity": 259,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Pvt Ltd",
+    "email": "sudhir.trivedi29@example.com",
+    "mobileNumber": "9444918221",
+    "city": "Varanasi",
+    "productOrService": "Mounting Structures",
+    "quantity": 737,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Group",
+    "email": "dinesh.yadav33@example.com",
+    "mobileNumber": "9799739702",
+    "city": "Udaipur",
+    "productOrService": "Microchips",
+    "quantity": 520,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Solutions",
+    "email": "amit.nair70@example.com",
+    "mobileNumber": "9789739517",
+    "city": "Guntur",
+    "productOrService": "Microchips",
+    "quantity": 702,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Global",
+    "email": "kiran.sharma30@example.com",
+    "mobileNumber": "9124166265",
+    "city": "Jaipur",
+    "productOrService": "Microchips",
+    "quantity": 320,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Pvt Ltd",
+    "email": "prakash.mishra41@example.com",
+    "mobileNumber": "9536099603",
+    "city": "Tiruchirappalli",
+    "productOrService": "Microchips",
+    "quantity": 247,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Solutions",
+    "email": "rajesh.sharma69@example.com",
+    "mobileNumber": "9240178726",
+    "city": "Surat",
+    "productOrService": "Microchips",
+    "quantity": 688,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Solutions",
+    "email": "amit.bose70@example.com",
+    "mobileNumber": "9869455863",
+    "city": "Rajkot",
+    "productOrService": "Microchips",
+    "quantity": 187,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Solutions",
+    "email": "dinesh.dutta32@example.com",
+    "mobileNumber": "9348170123",
+    "city": "Tirunelveli",
+    "productOrService": "Resistors",
+    "quantity": 286,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Manufacturing",
+    "email": "rahul.nair38@example.com",
+    "mobileNumber": "9370216378",
+    "city": "Firozabad",
+    "productOrService": "Resistors",
+    "quantity": 286,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Industries",
+    "email": "vikram.trivedi75@example.com",
+    "mobileNumber": "9288190054",
+    "city": "Madurai",
+    "productOrService": "Resistors",
+    "quantity": 152,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Group",
+    "email": "rahul.mishra95@example.com",
+    "mobileNumber": "9645572888",
+    "city": "Ghaziabad",
+    "productOrService": "Resistors",
+    "quantity": 410,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Exports",
+    "email": "rahul.yadav97@example.com",
+    "mobileNumber": "9070049090",
+    "city": "Ghaziabad",
+    "productOrService": "Resistors",
+    "quantity": 420,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Systems",
+    "email": "sudhir.dutta84@example.com",
+    "mobileNumber": "9455862245",
+    "city": "Varanasi",
+    "productOrService": "Resistors",
+    "quantity": 708,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Corporation",
+    "email": "dinesh.nair63@example.com",
+    "mobileNumber": "9503260440",
+    "city": "Gwalior",
+    "productOrService": "Capacitors",
+    "quantity": 50,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Mart",
+    "email": "vijay.verma58@example.com",
+    "mobileNumber": "9725953198",
+    "city": "Howrah",
+    "productOrService": "Capacitors",
+    "quantity": 982,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Industries",
+    "email": "ramesh.choudhury77@example.com",
+    "mobileNumber": "9085778357",
+    "city": "Nellore",
+    "productOrService": "Capacitors",
+    "quantity": 834,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Industries",
+    "email": "arun.malhotra8@example.com",
+    "mobileNumber": "9247307251",
+    "city": "Malegaon",
+    "productOrService": "Capacitors",
+    "quantity": 988,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Exports",
+    "email": "vijay.patel15@example.com",
+    "mobileNumber": "9524893049",
+    "city": "Solapur",
+    "productOrService": "Capacitors",
+    "quantity": 791,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Industries",
+    "email": "dinesh.reddy49@example.com",
+    "mobileNumber": "9104587451",
+    "city": "Ujjain",
+    "productOrService": "Capacitors",
+    "quantity": 293,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Industries",
+    "email": "rahul.bose38@example.com",
+    "mobileNumber": "9749542579",
+    "city": "Mysore",
+    "productOrService": "PCB Boards",
+    "quantity": 633,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Exports",
+    "email": "sunil.trivedi41@example.com",
+    "mobileNumber": "9082266299",
+    "city": "Delhi",
+    "productOrService": "PCB Boards",
+    "quantity": 162,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Hub",
+    "email": "vinod.shah80@example.com",
+    "mobileNumber": "9336550298",
+    "city": "Cuttack",
+    "productOrService": "PCB Boards",
+    "quantity": 365,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Exports",
+    "email": "sunil.aggarwal0@example.com",
+    "mobileNumber": "9401567725",
+    "city": "Bangalore",
+    "productOrService": "PCB Boards",
+    "quantity": 212,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Group",
+    "email": "pradeep.khan76@example.com",
+    "mobileNumber": "9835276573",
+    "city": "Loni",
+    "productOrService": "PCB Boards",
+    "quantity": 816,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Manufacturing",
+    "email": "rajesh.singh69@example.com",
+    "mobileNumber": "9778488582",
+    "city": "Chennai",
+    "productOrService": "PCB Boards",
+    "quantity": 922,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Manufacturing",
+    "email": "dinesh.aggarwal51@example.com",
+    "mobileNumber": "9549074393",
+    "city": "Amritsar",
+    "productOrService": "Transistors",
+    "quantity": 826,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Overseas",
+    "email": "vijay.reddy3@example.com",
+    "mobileNumber": "9366069790",
+    "city": "Jhansi",
+    "productOrService": "Transistors",
+    "quantity": 484,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Systems",
+    "email": "vikram.trivedi97@example.com",
+    "mobileNumber": "9305934993",
+    "city": "Hubballi-Dharwad",
+    "productOrService": "Transistors",
+    "quantity": 361,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Solutions",
+    "email": "vinod.gupta15@example.com",
+    "mobileNumber": "9019719226",
+    "city": "Gorakhpur",
+    "productOrService": "Transistors",
+    "quantity": 81,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Traders",
+    "email": "anil.aggarwal73@example.com",
+    "mobileNumber": "9488809005",
+    "city": "Kolkata",
+    "productOrService": "Transistors",
+    "quantity": 700,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Systems",
+    "email": "manoj.bose96@example.com",
+    "mobileNumber": "9478260573",
+    "city": "Siliguri",
+    "productOrService": "Transistors",
+    "quantity": 337,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Overseas",
+    "email": "anil.mishra18@example.com",
+    "mobileNumber": "9338331460",
+    "city": "Gurgaon",
+    "productOrService": "Transformers",
+    "quantity": 368,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Group",
+    "email": "arun.gupta91@example.com",
+    "mobileNumber": "9427461247",
+    "city": "Surat",
+    "productOrService": "Transformers",
+    "quantity": 759,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Industries",
+    "email": "arun.verma49@example.com",
+    "mobileNumber": "9676287108",
+    "city": "Pune",
+    "productOrService": "Transformers",
+    "quantity": 830,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Traders",
+    "email": "dinesh.bose47@example.com",
+    "mobileNumber": "9371395849",
+    "city": "Pimpri-Chinchwad",
+    "productOrService": "Transformers",
+    "quantity": 588,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Group",
+    "email": "prakash.mehta3@example.com",
+    "mobileNumber": "9238942835",
+    "city": "Ambattur",
+    "productOrService": "Transformers",
+    "quantity": 252,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Corporation",
+    "email": "rahul.singh13@example.com",
+    "mobileNumber": "9066069093",
+    "city": "Bikaner",
+    "productOrService": "Transformers",
+    "quantity": 372,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Hub",
+    "email": "amit.patel83@example.com",
+    "mobileNumber": "9664619483",
+    "city": "Jalgaon",
+    "productOrService": "Switchgears",
+    "quantity": 589,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Global",
+    "email": "anil.verma71@example.com",
+    "mobileNumber": "9364963972",
+    "city": "Kolkata",
+    "productOrService": "Switchgears",
+    "quantity": 467,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Systems",
+    "email": "rajesh.jain44@example.com",
+    "mobileNumber": "9364958712",
+    "city": "Durgapur",
+    "productOrService": "Switchgears",
+    "quantity": 623,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Solutions",
+    "email": "ashok.desai90@example.com",
+    "mobileNumber": "9813787888",
+    "city": "Ulhasnagar",
+    "productOrService": "Switchgears",
+    "quantity": 402,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Solutions",
+    "email": "amit.mishra4@example.com",
+    "mobileNumber": "9103962372",
+    "city": "Guntur",
+    "productOrService": "Switchgears",
+    "quantity": 864,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Corporation",
+    "email": "suresh.mehta8@example.com",
+    "mobileNumber": "9884935796",
+    "city": "Bhiwandi",
+    "productOrService": "Switchgears",
+    "quantity": 664,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Manufacturing",
+    "email": "sudhir.dutta42@example.com",
+    "mobileNumber": "9103488463",
+    "city": "Chennai",
+    "productOrService": "Electrical Panels",
+    "quantity": 534,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Industries",
+    "email": "vinod.verma78@example.com",
+    "mobileNumber": "9593394967",
+    "city": "Warangal",
+    "productOrService": "Electrical Panels",
+    "quantity": 783,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Industries",
+    "email": "prakash.singh7@example.com",
+    "mobileNumber": "9371245204",
+    "city": "Ranchi",
+    "productOrService": "Electrical Panels",
+    "quantity": 275,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Enterprises",
+    "email": "rahul.choudhury59@example.com",
+    "mobileNumber": "9389240518",
+    "city": "Howrah",
+    "productOrService": "Electrical Panels",
+    "quantity": 105,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Mart",
+    "email": "manoj.trivedi29@example.com",
+    "mobileNumber": "9469767014",
+    "city": "Nagpur",
+    "productOrService": "Electrical Panels",
+    "quantity": 741,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Manufacturing",
+    "email": "vinod.khan58@example.com",
+    "mobileNumber": "9140913966",
+    "city": "Cuttack",
+    "productOrService": "Electrical Panels",
+    "quantity": 401,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Industries",
+    "email": "anil.khan17@example.com",
+    "mobileNumber": "9041575688",
+    "city": "Saharanpur",
+    "productOrService": "Wires",
+    "quantity": 119,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Pvt Ltd",
+    "email": "vijay.reddy9@example.com",
+    "mobileNumber": "9194200415",
+    "city": "Nashik",
+    "productOrService": "Wires",
+    "quantity": 441,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Systems",
+    "email": "sandip.nair72@example.com",
+    "mobileNumber": "9728744032",
+    "city": "Nanded",
+    "productOrService": "Wires",
+    "quantity": 728,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Corporation",
+    "email": "kiran.malhotra64@example.com",
+    "mobileNumber": "9585428615",
+    "city": "Pimpri-Chinchwad",
+    "productOrService": "Wires",
+    "quantity": 324,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Corporation",
+    "email": "kiran.reddy93@example.com",
+    "mobileNumber": "9787323956",
+    "city": "Jaipur",
+    "productOrService": "Wires",
+    "quantity": 670,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Systems",
+    "email": "ramesh.yadav80@example.com",
+    "mobileNumber": "9618039766",
+    "city": "Meerut",
+    "productOrService": "Wires",
+    "quantity": 431,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Overseas",
+    "email": "ramesh.gupta65@example.com",
+    "mobileNumber": "9378701275",
+    "city": "Kota",
+    "productOrService": "Cables",
+    "quantity": 697,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Enterprises",
+    "email": "ashok.sharma53@example.com",
+    "mobileNumber": "9327810277",
+    "city": "Jammu",
+    "productOrService": "Cables",
+    "quantity": 700,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Enterprises",
+    "email": "sanjay.reddy73@example.com",
+    "mobileNumber": "9361476882",
+    "city": "Ranchi",
+    "productOrService": "Cables",
+    "quantity": 708,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Enterprises",
+    "email": "pradeep.yadav31@example.com",
+    "mobileNumber": "9658355929",
+    "city": "Sangli-Miraj & Kupwad",
+    "productOrService": "Cables",
+    "quantity": 687,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Global",
+    "email": "rajesh.khan76@example.com",
+    "mobileNumber": "9387793888",
+    "city": "Bhilai",
+    "productOrService": "Cables",
+    "quantity": 784,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Exports",
+    "email": "dinesh.sharma59@example.com",
+    "mobileNumber": "9460471634",
+    "city": "Saharanpur",
+    "productOrService": "Cables",
+    "quantity": 313,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Hub",
+    "email": "vikram.yadav38@example.com",
+    "mobileNumber": "9138762802",
+    "city": "Aurangabad",
+    "productOrService": "Generators",
+    "quantity": 769,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Manufacturing",
+    "email": "vijay.nair50@example.com",
+    "mobileNumber": "9221360188",
+    "city": "Asansol",
+    "productOrService": "Generators",
+    "quantity": 687,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Global",
+    "email": "rajesh.choudhury75@example.com",
+    "mobileNumber": "9280956625",
+    "city": "Mumbai",
+    "productOrService": "Generators",
+    "quantity": 497,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Manufacturing",
+    "email": "sudhir.mishra39@example.com",
+    "mobileNumber": "9300357977",
+    "city": "Raipur",
+    "productOrService": "Generators",
+    "quantity": 197,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Industries",
+    "email": "suresh.nair95@example.com",
+    "mobileNumber": "9566718919",
+    "city": "Solapur",
+    "productOrService": "Generators",
+    "quantity": 359,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Systems",
+    "email": "vikram.shah31@example.com",
+    "mobileNumber": "9086009378",
+    "city": "Kolhapur",
+    "productOrService": "Generators",
+    "quantity": 456,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Solutions",
+    "email": "suresh.choudhury88@example.com",
+    "mobileNumber": "9301703279",
+    "city": "Ujjain",
+    "productOrService": "Mobile Accessories",
+    "quantity": 713,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Exports",
+    "email": "rajesh.jain36@example.com",
+    "mobileNumber": "9017796202",
+    "city": "Jalgaon",
+    "productOrService": "Mobile Accessories",
+    "quantity": 389,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Manufacturing",
+    "email": "manoj.mehta79@example.com",
+    "mobileNumber": "9074135271",
+    "city": "Bangalore",
+    "productOrService": "Mobile Accessories",
+    "quantity": 739,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Pvt Ltd",
+    "email": "pradeep.dutta63@example.com",
+    "mobileNumber": "9165506354",
+    "city": "Mysore",
+    "productOrService": "Mobile Accessories",
+    "quantity": 344,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Corporation",
+    "email": "vikram.singh27@example.com",
+    "mobileNumber": "9356730281",
+    "city": "Kolkata",
+    "productOrService": "Mobile Accessories",
+    "quantity": 168,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Traders",
+    "email": "kiran.choudhury0@example.com",
+    "mobileNumber": "9089737137",
+    "city": "Bikaner",
+    "productOrService": "Mobile Accessories",
+    "quantity": 292,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Manufacturing",
+    "email": "pradeep.sharma24@example.com",
+    "mobileNumber": "9252735051",
+    "city": "Chennai",
+    "productOrService": "Bluetooth Speakers",
+    "quantity": 489,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Group",
+    "email": "amit.mishra93@example.com",
+    "mobileNumber": "9208302483",
+    "city": "Pune",
+    "productOrService": "Bluetooth Speakers",
+    "quantity": 360,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Group",
+    "email": "anil.trivedi6@example.com",
+    "mobileNumber": "9431483223",
+    "city": "Kalyan-Dombivli",
+    "productOrService": "Bluetooth Speakers",
+    "quantity": 597,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Overseas",
+    "email": "pradeep.mishra71@example.com",
+    "mobileNumber": "9688437412",
+    "city": "Firozabad",
+    "productOrService": "Bluetooth Speakers",
+    "quantity": 102,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Global",
+    "email": "vikram.gupta20@example.com",
+    "mobileNumber": "9124431849",
+    "city": "Gaya",
+    "productOrService": "Bluetooth Speakers",
+    "quantity": 700,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Exports",
+    "email": "sudhir.mehta25@example.com",
+    "mobileNumber": "9514111226",
+    "city": "Thane",
+    "productOrService": "Bluetooth Speakers",
+    "quantity": 229,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Group",
+    "email": "kiran.mehta8@example.com",
+    "mobileNumber": "9501770705",
+    "city": "Vijayawada",
+    "productOrService": "Smart Watches",
+    "quantity": 153,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Corporation",
+    "email": "dinesh.bose68@example.com",
+    "mobileNumber": "9771286575",
+    "city": "Bhiwandi",
+    "productOrService": "Smart Watches",
+    "quantity": 222,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Group",
+    "email": "sunil.malhotra97@example.com",
+    "mobileNumber": "9362539357",
+    "city": "Thane",
+    "productOrService": "Smart Watches",
+    "quantity": 209,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Corporation",
+    "email": "vijay.trivedi7@example.com",
+    "mobileNumber": "9300606232",
+    "city": "Madurai",
+    "productOrService": "Smart Watches",
+    "quantity": 836,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Overseas",
+    "email": "sudhir.shah61@example.com",
+    "mobileNumber": "9609902380",
+    "city": "Mumbai",
+    "productOrService": "Smart Watches",
+    "quantity": 457,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Traders",
+    "email": "prakash.dutta56@example.com",
+    "mobileNumber": "9388765038",
+    "city": "Pimpri-Chinchwad",
+    "productOrService": "Smart Watches",
+    "quantity": 436,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Solutions",
+    "email": "arun.patel69@example.com",
+    "mobileNumber": "9443210603",
+    "city": "Malegaon",
+    "productOrService": "Smart Home Devices",
+    "quantity": 892,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Group",
+    "email": "vinod.choudhury19@example.com",
+    "mobileNumber": "9602728951",
+    "city": "Guntur",
+    "productOrService": "Smart Home Devices",
+    "quantity": 647,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Manufacturing",
+    "email": "vijay.dutta74@example.com",
+    "mobileNumber": "9045389851",
+    "city": "Amravati",
+    "productOrService": "Smart Home Devices",
+    "quantity": 226,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Hub",
+    "email": "sudhir.trivedi48@example.com",
+    "mobileNumber": "9313045912",
+    "city": "Rajkot",
+    "productOrService": "Smart Home Devices",
+    "quantity": 540,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Industries",
+    "email": "sunil.trivedi46@example.com",
+    "mobileNumber": "9150770902",
+    "city": "Gaya",
+    "productOrService": "Smart Home Devices",
+    "quantity": 967,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Systems",
+    "email": "ramesh.trivedi0@example.com",
+    "mobileNumber": "9765406722",
+    "city": "Ranchi",
+    "productOrService": "Smart Home Devices",
+    "quantity": 97,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Solutions",
+    "email": "vikram.shah94@example.com",
+    "mobileNumber": "9745269374",
+    "city": "Visakhapatnam",
+    "productOrService": "Generic Medicines",
+    "quantity": 965,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Manufacturing",
+    "email": "sanjay.dutta60@example.com",
+    "mobileNumber": "9343491355",
+    "city": "Tiruchirappalli",
+    "productOrService": "Generic Medicines",
+    "quantity": 505,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Systems",
+    "email": "pradeep.bose13@example.com",
+    "mobileNumber": "9784174626",
+    "city": "Nellore",
+    "productOrService": "Generic Medicines",
+    "quantity": 675,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Manufacturing",
+    "email": "ramesh.desai40@example.com",
+    "mobileNumber": "9281370936",
+    "city": "Delhi",
+    "productOrService": "Generic Medicines",
+    "quantity": 281,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Manufacturing",
+    "email": "sanjay.aggarwal78@example.com",
+    "mobileNumber": "9666393459",
+    "city": "Vasai-Virar",
+    "productOrService": "Generic Medicines",
+    "quantity": 261,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Manufacturing",
+    "email": "ashok.yadav77@example.com",
+    "mobileNumber": "9152812328",
+    "city": "Akola",
+    "productOrService": "Generic Medicines",
+    "quantity": 625,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Hub",
+    "email": "sandip.dutta61@example.com",
+    "mobileNumber": "9390890274",
+    "city": "Saharanpur",
+    "productOrService": "API (Raw material)",
+    "quantity": 136,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Traders",
+    "email": "sudhir.patel0@example.com",
+    "mobileNumber": "9089403170",
+    "city": "Sangli-Miraj & Kupwad",
+    "productOrService": "API (Raw material)",
+    "quantity": 135,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Overseas",
+    "email": "sudhir.reddy49@example.com",
+    "mobileNumber": "9406948059",
+    "city": "Loni",
+    "productOrService": "API (Raw material)",
+    "quantity": 817,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Solutions",
+    "email": "vikram.yadav41@example.com",
+    "mobileNumber": "9014670529",
+    "city": "Aurangabad",
+    "productOrService": "API (Raw material)",
+    "quantity": 566,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Manufacturing",
+    "email": "suresh.khan9@example.com",
+    "mobileNumber": "9320894204",
+    "city": "Tiruchirappalli",
+    "productOrService": "API (Raw material)",
+    "quantity": 739,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Pvt Ltd",
+    "email": "kiran.bose81@example.com",
+    "mobileNumber": "9374223626",
+    "city": "Bikaner",
+    "productOrService": "API (Raw material)",
+    "quantity": 665,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Solutions",
+    "email": "amit.yadav48@example.com",
+    "mobileNumber": "9468241776",
+    "city": "Kolhapur",
+    "productOrService": "Ayurvedic medicines",
+    "quantity": 834,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Hub",
+    "email": "dinesh.reddy57@example.com",
+    "mobileNumber": "9112151095",
+    "city": "Kota",
+    "productOrService": "Ayurvedic medicines",
+    "quantity": 829,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Group",
+    "email": "anil.aggarwal60@example.com",
+    "mobileNumber": "9625891388",
+    "city": "Nellore",
+    "productOrService": "Ayurvedic medicines",
+    "quantity": 953,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Pvt Ltd",
+    "email": "ramesh.jain32@example.com",
+    "mobileNumber": "9651602485",
+    "city": "Cuttack",
+    "productOrService": "Ayurvedic medicines",
+    "quantity": 971,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Hub",
+    "email": "kiran.trivedi87@example.com",
+    "mobileNumber": "9727614924",
+    "city": "Kochi",
+    "productOrService": "Ayurvedic medicines",
+    "quantity": 950,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Systems",
+    "email": "suresh.nair4@example.com",
+    "mobileNumber": "9050278673",
+    "city": "Vadodara",
+    "productOrService": "Ayurvedic medicines",
+    "quantity": 541,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Hub",
+    "email": "suresh.desai5@example.com",
+    "mobileNumber": "9563577633",
+    "city": "Sangli-Miraj & Kupwad",
+    "productOrService": "Antibiotics",
+    "quantity": 73,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Corporation",
+    "email": "sudhir.singh42@example.com",
+    "mobileNumber": "9268707564",
+    "city": "Bhopal",
+    "productOrService": "Antibiotics",
+    "quantity": 461,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Traders",
+    "email": "rajesh.yadav93@example.com",
+    "mobileNumber": "9002801245",
+    "city": "Bhubaneswar",
+    "productOrService": "Antibiotics",
+    "quantity": 248,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Group",
+    "email": "anil.desai89@example.com",
+    "mobileNumber": "9201936162",
+    "city": "Coimbatore",
+    "productOrService": "Antibiotics",
+    "quantity": 773,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Traders",
+    "email": "suresh.verma14@example.com",
+    "mobileNumber": "9871280054",
+    "city": "Gwalior",
+    "productOrService": "Antibiotics",
+    "quantity": 793,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Traders",
+    "email": "rahul.patel93@example.com",
+    "mobileNumber": "9271694926",
+    "city": "Nellore",
+    "productOrService": "Antibiotics",
+    "quantity": 144,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Manufacturing",
+    "email": "sunil.patel44@example.com",
+    "mobileNumber": "9488073066",
+    "city": "Rajkot",
+    "productOrService": "MRI Machines",
+    "quantity": 793,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Solutions",
+    "email": "prakash.reddy55@example.com",
+    "mobileNumber": "9863232327",
+    "city": "Surat",
+    "productOrService": "MRI Machines",
+    "quantity": 320,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Enterprises",
+    "email": "arun.bose6@example.com",
+    "mobileNumber": "9743213537",
+    "city": "Udaipur",
+    "productOrService": "MRI Machines",
+    "quantity": 471,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Hub",
+    "email": "sunil.desai11@example.com",
+    "mobileNumber": "9594766188",
+    "city": "Lucknow",
+    "productOrService": "MRI Machines",
+    "quantity": 538,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Hub",
+    "email": "vikram.bose74@example.com",
+    "mobileNumber": "9153778998",
+    "city": "Firozabad",
+    "productOrService": "MRI Machines",
+    "quantity": 366,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Hub",
+    "email": "manoj.khan42@example.com",
+    "mobileNumber": "9011656820",
+    "city": "Jaipur",
+    "productOrService": "MRI Machines",
+    "quantity": 658,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Overseas",
+    "email": "vinod.jain59@example.com",
+    "mobileNumber": "9795962821",
+    "city": "Vasai-Virar",
+    "productOrService": "X-ray",
+    "quantity": 162,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Manufacturing",
+    "email": "rahul.sharma89@example.com",
+    "mobileNumber": "9898743593",
+    "city": "Vijayawada",
+    "productOrService": "X-ray",
+    "quantity": 816,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Pvt Ltd",
+    "email": "vijay.aggarwal33@example.com",
+    "mobileNumber": "9317005872",
+    "city": "Sangli-Miraj & Kupwad",
+    "productOrService": "X-ray",
+    "quantity": 972,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Solutions",
+    "email": "arun.patel84@example.com",
+    "mobileNumber": "9211767459",
+    "city": "Indore",
+    "productOrService": "X-ray",
+    "quantity": 695,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Global",
+    "email": "arun.bose94@example.com",
+    "mobileNumber": "9223451932",
+    "city": "Agra",
+    "productOrService": "X-ray",
+    "quantity": 206,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Enterprises",
+    "email": "anil.yadav26@example.com",
+    "mobileNumber": "9381118001",
+    "city": "Chennai",
+    "productOrService": "X-ray",
+    "quantity": 533,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Systems",
+    "email": "dinesh.mishra90@example.com",
+    "mobileNumber": "9177364179",
+    "city": "Indore",
+    "productOrService": "Patient Monitors",
+    "quantity": 404,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Systems",
+    "email": "manoj.shah7@example.com",
+    "mobileNumber": "9430795868",
+    "city": "Mangalore",
+    "productOrService": "Patient Monitors",
+    "quantity": 905,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Industries",
+    "email": "ashok.yadav89@example.com",
+    "mobileNumber": "9225505823",
+    "city": "Agra",
+    "productOrService": "Patient Monitors",
+    "quantity": 758,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Exports",
+    "email": "vikram.yadav82@example.com",
+    "mobileNumber": "9126973741",
+    "city": "Udaipur",
+    "productOrService": "Patient Monitors",
+    "quantity": 442,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Manufacturing",
+    "email": "ramesh.dutta62@example.com",
+    "mobileNumber": "9548325285",
+    "city": "Chennai",
+    "productOrService": "Patient Monitors",
+    "quantity": 825,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Group",
+    "email": "pradeep.patel4@example.com",
+    "mobileNumber": "9570054740",
+    "city": "Ulhasnagar",
+    "productOrService": "Patient Monitors",
+    "quantity": 494,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Overseas",
+    "email": "vinod.reddy99@example.com",
+    "mobileNumber": "9434360556",
+    "city": "Dhanbad",
+    "productOrService": "Hospital Beds",
+    "quantity": 373,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Solutions",
+    "email": "prakash.nair78@example.com",
+    "mobileNumber": "9534342805",
+    "city": "Firozabad",
+    "productOrService": "Hospital Beds",
+    "quantity": 156,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Group",
+    "email": "amit.khan84@example.com",
+    "mobileNumber": "9000473324",
+    "city": "Vijayawada",
+    "productOrService": "Hospital Beds",
+    "quantity": 164,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Solutions",
+    "email": "amit.mehta42@example.com",
+    "mobileNumber": "9151687890",
+    "city": "Siliguri",
+    "productOrService": "Hospital Beds",
+    "quantity": 167,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Exports",
+    "email": "pradeep.bose31@example.com",
+    "mobileNumber": "9304340968",
+    "city": "Vijayawada",
+    "productOrService": "Hospital Beds",
+    "quantity": 796,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Global",
+    "email": "arun.yadav26@example.com",
+    "mobileNumber": "9212997293",
+    "city": "Gulbarga",
+    "productOrService": "Hospital Beds",
+    "quantity": 138,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Solutions",
+    "email": "vikram.shah74@example.com",
+    "mobileNumber": "9404724041",
+    "city": "Kochi",
+    "productOrService": "Wheelchairs",
+    "quantity": 666,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Traders",
+    "email": "anil.mishra79@example.com",
+    "mobileNumber": "9669624234",
+    "city": "Varanasi",
+    "productOrService": "Wheelchairs",
+    "quantity": 307,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Corporation",
+    "email": "vijay.desai54@example.com",
+    "mobileNumber": "9587677575",
+    "city": "Visakhapatnam",
+    "productOrService": "Wheelchairs",
+    "quantity": 573,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Pvt Ltd",
+    "email": "prakash.mishra2@example.com",
+    "mobileNumber": "9460836910",
+    "city": "Gulbarga",
+    "productOrService": "Wheelchairs",
+    "quantity": 438,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Enterprises",
+    "email": "ramesh.dutta76@example.com",
+    "mobileNumber": "9482280632",
+    "city": "Ahmedabad",
+    "productOrService": "Wheelchairs",
+    "quantity": 615,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Pvt Ltd",
+    "email": "ramesh.aggarwal88@example.com",
+    "mobileNumber": "9375082117",
+    "city": "Ghaziabad",
+    "productOrService": "Wheelchairs",
+    "quantity": 753,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Industries",
+    "email": "ramesh.aggarwal3@example.com",
+    "mobileNumber": "9722491234",
+    "city": "Amravati",
+    "productOrService": "Scalpels",
+    "quantity": 362,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Traders",
+    "email": "pradeep.jain49@example.com",
+    "mobileNumber": "9314821248",
+    "city": "Salem",
+    "productOrService": "Scalpels",
+    "quantity": 471,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Group",
+    "email": "vijay.nair23@example.com",
+    "mobileNumber": "9297643458",
+    "city": "Kota",
+    "productOrService": "Scalpels",
+    "quantity": 859,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Solutions",
+    "email": "sandip.choudhury34@example.com",
+    "mobileNumber": "9320235989",
+    "city": "Asansol",
+    "productOrService": "Scalpels",
+    "quantity": 635,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Solutions",
+    "email": "ashok.bose3@example.com",
+    "mobileNumber": "9044727074",
+    "city": "Jalandhar",
+    "productOrService": "Scalpels",
+    "quantity": 502,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Group",
+    "email": "sunil.desai76@example.com",
+    "mobileNumber": "9605568593",
+    "city": "Bangalore",
+    "productOrService": "Scalpels",
+    "quantity": 425,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Traders",
+    "email": "prakash.sharma99@example.com",
+    "mobileNumber": "9274726455",
+    "city": "Warangal",
+    "productOrService": "Forceps",
+    "quantity": 461,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Traders",
+    "email": "sandip.aggarwal73@example.com",
+    "mobileNumber": "9053237673",
+    "city": "Gorakhpur",
+    "productOrService": "Forceps",
+    "quantity": 152,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Enterprises",
+    "email": "manoj.shah21@example.com",
+    "mobileNumber": "9469458046",
+    "city": "Bhubaneswar",
+    "productOrService": "Forceps",
+    "quantity": 677,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Hub",
+    "email": "ashok.mehta86@example.com",
+    "mobileNumber": "9888462545",
+    "city": "Delhi",
+    "productOrService": "Forceps",
+    "quantity": 196,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Mart",
+    "email": "anil.dutta26@example.com",
+    "mobileNumber": "9042228675",
+    "city": "Gurgaon",
+    "productOrService": "Forceps",
+    "quantity": 202,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Hub",
+    "email": "arun.khan79@example.com",
+    "mobileNumber": "9307730112",
+    "city": "Jaipur",
+    "productOrService": "Forceps",
+    "quantity": 749,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Corporation",
+    "email": "arun.bose80@example.com",
+    "mobileNumber": "9193441645",
+    "city": "Visakhapatnam",
+    "productOrService": "Surgical Gloves",
+    "quantity": 404,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Group",
+    "email": "rajesh.shah43@example.com",
+    "mobileNumber": "9774410875",
+    "city": "Ludhiana",
+    "productOrService": "Surgical Gloves",
+    "quantity": 177,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Pvt Ltd",
+    "email": "arun.aggarwal60@example.com",
+    "mobileNumber": "9266709538",
+    "city": "Rourkela",
+    "productOrService": "Surgical Gloves",
+    "quantity": 611,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Traders",
+    "email": "anil.verma18@example.com",
+    "mobileNumber": "9089613466",
+    "city": "Agra",
+    "productOrService": "Surgical Gloves",
+    "quantity": 552,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Solutions",
+    "email": "vijay.singh40@example.com",
+    "mobileNumber": "9086055422",
+    "city": "Gulbarga",
+    "productOrService": "Surgical Gloves",
+    "quantity": 654,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Pvt Ltd",
+    "email": "sandip.nair89@example.com",
+    "mobileNumber": "9566745519",
+    "city": "Navi Mumbai",
+    "productOrService": "Surgical Gloves",
+    "quantity": 440,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Manufacturing",
+    "email": "vinod.yadav24@example.com",
+    "mobileNumber": "9716846749",
+    "city": "Pune",
+    "productOrService": "Masks",
+    "quantity": 256,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Overseas",
+    "email": "dinesh.bose38@example.com",
+    "mobileNumber": "9084909990",
+    "city": "Delhi",
+    "productOrService": "Masks",
+    "quantity": 420,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Pvt Ltd",
+    "email": "arun.choudhury88@example.com",
+    "mobileNumber": "9656577110",
+    "city": "Howrah",
+    "productOrService": "Masks",
+    "quantity": 710,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Global",
+    "email": "rajesh.shah56@example.com",
+    "mobileNumber": "9056919375",
+    "city": "Tiruchirappalli",
+    "productOrService": "Masks",
+    "quantity": 136,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Group",
+    "email": "pradeep.gupta85@example.com",
+    "mobileNumber": "9553224264",
+    "city": "Navi Mumbai",
+    "productOrService": "Masks",
+    "quantity": 125,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Enterprises",
+    "email": "vikram.sharma68@example.com",
+    "mobileNumber": "9640528413",
+    "city": "Saharanpur",
+    "productOrService": "Masks",
+    "quantity": 811,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Solutions",
+    "email": "vinod.aggarwal23@example.com",
+    "mobileNumber": "9479277624",
+    "city": "Aligarh",
+    "productOrService": "PPE Kits",
+    "quantity": 347,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Hub",
+    "email": "sudhir.khan51@example.com",
+    "mobileNumber": "9728502013",
+    "city": "Jamshedpur",
+    "productOrService": "PPE Kits",
+    "quantity": 718,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Enterprises",
+    "email": "sudhir.dutta32@example.com",
+    "mobileNumber": "9603128356",
+    "city": "Faridabad",
+    "productOrService": "PPE Kits",
+    "quantity": 886,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Solutions",
+    "email": "arun.nair57@example.com",
+    "mobileNumber": "9193964257",
+    "city": "Varanasi",
+    "productOrService": "PPE Kits",
+    "quantity": 202,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Exports",
+    "email": "pradeep.choudhury26@example.com",
+    "mobileNumber": "9674274361",
+    "city": "Kota",
+    "productOrService": "PPE Kits",
+    "quantity": 690,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Traders",
+    "email": "rajesh.gupta69@example.com",
+    "mobileNumber": "9192551936",
+    "city": "Amravati",
+    "productOrService": "PPE Kits",
+    "quantity": 803,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Overseas",
+    "email": "pradeep.singh86@example.com",
+    "mobileNumber": "9225252309",
+    "city": "Patna",
+    "productOrService": "Diagnostic Kits",
+    "quantity": 616,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Manufacturing",
+    "email": "vinod.mishra75@example.com",
+    "mobileNumber": "9263153646",
+    "city": "Kalyan-Dombivli",
+    "productOrService": "Diagnostic Kits",
+    "quantity": 788,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Corporation",
+    "email": "ashok.verma18@example.com",
+    "mobileNumber": "9636776326",
+    "city": "Chennai",
+    "productOrService": "Diagnostic Kits",
+    "quantity": 994,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Manufacturing",
+    "email": "rahul.verma94@example.com",
+    "mobileNumber": "9435725569",
+    "city": "Indore",
+    "productOrService": "Diagnostic Kits",
+    "quantity": 739,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Manufacturing",
+    "email": "ashok.reddy34@example.com",
+    "mobileNumber": "9285744440",
+    "city": "Vadodara",
+    "productOrService": "Diagnostic Kits",
+    "quantity": 880,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Group",
+    "email": "sudhir.reddy93@example.com",
+    "mobileNumber": "9248874190",
+    "city": "Madurai",
+    "productOrService": "Diagnostic Kits",
+    "quantity": 708,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Manufacturing",
+    "email": "rahul.malhotra13@example.com",
+    "mobileNumber": "9603358961",
+    "city": "Tiruchirappalli",
+    "productOrService": "Cotton",
+    "quantity": 782,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Group",
+    "email": "amit.trivedi90@example.com",
+    "mobileNumber": "9550512104",
+    "city": "Noida",
+    "productOrService": "Cotton",
+    "quantity": 871,
+    "unit": "dozen"
+  },
+  {
+    "name": "Manoj Enterprises",
+    "email": "manoj.shah75@example.com",
+    "mobileNumber": "9477005538",
+    "city": "Solapur",
+    "productOrService": "Cotton",
+    "quantity": 291,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Global",
+    "email": "vinod.malhotra75@example.com",
+    "mobileNumber": "9632490475",
+    "city": "Jamshedpur",
+    "productOrService": "Cotton",
+    "quantity": 472,
+    "unit": "dozen"
+  },
+  {
+    "name": "Pradeep Pvt Ltd",
+    "email": "pradeep.mehta70@example.com",
+    "mobileNumber": "9645205292",
+    "city": "Jabalpur",
+    "productOrService": "Cotton",
+    "quantity": 547,
+    "unit": "meter"
+  },
+  {
+    "name": "Sanjay Mart",
+    "email": "sanjay.jain11@example.com",
+    "mobileNumber": "9496143341",
+    "city": "Lucknow",
+    "productOrService": "Cotton",
+    "quantity": 181,
+    "unit": "dozen"
+  },
+  {
+    "name": "Prakash Traders",
+    "email": "prakash.mishra57@example.com",
+    "mobileNumber": "9149376215",
+    "city": "Lucknow",
+    "productOrService": "Polyester",
+    "quantity": 872,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Hub",
+    "email": "sunil.desai88@example.com",
+    "mobileNumber": "9773858826",
+    "city": "Navi Mumbai",
+    "productOrService": "Polyester",
+    "quantity": 574,
+    "unit": "dozen"
+  },
+  {
+    "name": "Vikram Enterprises",
+    "email": "vikram.mishra27@example.com",
+    "mobileNumber": "9858906707",
+    "city": "Indore",
+    "productOrService": "Polyester",
+    "quantity": 129,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Overseas",
+    "email": "anil.verma69@example.com",
+    "mobileNumber": "9414355655",
+    "city": "Lucknow",
+    "productOrService": "Polyester",
+    "quantity": 155,
+    "unit": "meter"
+  },
+  {
+    "name": "Rajesh Hub",
+    "email": "rajesh.gupta50@example.com",
+    "mobileNumber": "9718361186",
+    "city": "Visakhapatnam",
+    "productOrService": "Polyester",
+    "quantity": 602,
+    "unit": "dozen"
+  },
+  {
+    "name": "Manoj Systems",
+    "email": "manoj.reddy12@example.com",
+    "mobileNumber": "9242816508",
+    "city": "Varanasi",
+    "productOrService": "Polyester",
+    "quantity": 180,
+    "unit": "meter"
+  },
+  {
+    "name": "Dinesh Group",
+    "email": "dinesh.yadav36@example.com",
+    "mobileNumber": "9317144811",
+    "city": "Aligarh",
+    "productOrService": "Denims",
+    "quantity": 197,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Group",
+    "email": "vikram.patel3@example.com",
+    "mobileNumber": "9878544715",
+    "city": "Dehradun",
+    "productOrService": "Denims",
+    "quantity": 357,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Traders",
+    "email": "sandip.sharma66@example.com",
+    "mobileNumber": "9575649863",
+    "city": "Sangli-Miraj & Kupwad",
+    "productOrService": "Denims",
+    "quantity": 741,
+    "unit": "meter"
+  },
+  {
+    "name": "Sunil Systems",
+    "email": "sunil.malhotra2@example.com",
+    "mobileNumber": "9513819059",
+    "city": "Mangalore",
+    "productOrService": "Denims",
+    "quantity": 956,
+    "unit": "meter"
+  },
+  {
+    "name": "Kiran Group",
+    "email": "kiran.singh20@example.com",
+    "mobileNumber": "9106751860",
+    "city": "Mumbai",
+    "productOrService": "Denims",
+    "quantity": 220,
+    "unit": "dozen"
+  },
+  {
+    "name": "Sandip Systems",
+    "email": "sandip.gupta91@example.com",
+    "mobileNumber": "9842655460",
+    "city": "Bareilly",
+    "productOrService": "Denims",
+    "quantity": 679,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Mart",
+    "email": "anil.bose7@example.com",
+    "mobileNumber": "9692374957",
+    "city": "Tirunelveli",
+    "productOrService": "Silk",
+    "quantity": 127,
+    "unit": "dozen"
+  },
+  {
+    "name": "Arun Mart",
+    "email": "arun.singh74@example.com",
+    "mobileNumber": "9078082053",
+    "city": "Thane",
+    "productOrService": "Silk",
+    "quantity": 502,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Enterprises",
+    "email": "sanjay.singh54@example.com",
+    "mobileNumber": "9292731439",
+    "city": "Kanpur",
+    "productOrService": "Silk",
+    "quantity": 492,
+    "unit": "dozen"
+  },
+  {
+    "name": "Rahul Enterprises",
+    "email": "rahul.sharma52@example.com",
+    "mobileNumber": "9870874602",
+    "city": "Thane",
+    "productOrService": "Silk",
+    "quantity": 725,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Hub",
+    "email": "rajesh.verma66@example.com",
+    "mobileNumber": "9620882797",
+    "city": "Jalgaon",
+    "productOrService": "Silk",
+    "quantity": 665,
+    "unit": "dozen"
+  },
+  {
+    "name": "Ramesh Global",
+    "email": "ramesh.trivedi65@example.com",
+    "mobileNumber": "9844790658",
+    "city": "Thane",
+    "productOrService": "Silk",
+    "quantity": 661,
+    "unit": "dozen"
+  },
+  {
+    "name": "Pradeep Enterprises",
+    "email": "pradeep.desai23@example.com",
+    "mobileNumber": "9810034152",
+    "city": "Saharanpur",
+    "productOrService": "Rayon",
+    "quantity": 987,
+    "unit": "meter"
+  },
+  {
+    "name": "Sudhir Global",
+    "email": "sudhir.malhotra96@example.com",
+    "mobileNumber": "9689379730",
+    "city": "Vasai-Virar",
+    "productOrService": "Rayon",
+    "quantity": 958,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Hub",
+    "email": "vikram.reddy55@example.com",
+    "mobileNumber": "9693639539",
+    "city": "Akola",
+    "productOrService": "Rayon",
+    "quantity": 249,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Systems",
+    "email": "ramesh.mehta36@example.com",
+    "mobileNumber": "9497224066",
+    "city": "Bangalore",
+    "productOrService": "Rayon",
+    "quantity": 185,
+    "unit": "meter"
+  },
+  {
+    "name": "Sunil Overseas",
+    "email": "sunil.dutta80@example.com",
+    "mobileNumber": "9786500756",
+    "city": "Vadodara",
+    "productOrService": "Rayon",
+    "quantity": 994,
+    "unit": "dozen"
+  },
+  {
+    "name": "Ashok Corporation",
+    "email": "ashok.sharma35@example.com",
+    "mobileNumber": "9877819351",
+    "city": "Mysore",
+    "productOrService": "Rayon",
+    "quantity": 76,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Traders",
+    "email": "manoj.malhotra10@example.com",
+    "mobileNumber": "9596453433",
+    "city": "Hyderabad",
+    "productOrService": "Wool",
+    "quantity": 313,
+    "unit": "dozen"
+  },
+  {
+    "name": "Ashok Exports",
+    "email": "ashok.malhotra93@example.com",
+    "mobileNumber": "9399656448",
+    "city": "Patna",
+    "productOrService": "Wool",
+    "quantity": 734,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Traders",
+    "email": "ramesh.yadav48@example.com",
+    "mobileNumber": "9216248708",
+    "city": "Firozabad",
+    "productOrService": "Wool",
+    "quantity": 431,
+    "unit": "dozen"
+  },
+  {
+    "name": "Anil Exports",
+    "email": "anil.trivedi62@example.com",
+    "mobileNumber": "9065641731",
+    "city": "Kanpur",
+    "productOrService": "Wool",
+    "quantity": 575,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Enterprises",
+    "email": "amit.patel93@example.com",
+    "mobileNumber": "9171105040",
+    "city": "Udaipur",
+    "productOrService": "Wool",
+    "quantity": 977,
+    "unit": "dozen"
+  },
+  {
+    "name": "Vinod Overseas",
+    "email": "vinod.verma40@example.com",
+    "mobileNumber": "9851607065",
+    "city": "Delhi",
+    "productOrService": "Wool",
+    "quantity": 227,
+    "unit": "meter"
+  },
+  {
+    "name": "Rajesh Exports",
+    "email": "rajesh.mishra17@example.com",
+    "mobileNumber": "9397455396",
+    "city": "Jabalpur",
+    "productOrService": "Fabrics for Garments",
+    "quantity": 384,
+    "unit": "meter"
+  },
+  {
+    "name": "Rajesh Industries",
+    "email": "rajesh.singh52@example.com",
+    "mobileNumber": "9328595361",
+    "city": "Gwalior",
+    "productOrService": "Fabrics for Garments",
+    "quantity": 674,
+    "unit": "meter"
+  },
+  {
+    "name": "Ramesh Pvt Ltd",
+    "email": "ramesh.dutta25@example.com",
+    "mobileNumber": "9558756815",
+    "city": "Jamshedpur",
+    "productOrService": "Fabrics for Garments",
+    "quantity": 501,
+    "unit": "meter"
+  },
+  {
+    "name": "Anil Mart",
+    "email": "anil.desai24@example.com",
+    "mobileNumber": "9792642032",
+    "city": "Hubballi-Dharwad",
+    "productOrService": "Fabrics for Garments",
+    "quantity": 413,
+    "unit": "meter"
+  },
+  {
+    "name": "Vijay Global",
+    "email": "vijay.jain81@example.com",
+    "mobileNumber": "9437103429",
+    "city": "Mira-Bhayandar",
+    "productOrService": "Fabrics for Garments",
+    "quantity": 865,
+    "unit": "meter"
+  },
+  {
+    "name": "Vinod Global",
+    "email": "vinod.reddy43@example.com",
+    "mobileNumber": "9378598718",
+    "city": "Firozabad",
+    "productOrService": "Fabrics for Garments",
+    "quantity": 831,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Global",
+    "email": "sanjay.verma72@example.com",
+    "mobileNumber": "9390264838",
+    "city": "Salem",
+    "productOrService": "Wholesale Shirts",
+    "quantity": 146,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Industries",
+    "email": "sanjay.singh80@example.com",
+    "mobileNumber": "9818129072",
+    "city": "Vasai-Virar",
+    "productOrService": "Wholesale Shirts",
+    "quantity": 263,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Solutions",
+    "email": "suresh.patel41@example.com",
+    "mobileNumber": "9229576489",
+    "city": "Amravati",
+    "productOrService": "Wholesale Shirts",
+    "quantity": 262,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Industries",
+    "email": "kiran.dutta10@example.com",
+    "mobileNumber": "9730601753",
+    "city": "Firozabad",
+    "productOrService": "Wholesale Shirts",
+    "quantity": 255,
+    "unit": "dozen"
+  },
+  {
+    "name": "Rajesh Overseas",
+    "email": "rajesh.jain52@example.com",
+    "mobileNumber": "9475835521",
+    "city": "Bareilly",
+    "productOrService": "Wholesale Shirts",
+    "quantity": 141,
+    "unit": "dozen"
+  },
+  {
+    "name": "Arun Corporation",
+    "email": "arun.sharma69@example.com",
+    "mobileNumber": "9152950758",
+    "city": "Mumbai",
+    "productOrService": "Wholesale Shirts",
+    "quantity": 688,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Exports",
+    "email": "ashok.choudhury54@example.com",
+    "mobileNumber": "9288908650",
+    "city": "Kota",
+    "productOrService": "T-shirts",
+    "quantity": 449,
+    "unit": "meter"
+  },
+  {
+    "name": "Manoj Exports",
+    "email": "manoj.dutta52@example.com",
+    "mobileNumber": "9481239079",
+    "city": "Ahmedabad",
+    "productOrService": "T-shirts",
+    "quantity": 68,
+    "unit": "meter"
+  },
+  {
+    "name": "Kiran Overseas",
+    "email": "kiran.choudhury94@example.com",
+    "mobileNumber": "9362350103",
+    "city": "Jamnagar",
+    "productOrService": "T-shirts",
+    "quantity": 666,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Traders",
+    "email": "prakash.choudhury52@example.com",
+    "mobileNumber": "9517634874",
+    "city": "Delhi",
+    "productOrService": "T-shirts",
+    "quantity": 609,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Traders",
+    "email": "rahul.desai62@example.com",
+    "mobileNumber": "9226527554",
+    "city": "Jalandhar",
+    "productOrService": "T-shirts",
+    "quantity": 684,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Enterprises",
+    "email": "manoj.gupta75@example.com",
+    "mobileNumber": "9622807331",
+    "city": "Rajkot",
+    "productOrService": "T-shirts",
+    "quantity": 643,
+    "unit": "meter"
+  },
+  {
+    "name": "Vinod Overseas",
+    "email": "vinod.mehta52@example.com",
+    "mobileNumber": "9166118651",
+    "city": "Jodhpur",
+    "productOrService": "Sarees",
+    "quantity": 559,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Solutions",
+    "email": "pradeep.shah71@example.com",
+    "mobileNumber": "9789502230",
+    "city": "Kolhapur",
+    "productOrService": "Sarees",
+    "quantity": 806,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Manufacturing",
+    "email": "vikram.choudhury79@example.com",
+    "mobileNumber": "9053915674",
+    "city": "Firozabad",
+    "productOrService": "Sarees",
+    "quantity": 421,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Exports",
+    "email": "anil.aggarwal29@example.com",
+    "mobileNumber": "9529039517",
+    "city": "Malegaon",
+    "productOrService": "Sarees",
+    "quantity": 637,
+    "unit": "meter"
+  },
+  {
+    "name": "Vijay Systems",
+    "email": "vijay.desai39@example.com",
+    "mobileNumber": "9832548758",
+    "city": "Jaipur",
+    "productOrService": "Sarees",
+    "quantity": 84,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Traders",
+    "email": "suresh.mishra20@example.com",
+    "mobileNumber": "9865717128",
+    "city": "Agra",
+    "productOrService": "Sarees",
+    "quantity": 568,
+    "unit": "meter"
+  },
+  {
+    "name": "Amit Traders",
+    "email": "amit.khan57@example.com",
+    "mobileNumber": "9804286396",
+    "city": "Mira-Bhayandar",
+    "productOrService": "Kurtis",
+    "quantity": 709,
+    "unit": "meter"
+  },
+  {
+    "name": "Dinesh Solutions",
+    "email": "dinesh.choudhury30@example.com",
+    "mobileNumber": "9736733386",
+    "city": "Kanpur",
+    "productOrService": "Kurtis",
+    "quantity": 639,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Traders",
+    "email": "anil.desai37@example.com",
+    "mobileNumber": "9496703308",
+    "city": "Bhavnagar",
+    "productOrService": "Kurtis",
+    "quantity": 301,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Hub",
+    "email": "amit.reddy98@example.com",
+    "mobileNumber": "9074041801",
+    "city": "Coimbatore",
+    "productOrService": "Kurtis",
+    "quantity": 389,
+    "unit": "meter"
+  },
+  {
+    "name": "Ashok Pvt Ltd",
+    "email": "ashok.aggarwal44@example.com",
+    "mobileNumber": "9253568389",
+    "city": "Kolkata",
+    "productOrService": "Kurtis",
+    "quantity": 163,
+    "unit": "meter"
+  },
+  {
+    "name": "Rahul Overseas",
+    "email": "rahul.jain56@example.com",
+    "mobileNumber": "9597499713",
+    "city": "Bareilly",
+    "productOrService": "Kurtis",
+    "quantity": 707,
+    "unit": "meter"
+  },
+  {
+    "name": "Rajesh Manufacturing",
+    "email": "rajesh.khan46@example.com",
+    "mobileNumber": "9678344287",
+    "city": "Kolhapur",
+    "productOrService": "Suits",
+    "quantity": 977,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Manufacturing",
+    "email": "sudhir.sharma61@example.com",
+    "mobileNumber": "9462695635",
+    "city": "Thane",
+    "productOrService": "Suits",
+    "quantity": 833,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Overseas",
+    "email": "arun.trivedi35@example.com",
+    "mobileNumber": "9660830962",
+    "city": "Cuttack",
+    "productOrService": "Suits",
+    "quantity": 818,
+    "unit": "meter"
+  },
+  {
+    "name": "Sanjay Mart",
+    "email": "sanjay.malhotra99@example.com",
+    "mobileNumber": "9846937881",
+    "city": "Ajmer",
+    "productOrService": "Suits",
+    "quantity": 482,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Enterprises",
+    "email": "vinod.verma9@example.com",
+    "mobileNumber": "9110792766",
+    "city": "Cuttack",
+    "productOrService": "Suits",
+    "quantity": 101,
+    "unit": "meter"
+  },
+  {
+    "name": "Arun Enterprises",
+    "email": "arun.khan43@example.com",
+    "mobileNumber": "9253045945",
+    "city": "Ujjain",
+    "productOrService": "Suits",
+    "quantity": 719,
+    "unit": "meter"
+  },
+  {
+    "name": "Rajesh Group",
+    "email": "rajesh.desai10@example.com",
+    "mobileNumber": "9264072736",
+    "city": "Chennai",
+    "productOrService": "Kids Wear",
+    "quantity": 624,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Industries",
+    "email": "ramesh.nair22@example.com",
+    "mobileNumber": "9790205667",
+    "city": "Kota",
+    "productOrService": "Kids Wear",
+    "quantity": 836,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Overseas",
+    "email": "dinesh.dutta52@example.com",
+    "mobileNumber": "9868712806",
+    "city": "Cuttack",
+    "productOrService": "Kids Wear",
+    "quantity": 571,
+    "unit": "dozen"
+  },
+  {
+    "name": "Dinesh Overseas",
+    "email": "dinesh.singh82@example.com",
+    "mobileNumber": "9706803887",
+    "city": "Pune",
+    "productOrService": "Kids Wear",
+    "quantity": 685,
+    "unit": "dozen"
+  },
+  {
+    "name": "Prakash Manufacturing",
+    "email": "prakash.trivedi95@example.com",
+    "mobileNumber": "9594305943",
+    "city": "Warangal",
+    "productOrService": "Kids Wear",
+    "quantity": 948,
+    "unit": "meter"
+  },
+  {
+    "name": "Rahul Exports",
+    "email": "rahul.patel29@example.com",
+    "mobileNumber": "9118372133",
+    "city": "Lucknow",
+    "productOrService": "Kids Wear",
+    "quantity": 481,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Manufacturing",
+    "email": "sanjay.sharma74@example.com",
+    "mobileNumber": "9033194545",
+    "city": "Kanpur",
+    "productOrService": "Bed Sheets",
+    "quantity": 920,
+    "unit": "dozen"
+  },
+  {
+    "name": "Amit Pvt Ltd",
+    "email": "amit.trivedi76@example.com",
+    "mobileNumber": "9001507914",
+    "city": "Thane",
+    "productOrService": "Bed Sheets",
+    "quantity": 676,
+    "unit": "meter"
+  },
+  {
+    "name": "Pradeep Manufacturing",
+    "email": "pradeep.dutta81@example.com",
+    "mobileNumber": "9644600519",
+    "city": "Ranchi",
+    "productOrService": "Bed Sheets",
+    "quantity": 528,
+    "unit": "dozen"
+  },
+  {
+    "name": "Vinod Solutions",
+    "email": "vinod.dutta90@example.com",
+    "mobileNumber": "9763634078",
+    "city": "Dhanbad",
+    "productOrService": "Bed Sheets",
+    "quantity": 475,
+    "unit": "meter"
+  },
+  {
+    "name": "Amit Systems",
+    "email": "amit.jain81@example.com",
+    "mobileNumber": "9242793334",
+    "city": "Amritsar",
+    "productOrService": "Bed Sheets",
+    "quantity": 301,
+    "unit": "meter"
+  },
+  {
+    "name": "Prakash Overseas",
+    "email": "prakash.malhotra67@example.com",
+    "mobileNumber": "9025774019",
+    "city": "Madurai",
+    "productOrService": "Bed Sheets",
+    "quantity": 233,
+    "unit": "dozen"
+  },
+  {
+    "name": "Amit Global",
+    "email": "amit.mehta91@example.com",
+    "mobileNumber": "9879147236",
+    "city": "Hubballi-Dharwad",
+    "productOrService": "Curtains",
+    "quantity": 376,
+    "unit": "dozen"
+  },
+  {
+    "name": "Sunil Global",
+    "email": "sunil.reddy92@example.com",
+    "mobileNumber": "9238157052",
+    "city": "Jalandhar",
+    "productOrService": "Curtains",
+    "quantity": 388,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Overseas",
+    "email": "vijay.dutta35@example.com",
+    "mobileNumber": "9539399777",
+    "city": "Navi Mumbai",
+    "productOrService": "Curtains",
+    "quantity": 516,
+    "unit": "dozen"
+  },
+  {
+    "name": "Rajesh Exports",
+    "email": "rajesh.mishra33@example.com",
+    "mobileNumber": "9735142431",
+    "city": "Nanded",
+    "productOrService": "Curtains",
+    "quantity": 85,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Pvt Ltd",
+    "email": "vinod.bose34@example.com",
+    "mobileNumber": "9374660694",
+    "city": "Navi Mumbai",
+    "productOrService": "Curtains",
+    "quantity": 92,
+    "unit": "meter"
+  },
+  {
+    "name": "Kiran Exports",
+    "email": "kiran.singh90@example.com",
+    "mobileNumber": "9712172334",
+    "city": "Kochi",
+    "productOrService": "Curtains",
+    "quantity": 314,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Overseas",
+    "email": "vijay.reddy80@example.com",
+    "mobileNumber": "9839873268",
+    "city": "Jammu",
+    "productOrService": "Carpets",
+    "quantity": 398,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Global",
+    "email": "amit.patel10@example.com",
+    "mobileNumber": "9010968165",
+    "city": "Visakhapatnam",
+    "productOrService": "Carpets",
+    "quantity": 943,
+    "unit": "dozen"
+  },
+  {
+    "name": "Kiran Industries",
+    "email": "kiran.dutta18@example.com",
+    "mobileNumber": "9395133191",
+    "city": "Varanasi",
+    "productOrService": "Carpets",
+    "quantity": 133,
+    "unit": "dozen"
+  },
+  {
+    "name": "Vinod Systems",
+    "email": "vinod.mishra10@example.com",
+    "mobileNumber": "9180367809",
+    "city": "Vijayawada",
+    "productOrService": "Carpets",
+    "quantity": 519,
+    "unit": "dozen"
+  },
+  {
+    "name": "Prakash Corporation",
+    "email": "prakash.aggarwal17@example.com",
+    "mobileNumber": "9794549662",
+    "city": "Ghaziabad",
+    "productOrService": "Carpets",
+    "quantity": 566,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Exports",
+    "email": "vikram.jain87@example.com",
+    "mobileNumber": "9118820610",
+    "city": "Ulhasnagar",
+    "productOrService": "Carpets",
+    "quantity": 793,
+    "unit": "dozen"
+  },
+  {
+    "name": "Sunil Hub",
+    "email": "sunil.aggarwal25@example.com",
+    "mobileNumber": "9504435111",
+    "city": "Jabalpur",
+    "productOrService": "Rugs",
+    "quantity": 786,
+    "unit": "meter"
+  },
+  {
+    "name": "Anil Pvt Ltd",
+    "email": "anil.choudhury97@example.com",
+    "mobileNumber": "9272142287",
+    "city": "Madurai",
+    "productOrService": "Rugs",
+    "quantity": 174,
+    "unit": "meter"
+  },
+  {
+    "name": "Rahul Hub",
+    "email": "rahul.mishra50@example.com",
+    "mobileNumber": "9338428671",
+    "city": "Jaipur",
+    "productOrService": "Rugs",
+    "quantity": 424,
+    "unit": "dozen"
+  },
+  {
+    "name": "Vinod Group",
+    "email": "vinod.mehta46@example.com",
+    "mobileNumber": "9512804642",
+    "city": "Jalgaon",
+    "productOrService": "Rugs",
+    "quantity": 782,
+    "unit": "meter"
+  },
+  {
+    "name": "Ramesh Solutions",
+    "email": "ramesh.jain59@example.com",
+    "mobileNumber": "9669226113",
+    "city": "Tirunelveli",
+    "productOrService": "Rugs",
+    "quantity": 569,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Overseas",
+    "email": "rajesh.trivedi80@example.com",
+    "mobileNumber": "9034901077",
+    "city": "Howrah",
+    "productOrService": "Rugs",
+    "quantity": 93,
+    "unit": "meter"
+  },
+  {
+    "name": "Rajesh Overseas",
+    "email": "rajesh.patel14@example.com",
+    "mobileNumber": "9501554519",
+    "city": "Raipur",
+    "productOrService": "Towels",
+    "quantity": 196,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Enterprises",
+    "email": "suresh.mishra11@example.com",
+    "mobileNumber": "9383219847",
+    "city": "Allahabad",
+    "productOrService": "Towels",
+    "quantity": 131,
+    "unit": "meter"
+  },
+  {
+    "name": "Pradeep Solutions",
+    "email": "pradeep.aggarwal73@example.com",
+    "mobileNumber": "9754596448",
+    "city": "Visakhapatnam",
+    "productOrService": "Towels",
+    "quantity": 790,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Enterprises",
+    "email": "prakash.patel80@example.com",
+    "mobileNumber": "9790282649",
+    "city": "Ujjain",
+    "productOrService": "Towels",
+    "quantity": 148,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Corporation",
+    "email": "sanjay.mishra77@example.com",
+    "mobileNumber": "9597556316",
+    "city": "Siliguri",
+    "productOrService": "Towels",
+    "quantity": 155,
+    "unit": "meter"
+  },
+  {
+    "name": "Ramesh Traders",
+    "email": "ramesh.mehta72@example.com",
+    "mobileNumber": "9813678731",
+    "city": "Chandigarh",
+    "productOrService": "Towels",
+    "quantity": 525,
+    "unit": "meter"
+  },
+  {
+    "name": "Rajesh Industries",
+    "email": "rajesh.yadav89@example.com",
+    "mobileNumber": "9894107119",
+    "city": "Durgapur",
+    "productOrService": "Handbags",
+    "quantity": 299,
+    "unit": "dozen"
+  },
+  {
+    "name": "Suresh Mart",
+    "email": "suresh.yadav93@example.com",
+    "mobileNumber": "9237737799",
+    "city": "Jamshedpur",
+    "productOrService": "Handbags",
+    "quantity": 991,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Manufacturing",
+    "email": "rahul.bose33@example.com",
+    "mobileNumber": "9199391796",
+    "city": "Rajkot",
+    "productOrService": "Handbags",
+    "quantity": 725,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Solutions",
+    "email": "dinesh.sharma27@example.com",
+    "mobileNumber": "9190154195",
+    "city": "Kanpur",
+    "productOrService": "Handbags",
+    "quantity": 768,
+    "unit": "dozen"
+  },
+  {
+    "name": "Manoj Group",
+    "email": "manoj.singh83@example.com",
+    "mobileNumber": "9527534709",
+    "city": "Malegaon",
+    "productOrService": "Handbags",
+    "quantity": 570,
+    "unit": "meter"
+  },
+  {
+    "name": "Vinod Hub",
+    "email": "vinod.singh11@example.com",
+    "mobileNumber": "9023173695",
+    "city": "Navi Mumbai",
+    "productOrService": "Handbags",
+    "quantity": 850,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Exports",
+    "email": "rahul.jain65@example.com",
+    "mobileNumber": "9104549380",
+    "city": "Belgaum",
+    "productOrService": "Belts",
+    "quantity": 574,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Hub",
+    "email": "ramesh.patel13@example.com",
+    "mobileNumber": "9346659197",
+    "city": "Noida",
+    "productOrService": "Belts",
+    "quantity": 430,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Industries",
+    "email": "suresh.nair93@example.com",
+    "mobileNumber": "9884546356",
+    "city": "Guwahati",
+    "productOrService": "Belts",
+    "quantity": 381,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Overseas",
+    "email": "prakash.nair1@example.com",
+    "mobileNumber": "9230518881",
+    "city": "Gorakhpur",
+    "productOrService": "Belts",
+    "quantity": 482,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Industries",
+    "email": "sanjay.sharma88@example.com",
+    "mobileNumber": "9639283312",
+    "city": "Mira-Bhayandar",
+    "productOrService": "Belts",
+    "quantity": 836,
+    "unit": "dozen"
+  },
+  {
+    "name": "Sanjay Manufacturing",
+    "email": "sanjay.jain78@example.com",
+    "mobileNumber": "9853518537",
+    "city": "Vadodara",
+    "productOrService": "Belts",
+    "quantity": 543,
+    "unit": "dozen"
+  },
+  {
+    "name": "Ramesh Solutions",
+    "email": "ramesh.yadav42@example.com",
+    "mobileNumber": "9813829532",
+    "city": "Tirunelveli",
+    "productOrService": "Wallets",
+    "quantity": 981,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Traders",
+    "email": "kiran.nair39@example.com",
+    "mobileNumber": "9218366007",
+    "city": "Guwahati",
+    "productOrService": "Wallets",
+    "quantity": 621,
+    "unit": "meter"
+  },
+  {
+    "name": "Vinod Mart",
+    "email": "vinod.choudhury3@example.com",
+    "mobileNumber": "9126556296",
+    "city": "Rourkela",
+    "productOrService": "Wallets",
+    "quantity": 265,
+    "unit": "meter"
+  },
+  {
+    "name": "Rajesh Solutions",
+    "email": "rajesh.reddy96@example.com",
+    "mobileNumber": "9432237632",
+    "city": "Madurai",
+    "productOrService": "Wallets",
+    "quantity": 735,
+    "unit": "meter"
+  },
+  {
+    "name": "Rahul Corporation",
+    "email": "rahul.gupta27@example.com",
+    "mobileNumber": "9245889302",
+    "city": "Jammu",
+    "productOrService": "Wallets",
+    "quantity": 807,
+    "unit": "meter"
+  },
+  {
+    "name": "Sudhir Manufacturing",
+    "email": "sudhir.desai38@example.com",
+    "mobileNumber": "9182768996",
+    "city": "Vadodara",
+    "productOrService": "Wallets",
+    "quantity": 287,
+    "unit": "dozen"
+  },
+  {
+    "name": "Prakash Systems",
+    "email": "prakash.dutta75@example.com",
+    "mobileNumber": "9699236222",
+    "city": "Tirunelveli",
+    "productOrService": "Ties",
+    "quantity": 759,
+    "unit": "meter"
+  },
+  {
+    "name": "Prakash Systems",
+    "email": "prakash.yadav87@example.com",
+    "mobileNumber": "9137518803",
+    "city": "Mysore",
+    "productOrService": "Ties",
+    "quantity": 947,
+    "unit": "dozen"
+  },
+  {
+    "name": "Sanjay Global",
+    "email": "sanjay.nair39@example.com",
+    "mobileNumber": "9345015995",
+    "city": "Faridabad",
+    "productOrService": "Ties",
+    "quantity": 550,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Industries",
+    "email": "pradeep.malhotra5@example.com",
+    "mobileNumber": "9388042272",
+    "city": "Lucknow",
+    "productOrService": "Ties",
+    "quantity": 144,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Enterprises",
+    "email": "amit.reddy13@example.com",
+    "mobileNumber": "9578328323",
+    "city": "Bhilai",
+    "productOrService": "Ties",
+    "quantity": 841,
+    "unit": "dozen"
+  },
+  {
+    "name": "Pradeep Traders",
+    "email": "pradeep.mishra64@example.com",
+    "mobileNumber": "9509077612",
+    "city": "Patna",
+    "productOrService": "Ties",
+    "quantity": 259,
+    "unit": "meter"
+  },
+  {
+    "name": "Sanjay Solutions",
+    "email": "sanjay.bose11@example.com",
+    "mobileNumber": "9064728321",
+    "city": "Ahmedabad",
+    "productOrService": "Cufflinks",
+    "quantity": 78,
+    "unit": "meter"
+  },
+  {
+    "name": "Rahul Group",
+    "email": "rahul.malhotra64@example.com",
+    "mobileNumber": "9202189309",
+    "city": "Mumbai",
+    "productOrService": "Cufflinks",
+    "quantity": 203,
+    "unit": "meter"
+  },
+  {
+    "name": "Pradeep Group",
+    "email": "pradeep.shah65@example.com",
+    "mobileNumber": "9875578936",
+    "city": "Nanded",
+    "productOrService": "Cufflinks",
+    "quantity": 118,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Exports",
+    "email": "ashok.shah1@example.com",
+    "mobileNumber": "9327569629",
+    "city": "Madurai",
+    "productOrService": "Cufflinks",
+    "quantity": 637,
+    "unit": "dozen"
+  },
+  {
+    "name": "Rajesh Hub",
+    "email": "rajesh.trivedi85@example.com",
+    "mobileNumber": "9048153296",
+    "city": "Kolhapur",
+    "productOrService": "Cufflinks",
+    "quantity": 642,
+    "unit": "dozen"
+  },
+  {
+    "name": "Amit Systems",
+    "email": "amit.jain51@example.com",
+    "mobileNumber": "9795699009",
+    "city": "Jammu",
+    "productOrService": "Cufflinks",
+    "quantity": 862,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Pvt Ltd",
+    "email": "arun.jain35@example.com",
+    "mobileNumber": "9834991658",
+    "city": "Raipur",
+    "productOrService": "Footwear",
+    "quantity": 690,
+    "unit": "meter"
+  },
+  {
+    "name": "Pradeep Traders",
+    "email": "pradeep.patel43@example.com",
+    "mobileNumber": "9229311495",
+    "city": "Jalandhar",
+    "productOrService": "Footwear",
+    "quantity": 406,
+    "unit": "meter"
+  },
+  {
+    "name": "Arun Corporation",
+    "email": "arun.nair77@example.com",
+    "mobileNumber": "9045561509",
+    "city": "Amravati",
+    "productOrService": "Footwear",
+    "quantity": 666,
+    "unit": "dozen"
+  },
+  {
+    "name": "Sanjay Enterprises",
+    "email": "sanjay.dutta74@example.com",
+    "mobileNumber": "9555564744",
+    "city": "Durgapur",
+    "productOrService": "Footwear",
+    "quantity": 520,
+    "unit": "dozen"
+  },
+  {
+    "name": "Vikram Mart",
+    "email": "vikram.patel31@example.com",
+    "mobileNumber": "9693683836",
+    "city": "Tirunelveli",
+    "productOrService": "Footwear",
+    "quantity": 745,
+    "unit": "meter"
+  },
+  {
+    "name": "Sunil Exports",
+    "email": "sunil.reddy70@example.com",
+    "mobileNumber": "9189049538",
+    "city": "Jhansi",
+    "productOrService": "Footwear",
+    "quantity": 413,
+    "unit": "dozen"
+  },
+  {
+    "name": "Dinesh Exports",
+    "email": "dinesh.patel5@example.com",
+    "mobileNumber": "9851451967",
+    "city": "Amritsar",
+    "productOrService": "Turmeric (Haldi)",
+    "quantity": 216,
+    "unit": "kg"
+  },
+  {
+    "name": "Pradeep Mart",
+    "email": "pradeep.sharma17@example.com",
+    "mobileNumber": "9613026333",
+    "city": "Ludhiana",
+    "productOrService": "Turmeric (Haldi)",
+    "quantity": 845,
+    "unit": "kg"
+  },
+  {
+    "name": "Suresh Mart",
+    "email": "suresh.jain39@example.com",
+    "mobileNumber": "9877211449",
+    "city": "Tiruchirappalli",
+    "productOrService": "Turmeric (Haldi)",
+    "quantity": 623,
+    "unit": "kg"
+  },
+  {
+    "name": "Anil Traders",
+    "email": "anil.gupta2@example.com",
+    "mobileNumber": "9443522627",
+    "city": "Siliguri",
+    "productOrService": "Turmeric (Haldi)",
+    "quantity": 492,
+    "unit": "kg"
+  },
+  {
+    "name": "Vinod Solutions",
+    "email": "vinod.choudhury11@example.com",
+    "mobileNumber": "9187169515",
+    "city": "Kochi",
+    "productOrService": "Turmeric (Haldi)",
+    "quantity": 394,
+    "unit": "liter"
+  },
+  {
+    "name": "Rahul Solutions",
+    "email": "rahul.trivedi34@example.com",
+    "mobileNumber": "9641043700",
+    "city": "Bhopal",
+    "productOrService": "Turmeric (Haldi)",
+    "quantity": 985,
+    "unit": "liter"
+  },
+  {
+    "name": "Vijay Overseas",
+    "email": "vijay.malhotra74@example.com",
+    "mobileNumber": "9128195359",
+    "city": "Chandigarh",
+    "productOrService": "Cumin (Jeera)",
+    "quantity": 206,
+    "unit": "kg"
+  },
+  {
+    "name": "Vikram Traders",
+    "email": "vikram.choudhury80@example.com",
+    "mobileNumber": "9710073654",
+    "city": "Ambattur",
+    "productOrService": "Cumin (Jeera)",
+    "quantity": 307,
+    "unit": "kg"
+  },
+  {
+    "name": "Manoj Systems",
+    "email": "manoj.verma84@example.com",
+    "mobileNumber": "9010796161",
+    "city": "Amravati",
+    "productOrService": "Cumin (Jeera)",
+    "quantity": 382,
+    "unit": "kg"
+  },
+  {
+    "name": "Amit Traders",
+    "email": "amit.aggarwal32@example.com",
+    "mobileNumber": "9713935613",
+    "city": "Ranchi",
+    "productOrService": "Cumin (Jeera)",
+    "quantity": 327,
+    "unit": "ton"
+  },
+  {
+    "name": "Suresh Enterprises",
+    "email": "suresh.jain45@example.com",
+    "mobileNumber": "9339275912",
+    "city": "Guntur",
+    "productOrService": "Cumin (Jeera)",
+    "quantity": 440,
+    "unit": "kg"
+  },
+  {
+    "name": "Anil Exports",
+    "email": "anil.gupta53@example.com",
+    "mobileNumber": "9867223175",
+    "city": "Faridabad",
+    "productOrService": "Cumin (Jeera)",
+    "quantity": 522,
+    "unit": "ton"
+  },
+  {
+    "name": "Sudhir Traders",
+    "email": "sudhir.nair48@example.com",
+    "mobileNumber": "9250822936",
+    "city": "Jamshedpur",
+    "productOrService": "Cardamom (Elaichi)",
+    "quantity": 256,
+    "unit": "liter"
+  },
+  {
+    "name": "Suresh Manufacturing",
+    "email": "suresh.dutta81@example.com",
+    "mobileNumber": "9803726205",
+    "city": "Belgaum",
+    "productOrService": "Cardamom (Elaichi)",
+    "quantity": 841,
+    "unit": "kg"
+  },
+  {
+    "name": "Sudhir Global",
+    "email": "sudhir.choudhury39@example.com",
+    "mobileNumber": "9082556521",
+    "city": "Jodhpur",
+    "productOrService": "Cardamom (Elaichi)",
+    "quantity": 762,
+    "unit": "liter"
+  },
+  {
+    "name": "Sanjay Overseas",
+    "email": "sanjay.khan46@example.com",
+    "mobileNumber": "9048363014",
+    "city": "Jamnagar",
+    "productOrService": "Cardamom (Elaichi)",
+    "quantity": 656,
+    "unit": "kg"
+  },
+  {
+    "name": "Pradeep Hub",
+    "email": "pradeep.nair79@example.com",
+    "mobileNumber": "9001853478",
+    "city": "Ahmedabad",
+    "productOrService": "Cardamom (Elaichi)",
+    "quantity": 508,
+    "unit": "liter"
+  },
+  {
+    "name": "Kiran Solutions",
+    "email": "kiran.khan6@example.com",
+    "mobileNumber": "9792011521",
+    "city": "Ulhasnagar",
+    "productOrService": "Cardamom (Elaichi)",
+    "quantity": 969,
+    "unit": "ton"
+  },
+  {
+    "name": "Rahul Hub",
+    "email": "rahul.bose93@example.com",
+    "mobileNumber": "9327606380",
+    "city": "Cuttack",
+    "productOrService": "Saffron",
+    "quantity": 124,
+    "unit": "kg"
+  },
+  {
+    "name": "Sandip Overseas",
+    "email": "sandip.jain10@example.com",
+    "mobileNumber": "9840446355",
+    "city": "Akola",
+    "productOrService": "Saffron",
+    "quantity": 250,
+    "unit": "liter"
+  },
+  {
+    "name": "Rajesh Industries",
+    "email": "rajesh.mehta95@example.com",
+    "mobileNumber": "9487546363",
+    "city": "Ghaziabad",
+    "productOrService": "Saffron",
+    "quantity": 998,
+    "unit": "liter"
+  },
+  {
+    "name": "Arun Mart",
+    "email": "arun.verma53@example.com",
+    "mobileNumber": "9536719393",
+    "city": "Coimbatore",
+    "productOrService": "Saffron",
+    "quantity": 536,
+    "unit": "liter"
+  },
+  {
+    "name": "Rajesh Solutions",
+    "email": "rajesh.patel19@example.com",
+    "mobileNumber": "9540489715",
+    "city": "Coimbatore",
+    "productOrService": "Saffron",
+    "quantity": 388,
+    "unit": "liter"
+  },
+  {
+    "name": "Rajesh Industries",
+    "email": "rajesh.verma26@example.com",
+    "mobileNumber": "9746421026",
+    "city": "Madurai",
+    "productOrService": "Saffron",
+    "quantity": 242,
+    "unit": "liter"
+  },
+  {
+    "name": "Sandip Group",
+    "email": "sandip.khan70@example.com",
+    "mobileNumber": "9775147169",
+    "city": "Dehradun",
+    "productOrService": "Black Pepper",
+    "quantity": 506,
+    "unit": "kg"
+  },
+  {
+    "name": "Pradeep Overseas",
+    "email": "pradeep.reddy20@example.com",
+    "mobileNumber": "9463551501",
+    "city": "Kalyan-Dombivli",
+    "productOrService": "Black Pepper",
+    "quantity": 204,
+    "unit": "liter"
+  },
+  {
+    "name": "Kiran Manufacturing",
+    "email": "kiran.mishra70@example.com",
+    "mobileNumber": "9203455661",
+    "city": "Ujjain",
+    "productOrService": "Black Pepper",
+    "quantity": 390,
+    "unit": "liter"
+  },
+  {
+    "name": "Sudhir Pvt Ltd",
+    "email": "sudhir.shah84@example.com",
+    "mobileNumber": "9845491878",
+    "city": "Dehradun",
+    "productOrService": "Black Pepper",
+    "quantity": 436,
+    "unit": "kg"
+  },
+  {
+    "name": "Dinesh Manufacturing",
+    "email": "dinesh.sharma36@example.com",
+    "mobileNumber": "9754997430",
+    "city": "Vadodara",
+    "productOrService": "Black Pepper",
+    "quantity": 509,
+    "unit": "liter"
+  },
+  {
+    "name": "Sanjay Hub",
+    "email": "sanjay.verma15@example.com",
+    "mobileNumber": "9590060803",
+    "city": "Asansol",
+    "productOrService": "Black Pepper",
+    "quantity": 502,
+    "unit": "kg"
+  },
+  {
+    "name": "Amit Systems",
+    "email": "amit.dutta53@example.com",
+    "mobileNumber": "9267683745",
+    "city": "Raipur",
+    "productOrService": "Basmati Rice",
+    "quantity": 545,
+    "unit": "ton"
+  },
+  {
+    "name": "Sudhir Traders",
+    "email": "sudhir.malhotra88@example.com",
+    "mobileNumber": "9584754440",
+    "city": "Kochi",
+    "productOrService": "Basmati Rice",
+    "quantity": 455,
+    "unit": "ton"
+  },
+  {
+    "name": "Manoj Exports",
+    "email": "manoj.desai70@example.com",
+    "mobileNumber": "9878247665",
+    "city": "Malegaon",
+    "productOrService": "Basmati Rice",
+    "quantity": 530,
+    "unit": "ton"
+  },
+  {
+    "name": "Kiran Exports",
+    "email": "kiran.sharma63@example.com",
+    "mobileNumber": "9582208574",
+    "city": "Tiruchirappalli",
+    "productOrService": "Basmati Rice",
+    "quantity": 575,
+    "unit": "kg"
+  },
+  {
+    "name": "Rahul Overseas",
+    "email": "rahul.mishra0@example.com",
+    "mobileNumber": "9616253345",
+    "city": "Mysore",
+    "productOrService": "Basmati Rice",
+    "quantity": 699,
+    "unit": "kg"
+  },
+  {
+    "name": "Ashok Corporation",
+    "email": "ashok.dutta37@example.com",
+    "mobileNumber": "9029425483",
+    "city": "Delhi",
+    "productOrService": "Basmati Rice",
+    "quantity": 830,
+    "unit": "ton"
+  },
+  {
+    "name": "Ramesh Manufacturing",
+    "email": "ramesh.desai79@example.com",
+    "mobileNumber": "9037283616",
+    "city": "Kanpur",
+    "productOrService": "Wheat",
+    "quantity": 603,
+    "unit": "ton"
+  },
+  {
+    "name": "Kiran Exports",
+    "email": "kiran.dutta15@example.com",
+    "mobileNumber": "9083599244",
+    "city": "Bangalore",
+    "productOrService": "Wheat",
+    "quantity": 256,
+    "unit": "ton"
+  },
+  {
+    "name": "Rajesh Pvt Ltd",
+    "email": "rajesh.jain4@example.com",
+    "mobileNumber": "9452079882",
+    "city": "Howrah",
+    "productOrService": "Wheat",
+    "quantity": 244,
+    "unit": "kg"
+  },
+  {
+    "name": "Sanjay Global",
+    "email": "sanjay.patel18@example.com",
+    "mobileNumber": "9102966998",
+    "city": "Rourkela",
+    "productOrService": "Wheat",
+    "quantity": 57,
+    "unit": "kg"
+  },
+  {
+    "name": "Suresh Overseas",
+    "email": "suresh.gupta58@example.com",
+    "mobileNumber": "9193264976",
+    "city": "Noida",
+    "productOrService": "Wheat",
+    "quantity": 214,
+    "unit": "liter"
+  },
+  {
+    "name": "Suresh Systems",
+    "email": "suresh.bose26@example.com",
+    "mobileNumber": "9831693223",
+    "city": "Guwahati",
+    "productOrService": "Wheat",
+    "quantity": 485,
+    "unit": "kg"
+  },
+  {
+    "name": "Rahul Manufacturing",
+    "email": "rahul.mehta24@example.com",
+    "mobileNumber": "9318911596",
+    "city": "Rajkot",
+    "productOrService": "Pulses (Daal)",
+    "quantity": 502,
+    "unit": "ton"
+  },
+  {
+    "name": "Arun Traders",
+    "email": "arun.shah95@example.com",
+    "mobileNumber": "9045304980",
+    "city": "Ahmedabad",
+    "productOrService": "Pulses (Daal)",
+    "quantity": 663,
+    "unit": "kg"
+  },
+  {
+    "name": "Rajesh Overseas",
+    "email": "rajesh.yadav21@example.com",
+    "mobileNumber": "9666981837",
+    "city": "Mangalore",
+    "productOrService": "Pulses (Daal)",
+    "quantity": 298,
+    "unit": "kg"
+  },
+  {
+    "name": "Rahul Overseas",
+    "email": "rahul.gupta71@example.com",
+    "mobileNumber": "9383408767",
+    "city": "Ghaziabad",
+    "productOrService": "Pulses (Daal)",
+    "quantity": 155,
+    "unit": "liter"
+  },
+  {
+    "name": "Amit Pvt Ltd",
+    "email": "amit.mehta94@example.com",
+    "mobileNumber": "9423390262",
+    "city": "Delhi",
+    "productOrService": "Pulses (Daal)",
+    "quantity": 386,
+    "unit": "kg"
+  },
+  {
+    "name": "Ashok Hub",
+    "email": "ashok.choudhury67@example.com",
+    "mobileNumber": "9082484738",
+    "city": "Nashik",
+    "productOrService": "Pulses (Daal)",
+    "quantity": 344,
+    "unit": "kg"
+  },
+  {
+    "name": "Arun Enterprises",
+    "email": "arun.gupta1@example.com",
+    "mobileNumber": "9360391396",
+    "city": "Kalyan-Dombivli",
+    "productOrService": "Sugar",
+    "quantity": 900,
+    "unit": "ton"
+  },
+  {
+    "name": "Vikram Exports",
+    "email": "vikram.malhotra26@example.com",
+    "mobileNumber": "9479912335",
+    "city": "Gorakhpur",
+    "productOrService": "Sugar",
+    "quantity": 852,
+    "unit": "kg"
+  },
+  {
+    "name": "Sandip Global",
+    "email": "sandip.reddy6@example.com",
+    "mobileNumber": "9455810296",
+    "city": "Kolhapur",
+    "productOrService": "Sugar",
+    "quantity": 181,
+    "unit": "liter"
+  },
+  {
+    "name": "Kiran Corporation",
+    "email": "kiran.aggarwal79@example.com",
+    "mobileNumber": "9227551837",
+    "city": "Agra",
+    "productOrService": "Sugar",
+    "quantity": 580,
+    "unit": "ton"
+  },
+  {
+    "name": "Arun Enterprises",
+    "email": "arun.bose49@example.com",
+    "mobileNumber": "9358733787",
+    "city": "Agra",
+    "productOrService": "Sugar",
+    "quantity": 98,
+    "unit": "ton"
+  },
+  {
+    "name": "Manoj Enterprises",
+    "email": "manoj.bose80@example.com",
+    "mobileNumber": "9068960042",
+    "city": "Amritsar",
+    "productOrService": "Sugar",
+    "quantity": 103,
+    "unit": "ton"
+  },
+  {
+    "name": "Pradeep Global",
+    "email": "pradeep.nair59@example.com",
+    "mobileNumber": "9889029770",
+    "city": "Ujjain",
+    "productOrService": "Flour",
+    "quantity": 771,
+    "unit": "kg"
+  },
+  {
+    "name": "Kiran Enterprises",
+    "email": "kiran.desai54@example.com",
+    "mobileNumber": "9286433439",
+    "city": "Gulbarga",
+    "productOrService": "Flour",
+    "quantity": 825,
+    "unit": "ton"
+  },
+  {
+    "name": "Vijay Systems",
+    "email": "vijay.yadav4@example.com",
+    "mobileNumber": "9637249288",
+    "city": "Gorakhpur",
+    "productOrService": "Flour",
+    "quantity": 108,
+    "unit": "liter"
+  },
+  {
+    "name": "Prakash Hub",
+    "email": "prakash.sharma25@example.com",
+    "mobileNumber": "9178909995",
+    "city": "Gulbarga",
+    "productOrService": "Flour",
+    "quantity": 342,
+    "unit": "liter"
+  },
+  {
+    "name": "Dinesh Enterprises",
+    "email": "dinesh.trivedi71@example.com",
+    "mobileNumber": "9531236975",
+    "city": "Amritsar",
+    "productOrService": "Flour",
+    "quantity": 144,
+    "unit": "liter"
+  },
+  {
+    "name": "Vikram Exports",
+    "email": "vikram.mehta98@example.com",
+    "mobileNumber": "9084656634",
+    "city": "Vadodara",
+    "productOrService": "Flour",
+    "quantity": 881,
+    "unit": "kg"
+  },
+  {
+    "name": "Rahul Pvt Ltd",
+    "email": "rahul.nair39@example.com",
+    "mobileNumber": "9087506884",
+    "city": "Salem",
+    "productOrService": "Mustard Oil",
+    "quantity": 679,
+    "unit": "liter"
+  },
+  {
+    "name": "Arun Pvt Ltd",
+    "email": "arun.yadav89@example.com",
+    "mobileNumber": "9143592501",
+    "city": "Mira-Bhayandar",
+    "productOrService": "Mustard Oil",
+    "quantity": 392,
+    "unit": "ton"
+  },
+  {
+    "name": "Rajesh Industries",
+    "email": "rajesh.verma55@example.com",
+    "mobileNumber": "9543636863",
+    "city": "Mira-Bhayandar",
+    "productOrService": "Mustard Oil",
+    "quantity": 848,
+    "unit": "liter"
+  },
+  {
+    "name": "Rahul Enterprises",
+    "email": "rahul.aggarwal2@example.com",
+    "mobileNumber": "9234786118",
+    "city": "Jamshedpur",
+    "productOrService": "Mustard Oil",
+    "quantity": 426,
+    "unit": "liter"
+  },
+  {
+    "name": "Sunil Enterprises",
+    "email": "sunil.sharma86@example.com",
+    "mobileNumber": "9101176319",
+    "city": "Ambattur",
+    "productOrService": "Mustard Oil",
+    "quantity": 674,
+    "unit": "ton"
+  },
+  {
+    "name": "Sandip Industries",
+    "email": "sandip.patel41@example.com",
+    "mobileNumber": "9874909343",
+    "city": "Kochi",
+    "productOrService": "Mustard Oil",
+    "quantity": 945,
+    "unit": "ton"
+  },
+  {
+    "name": "Suresh Manufacturing",
+    "email": "suresh.gupta76@example.com",
+    "mobileNumber": "9798993090",
+    "city": "Aligarh",
+    "productOrService": "Sunflower Oil",
+    "quantity": 263,
+    "unit": "kg"
+  },
+  {
+    "name": "Vikram Industries",
+    "email": "vikram.gupta28@example.com",
+    "mobileNumber": "9562080977",
+    "city": "Jodhpur",
+    "productOrService": "Sunflower Oil",
+    "quantity": 430,
+    "unit": "ton"
+  },
+  {
+    "name": "Suresh Mart",
+    "email": "suresh.choudhury22@example.com",
+    "mobileNumber": "9476022548",
+    "city": "Gaya",
+    "productOrService": "Sunflower Oil",
+    "quantity": 511,
+    "unit": "liter"
+  },
+  {
+    "name": "Arun Manufacturing",
+    "email": "arun.malhotra32@example.com",
+    "mobileNumber": "9305772537",
+    "city": "Vijayawada",
+    "productOrService": "Sunflower Oil",
+    "quantity": 555,
+    "unit": "ton"
+  },
+  {
+    "name": "Manoj Systems",
+    "email": "manoj.mishra35@example.com",
+    "mobileNumber": "9096544004",
+    "city": "Lucknow",
+    "productOrService": "Sunflower Oil",
+    "quantity": 644,
+    "unit": "ton"
+  },
+  {
+    "name": "Vikram Traders",
+    "email": "vikram.gupta40@example.com",
+    "mobileNumber": "9578283687",
+    "city": "Gurgaon",
+    "productOrService": "Sunflower Oil",
+    "quantity": 724,
+    "unit": "ton"
+  },
+  {
+    "name": "Anil Manufacturing",
+    "email": "anil.malhotra75@example.com",
+    "mobileNumber": "9863833162",
+    "city": "Cuttack",
+    "productOrService": "Soyabean Oil",
+    "quantity": 271,
+    "unit": "liter"
+  },
+  {
+    "name": "Vikram Global",
+    "email": "vikram.aggarwal29@example.com",
+    "mobileNumber": "9028394581",
+    "city": "Salem",
+    "productOrService": "Soyabean Oil",
+    "quantity": 475,
+    "unit": "kg"
+  },
+  {
+    "name": "Vijay Solutions",
+    "email": "vijay.nair72@example.com",
+    "mobileNumber": "9443365229",
+    "city": "Coimbatore",
+    "productOrService": "Soyabean Oil",
+    "quantity": 558,
+    "unit": "kg"
+  },
+  {
+    "name": "Suresh Manufacturing",
+    "email": "suresh.khan10@example.com",
+    "mobileNumber": "9758111296",
+    "city": "Navi Mumbai",
+    "productOrService": "Soyabean Oil",
+    "quantity": 187,
+    "unit": "liter"
+  },
+  {
+    "name": "Vijay Systems",
+    "email": "vijay.singh3@example.com",
+    "mobileNumber": "9008160283",
+    "city": "Madurai",
+    "productOrService": "Soyabean Oil",
+    "quantity": 366,
+    "unit": "kg"
+  },
+  {
+    "name": "Vijay Pvt Ltd",
+    "email": "vijay.patel54@example.com",
+    "mobileNumber": "9557946430",
+    "city": "Gaya",
+    "productOrService": "Soyabean Oil",
+    "quantity": 541,
+    "unit": "liter"
+  },
+  {
+    "name": "Amit Manufacturing",
+    "email": "amit.singh12@example.com",
+    "mobileNumber": "9736960822",
+    "city": "Gurgaon",
+    "productOrService": "Ghee",
+    "quantity": 555,
+    "unit": "liter"
+  },
+  {
+    "name": "Prakash Mart",
+    "email": "prakash.khan74@example.com",
+    "mobileNumber": "9406526845",
+    "city": "Jabalpur",
+    "productOrService": "Ghee",
+    "quantity": 683,
+    "unit": "liter"
+  },
+  {
+    "name": "Kiran Group",
+    "email": "kiran.khan80@example.com",
+    "mobileNumber": "9572488812",
+    "city": "Madurai",
+    "productOrService": "Ghee",
+    "quantity": 771,
+    "unit": "liter"
+  },
+  {
+    "name": "Pradeep Corporation",
+    "email": "pradeep.singh14@example.com",
+    "mobileNumber": "9130163692",
+    "city": "Dhanbad",
+    "productOrService": "Ghee",
+    "quantity": 797,
+    "unit": "liter"
+  },
+  {
+    "name": "Vikram Exports",
+    "email": "vikram.malhotra26@example.com",
+    "mobileNumber": "9493831368",
+    "city": "Jhansi",
+    "productOrService": "Ghee",
+    "quantity": 349,
+    "unit": "liter"
+  },
+  {
+    "name": "Manoj Enterprises",
+    "email": "manoj.bose34@example.com",
+    "mobileNumber": "9108879600",
+    "city": "Aurangabad",
+    "productOrService": "Ghee",
+    "quantity": 781,
+    "unit": "kg"
+  },
+  {
+    "name": "Sanjay Traders",
+    "email": "sanjay.mehta55@example.com",
+    "mobileNumber": "9275647399",
+    "city": "Patna",
+    "productOrService": "Tractors",
+    "quantity": 465,
+    "unit": "ton"
+  },
+  {
+    "name": "Rajesh Mart",
+    "email": "rajesh.singh53@example.com",
+    "mobileNumber": "9672873368",
+    "city": "Bareilly",
+    "productOrService": "Tractors",
+    "quantity": 907,
+    "unit": "ton"
+  },
+  {
+    "name": "Arun Group",
+    "email": "arun.sharma37@example.com",
+    "mobileNumber": "9029555691",
+    "city": "Allahabad",
+    "productOrService": "Tractors",
+    "quantity": 739,
+    "unit": "kg"
+  },
+  {
+    "name": "Sunil Pvt Ltd",
+    "email": "sunil.gupta69@example.com",
+    "mobileNumber": "9141177661",
+    "city": "Kolhapur",
+    "productOrService": "Tractors",
+    "quantity": 452,
+    "unit": "liter"
+  },
+  {
+    "name": "Sudhir Manufacturing",
+    "email": "sudhir.jain75@example.com",
+    "mobileNumber": "9255849110",
+    "city": "Gaya",
+    "productOrService": "Tractors",
+    "quantity": 602,
+    "unit": "kg"
+  },
+  {
+    "name": "Rajesh Group",
+    "email": "rajesh.verma86@example.com",
+    "mobileNumber": "9822720834",
+    "city": "Vijayawada",
+    "productOrService": "Tractors",
+    "quantity": 382,
+    "unit": "ton"
+  },
+  {
+    "name": "Pradeep Corporation",
+    "email": "pradeep.shah73@example.com",
+    "mobileNumber": "9883081191",
+    "city": "Nagpur",
+    "productOrService": "Threshers",
+    "quantity": 238,
+    "unit": "ton"
+  },
+  {
+    "name": "Dinesh Exports",
+    "email": "dinesh.bose50@example.com",
+    "mobileNumber": "9835238144",
+    "city": "Gurgaon",
+    "productOrService": "Threshers",
+    "quantity": 468,
+    "unit": "ton"
+  },
+  {
+    "name": "Sandip Solutions",
+    "email": "sandip.mehta1@example.com",
+    "mobileNumber": "9174184829",
+    "city": "Ambattur",
+    "productOrService": "Threshers",
+    "quantity": 519,
+    "unit": "ton"
+  },
+  {
+    "name": "Dinesh Corporation",
+    "email": "dinesh.bose28@example.com",
+    "mobileNumber": "9001479890",
+    "city": "Nanded",
+    "productOrService": "Threshers",
+    "quantity": 857,
+    "unit": "kg"
+  },
+  {
+    "name": "Amit Solutions",
+    "email": "amit.khan38@example.com",
+    "mobileNumber": "9118516325",
+    "city": "Guntur",
+    "productOrService": "Threshers",
+    "quantity": 519,
+    "unit": "ton"
+  },
+  {
+    "name": "Amit Manufacturing",
+    "email": "amit.verma81@example.com",
+    "mobileNumber": "9571120583",
+    "city": "Nagpur",
+    "productOrService": "Threshers",
+    "quantity": 992,
+    "unit": "kg"
+  },
+  {
+    "name": "Sudhir Industries",
+    "email": "sudhir.mishra53@example.com",
+    "mobileNumber": "9432375356",
+    "city": "Ajmer",
+    "productOrService": "Irrigation Pipes",
+    "quantity": 629,
+    "unit": "liter"
+  },
+  {
+    "name": "Sandip Solutions",
+    "email": "sandip.desai38@example.com",
+    "mobileNumber": "9530390336",
+    "city": "Cuttack",
+    "productOrService": "Irrigation Pipes",
+    "quantity": 88,
+    "unit": "kg"
+  },
+  {
+    "name": "Manoj Industries",
+    "email": "manoj.dutta64@example.com",
+    "mobileNumber": "9775563244",
+    "city": "Firozabad",
+    "productOrService": "Irrigation Pipes",
+    "quantity": 174,
+    "unit": "kg"
+  },
+  {
+    "name": "Ashok Overseas",
+    "email": "ashok.aggarwal54@example.com",
+    "mobileNumber": "9554043254",
+    "city": "Firozabad",
+    "productOrService": "Irrigation Pipes",
+    "quantity": 80,
+    "unit": "kg"
+  },
+  {
+    "name": "Anil Pvt Ltd",
+    "email": "anil.mehta2@example.com",
+    "mobileNumber": "9297391350",
+    "city": "Ranchi",
+    "productOrService": "Irrigation Pipes",
+    "quantity": 788,
+    "unit": "ton"
+  },
+  {
+    "name": "Sanjay Solutions",
+    "email": "sanjay.verma40@example.com",
+    "mobileNumber": "9119071147",
+    "city": "Jalandhar",
+    "productOrService": "Irrigation Pipes",
+    "quantity": 173,
+    "unit": "kg"
+  },
+  {
+    "name": "Ramesh Hub",
+    "email": "ramesh.gupta83@example.com",
+    "mobileNumber": "9669139221",
+    "city": "Saharanpur",
+    "productOrService": "Fertilizer Spreaders",
+    "quantity": 767,
+    "unit": "liter"
+  },
+  {
+    "name": "Anil Corporation",
+    "email": "anil.gupta32@example.com",
+    "mobileNumber": "9751933833",
+    "city": "Tirunelveli",
+    "productOrService": "Fertilizer Spreaders",
+    "quantity": 233,
+    "unit": "ton"
+  },
+  {
+    "name": "Sunil Corporation",
+    "email": "sunil.gupta56@example.com",
+    "mobileNumber": "9783246988",
+    "city": "Pimpri-Chinchwad",
+    "productOrService": "Fertilizer Spreaders",
+    "quantity": 90,
+    "unit": "liter"
+  },
+  {
+    "name": "Anil Enterprises",
+    "email": "anil.dutta33@example.com",
+    "mobileNumber": "9772440094",
+    "city": "Dehradun",
+    "productOrService": "Fertilizer Spreaders",
+    "quantity": 123,
+    "unit": "liter"
+  },
+  {
+    "name": "Rajesh Mart",
+    "email": "rajesh.verma76@example.com",
+    "mobileNumber": "9443227343",
+    "city": "Durgapur",
+    "productOrService": "Fertilizer Spreaders",
+    "quantity": 348,
+    "unit": "liter"
+  },
+  {
+    "name": "Suresh Global",
+    "email": "suresh.bose81@example.com",
+    "mobileNumber": "9141612381",
+    "city": "Madurai",
+    "productOrService": "Fertilizer Spreaders",
+    "quantity": 914,
+    "unit": "kg"
+  },
+  {
+    "name": "Ashok Traders",
+    "email": "ashok.gupta11@example.com",
+    "mobileNumber": "9520038086",
+    "city": "Cuttack",
+    "productOrService": "Cement",
+    "quantity": 278,
+    "unit": "ton"
+  },
+  {
+    "name": "Prakash Manufacturing",
+    "email": "prakash.yadav9@example.com",
+    "mobileNumber": "9047778599",
+    "city": "Ulhasnagar",
+    "productOrService": "Cement",
+    "quantity": 614,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Mart",
+    "email": "rahul.gupta4@example.com",
+    "mobileNumber": "9373812355",
+    "city": "Rajkot",
+    "productOrService": "Cement",
+    "quantity": 66,
+    "unit": "ton"
+  },
+  {
+    "name": "Sunil Hub",
+    "email": "sunil.reddy21@example.com",
+    "mobileNumber": "9036253827",
+    "city": "Nagpur",
+    "productOrService": "Cement",
+    "quantity": 320,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Enterprises",
+    "email": "rajesh.aggarwal74@example.com",
+    "mobileNumber": "9705166463",
+    "city": "Vasai-Virar",
+    "productOrService": "Cement",
+    "quantity": 442,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Enterprises",
+    "email": "sunil.dutta61@example.com",
+    "mobileNumber": "9293553116",
+    "city": "Bhubaneswar",
+    "productOrService": "Cement",
+    "quantity": 292,
+    "unit": "ton"
+  },
+  {
+    "name": "Manoj Traders",
+    "email": "manoj.jain16@example.com",
+    "mobileNumber": "9120425196",
+    "city": "Vijayawada",
+    "productOrService": "TMT Bars (Sariya)",
+    "quantity": 306,
+    "unit": "ton"
+  },
+  {
+    "name": "Sudhir Industries",
+    "email": "sudhir.shah77@example.com",
+    "mobileNumber": "9829575795",
+    "city": "Aurangabad",
+    "productOrService": "TMT Bars (Sariya)",
+    "quantity": 573,
+    "unit": "ton"
+  },
+  {
+    "name": "Sanjay Traders",
+    "email": "sanjay.verma54@example.com",
+    "mobileNumber": "9363833949",
+    "city": "Dhanbad",
+    "productOrService": "TMT Bars (Sariya)",
+    "quantity": 938,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Exports",
+    "email": "prakash.yadav80@example.com",
+    "mobileNumber": "9071048690",
+    "city": "Durgapur",
+    "productOrService": "TMT Bars (Sariya)",
+    "quantity": 175,
+    "unit": "ton"
+  },
+  {
+    "name": "Sunil Group",
+    "email": "sunil.trivedi88@example.com",
+    "mobileNumber": "9217573701",
+    "city": "Nagpur",
+    "productOrService": "TMT Bars (Sariya)",
+    "quantity": 597,
+    "unit": "meter"
+  },
+  {
+    "name": "Suresh Exports",
+    "email": "suresh.nair70@example.com",
+    "mobileNumber": "9760403363",
+    "city": "Tirunelveli",
+    "productOrService": "TMT Bars (Sariya)",
+    "quantity": 137,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Exports",
+    "email": "kiran.desai49@example.com",
+    "mobileNumber": "9507700556",
+    "city": "Maheshtala",
+    "productOrService": "Tiles",
+    "quantity": 570,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Mart",
+    "email": "ashok.jain6@example.com",
+    "mobileNumber": "9837681601",
+    "city": "Jaipur",
+    "productOrService": "Tiles",
+    "quantity": 166,
+    "unit": "ton"
+  },
+  {
+    "name": "Rajesh Enterprises",
+    "email": "rajesh.singh8@example.com",
+    "mobileNumber": "9577606805",
+    "city": "Asansol",
+    "productOrService": "Tiles",
+    "quantity": 632,
+    "unit": "meter"
+  },
+  {
+    "name": "Arun Enterprises",
+    "email": "arun.gupta82@example.com",
+    "mobileNumber": "9110794547",
+    "city": "Thane",
+    "productOrService": "Tiles",
+    "quantity": 973,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Enterprises",
+    "email": "sudhir.mishra63@example.com",
+    "mobileNumber": "9005272649",
+    "city": "Vijayawada",
+    "productOrService": "Tiles",
+    "quantity": 774,
+    "unit": "meter"
+  },
+  {
+    "name": "Rahul Traders",
+    "email": "rahul.yadav28@example.com",
+    "mobileNumber": "9699987464",
+    "city": "Firozabad",
+    "productOrService": "Tiles",
+    "quantity": 942,
+    "unit": "ton"
+  },
+  {
+    "name": "Vinod Manufacturing",
+    "email": "vinod.reddy31@example.com",
+    "mobileNumber": "9390476698",
+    "city": "Kanpur",
+    "productOrService": "Bricks",
+    "quantity": 646,
+    "unit": "meter"
+  },
+  {
+    "name": "Dinesh Overseas",
+    "email": "dinesh.gupta88@example.com",
+    "mobileNumber": "9200640832",
+    "city": "Hubballi-Dharwad",
+    "productOrService": "Bricks",
+    "quantity": 268,
+    "unit": "ton"
+  },
+  {
+    "name": "Suresh Overseas",
+    "email": "suresh.nair42@example.com",
+    "mobileNumber": "9822712401",
+    "city": "Warangal",
+    "productOrService": "Bricks",
+    "quantity": 838,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Enterprises",
+    "email": "sandip.jain56@example.com",
+    "mobileNumber": "9812544455",
+    "city": "Varanasi",
+    "productOrService": "Bricks",
+    "quantity": 387,
+    "unit": "ton"
+  },
+  {
+    "name": "Prakash Industries",
+    "email": "prakash.shah74@example.com",
+    "mobileNumber": "9778147894",
+    "city": "Rourkela",
+    "productOrService": "Bricks",
+    "quantity": 846,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Pvt Ltd",
+    "email": "ashok.khan91@example.com",
+    "mobileNumber": "9848293180",
+    "city": "Jabalpur",
+    "productOrService": "Bricks",
+    "quantity": 200,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Systems",
+    "email": "rajesh.shah8@example.com",
+    "mobileNumber": "9726976813",
+    "city": "Firozabad",
+    "productOrService": "Granite",
+    "quantity": 253,
+    "unit": "ton"
+  },
+  {
+    "name": "Amit Overseas",
+    "email": "amit.dutta56@example.com",
+    "mobileNumber": "9710179974",
+    "city": "Bareilly",
+    "productOrService": "Granite",
+    "quantity": 185,
+    "unit": "ton"
+  },
+  {
+    "name": "Ramesh Pvt Ltd",
+    "email": "ramesh.jain42@example.com",
+    "mobileNumber": "9737461306",
+    "city": "Gulbarga",
+    "productOrService": "Granite",
+    "quantity": 300,
+    "unit": "ton"
+  },
+  {
+    "name": "Rajesh Solutions",
+    "email": "rajesh.patel51@example.com",
+    "mobileNumber": "9601372919",
+    "city": "Rajkot",
+    "productOrService": "Granite",
+    "quantity": 935,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Systems",
+    "email": "suresh.reddy84@example.com",
+    "mobileNumber": "9498421134",
+    "city": "Salem",
+    "productOrService": "Granite",
+    "quantity": 741,
+    "unit": "meter"
+  },
+  {
+    "name": "Arun Global",
+    "email": "arun.mehta58@example.com",
+    "mobileNumber": "9749163420",
+    "city": "Ludhiana",
+    "productOrService": "Granite",
+    "quantity": 754,
+    "unit": "meter"
+  },
+  {
+    "name": "Vijay Corporation",
+    "email": "vijay.dutta93@example.com",
+    "mobileNumber": "9578449116",
+    "city": "Mysore",
+    "productOrService": "Marble",
+    "quantity": 421,
+    "unit": "meter"
+  },
+  {
+    "name": "Amit Traders",
+    "email": "amit.patel94@example.com",
+    "mobileNumber": "9142099550",
+    "city": "Nellore",
+    "productOrService": "Marble",
+    "quantity": 797,
+    "unit": "ton"
+  },
+  {
+    "name": "Sanjay Traders",
+    "email": "sanjay.mishra14@example.com",
+    "mobileNumber": "9850866319",
+    "city": "Loni",
+    "productOrService": "Marble",
+    "quantity": 123,
+    "unit": "meter"
+  },
+  {
+    "name": "Rahul Corporation",
+    "email": "rahul.khan76@example.com",
+    "mobileNumber": "9890337374",
+    "city": "Amravati",
+    "productOrService": "Marble",
+    "quantity": 393,
+    "unit": "ton"
+  },
+  {
+    "name": "Rahul Industries",
+    "email": "rahul.bose45@example.com",
+    "mobileNumber": "9215292326",
+    "city": "Amritsar",
+    "productOrService": "Marble",
+    "quantity": 721,
+    "unit": "ton"
+  },
+  {
+    "name": "Amit Overseas",
+    "email": "amit.patel31@example.com",
+    "mobileNumber": "9282799891",
+    "city": "Varanasi",
+    "productOrService": "Marble",
+    "quantity": 894,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Group",
+    "email": "sandip.gupta65@example.com",
+    "mobileNumber": "9206905358",
+    "city": "Sangli-Miraj & Kupwad",
+    "productOrService": "Faucets",
+    "quantity": 358,
+    "unit": "ton"
+  },
+  {
+    "name": "Pradeep Manufacturing",
+    "email": "pradeep.mehta70@example.com",
+    "mobileNumber": "9257740944",
+    "city": "Jodhpur",
+    "productOrService": "Faucets",
+    "quantity": 290,
+    "unit": "ton"
+  },
+  {
+    "name": "Prakash Mart",
+    "email": "prakash.jain25@example.com",
+    "mobileNumber": "9612304620",
+    "city": "Gulbarga",
+    "productOrService": "Faucets",
+    "quantity": 199,
+    "unit": "meter"
+  },
+  {
+    "name": "Ramesh Global",
+    "email": "ramesh.yadav36@example.com",
+    "mobileNumber": "9016384452",
+    "city": "Madurai",
+    "productOrService": "Faucets",
+    "quantity": 939,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Overseas",
+    "email": "sandip.nair95@example.com",
+    "mobileNumber": "9793651586",
+    "city": "Nagpur",
+    "productOrService": "Faucets",
+    "quantity": 882,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Solutions",
+    "email": "vinod.desai16@example.com",
+    "mobileNumber": "9090647221",
+    "city": "Salem",
+    "productOrService": "Faucets",
+    "quantity": 73,
+    "unit": "meter"
+  },
+  {
+    "name": "Suresh Hub",
+    "email": "suresh.gupta49@example.com",
+    "mobileNumber": "9107225626",
+    "city": "Aurangabad",
+    "productOrService": "Wash Basins",
+    "quantity": 752,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Manufacturing",
+    "email": "rahul.yadav88@example.com",
+    "mobileNumber": "9812852091",
+    "city": "Surat",
+    "productOrService": "Wash Basins",
+    "quantity": 790,
+    "unit": "ton"
+  },
+  {
+    "name": "Sandip Pvt Ltd",
+    "email": "sandip.desai82@example.com",
+    "mobileNumber": "9471796714",
+    "city": "Vadodara",
+    "productOrService": "Wash Basins",
+    "quantity": 337,
+    "unit": "meter"
+  },
+  {
+    "name": "Vinod Group",
+    "email": "vinod.gupta33@example.com",
+    "mobileNumber": "9154172172",
+    "city": "Howrah",
+    "productOrService": "Wash Basins",
+    "quantity": 701,
+    "unit": "meter"
+  },
+  {
+    "name": "Amit Industries",
+    "email": "amit.nair30@example.com",
+    "mobileNumber": "9866151276",
+    "city": "Delhi",
+    "productOrService": "Wash Basins",
+    "quantity": 315,
+    "unit": "meter"
+  },
+  {
+    "name": "Kiran Overseas",
+    "email": "kiran.shah18@example.com",
+    "mobileNumber": "9893751512",
+    "city": "Firozabad",
+    "productOrService": "Wash Basins",
+    "quantity": 332,
+    "unit": "ton"
+  },
+  {
+    "name": "Rajesh Systems",
+    "email": "rajesh.malhotra61@example.com",
+    "mobileNumber": "9740424089",
+    "city": "Nellore",
+    "productOrService": "Toilets",
+    "quantity": 767,
+    "unit": "ton"
+  },
+  {
+    "name": "Sanjay Group",
+    "email": "sanjay.jain95@example.com",
+    "mobileNumber": "9775470285",
+    "city": "Sangli-Miraj & Kupwad",
+    "productOrService": "Toilets",
+    "quantity": 394,
+    "unit": "meter"
+  },
+  {
+    "name": "Sudhir Exports",
+    "email": "sudhir.verma67@example.com",
+    "mobileNumber": "9665071273",
+    "city": "Gwalior",
+    "productOrService": "Toilets",
+    "quantity": 665,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Systems",
+    "email": "sanjay.shah54@example.com",
+    "mobileNumber": "9351049610",
+    "city": "Mumbai",
+    "productOrService": "Toilets",
+    "quantity": 145,
+    "unit": "meter"
+  },
+  {
+    "name": "Ashok Group",
+    "email": "ashok.nair12@example.com",
+    "mobileNumber": "9711214575",
+    "city": "Agra",
+    "productOrService": "Toilets",
+    "quantity": 716,
+    "unit": "meter"
+  },
+  {
+    "name": "Vijay Enterprises",
+    "email": "vijay.choudhury5@example.com",
+    "mobileNumber": "9332310971",
+    "city": "Aligarh",
+    "productOrService": "Toilets",
+    "quantity": 947,
+    "unit": "ton"
+  },
+  {
+    "name": "Manoj Traders",
+    "email": "manoj.mehta99@example.com",
+    "mobileNumber": "9710535811",
+    "city": "Bhilai",
+    "productOrService": "Showers",
+    "quantity": 863,
+    "unit": "ton"
+  },
+  {
+    "name": "Suresh Group",
+    "email": "suresh.yadav63@example.com",
+    "mobileNumber": "9875030498",
+    "city": "Faridabad",
+    "productOrService": "Showers",
+    "quantity": 969,
+    "unit": "meter"
+  },
+  {
+    "name": "Amit Global",
+    "email": "amit.patel67@example.com",
+    "mobileNumber": "9887907286",
+    "city": "Gwalior",
+    "productOrService": "Showers",
+    "quantity": 199,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Corporation",
+    "email": "ramesh.dutta20@example.com",
+    "mobileNumber": "9386434850",
+    "city": "Mumbai",
+    "productOrService": "Showers",
+    "quantity": 960,
+    "unit": "meter"
+  },
+  {
+    "name": "Vikram Industries",
+    "email": "vikram.patel99@example.com",
+    "mobileNumber": "9404709575",
+    "city": "Bhavnagar",
+    "productOrService": "Showers",
+    "quantity": 814,
+    "unit": "ton"
+  },
+  {
+    "name": "Ramesh Manufacturing",
+    "email": "ramesh.jain67@example.com",
+    "mobileNumber": "9661030846",
+    "city": "Srinagar",
+    "productOrService": "Showers",
+    "quantity": 529,
+    "unit": "meter"
+  },
+  {
+    "name": "Vinod Traders",
+    "email": "vinod.khan52@example.com",
+    "mobileNumber": "9801573844",
+    "city": "Durgapur",
+    "productOrService": "Bath Fittings",
+    "quantity": 591,
+    "unit": "meter"
+  },
+  {
+    "name": "Sandip Corporation",
+    "email": "sandip.yadav21@example.com",
+    "mobileNumber": "9870431250",
+    "city": "Durgapur",
+    "productOrService": "Bath Fittings",
+    "quantity": 905,
+    "unit": "ton"
+  },
+  {
+    "name": "Arun Mart",
+    "email": "arun.dutta75@example.com",
+    "mobileNumber": "9134877889",
+    "city": "Jalgaon",
+    "productOrService": "Bath Fittings",
+    "quantity": 296,
+    "unit": "meter"
+  },
+  {
+    "name": "Vijay Manufacturing",
+    "email": "vijay.khan97@example.com",
+    "mobileNumber": "9814214063",
+    "city": "Jaipur",
+    "productOrService": "Bath Fittings",
+    "quantity": 850,
+    "unit": "meter"
+  },
+  {
+    "name": "Vijay Exports",
+    "email": "vijay.patel21@example.com",
+    "mobileNumber": "9367076763",
+    "city": "Maheshtala",
+    "productOrService": "Bath Fittings",
+    "quantity": 392,
+    "unit": "meter"
+  },
+  {
+    "name": "Rajesh Industries",
+    "email": "rajesh.aggarwal94@example.com",
+    "mobileNumber": "9030223545",
+    "city": "Amravati",
+    "productOrService": "Bath Fittings",
+    "quantity": 352,
+    "unit": "ton"
+  },
+  {
+    "name": "Anil Exports",
+    "email": "anil.patel62@example.com",
+    "mobileNumber": "9084324421",
+    "city": "Faridabad",
+    "productOrService": "Plywood",
+    "quantity": 563,
+    "unit": "meter"
+  },
+  {
+    "name": "Manoj Systems",
+    "email": "manoj.gupta1@example.com",
+    "mobileNumber": "9056021771",
+    "city": "Gurgaon",
+    "productOrService": "Plywood",
+    "quantity": 958,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Hub",
+    "email": "rajesh.patel85@example.com",
+    "mobileNumber": "9300590795",
+    "city": "Amritsar",
+    "productOrService": "Plywood",
+    "quantity": 439,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Global",
+    "email": "prakash.yadav46@example.com",
+    "mobileNumber": "9688549528",
+    "city": "Ujjain",
+    "productOrService": "Plywood",
+    "quantity": 181,
+    "unit": "meter"
+  },
+  {
+    "name": "Sunil Global",
+    "email": "sunil.patel13@example.com",
+    "mobileNumber": "9155477455",
+    "city": "Rourkela",
+    "productOrService": "Plywood",
+    "quantity": 771,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Global",
+    "email": "sanjay.patel21@example.com",
+    "mobileNumber": "9404418764",
+    "city": "Gaya",
+    "productOrService": "Plywood",
+    "quantity": 677,
+    "unit": "ton"
+  },
+  {
+    "name": "Dinesh Traders",
+    "email": "dinesh.dutta64@example.com",
+    "mobileNumber": "9156524703",
+    "city": "Salem",
+    "productOrService": "Laminates",
+    "quantity": 839,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Corporation",
+    "email": "prakash.reddy12@example.com",
+    "mobileNumber": "9638528457",
+    "city": "Nellore",
+    "productOrService": "Laminates",
+    "quantity": 92,
+    "unit": "ton"
+  },
+  {
+    "name": "Anil Corporation",
+    "email": "anil.verma8@example.com",
+    "mobileNumber": "9724166853",
+    "city": "Nellore",
+    "productOrService": "Laminates",
+    "quantity": 207,
+    "unit": "ton"
+  },
+  {
+    "name": "Sanjay Mart",
+    "email": "sanjay.dutta20@example.com",
+    "mobileNumber": "9201330584",
+    "city": "Cuttack",
+    "productOrService": "Laminates",
+    "quantity": 169,
+    "unit": "ton"
+  },
+  {
+    "name": "Pradeep Systems",
+    "email": "pradeep.dutta61@example.com",
+    "mobileNumber": "9321628150",
+    "city": "Jhansi",
+    "productOrService": "Laminates",
+    "quantity": 222,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Mart",
+    "email": "ashok.gupta40@example.com",
+    "mobileNumber": "9670063458",
+    "city": "Kochi",
+    "productOrService": "Laminates",
+    "quantity": 312,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Overseas",
+    "email": "sandip.mishra80@example.com",
+    "mobileNumber": "9278200428",
+    "city": "Ujjain",
+    "productOrService": "Paints",
+    "quantity": 195,
+    "unit": "ton"
+  },
+  {
+    "name": "Anil Corporation",
+    "email": "anil.nair59@example.com",
+    "mobileNumber": "9333773629",
+    "city": "Guntur",
+    "productOrService": "Paints",
+    "quantity": 731,
+    "unit": "ton"
+  },
+  {
+    "name": "Sudhir Hub",
+    "email": "sudhir.patel30@example.com",
+    "mobileNumber": "9827302492",
+    "city": "Howrah",
+    "productOrService": "Paints",
+    "quantity": 91,
+    "unit": "ton"
+  },
+  {
+    "name": "Rahul Systems",
+    "email": "rahul.trivedi0@example.com",
+    "mobileNumber": "9044700140",
+    "city": "Salem",
+    "productOrService": "Paints",
+    "quantity": 583,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Traders",
+    "email": "rahul.aggarwal55@example.com",
+    "mobileNumber": "9144747540",
+    "city": "Aligarh",
+    "productOrService": "Paints",
+    "quantity": 511,
+    "unit": "ton"
+  },
+  {
+    "name": "Sunil Enterprises",
+    "email": "sunil.mishra35@example.com",
+    "mobileNumber": "9676248046",
+    "city": "Raipur",
+    "productOrService": "Paints",
+    "quantity": 776,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Enterprises",
+    "email": "amit.shah96@example.com",
+    "mobileNumber": "9303521913",
+    "city": "Jammu",
+    "productOrService": "Wallpaper",
+    "quantity": 834,
+    "unit": "meter"
+  },
+  {
+    "name": "Dinesh Manufacturing",
+    "email": "dinesh.patel37@example.com",
+    "mobileNumber": "9781338923",
+    "city": "Akola",
+    "productOrService": "Wallpaper",
+    "quantity": 434,
+    "unit": "ton"
+  },
+  {
+    "name": "Dinesh Systems",
+    "email": "dinesh.nair1@example.com",
+    "mobileNumber": "9323624823",
+    "city": "Jalgaon",
+    "productOrService": "Wallpaper",
+    "quantity": 321,
+    "unit": "ton"
+  },
+  {
+    "name": "Arun Overseas",
+    "email": "arun.bose66@example.com",
+    "mobileNumber": "9737270550",
+    "city": "Hyderabad",
+    "productOrService": "Wallpaper",
+    "quantity": 349,
+    "unit": "ton"
+  },
+  {
+    "name": "Ashok Enterprises",
+    "email": "ashok.singh4@example.com",
+    "mobileNumber": "9330062564",
+    "city": "Kanpur",
+    "productOrService": "Wallpaper",
+    "quantity": 471,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Corporation",
+    "email": "manoj.aggarwal92@example.com",
+    "mobileNumber": "9094475777",
+    "city": "Lucknow",
+    "productOrService": "Wallpaper",
+    "quantity": 910,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Overseas",
+    "email": "suresh.choudhury44@example.com",
+    "mobileNumber": "9776187547",
+    "city": "Siliguri",
+    "productOrService": "False Ceiling materials",
+    "quantity": 976,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Pvt Ltd",
+    "email": "arun.sharma55@example.com",
+    "mobileNumber": "9422242674",
+    "city": "Lucknow",
+    "productOrService": "False Ceiling materials",
+    "quantity": 92,
+    "unit": "ton"
+  },
+  {
+    "name": "Sudhir Systems",
+    "email": "sudhir.yadav95@example.com",
+    "mobileNumber": "9487324729",
+    "city": "Jammu",
+    "productOrService": "False Ceiling materials",
+    "quantity": 245,
+    "unit": "meter"
+  },
+  {
+    "name": "Sanjay Hub",
+    "email": "sanjay.dutta73@example.com",
+    "mobileNumber": "9105622217",
+    "city": "Rajkot",
+    "productOrService": "False Ceiling materials",
+    "quantity": 699,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Group",
+    "email": "kiran.aggarwal9@example.com",
+    "mobileNumber": "9333990053",
+    "city": "Jamshedpur",
+    "productOrService": "False Ceiling materials",
+    "quantity": 200,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Hub",
+    "email": "dinesh.yadav6@example.com",
+    "mobileNumber": "9337701106",
+    "city": "Srinagar",
+    "productOrService": "False Ceiling materials",
+    "quantity": 138,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Corporation",
+    "email": "sunil.mehta1@example.com",
+    "mobileNumber": "9021273867",
+    "city": "Mangalore",
+    "productOrService": "Acids",
+    "quantity": 434,
+    "unit": "kg"
+  },
+  {
+    "name": "Rahul Hub",
+    "email": "rahul.trivedi17@example.com",
+    "mobileNumber": "9376210489",
+    "city": "Loni",
+    "productOrService": "Acids",
+    "quantity": 473,
+    "unit": "ton"
+  },
+  {
+    "name": "Rahul Mart",
+    "email": "rahul.desai76@example.com",
+    "mobileNumber": "9746663750",
+    "city": "Dehradun",
+    "productOrService": "Acids",
+    "quantity": 735,
+    "unit": "liter"
+  },
+  {
+    "name": "Dinesh Pvt Ltd",
+    "email": "dinesh.nair47@example.com",
+    "mobileNumber": "9070280622",
+    "city": "Vadodara",
+    "productOrService": "Acids",
+    "quantity": 785,
+    "unit": "liter"
+  },
+  {
+    "name": "Ramesh Global",
+    "email": "ramesh.trivedi81@example.com",
+    "mobileNumber": "9261901367",
+    "city": "Firozabad",
+    "productOrService": "Acids",
+    "quantity": 648,
+    "unit": "ton"
+  },
+  {
+    "name": "Dinesh Systems",
+    "email": "dinesh.nair82@example.com",
+    "mobileNumber": "9537191828",
+    "city": "Gaya",
+    "productOrService": "Acids",
+    "quantity": 656,
+    "unit": "liter"
+  },
+  {
+    "name": "Ramesh Manufacturing",
+    "email": "ramesh.jain41@example.com",
+    "mobileNumber": "9163864842",
+    "city": "Kochi",
+    "productOrService": "Solvents",
+    "quantity": 84,
+    "unit": "ton"
+  },
+  {
+    "name": "Arun Solutions",
+    "email": "arun.gupta42@example.com",
+    "mobileNumber": "9875811573",
+    "city": "Raipur",
+    "productOrService": "Solvents",
+    "quantity": 832,
+    "unit": "kg"
+  },
+  {
+    "name": "Vinod Systems",
+    "email": "vinod.patel1@example.com",
+    "mobileNumber": "9185941060",
+    "city": "Bhopal",
+    "productOrService": "Solvents",
+    "quantity": 508,
+    "unit": "ton"
+  },
+  {
+    "name": "Arun Enterprises",
+    "email": "arun.desai6@example.com",
+    "mobileNumber": "9417276356",
+    "city": "Maheshtala",
+    "productOrService": "Solvents",
+    "quantity": 678,
+    "unit": "kg"
+  },
+  {
+    "name": "Ramesh Solutions",
+    "email": "ramesh.dutta42@example.com",
+    "mobileNumber": "9381114210",
+    "city": "Maheshtala",
+    "productOrService": "Solvents",
+    "quantity": 112,
+    "unit": "ton"
+  },
+  {
+    "name": "Rahul Corporation",
+    "email": "rahul.choudhury35@example.com",
+    "mobileNumber": "9471386816",
+    "city": "Hyderabad",
+    "productOrService": "Solvents",
+    "quantity": 302,
+    "unit": "kg"
+  },
+  {
+    "name": "Vijay Pvt Ltd",
+    "email": "vijay.aggarwal74@example.com",
+    "mobileNumber": "9496205555",
+    "city": "Jamnagar",
+    "productOrService": "Dyes",
+    "quantity": 890,
+    "unit": "ton"
+  },
+  {
+    "name": "Pradeep Industries",
+    "email": "pradeep.mishra2@example.com",
+    "mobileNumber": "9770108952",
+    "city": "Firozabad",
+    "productOrService": "Dyes",
+    "quantity": 87,
+    "unit": "liter"
+  },
+  {
+    "name": "Manoj Mart",
+    "email": "manoj.nair26@example.com",
+    "mobileNumber": "9036458831",
+    "city": "Solapur",
+    "productOrService": "Dyes",
+    "quantity": 504,
+    "unit": "ton"
+  },
+  {
+    "name": "Prakash Industries",
+    "email": "prakash.singh3@example.com",
+    "mobileNumber": "9823562959",
+    "city": "Gorakhpur",
+    "productOrService": "Dyes",
+    "quantity": 802,
+    "unit": "ton"
+  },
+  {
+    "name": "Amit Pvt Ltd",
+    "email": "amit.shah9@example.com",
+    "mobileNumber": "9502625869",
+    "city": "Bhubaneswar",
+    "productOrService": "Dyes",
+    "quantity": 516,
+    "unit": "liter"
+  },
+  {
+    "name": "Sudhir Corporation",
+    "email": "sudhir.mishra46@example.com",
+    "mobileNumber": "9707919794",
+    "city": "Lucknow",
+    "productOrService": "Dyes",
+    "quantity": 762,
+    "unit": "ton"
+  },
+  {
+    "name": "Vijay Systems",
+    "email": "vijay.bose96@example.com",
+    "mobileNumber": "9641474204",
+    "city": "Lucknow",
+    "productOrService": "Pigments",
+    "quantity": 744,
+    "unit": "kg"
+  },
+  {
+    "name": "Anil Traders",
+    "email": "anil.gupta1@example.com",
+    "mobileNumber": "9783820364",
+    "city": "Bhiwandi",
+    "productOrService": "Pigments",
+    "quantity": 636,
+    "unit": "kg"
+  },
+  {
+    "name": "Rajesh Enterprises",
+    "email": "rajesh.trivedi85@example.com",
+    "mobileNumber": "9095336451",
+    "city": "Maheshtala",
+    "productOrService": "Pigments",
+    "quantity": 53,
+    "unit": "liter"
+  },
+  {
+    "name": "Manoj Corporation",
+    "email": "manoj.reddy16@example.com",
+    "mobileNumber": "9351998279",
+    "city": "Nanded",
+    "productOrService": "Pigments",
+    "quantity": 343,
+    "unit": "ton"
+  },
+  {
+    "name": "Sudhir Industries",
+    "email": "sudhir.singh88@example.com",
+    "mobileNumber": "9118937694",
+    "city": "Lucknow",
+    "productOrService": "Pigments",
+    "quantity": 670,
+    "unit": "ton"
+  },
+  {
+    "name": "Suresh Corporation",
+    "email": "suresh.jain9@example.com",
+    "mobileNumber": "9054799712",
+    "city": "Tiruchirappalli",
+    "productOrService": "Pigments",
+    "quantity": 815,
+    "unit": "liter"
+  },
+  {
+    "name": "Amit Solutions",
+    "email": "amit.choudhury62@example.com",
+    "mobileNumber": "9808712526",
+    "city": "Chandigarh",
+    "productOrService": "Flavoring agents",
+    "quantity": 421,
+    "unit": "ton"
+  },
+  {
+    "name": "Amit Overseas",
+    "email": "amit.yadav49@example.com",
+    "mobileNumber": "9884381652",
+    "city": "Kochi",
+    "productOrService": "Flavoring agents",
+    "quantity": 651,
+    "unit": "kg"
+  },
+  {
+    "name": "Dinesh Systems",
+    "email": "dinesh.mehta18@example.com",
+    "mobileNumber": "9442178894",
+    "city": "Nellore",
+    "productOrService": "Flavoring agents",
+    "quantity": 163,
+    "unit": "liter"
+  },
+  {
+    "name": "Kiran Mart",
+    "email": "kiran.khan38@example.com",
+    "mobileNumber": "9673233445",
+    "city": "Salem",
+    "productOrService": "Flavoring agents",
+    "quantity": 319,
+    "unit": "ton"
+  },
+  {
+    "name": "Sudhir Industries",
+    "email": "sudhir.mehta89@example.com",
+    "mobileNumber": "9719099601",
+    "city": "Nanded",
+    "productOrService": "Flavoring agents",
+    "quantity": 100,
+    "unit": "kg"
+  },
+  {
+    "name": "Amit Systems",
+    "email": "amit.desai68@example.com",
+    "mobileNumber": "9343582811",
+    "city": "Faridabad",
+    "productOrService": "Flavoring agents",
+    "quantity": 648,
+    "unit": "liter"
+  },
+  {
+    "name": "Suresh Hub",
+    "email": "suresh.dutta24@example.com",
+    "mobileNumber": "9636053349",
+    "city": "Aligarh",
+    "productOrService": "Plastic Granules (HDPE/LDPE)",
+    "quantity": 98,
+    "unit": "liter"
+  },
+  {
+    "name": "Vinod Group",
+    "email": "vinod.bose58@example.com",
+    "mobileNumber": "9656584734",
+    "city": "Warangal",
+    "productOrService": "Plastic Granules (HDPE/LDPE)",
+    "quantity": 475,
+    "unit": "ton"
+  },
+  {
+    "name": "Manoj Solutions",
+    "email": "manoj.malhotra42@example.com",
+    "mobileNumber": "9830767676",
+    "city": "Saharanpur",
+    "productOrService": "Plastic Granules (HDPE/LDPE)",
+    "quantity": 93,
+    "unit": "ton"
+  },
+  {
+    "name": "Vijay Systems",
+    "email": "vijay.reddy8@example.com",
+    "mobileNumber": "9891339073",
+    "city": "Kochi",
+    "productOrService": "Plastic Granules (HDPE/LDPE)",
+    "quantity": 955,
+    "unit": "kg"
+  },
+  {
+    "name": "Rahul Pvt Ltd",
+    "email": "rahul.trivedi87@example.com",
+    "mobileNumber": "9668623071",
+    "city": "Patna",
+    "productOrService": "Plastic Granules (HDPE/LDPE)",
+    "quantity": 536,
+    "unit": "kg"
+  },
+  {
+    "name": "Pradeep Corporation",
+    "email": "pradeep.nair37@example.com",
+    "mobileNumber": "9787703504",
+    "city": "Jamshedpur",
+    "productOrService": "Plastic Granules (HDPE/LDPE)",
+    "quantity": 455,
+    "unit": "ton"
+  },
+  {
+    "name": "Manoj Overseas",
+    "email": "manoj.khan97@example.com",
+    "mobileNumber": "9447780968",
+    "city": "Agra",
+    "productOrService": "PVC Resin",
+    "quantity": 283,
+    "unit": "ton"
+  },
+  {
+    "name": "Prakash Industries",
+    "email": "prakash.sharma22@example.com",
+    "mobileNumber": "9704292791",
+    "city": "Visakhapatnam",
+    "productOrService": "PVC Resin",
+    "quantity": 613,
+    "unit": "ton"
+  },
+  {
+    "name": "Rajesh Traders",
+    "email": "rajesh.khan75@example.com",
+    "mobileNumber": "9766116018",
+    "city": "Solapur",
+    "productOrService": "PVC Resin",
+    "quantity": 173,
+    "unit": "ton"
+  },
+  {
+    "name": "Manoj Enterprises",
+    "email": "manoj.reddy96@example.com",
+    "mobileNumber": "9864370817",
+    "city": "Maheshtala",
+    "productOrService": "PVC Resin",
+    "quantity": 605,
+    "unit": "liter"
+  },
+  {
+    "name": "Pradeep Traders",
+    "email": "pradeep.desai40@example.com",
+    "mobileNumber": "9367423144",
+    "city": "Mangalore",
+    "productOrService": "PVC Resin",
+    "quantity": 709,
+    "unit": "ton"
+  },
+  {
+    "name": "Ramesh Enterprises",
+    "email": "ramesh.malhotra27@example.com",
+    "mobileNumber": "9213200222",
+    "city": "Sangli-Miraj & Kupwad",
+    "productOrService": "PVC Resin",
+    "quantity": 805,
+    "unit": "liter"
+  },
+  {
+    "name": "Sanjay Group",
+    "email": "sanjay.nair30@example.com",
+    "mobileNumber": "9450377004",
+    "city": "Meerut",
+    "productOrService": "Masterbatches",
+    "quantity": 172,
+    "unit": "kg"
+  },
+  {
+    "name": "Manoj Systems",
+    "email": "manoj.mehta39@example.com",
+    "mobileNumber": "9051770063",
+    "city": "Jalgaon",
+    "productOrService": "Masterbatches",
+    "quantity": 650,
+    "unit": "kg"
+  },
+  {
+    "name": "Dinesh Traders",
+    "email": "dinesh.patel52@example.com",
+    "mobileNumber": "9168003518",
+    "city": "Agra",
+    "productOrService": "Masterbatches",
+    "quantity": 640,
+    "unit": "ton"
+  },
+  {
+    "name": "Arun Exports",
+    "email": "arun.choudhury56@example.com",
+    "mobileNumber": "9089974289",
+    "city": "Patna",
+    "productOrService": "Masterbatches",
+    "quantity": 379,
+    "unit": "kg"
+  },
+  {
+    "name": "Sudhir Systems",
+    "email": "sudhir.sharma35@example.com",
+    "mobileNumber": "9342638164",
+    "city": "Kota",
+    "productOrService": "Masterbatches",
+    "quantity": 665,
+    "unit": "kg"
+  },
+  {
+    "name": "Sudhir Group",
+    "email": "sudhir.jain9@example.com",
+    "mobileNumber": "9572153286",
+    "city": "Kanpur",
+    "productOrService": "Masterbatches",
+    "quantity": 309,
+    "unit": "ton"
+  },
+  {
+    "name": "Sanjay Exports",
+    "email": "sanjay.sharma64@example.com",
+    "mobileNumber": "9229957775",
+    "city": "Jalgaon",
+    "productOrService": "Iron Ore",
+    "quantity": 822,
+    "unit": "ton"
+  },
+  {
+    "name": "Amit Overseas",
+    "email": "amit.dutta44@example.com",
+    "mobileNumber": "9587201019",
+    "city": "Navi Mumbai",
+    "productOrService": "Iron Ore",
+    "quantity": 695,
+    "unit": "liter"
+  },
+  {
+    "name": "Anil Enterprises",
+    "email": "anil.trivedi68@example.com",
+    "mobileNumber": "9244202847",
+    "city": "Vadodara",
+    "productOrService": "Iron Ore",
+    "quantity": 314,
+    "unit": "liter"
+  },
+  {
+    "name": "Pradeep Enterprises",
+    "email": "pradeep.trivedi25@example.com",
+    "mobileNumber": "9466163045",
+    "city": "Coimbatore",
+    "productOrService": "Iron Ore",
+    "quantity": 514,
+    "unit": "kg"
+  },
+  {
+    "name": "Sanjay Overseas",
+    "email": "sanjay.malhotra78@example.com",
+    "mobileNumber": "9588215275",
+    "city": "Bareilly",
+    "productOrService": "Iron Ore",
+    "quantity": 652,
+    "unit": "ton"
+  },
+  {
+    "name": "Rahul Exports",
+    "email": "rahul.choudhury44@example.com",
+    "mobileNumber": "9074282506",
+    "city": "Ghaziabad",
+    "productOrService": "Iron Ore",
+    "quantity": 537,
+    "unit": "kg"
+  },
+  {
+    "name": "Manoj Corporation",
+    "email": "manoj.sharma35@example.com",
+    "mobileNumber": "9220771985",
+    "city": "Jalgaon",
+    "productOrService": "Marble Dust",
+    "quantity": 623,
+    "unit": "liter"
+  },
+  {
+    "name": "Sandip Systems",
+    "email": "sandip.jain13@example.com",
+    "mobileNumber": "9039511391",
+    "city": "Salem",
+    "productOrService": "Marble Dust",
+    "quantity": 805,
+    "unit": "kg"
+  },
+  {
+    "name": "Rahul Manufacturing",
+    "email": "rahul.mehta68@example.com",
+    "mobileNumber": "9822929411",
+    "city": "Hyderabad",
+    "productOrService": "Marble Dust",
+    "quantity": 806,
+    "unit": "liter"
+  },
+  {
+    "name": "Ashok Pvt Ltd",
+    "email": "ashok.verma50@example.com",
+    "mobileNumber": "9315434634",
+    "city": "Maheshtala",
+    "productOrService": "Marble Dust",
+    "quantity": 355,
+    "unit": "kg"
+  },
+  {
+    "name": "Vinod Corporation",
+    "email": "vinod.sharma15@example.com",
+    "mobileNumber": "9666490168",
+    "city": "Amravati",
+    "productOrService": "Marble Dust",
+    "quantity": 762,
+    "unit": "ton"
+  },
+  {
+    "name": "Vijay Traders",
+    "email": "vijay.singh84@example.com",
+    "mobileNumber": "9605609348",
+    "city": "Ludhiana",
+    "productOrService": "Marble Dust",
+    "quantity": 338,
+    "unit": "liter"
+  },
+  {
+    "name": "Arun Manufacturing",
+    "email": "arun.shah90@example.com",
+    "mobileNumber": "9148541785",
+    "city": "Akola",
+    "productOrService": "Quartz",
+    "quantity": 590,
+    "unit": "kg"
+  },
+  {
+    "name": "Sudhir Group",
+    "email": "sudhir.nair92@example.com",
+    "mobileNumber": "9385861890",
+    "city": "Jalandhar",
+    "productOrService": "Quartz",
+    "quantity": 207,
+    "unit": "ton"
+  },
+  {
+    "name": "Rajesh Overseas",
+    "email": "rajesh.sharma25@example.com",
+    "mobileNumber": "9391050227",
+    "city": "Dehradun",
+    "productOrService": "Quartz",
+    "quantity": 992,
+    "unit": "ton"
+  },
+  {
+    "name": "Dinesh Exports",
+    "email": "dinesh.singh99@example.com",
+    "mobileNumber": "9050082480",
+    "city": "Siliguri",
+    "productOrService": "Quartz",
+    "quantity": 206,
+    "unit": "ton"
+  },
+  {
+    "name": "Vijay Mart",
+    "email": "vijay.dutta41@example.com",
+    "mobileNumber": "9337831237",
+    "city": "Nellore",
+    "productOrService": "Quartz",
+    "quantity": 984,
+    "unit": "ton"
+  },
+  {
+    "name": "Sanjay Group",
+    "email": "sanjay.mehta3@example.com",
+    "mobileNumber": "9550338755",
+    "city": "Chandigarh",
+    "productOrService": "Quartz",
+    "quantity": 882,
+    "unit": "kg"
+  },
+  {
+    "name": "Kiran Hub",
+    "email": "kiran.khan29@example.com",
+    "mobileNumber": "9168607329",
+    "city": "Howrah",
+    "productOrService": "Talc",
+    "quantity": 877,
+    "unit": "ton"
+  },
+  {
+    "name": "Dinesh Manufacturing",
+    "email": "dinesh.mehta59@example.com",
+    "mobileNumber": "9417284498",
+    "city": "Srinagar",
+    "productOrService": "Talc",
+    "quantity": 100,
+    "unit": "kg"
+  },
+  {
+    "name": "Pradeep Industries",
+    "email": "pradeep.patel13@example.com",
+    "mobileNumber": "9421014257",
+    "city": "Ludhiana",
+    "productOrService": "Talc",
+    "quantity": 146,
+    "unit": "kg"
+  },
+  {
+    "name": "Sudhir Solutions",
+    "email": "sudhir.trivedi19@example.com",
+    "mobileNumber": "9873379986",
+    "city": "Patna",
+    "productOrService": "Talc",
+    "quantity": 900,
+    "unit": "liter"
+  },
+  {
+    "name": "Sanjay Exports",
+    "email": "sanjay.verma47@example.com",
+    "mobileNumber": "9066301411",
+    "city": "Tirunelveli",
+    "productOrService": "Talc",
+    "quantity": 952,
+    "unit": "kg"
+  },
+  {
+    "name": "Dinesh Enterprises",
+    "email": "dinesh.bose40@example.com",
+    "mobileNumber": "9573442638",
+    "city": "Thane",
+    "productOrService": "Talc",
+    "quantity": 795,
+    "unit": "kg"
+  },
+  {
+    "name": "Arun Traders",
+    "email": "arun.mishra16@example.com",
+    "mobileNumber": "9404501709",
+    "city": "Saharanpur",
+    "productOrService": "Gypsum",
+    "quantity": 476,
+    "unit": "liter"
+  },
+  {
+    "name": "Suresh Global",
+    "email": "suresh.malhotra7@example.com",
+    "mobileNumber": "9677063596",
+    "city": "Gurgaon",
+    "productOrService": "Gypsum",
+    "quantity": 686,
+    "unit": "ton"
+  },
+  {
+    "name": "Suresh Pvt Ltd",
+    "email": "suresh.jain6@example.com",
+    "mobileNumber": "9622749277",
+    "city": "Jalgaon",
+    "productOrService": "Gypsum",
+    "quantity": 933,
+    "unit": "liter"
+  },
+  {
+    "name": "Kiran Pvt Ltd",
+    "email": "kiran.mishra71@example.com",
+    "mobileNumber": "9018935369",
+    "city": "Bhubaneswar",
+    "productOrService": "Gypsum",
+    "quantity": 991,
+    "unit": "liter"
+  },
+  {
+    "name": "Suresh Industries",
+    "email": "suresh.desai40@example.com",
+    "mobileNumber": "9888787965",
+    "city": "Coimbatore",
+    "productOrService": "Gypsum",
+    "quantity": 255,
+    "unit": "ton"
+  },
+  {
+    "name": "Sanjay Group",
+    "email": "sanjay.dutta76@example.com",
+    "mobileNumber": "9892107252",
+    "city": "Firozabad",
+    "productOrService": "Gypsum",
+    "quantity": 990,
+    "unit": "kg"
+  },
+  {
+    "name": "Sudhir Industries",
+    "email": "sudhir.reddy83@example.com",
+    "mobileNumber": "9004869717",
+    "city": "Siliguri",
+    "productOrService": "Corrugated Boxes",
+    "quantity": 654,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Traders",
+    "email": "vinod.sharma83@example.com",
+    "mobileNumber": "9597759969",
+    "city": "Durgapur",
+    "productOrService": "Corrugated Boxes",
+    "quantity": 307,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Enterprises",
+    "email": "vinod.khan25@example.com",
+    "mobileNumber": "9167156246",
+    "city": "Gurgaon",
+    "productOrService": "Corrugated Boxes",
+    "quantity": 866,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Mart",
+    "email": "prakash.sharma61@example.com",
+    "mobileNumber": "9882217102",
+    "city": "Ahmedabad",
+    "productOrService": "Corrugated Boxes",
+    "quantity": 980,
+    "unit": "pcs"
+  },
+  {
+    "name": "Arun Overseas",
+    "email": "arun.patel38@example.com",
+    "mobileNumber": "9849510033",
+    "city": "Gaya",
+    "productOrService": "Corrugated Boxes",
+    "quantity": 912,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Systems",
+    "email": "anil.malhotra99@example.com",
+    "mobileNumber": "9390810431",
+    "city": "Jamshedpur",
+    "productOrService": "Corrugated Boxes",
+    "quantity": 582,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Global",
+    "email": "sandip.khan54@example.com",
+    "mobileNumber": "9864283549",
+    "city": "Malegaon",
+    "productOrService": "Plastic Pouches",
+    "quantity": 787,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Traders",
+    "email": "ashok.gupta48@example.com",
+    "mobileNumber": "9378911927",
+    "city": "Ghaziabad",
+    "productOrService": "Plastic Pouches",
+    "quantity": 718,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Global",
+    "email": "anil.malhotra76@example.com",
+    "mobileNumber": "9865522017",
+    "city": "Jhansi",
+    "productOrService": "Plastic Pouches",
+    "quantity": 268,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Group",
+    "email": "dinesh.mishra8@example.com",
+    "mobileNumber": "9287811319",
+    "city": "Jamshedpur",
+    "productOrService": "Plastic Pouches",
+    "quantity": 763,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Traders",
+    "email": "pradeep.khan29@example.com",
+    "mobileNumber": "9159121823",
+    "city": "Mysore",
+    "productOrService": "Plastic Pouches",
+    "quantity": 618,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Solutions",
+    "email": "rajesh.aggarwal3@example.com",
+    "mobileNumber": "9428727893",
+    "city": "Indore",
+    "productOrService": "Plastic Pouches",
+    "quantity": 784,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Hub",
+    "email": "sandip.bose41@example.com",
+    "mobileNumber": "9462010253",
+    "city": "Rajkot",
+    "productOrService": "BOPP Tapes",
+    "quantity": 941,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Corporation",
+    "email": "ashok.desai11@example.com",
+    "mobileNumber": "9583637421",
+    "city": "Firozabad",
+    "productOrService": "BOPP Tapes",
+    "quantity": 223,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Systems",
+    "email": "sunil.khan72@example.com",
+    "mobileNumber": "9217485329",
+    "city": "Nellore",
+    "productOrService": "BOPP Tapes",
+    "quantity": 503,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Systems",
+    "email": "vinod.shah16@example.com",
+    "mobileNumber": "9212978975",
+    "city": "Udaipur",
+    "productOrService": "BOPP Tapes",
+    "quantity": 446,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Solutions",
+    "email": "prakash.gupta43@example.com",
+    "mobileNumber": "9173906111",
+    "city": "Vadodara",
+    "productOrService": "BOPP Tapes",
+    "quantity": 109,
+    "unit": "pcs"
+  },
+  {
+    "name": "Anil Industries",
+    "email": "anil.malhotra94@example.com",
+    "mobileNumber": "9020995444",
+    "city": "Varanasi",
+    "productOrService": "BOPP Tapes",
+    "quantity": 467,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Exports",
+    "email": "dinesh.jain20@example.com",
+    "mobileNumber": "9587338109",
+    "city": "Ranchi",
+    "productOrService": "Bubble Wrap",
+    "quantity": 540,
+    "unit": "pcs"
+  },
+  {
+    "name": "Dinesh Enterprises",
+    "email": "dinesh.yadav66@example.com",
+    "mobileNumber": "9550120626",
+    "city": "Belgaum",
+    "productOrService": "Bubble Wrap",
+    "quantity": 919,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Corporation",
+    "email": "sanjay.jain87@example.com",
+    "mobileNumber": "9459780794",
+    "city": "Nanded",
+    "productOrService": "Bubble Wrap",
+    "quantity": 461,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Global",
+    "email": "suresh.choudhury6@example.com",
+    "mobileNumber": "9351920520",
+    "city": "Aligarh",
+    "productOrService": "Bubble Wrap",
+    "quantity": 787,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Mart",
+    "email": "suresh.malhotra81@example.com",
+    "mobileNumber": "9065489448",
+    "city": "Thane",
+    "productOrService": "Bubble Wrap",
+    "quantity": 825,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Group",
+    "email": "kiran.verma81@example.com",
+    "mobileNumber": "9063570783",
+    "city": "Gwalior",
+    "productOrService": "Bubble Wrap",
+    "quantity": 974,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Industries",
+    "email": "vikram.yadav13@example.com",
+    "mobileNumber": "9166047034",
+    "city": "Gurgaon",
+    "productOrService": "Printing Machines",
+    "quantity": 544,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Overseas",
+    "email": "amit.singh80@example.com",
+    "mobileNumber": "9437469456",
+    "city": "Jodhpur",
+    "productOrService": "Printing Machines",
+    "quantity": 461,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Enterprises",
+    "email": "amit.mehta27@example.com",
+    "mobileNumber": "9210887391",
+    "city": "Gurgaon",
+    "productOrService": "Printing Machines",
+    "quantity": 620,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Mart",
+    "email": "rahul.bose8@example.com",
+    "mobileNumber": "9459320366",
+    "city": "Aligarh",
+    "productOrService": "Printing Machines",
+    "quantity": 751,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Industries",
+    "email": "rahul.dutta2@example.com",
+    "mobileNumber": "9695973907",
+    "city": "Agra",
+    "productOrService": "Printing Machines",
+    "quantity": 561,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Overseas",
+    "email": "ashok.dutta84@example.com",
+    "mobileNumber": "9670182798",
+    "city": "Pune",
+    "productOrService": "Printing Machines",
+    "quantity": 402,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Exports",
+    "email": "rahul.jain1@example.com",
+    "mobileNumber": "9475329120",
+    "city": "Delhi",
+    "productOrService": "Labeling",
+    "quantity": 529,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Mart",
+    "email": "rahul.shah82@example.com",
+    "mobileNumber": "9034481678",
+    "city": "Srinagar",
+    "productOrService": "Labeling",
+    "quantity": 698,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Exports",
+    "email": "kiran.reddy3@example.com",
+    "mobileNumber": "9238929238",
+    "city": "Gorakhpur",
+    "productOrService": "Labeling",
+    "quantity": 120,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Global",
+    "email": "vijay.mishra31@example.com",
+    "mobileNumber": "9884352788",
+    "city": "Loni",
+    "productOrService": "Labeling",
+    "quantity": 539,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Industries",
+    "email": "ashok.gupta63@example.com",
+    "mobileNumber": "9844561341",
+    "city": "Chennai",
+    "productOrService": "Labeling",
+    "quantity": 306,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Global",
+    "email": "kiran.aggarwal87@example.com",
+    "mobileNumber": "9625345780",
+    "city": "Varanasi",
+    "productOrService": "Labeling",
+    "quantity": 831,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Industries",
+    "email": "ashok.trivedi75@example.com",
+    "mobileNumber": "9883414977",
+    "city": "Amritsar",
+    "productOrService": "Vacuum Packing",
+    "quantity": 818,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Systems",
+    "email": "rahul.jain97@example.com",
+    "mobileNumber": "9159840575",
+    "city": "Malegaon",
+    "productOrService": "Vacuum Packing",
+    "quantity": 103,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ashok Corporation",
+    "email": "ashok.patel14@example.com",
+    "mobileNumber": "9743073329",
+    "city": "Bhiwandi",
+    "productOrService": "Vacuum Packing",
+    "quantity": 396,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Systems",
+    "email": "rahul.khan59@example.com",
+    "mobileNumber": "9109126858",
+    "city": "Jalandhar",
+    "productOrService": "Vacuum Packing",
+    "quantity": 606,
+    "unit": "pcs"
+  },
+  {
+    "name": "Amit Solutions",
+    "email": "amit.aggarwal93@example.com",
+    "mobileNumber": "9236538809",
+    "city": "Ajmer",
+    "productOrService": "Vacuum Packing",
+    "quantity": 768,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Solutions",
+    "email": "vikram.sharma82@example.com",
+    "mobileNumber": "9607670143",
+    "city": "Nashik",
+    "productOrService": "Vacuum Packing",
+    "quantity": 658,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Global",
+    "email": "sunil.desai21@example.com",
+    "mobileNumber": "9272342185",
+    "city": "Navi Mumbai",
+    "productOrService": "Shrink Wrapping",
+    "quantity": 91,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Traders",
+    "email": "sunil.singh59@example.com",
+    "mobileNumber": "9450928821",
+    "city": "Bhopal",
+    "productOrService": "Shrink Wrapping",
+    "quantity": 929,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Global",
+    "email": "prakash.aggarwal69@example.com",
+    "mobileNumber": "9268531540",
+    "city": "Gorakhpur",
+    "productOrService": "Shrink Wrapping",
+    "quantity": 551,
+    "unit": "pcs"
+  },
+  {
+    "name": "Ramesh Hub",
+    "email": "ramesh.singh29@example.com",
+    "mobileNumber": "9481216636",
+    "city": "Ulhasnagar",
+    "productOrService": "Shrink Wrapping",
+    "quantity": 555,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Enterprises",
+    "email": "suresh.mishra5@example.com",
+    "mobileNumber": "9798841261",
+    "city": "Loni",
+    "productOrService": "Shrink Wrapping",
+    "quantity": 637,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Exports",
+    "email": "sandip.patel10@example.com",
+    "mobileNumber": "9379537293",
+    "city": "Gurgaon",
+    "productOrService": "Shrink Wrapping",
+    "quantity": 181,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sanjay Mart",
+    "email": "sanjay.nair72@example.com",
+    "mobileNumber": "9236479028",
+    "city": "Firozabad",
+    "productOrService": "Office Desks",
+    "quantity": 327,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rajesh Solutions",
+    "email": "rajesh.sharma44@example.com",
+    "mobileNumber": "9658667580",
+    "city": "Jaipur",
+    "productOrService": "Office Desks",
+    "quantity": 606,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Hub",
+    "email": "sunil.aggarwal32@example.com",
+    "mobileNumber": "9346911407",
+    "city": "Bhiwandi",
+    "productOrService": "Office Desks",
+    "quantity": 582,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Overseas",
+    "email": "manoj.mehta53@example.com",
+    "mobileNumber": "9647064271",
+    "city": "Chennai",
+    "productOrService": "Office Desks",
+    "quantity": 872,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Corporation",
+    "email": "rahul.shah27@example.com",
+    "mobileNumber": "9449357789",
+    "city": "Hyderabad",
+    "productOrService": "Office Desks",
+    "quantity": 191,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Overseas",
+    "email": "pradeep.gupta71@example.com",
+    "mobileNumber": "9655866354",
+    "city": "Kota",
+    "productOrService": "Office Desks",
+    "quantity": 960,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vijay Enterprises",
+    "email": "vijay.malhotra41@example.com",
+    "mobileNumber": "9533986567",
+    "city": "Raipur",
+    "productOrService": "Industrial Racks",
+    "quantity": 195,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Global",
+    "email": "vinod.dutta4@example.com",
+    "mobileNumber": "9663435364",
+    "city": "Hubballi-Dharwad",
+    "productOrService": "Industrial Racks",
+    "quantity": 937,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vinod Pvt Ltd",
+    "email": "vinod.yadav10@example.com",
+    "mobileNumber": "9277820011",
+    "city": "Gwalior",
+    "productOrService": "Industrial Racks",
+    "quantity": 389,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Systems",
+    "email": "kiran.verma27@example.com",
+    "mobileNumber": "9361729784",
+    "city": "Jamnagar",
+    "productOrService": "Industrial Racks",
+    "quantity": 50,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sudhir Industries",
+    "email": "sudhir.trivedi75@example.com",
+    "mobileNumber": "9346964120",
+    "city": "Allahabad",
+    "productOrService": "Industrial Racks",
+    "quantity": 819,
+    "unit": "pcs"
+  },
+  {
+    "name": "Rahul Manufacturing",
+    "email": "rahul.khan3@example.com",
+    "mobileNumber": "9056502401",
+    "city": "Guntur",
+    "productOrService": "Industrial Racks",
+    "quantity": 738,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Global",
+    "email": "kiran.gupta26@example.com",
+    "mobileNumber": "9326420672",
+    "city": "Coimbatore",
+    "productOrService": "Warehouse Shelving",
+    "quantity": 467,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sunil Hub",
+    "email": "sunil.verma89@example.com",
+    "mobileNumber": "9868746026",
+    "city": "Kolhapur",
+    "productOrService": "Warehouse Shelving",
+    "quantity": 790,
+    "unit": "pcs"
+  },
+  {
+    "name": "Kiran Pvt Ltd",
+    "email": "kiran.aggarwal3@example.com",
+    "mobileNumber": "9467268943",
+    "city": "Firozabad",
+    "productOrService": "Warehouse Shelving",
+    "quantity": 954,
+    "unit": "pcs"
+  },
+  {
+    "name": "Suresh Enterprises",
+    "email": "suresh.reddy0@example.com",
+    "mobileNumber": "9054365002",
+    "city": "Bareilly",
+    "productOrService": "Warehouse Shelving",
+    "quantity": 509,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Corporation",
+    "email": "pradeep.malhotra89@example.com",
+    "mobileNumber": "9482170267",
+    "city": "Ajmer",
+    "productOrService": "Warehouse Shelving",
+    "quantity": 959,
+    "unit": "pcs"
+  },
+  {
+    "name": "Prakash Industries",
+    "email": "prakash.patel9@example.com",
+    "mobileNumber": "9170292225",
+    "city": "Dehradun",
+    "productOrService": "Warehouse Shelving",
+    "quantity": 472,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Solutions",
+    "email": "vikram.reddy57@example.com",
+    "mobileNumber": "9021240357",
+    "city": "Sangli-Miraj & Kupwad",
+    "productOrService": "Printers",
+    "quantity": 312,
+    "unit": "pcs"
+  },
+  {
+    "name": "Manoj Overseas",
+    "email": "manoj.yadav39@example.com",
+    "mobileNumber": "9140442778",
+    "city": "Ujjain",
+    "productOrService": "Printers",
+    "quantity": 665,
+    "unit": "pcs"
+  },
+  {
+    "name": "Sandip Solutions",
+    "email": "sandip.khan72@example.com",
+    "mobileNumber": "9488462525",
+    "city": "Gurgaon",
+    "productOrService": "Printers",
+    "quantity": 502,
+    "unit": "pcs"
+  },
+  {
+    "name": "Pradeep Group",
+    "email": "pradeep.aggarwal63@example.com",
+    "mobileNumber": "9894247546",
+    "city": "Ranchi",
+    "productOrService": "Printers",
+    "quantity": 274,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Solutions",
+    "email": "vikram.desai66@example.com",
+    "mobileNumber": "9362388036",
+    "city": "Mysore",
+    "productOrService": "Printers",
+    "quantity": 220,
+    "unit": "pcs"
+  },
+  {
+    "name": "Vikram Hub",
+    "email": "vikram.khan69@example.com",
+    "mobileNumber": "9093420239",
+    "city": "Chennai",
+    "productOrService": "Printers",
+    "quantity": 814,
+    "unit": "pcs"
+  }
+]

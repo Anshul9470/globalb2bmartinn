@@ -1,0 +1,404 @@
+/* Premium Login Page Modernization */
+.login-page {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background: url(../../public/assets/baner4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Premium Light Frosted Glass Form */
+.main-login {
+    background: rgba(255, 255, 255, 0.9); /* More solid to be readable without blur */
+    /* Removed backdrop-filter to keep background clear */
+    border-radius: 28px;
+    padding: 50px 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.main-login h1 {
+    font-size: 34px;
+    font-weight: 800;
+    color: #111827 !important;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+/* Form Group & Label Styling */
+.form-group {
+    margin-bottom: 24px;
+    text-align: left;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #2563eb !important; /* Blue color matching Image 1 */
+    letter-spacing: 0.5px;
+}
+
+/* Input Styling */
+input[type="email"],
+input[type="password"],
+.otpdata {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1rem;
+    border: 1.5px solid #d1d5db;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #111827;
+    transition: all 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+.otpdata:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+/* Updated Button Theme */
+.submit-login {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111827;
+    background: #fbbf24; /* Yellow/Orange */
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(251, 191, 36, 0.3);
+    margin-top: 10px;
+}
+
+.submit-login:hover {
+    transform: translateY(-2px);
+    background: #f59e0b;
+    box-shadow: 0 8px 15px rgba(245, 158, 11, 0.4);
+}
+
+/* Forgot Password Link Button */
+.forgot-password {
+    background: #ef4444; /* Red button like Image 1 */
+    color: #ffffff;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 15px;
+    padding: 12px;
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.forgot-password:hover {
+    background: #dc2626;
+}
+
+/* "Don't have an account" Section */
+.main-login p {
+    color: #4b5563;
+    font-weight: 500;
+    margin-top: 40px !important;
+}
+
+.main-login p span {
+    color: #ef4444 !important; /* Red link */
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.main-login p span:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: #dc2626;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Responsive Fixes */
+@media (max-width: 600px) {
+    .main-login {
+        padding: 40px 25px;
+        margin-bottom: 50px;
+    }
+    
+    .main-login h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .login-container,
+    .login-image {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .login-page {
+        flex-direction: column;
+    }
+
+    .main-login {
+        order: 2;
+        /* Ensure form appears first on small screens */
+    }
+
+    .login-image {
+        order: 1;
+    }
+}
+
+.login-image img {
+    /* object-fit: cover; */
+    width: 100%;
+}
+
+.login-image {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px !important;
+}
+
+/* ==================== Privacy Section ======================= */
+
+.terms-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.terms-section h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.privacy-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.privacy-section h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.privacy-section p {
+    font-size: 1em;
+    color: #666;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.terms-section p {
+    font-size: 1em;
+    color: #666;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.privacy-section p {
+    font-size: 1em;
+    color: #666;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.privacy-section h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+    color: #333;
+}
+
+.privacy-section h3 {
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #555;
+}
+
+.privacy-section p,
+.privacy-section ul {
+    line-height: 1.6;
+    color: #555;
+}
+
+.privacy-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.privacy-section ul li {
+    margin-bottom: 10px;
+}
+
+.privacy-section a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.privacy-section a:hover {
+    text-decoration: underline;
+}
+
+
+/* =============================== AboutUs Css ==================================== */
+
+
+.about-us-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch; /* Force exact same height for both columns */
+    padding: 20px;
+    gap: 20px; /* Add slight gap between columns */
+}
+
+.about-image-box {
+    flex: 1 1 300px;
+    max-width: 500px;
+    padding: 0;
+    text-align: center;
+    background-color: #f8fafc;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    position: relative; /* CRITICAL for absolute child */
+    min-height: 100%;
+}
+
+.about-image-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Now safely fills exactly the container boundary */
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.about-text-box {
+    flex: 2 1 500px;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px; /* Matching rounded corners on both sides */
+}
+
+.about-text-box h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about-text-box h2 {
+    margin-top: 20px;
+}
+
+.about-text-box p,
+.about-text-box ul {
+    margin: 10px 0;
+}
+
+.about-text-box ul {
+    list-style-type: disc;
+    padding-left: 40px;
+}
+
+.about-text-box ul li {
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-us-container {
+        flex-direction: column;
+    }
+
+    .about-image-box {
+        min-height: 300px; /* Give it an explicit height on mobile */
+    }
+
+    .about-image-box,
+    .about-text-box {
+        max-width: 100%;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-text-box h1 {
+        font-size: 1.5em;
+    }
+
+    .about-text-box h2 {
+        font-size: 1.2em;
+    }
+}
+
+.containerss {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+}
+
+.half {
+    flex: 1;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .half {
+        flex: 100%;
+    }
+}
+
+.why-containss {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #fff;
+}
+
+.why-containss h2 {
+    padding: 10px 5px;
+}
+
+.why-containss ul li {
+    padding: 10px 3px;
+}
