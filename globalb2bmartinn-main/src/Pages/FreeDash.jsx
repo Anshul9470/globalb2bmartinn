@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faGauge, faShieldHalved, faUser, faCartPlus, faBarsProgress, 
     faBook, faCircleQuestion, faLeaf, faBell, faGem, faChartLine, 
     faLayerGroup, faArrowCircleUp, faHeadset, faMagnifyingGlass,
-    faXmark, faBolt, faBuilding, faVial, faBoxOpen, faCar
+    faXmark, faBolt, faBuilding, faVial, faBoxOpen, faCar, faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
 
+import { useAuth } from '../Buyers/AuthContext';
+
 const FreeDash = () => {
+    const { userId: authUserId, setUserId, logout, isLoading } = useAuth();
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState('');
     const [activeSection, setActiveSection] = useState('dashboard');
@@ -64,22 +67,52 @@ const FreeDash = () => {
     ).slice(0, 8);
 
     const location = useLocation();
+    const navigate = useNavigate();
+
+    // Check authentication and redirect to login if not authenticated
+    useEffect(() => {
+        if (!isLoading && !authUserId) {
+            navigate('/login');
+        }
+    }, [isLoading, authUserId, navigate]);
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const userId = new URLSearchParams(location.search).get('id');
-            if (!userId) return;
+            // Primary source: AuthContext userId (restored from localStorage)
+            // Fallback: URL parameter (for backward compatibility)
+            const urlUserId = new URLSearchParams(location.search).get('id');
+            const targetUserId = urlUserId || authUserId;
+
+            if (!targetUserId) return;
+
+            // Sync URL ID to context if needed
+            if (urlUserId && urlUserId !== authUserId) {
+                setUserId(urlUserId);
+            }
+
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/login?id=${userId}`);
-                if (!response.ok) throw new Error('User not found');
+                const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/login?id=${targetUserId}`);
+                if (response.status === 404 || response.status === 401) {
+                    setUserId(null);
+                    navigate('/login');
+                    return;
+                }
+                if (!response.ok) throw new Error('Server connection error. Please try again.');
+                
                 const data = await response.json();
                 setUserData(data.user);
+                setError(''); 
             } catch (error) {
+                console.error("Fetch User Data Error:", error);
                 setError(error.message);
             }
         };
-        fetchUserData();
-    }, [location.search]);
+
+        // Only fetch if we have an authUserId and are not in loading state
+        if (!isLoading && authUserId) {
+            fetchUserData();
+        }
+    }, [authUserId, isLoading, setUserId, navigate]);
 
     useEffect(() => {
         if (activeSection === 'viewleads' && userData) {
@@ -165,6 +198,16 @@ const FreeDash = () => {
                             <p><FontAwesomeIcon icon={item.icon} /> <span>{item.label}</span></p>
                         </div>
                     ))}
+                    <div 
+                        className="pre-item logout-item" 
+                        onClick={() => {
+                            logout();
+                            navigate('/');
+                        }}
+                        style={{ marginTop: 'auto', borderTop: '1px solid rgba(0,0,0,0.05)', color: '#9f403d' }}
+                    >
+                        <p><FontAwesomeIcon icon={faSignOutAlt} /> <span>LOGOUT</span></p>
+                    </div>
                 </nav>
 
                 <div className="sidebar-footer">
@@ -180,7 +223,7 @@ const FreeDash = () => {
             <main className="premium-content">
                 <header className="dashboard-header" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem'}}>
                     <div className="header-greeting">
-                        <h1>{activeSection === 'dashboard' ? `Welcome, ${userData.name.split(' ')[0]}` : activeSection}</h1>
+                        <h1>{activeSection === 'dashboard' ? `Welcome, ${userData.name.split(' ')[0]} | ${userData.companyName}` : activeSection}</h1>
                         <p>{userData.plan || 'Free'} Merchant Workspace</p>
                     </div>
 

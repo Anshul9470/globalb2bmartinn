@@ -6,10 +6,15 @@ const ADMIN_SECRET_KEY = process.env.ADMIN_SECRET_KEY || "GLOBAL@ADMIN2024";
 
 // Admin Signup
 exports.adminSignup = async (req, res) => {
-  const { name, email, password, secretKey } = req.body;
+  const { name, password, secretKey } = req.body;
+  const email = req.body.email?.toLowerCase().trim();
+  const trimmedPassword = password?.trim();
+
+  console.log(`[AdminSignup] Attempting registration for: ${email}`);
 
   try {
-    if (secretKey !== ADMIN_SECRET_KEY) {
+    if (secretKey?.trim() !== ADMIN_SECRET_KEY) {
+      console.log(`[AdminSignup] Invalid secret key provided for: ${email}`);
       return res.status(403).json({ error: "Invalid Secret Admin Key" });
     }
 
@@ -21,7 +26,7 @@ exports.adminSignup = async (req, res) => {
     const admin = await User.create({
       name,
       email,
-      password,
+      password: trimmedPassword,
       role: "admin",
     });
 
@@ -33,16 +38,37 @@ exports.adminSignup = async (req, res) => {
 
 // Admin Login
 exports.adminLogin = async (req, res) => {
-  const { email, password } = req.body;
+  const email = req.body.email?.toLowerCase().trim();
+  const password = req.body.password?.trim();
+
+  console.log(`[AdminLogin] DEBUG: Attempting login for email: "${email}"`);
 
   try {
-    const admin = await User.findOne({ email, role: "admin" });
-    if (!admin || admin.password !== password) {
-      return res.status(401).json({ error: "Invalid admin credentials" });
+    // First, find ANY user with this email to see if they exist
+    const user = await User.findOne({ email });
+    
+    if (!user) {
+      console.log(`[AdminLogin] DIAGNOSTIC: No account found for email "${email}"`);
+      return res.status(401).json({ error: "Invalid Admin Credentials (User Not Found)" });
     }
 
-    res.status(200).json({ message: "Admin login successful", user: admin });
+    console.log(`[AdminLogin] DIAGNOSTIC: Account found. Role: "${user.role}"`);
+
+    if (user.role !== "admin") {
+      console.log(`[AdminLogin] DIAGNOSTIC: Role mismatch! This user is a "${user.role}", not an "admin".`);
+      return res.status(401).json({ error: "Invalid Admin Credentials (Account exists but is not an Admin)" });
+    }
+
+    if (user.password !== password) {
+      console.log(`[AdminLogin] DIAGNOSTIC: Password mismatch for user "${email}"`);
+      // For security, don't tell the user which one is wrong, but log it for us
+      return res.status(401).json({ error: "Invalid Admin Credentials (Incorrect Password)" });
+    }
+
+    console.log(`[AdminLogin] Success for admin: "${email}"`);
+    res.status(200).json({ message: "Admin login successful", user });
   } catch (error) {
+    console.error(`[AdminLogin] EXCEPTION:`, error);
     res.status(500).json({ error: "Internal server error" });
   }
 };

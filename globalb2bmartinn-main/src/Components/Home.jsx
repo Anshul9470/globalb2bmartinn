@@ -34,14 +34,9 @@ const Home = () => {
       />
       
       {/* <Maincategory /> */}
-      {/* <Burst />
-      <Burst /> */}
       <Allcategory />
-
       {/* <FeaturedProduct /> */}
-
       <Country />
-
       {/* <Supplier /> */}
       <Leads />
 

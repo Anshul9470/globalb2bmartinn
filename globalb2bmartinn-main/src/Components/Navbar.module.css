@@ -23,15 +23,17 @@
   /* Increased min-height for better content spacing */
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow: visible; /* Corrected to allow dropdown visibility */
   display: flex;
   flex-direction: column;
+  z-index: 2100;
 }
 
 
 .subHeader {
   height: 110px !important;
   min-height: 110px !important;
+  overflow: visible !important;
 }
 
 .subHeader .heroOverlay {
@@ -134,16 +136,26 @@
   /* Ensures text is centered within available space */
 }
 
-.topLogo {
+.navTopArea {
   position: absolute;
-  top: 12px;
-  left: 10px;
-  /* Shifted slightly from edge for better balance without pill */
-  z-index: 1500;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4%;
+  box-sizing: border-box;
+  z-index: 2000;
+  height: 100px;
+}
+
+.topLogo {
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  z-index: 1500;
 }
 
 .topLogo:hover {
@@ -162,14 +174,10 @@
 
 
 .topActions {
-  position: absolute;
-  top: 25px;
-  right: 5%;
   z-index: 1500;
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  gap: 10px;
+  align-items: center;
 }
 
 .loginBtn {
@@ -451,14 +459,14 @@
   top: calc(100% + 10px);
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff !important;
   backdrop-filter: blur(20px);
   border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25) !important;
   list-style: none;
   padding: 10px;
   margin: 0;
-  z-index: 2000;
+  z-index: 3000;
   border: 1px solid rgba(0, 0, 0, 0.05);
   animation: slideDown 0.3s ease-out;
   max-height: 400px;
@@ -598,10 +606,130 @@
   box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
 }
 
+/* Compact Navbar Search (For subpages) */
+.navSearchWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.navSearchContainer {
+  display: flex;
+  align-items: center;
+  background: white;
+  height: 48px;
+  border-radius: 50px;
+  padding: 0 6px 0 20px; /* Precise padding for balanced look */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1.5px solid #e2e8f0;
+  width: 100%;
+  max-width: 420px; /* Smaller width as requested */
+  margin: 0 auto; /* Center horizontally in the wrapper */
+  z-index: 1600;
+  transition: all 0.3s ease;
+  position: relative;
+}
 
+.navSearchContainer:focus-within {
+  border-color: #ff8000;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  max-width: 650px;
+}
+
+.navSearchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1e293b;
+  padding: 0 10px;
+}
+
+.navSearchButtons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  height: 100%; /* Match container height for perfect centering */
+}
+
+.navSearchBtn {
+  border-radius: 50%;
+  border: none;
+  height: 36px;
+  width: 36px;
+  padding: 0;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  margin: 0; /* Clear any residual margin */
+}
+
+.navSearchBtn i {
+  font-size: 15px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBtnOrange {
+  background: #ff8000 !important;
+}
+
+.navBtnBlue {
+  background: #0072b1 !important;
+}
+
+.navSearchBtn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  background: #28a745 !important;
+}
+
+.navSearchBtn:disabled {
+  background: #cbd5e1 !important;
+  cursor: not-allowed;
+}
+
+/* Suggestions adjustment for Nav Search */
+.navSuggestionsDropdown {
+  width: 100% !important;
+  top: calc(100% + 5px) !important;
+  border-radius: 15px !important;
+  font-size: 14px !important;
+}
+
+@media (max-width: 1300px) {
+  .navSearchContainer {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .navSearchContainer {
+    max-width: 400px;
+    padding: 0 5px 0 15px;
+  }
+  .navSearchBtn span {
+    display: none; /* Hide text on smaller screens, keep icons */
+  }
+  .navSearchBtn {
+    padding: 0 12px;
+  }
+}
 
 @media (max-width: 991px) {
+  .navSearchContainer {
+    display: none; /* Hide on mobile navbar to avoid clutter */
+  }
   .searchContainer {
     flex-direction: column;
     border-radius: 30px;

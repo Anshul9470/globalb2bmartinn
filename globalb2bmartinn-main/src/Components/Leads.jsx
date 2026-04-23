@@ -174,7 +174,7 @@ const Leads = () => {
                         </div>
                         <hr className="card-divider" />
                         <div className="card-footer">
-                          <Link to="/login" className="view-details-btn">
+                          <Link to={`/buyer/${lead.category.toLowerCase()}`} className="view-details-btn">
                             <span>View Details</span>
                             <FontAwesomeIcon icon={faArrowRight} className="moving-arrow" />
                           </Link>

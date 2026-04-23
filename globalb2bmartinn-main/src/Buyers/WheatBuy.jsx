@@ -4,345 +4,139 @@ import { useAuth } from './AuthContext';
 import { Link } from 'react-router-dom';
 import Whyglobal from '../Components/Whyglobal';
 
-const WheatBuys = [
-    {
-        "name": "Dilip",
-        "email": "dilip296@hotmail.com",
-        "mobileNumber": "+918448102872",
-        "lookingFor": "Seeking dependable suppliers of high-quality wheat for bulk needs",
-        "locationandDate": "Ghaziabad, Uttar Pradesh 06-09-2024",
-        "productOrService": "Wheat",
-        "quantity": 4,
-        "unit": "ton",
-        "__v": 0
-    },
-
-    {
-        "name": "huzaifa",
-        "email": "huzaifa@gmail.com",
-        "mobileNumber": "9999945614",
-        "lookingFor": "Reselling Purpose Fresh Wheat Required",
-        "locationandDate": "delhi, 5/07/2024",
-        "productOrService": "wheat",
-        "quantity": 100,
-        "unit": "kg",
-        "_id": "667c0f639644befaa9548015"
-    },
-
-    {
-        "name": "Amit Kumar Verma",
-        "email": "amitkv955@gmail.com",
-        "mobileNumber": "8400588577",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Urgently Required",
-        "productOrService": "wheat",
-        "quantity": 100,
-        "unit": "Ton",
-        "_id": "667c0f639644befaa9548015"
-    },
-    {
-        "name": "Pushkar Kesarwani",
-        "email": "pushkarkesarwani2003@gmail.com",
-        "mobileNumber": "6306884381",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Required For Reselling Purpose",
-        "productOrService": "wheat",
-        "quantity": 100,
-        "unit": "Ton",
-        "_id": "667c0fb59644befaa9548017"
-    },
-    {
-        "name": "Rohit Pal",
-        "email": "imrohitpal@gmail.com",
-        "mobileNumber": "7249864921",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Required Long Wheat",
-        "productOrService": "wheat",
-        "quantity": 1000,
-        "unit": "Ton",
-        "_id": "667c0fe09644befaa9548019"
-    },
-    {
-        "name": "KisanDeals, User",
-        "email": "sashwatbhatt606@gmail.com",
-        "mobileNumber": "9997109807",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Bulk Purchase",
-        "productOrService": "wheat",
-        "quantity": 50000,
-        "unit": "kg",
-        "_id": "667d57e89644befaa9548074"
-    },
-    {
-        "name": "KisanDeals, User",
-        "email": "sashwatbhatt606@gmail.com",
-        "mobileNumber": "9997109807",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Bulk Purchase",
-        "productOrService": "wheat",
-        "quantity": 50000,
-        "unit": "kg",
-        "_id": "667d58159644befaa9548076"
-    },
-    {
-        "name": "Anuj Yadav",
-        "email": "ay552570@gmail.com",
-        "mobileNumber": "7772817129",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Wholesale",
-        "productOrService": "wheat",
-        "quantity": 50,
-        "unit": "Ton",
-        "_id": "667d58449644befaa9548078"
-    },
-    {
-        "name": "Pavan Bagalkot",
-        "email": "pavandbagalkot@gmail.com",
-        "mobileNumber": "9902533123",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Small Scale Purchase",
-        "productOrService": "wheat",
-        "quantity": 30,
-        "unit": "Ton",
-        "_id": "667d58689644befaa954807a"
-    },
-    {
-        "name": "Prashant",
-        "email": "prashant.kumar430@outlook.com",
-        "mobileNumber": "9198669080",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Small Scale Purchase",
-        "productOrService": "wheat",
-        "quantity": 200,
-        "unit": "kg",
-        "_id": "667d589a9644befaa954807c"
-    },
-    {
-        "name": "Dhananjay Kumar Dhiraj",
-        "email": "dhananjaydhiraj@gmail.com",
-        "mobileNumber": "7367024992",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Wholesale",
-        "productOrService": "wheat",
-        "quantity": 10000,
-        "unit": "kg",
-        "_id": "667d58cf9644befaa954807e"
-    },
-    {
-        "name": "Pardeep Kumar",
-        "email": "rajkmr4886@gmail.com",
-        "mobileNumber": "9911322633",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Wholesale",
-        "productOrService": "wheat",
-        "quantity": 10,
-        "unit": "Ton",
-        "_id": "667d58f49644befaa9548080"
-    },
-    {
-        "name": "Abhishek Yadav",
-        "email": "abhishekyadav4737@gmail.com",
-        "mobileNumber": "9696668878",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Resale",
-        "productOrService": "wheat",
-        "quantity": 50,
-        "unit": "Ton",
-        "_id": "667d59209644befaa9548082"
-    },
-    {
-        "name": "Vivek",
-        "email": "bhartidikshant@gmail.com",
-        "mobileNumber": "9939990369",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Bulk Purchase",
-        "productOrService": "wheat",
-        "quantity": 30,
-        "unit": "Ton",
-        "_id": "667d59489644befaa9548084"
-    },
-    {
-        "name": "Shyam Sunder",
-        "email": "sundershyam677@gmail.com",
-        "mobileNumber": "8368827954",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Large Scale Purchase",
-        "productOrService": "wheat",
-        "quantity": 600,
-        "unit": "Ton",
-        "_id": "667d596b9644befaa9548086"
-    },
-    {
-        "name": "Yuvraj Singh Naruka",
-        "email": "yuvrajnaruka4@gmail.com",
-        "mobileNumber": "9783514436",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Wholesale",
-        "productOrService": "wheat",
-        "quantity": 10000,
-        "unit": "kg",
-        "_id": "667d59869644befaa9548088"
-    },
-    {
-        "name": "Prince Sharma",
-        "email": "princepandit698@gmail.com",
-        "mobileNumber": "7534011794",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Small Scale Purchase",
-        "productOrService": "wheat",
-        "quantity": 500,
-        "unit": "kg",
-        "_id": "667d59b39644befaa954808a"
-    },
-    {
-        "name": "Deepak Mishra",
-        "email": "gautamdeepak937@gmail.com",
-        "mobileNumber": "8009771117",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Small Scale Purchase",
-        "productOrService": "wheat",
-        "quantity": 100,
-        "unit": "kg",
-        "_id": "667d59d39644befaa954808c"
-    },
-    {
-        "name": "Satyendra Sharma",
-        "email": "satyendra.kumar19855@gmail.com",
-        "mobileNumber": "8839220425",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Small Scale Purchase",
-        "productOrService": "wheat",
-        "quantity": 100,
-        "unit": "kg",
-        "_id": "667d59f39644befaa954808e"
-    },
-    {
-        "name": "Aditi Jaiswal",
-        "email": "aditijaiswal0506@gmail.com",
-        "mobileNumber": "6205629246",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Small Scale Purchase",
-        "productOrService": "wheat",
-        "quantity": 100,
-        "unit": "kg",
-        "_id": "667d5a299644befaa9548090"
-    },
-    {
-        "name": "Omraj Traders",
-        "email": "omsuslade51@gmail.com",
-        "mobileNumber": "7249274651",
-        "locationandDate": "28-06-2024",
-        "lookingFor": "Wholesale",
-        "productOrService": "wheat",
-        "quantity": 20,
-        "unit": "Ton",
-        "_id": "667d5a4a9644befaa9548092"
-    },
-
-    {
-        name: "Amit Kumar verma",
-        email: "amitkv955@gmail.com",
-        mobileNumber: "8400588577",
-        locationandDate: "26-06-2024",
-        lookingFor: " Urgently Required",
-        productOrService: "wheat",
-        quantity: 100,
-        unit: "Ton",
-        _id: "667c0f639644befaa9548015"
-    },
-    {
-        name: "Pushkar Kesarwani",
-        email: "pushkarkesarwani2003@gmail.com",
-        mobileNumber: "6306884381",
-        lookingFor: " Required For Reselling Purpose",
-        productOrService: "wheat",
-        locationandDate: "27-06-2024",
-        quantity: 100,
-        unit: "Ton",
-        _id: "667c0fb59644befaa9548017"
-    },
-    {
-        name: "Rohit pal",
-        email: "imrohitpal@gmail.com",
-        mobileNumber: "7249864921",
-        lookingFor: " Required Long Wheat",
-        productOrService: "wheat",
-        locationandDate: "25-06-2024",
-        quantity: 1000,
-        unit: "ton",
-        _id: "667c0fe09644befaa9548019"
-    },
-    {
-        name: "IMRAN KHAN",
-        email: "imranklonar@gmail.com",
-        mobileNumber: "8484085280",
-        lookingFor: " Required Urgently",
-        productOrService: "wheat",
-        locationandDate: "28-06-2024",
-        quantity: 1000,
-        unit: "kg",
-        _id: "667c10079644befaa954801b"
-    },
-
-    {
-        name: "Hakim Mohammed Shaikh",
-        email: "hakim.shaikh@yahoo.com",
-        mobileNumber: "8879658986",
-        lookingFor: "Looking For Wheat",
-        productOrService: "wheat",
-        locationandDate: "26-06-2024",
-        quantity: 1,
-        unit: "Ton",
-        _id: "667c10389644befaa954801d"
-    },
-    {
-        name: "Ajaysingh Tak",
-        email: "ajaysingh1384@gmail.com",
-        mobileNumber: "8378035473",
-        lookingFor: " Required Fresh Wheat",
-        productOrService: "wheat",
-        locationandDate: "25-06-2024",
-        quantity: 1,
-        unit: "ton",
-        _id: "667c10639644befaa954801f"
-    },
-    {
-        name: "Krishna",
-        email: "udayrinku35@gmail.com",
-        mobileNumber: "7863090977",
-        lookingFor: " Required Urgently",
-        locationandDate: "26-06-2024",
-        productOrService: "wheat",
-        quantity: 200,
-        unit: "kg",
-        _id: "667c10639644befaa954801f"
-    }
-];
+import { resolveState } from "../services/stateResolver";
 
 const WheatBuy = () => {
     const { userId } = useAuth();
     const [userIsPremium, setUserIsPremium] = useState(false);
     const [shownNumbers, setShownNumbers] = useState([]);
     const [leadsViewed, setLeadsViewed] = useState(0);
+    const [buyers, setBuyers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [selectedState, setSelectedState] = useState(null);
+    const [selectedCountry, setSelectedCountry] = useState(null);
+
+    // Country Search State
+    const [countrySearch, setCountrySearch] = useState("");
+    const [countrySuggestions, setCountrySuggestions] = useState([]);
+    const [showCountrySuggestions, setShowCountrySuggestions] = useState(false);
+
+    const COUNTRIES = [
+        "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
+        "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
+        "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic",
+        "Denmark", "Djibouti", "Dominica", "Dominican Republic",
+        "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia",
+        "Fiji", "Finland", "France",
+        "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guyana",
+        "Haiti", "Honduras", "Hungary",
+        "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast",
+        "Jamaica", "Japan", "Jordan",
+        "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan",
+        "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
+        "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar",
+        "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway",
+        "Oman",
+        "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
+        "Qatar",
+        "Romania", "Russia", "Rwanda",
+        "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria",
+        "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
+        "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan",
+        "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
+        "Yemen",
+        "Zambia", "Zimbabwe"
+    ];
+
+    useEffect(() => {
+        const fetchBuyers = async () => {
+            try {
+                const response = await fetch(`http://localhost:3005/buyers?t=${Date.now()}`);
+                const data = await response.json();
+                const wheatBuyers = (data.buyers || []).filter(buyer => 
+                    (buyer.productOrService || '').toLowerCase().includes('wheat')
+                );
+                setBuyers(wheatBuyers);
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching wheat buyers:", error);
+                setLoading(false);
+            }
+        };
+        fetchBuyers();
+    }, []);
 
     useEffect(() => {
         if (!userId) return;
-
-        // Load the viewed leads from local storage
         const storedViewedLeads = JSON.parse(localStorage.getItem(`wheatViewedLeads_${userId}`)) || [];
         setShownNumbers(storedViewedLeads);
-
-        fetch(`${process.env.REACT_APP_API_ENDPOINT}/getUserWithPremiumStatus/${userId}`)
+        fetch(`http://localhost:3005/getUserWithPremiumStatus/${userId}`)
             .then(response => response.json())
             .then(data => {
                 setUserIsPremium(data.isPremium);
                 setLeadsViewed(data.leadsViewed);
-                console.log('Premium Status:', data.isPremium);
             })
-            .catch(error => {
-                console.error('Error fetching user information:', error);
-            });
+            .catch(error => console.error('Error:', error));
     }, [userId]);
+
+    const processedBuyers = React.useMemo(() => {
+        return buyers.map(b => ({
+            ...b,
+            displayState: resolveState(b)
+        }));
+    }, [buyers]);
+
+    const stateCounts = React.useMemo(() => {
+        const counts = {};
+        processedBuyers.forEach(b => {
+            const s = b.displayState;
+            if (s) counts[s] = (counts[s] || 0) + 1;
+        });
+        return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    }, [processedBuyers]);
+
+    const filteredBuyers = React.useMemo(() => {
+        let filtered = processedBuyers;
+        
+        if (selectedState) {
+            filtered = filtered.filter(b => b.displayState === selectedState);
+        }
+        
+        if (selectedCountry) {
+            filtered = filtered.filter(b => {
+                const bCountry = (b.country || 'India').trim().toLowerCase();
+                const fCountry = selectedCountry.toLowerCase();
+                return bCountry === fCountry;
+            });
+        }
+        
+        return filtered;
+    }, [processedBuyers, selectedState, selectedCountry]);
+
+    const handleCountrySearchChange = (value) => {
+        setCountrySearch(value);
+        if (value.trim()) {
+            const filtered = COUNTRIES.filter(c => 
+                c.toLowerCase().includes(value.toLowerCase())
+            ).slice(0, 8);
+            setCountrySuggestions(filtered);
+            setShowCountrySuggestions(true);
+        } else {
+            setCountrySuggestions([]);
+            setShowCountrySuggestions(false);
+        }
+    };
+
+    const selectCountry = (country) => {
+        setSelectedCountry(country);
+        setCountrySearch(country);
+        setShowCountrySuggestions(false);
+    };
+
+    const clearCountryFilter = () => {
+        setSelectedCountry(null);
+        setCountrySearch("");
+    };
 
     const toggleNumber = async (index) => {
         if (!userIsPremium) return; // Only premium users can see numbers
@@ -360,10 +154,10 @@ const WheatBuy = () => {
         // Update local storage
         localStorage.setItem(`wheatViewedLeads_${userId}`, JSON.stringify(updatedShownNumbers));
 
-        const buyer = WheatBuys[index]; // Get the buyer information
+        const buyer = filteredBuyers[index]; // Get the buyer information
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/incrementLeadsViewed/${userId}`, {
+            const response = await fetch(`http://localhost:3005/incrementLeadsViewed/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -383,6 +177,13 @@ const WheatBuy = () => {
         }
     };
 
+    if (loading)
+        return (
+            <div className="container" style={{ padding: "100px", textAlign: "center" }}>
+                Loading Wheat Leads...
+            </div>
+        );
+
     return (
         <>
             <div className="container">
@@ -395,95 +196,134 @@ const WheatBuy = () => {
                 </ol>
             </div>
             <div className="containersx">
-                <div style={{ width: '200px', padding: '10px' }} className="browsers">
-                    <h3 style={{ marginTop: '30px' }}>Browse by State</h3>
-                    <ul className="flt-list cust-scroll" id="state-lists">
-                        <li><Link to="#">All India</Link></li>
-                        <li><Link to="#">Delhi</Link></li>
-                        <li><Link to="#">Maharashtra</Link></li>
-                        <li><Link to="#">Karnataka</Link></li>
-                        <li><Link to="#">West Bengal</Link></li>
-                        <li><Link to="#">Tamil Nadu</Link></li>
-                    </ul>
-
-                    <ul style={{ marginTop: '20px' }} className="flt-list cust-scroll">
-                        <h3>All Category</h3>
-                        <li><Link to="#">Fresh Wheat</Link></li>
-                        <li><Link to="#">Red Wheat</Link></li>
-                        <li><Link to="#">Yellow Wheat</Link></li>
-                        <li><Link to="#">Green Wheat</Link></li>
-                    </ul>
-                </div>
-                <div className="buyers">
-                    {WheatBuys.map((buyer, index) => (
-                        <div key={index} className="buyer-card">
-                            <h2 style={{ color: 'red' }}> {buyer.lookingFor}</h2>
-                            <p><strong>Buyer Name:</strong> {buyer.name}</p>
-                            <p><strong>Quantity:</strong> {buyer.quantity} {buyer.unit}</p>
-                            <p><strong>Date:</strong> {buyer.locationandDate} </p>
-                            <p><strong>Mobile No.:</strong> {userIsPremium ? (shownNumbers.includes(index) ? buyer.mobileNumber : '********') : '********'}</p>
-                            <div style={{ display: 'flex', gap: '10px' }}>
-                                {userIsPremium && (
-                                    <button
-                                        className="detail-btn"
-                                        style={{
-                                            padding: '5px 10px',
-                                            background: '#f7f1f1',
-                                            color: 'orange',
-                                            borderRadius: '3px',
-                                            cursor: 'pointer',
-                                        }}
-                                        onClick={() => toggleNumber(index)}
+                <div className="browsers">
+                    <div className="tk23-hkCont_premserv__box" style={{ padding: '15px', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                        <h3 style={{ marginTop: '0', fontSize: '1.2rem', fontWeight: 'bold' }}>Browse by State</h3>
+                        <ul className="flt-list cust-scroll" id="state-lists">
+                            <li className={!selectedState ? 'active-link' : ''}>
+                                <button 
+                                  onClick={() => setSelectedState(null)}
+                                  style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', padding: '8px 0', fontSize: '14px' }}
+                                >
+                                    All India <span className="count-badge">{processedBuyers.length}</span>
+                                </button>
+                            </li>
+                            {stateCounts.map(([state, count]) => (
+                                <li key={state} className={selectedState === state ? 'active-link' : ''}>
+                                    <button 
+                                      onClick={() => setSelectedState(state)}
+                                      style={{ width: '100%', textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', padding: '8px 0', fontSize: '14px' }}
                                     >
-                                        Click to see
+                                        {state} <span className="count-badge">{count}</span>
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Country Search Filter Moved Here */}
+                    <div className="tk23-hkCont_premserv__box" style={{ padding: '15px', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', marginTop: '20px' }}>
+                        <h3 style={{ fontSize: '1.2rem', color: '#0f172a', marginBottom: '15px', fontWeight: 'bold' }}>Search by Country</h3>
+                        <div style={{ position: 'relative' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', padding: '5px 10px' }}>
+                                <input
+                                    type="text"
+                                    placeholder="Search Country..."
+                                    value={countrySearch}
+                                    onChange={(e) => handleCountrySearchChange(e.target.value)}
+                                    onFocus={() => countrySearch.trim() && setShowCountrySuggestions(true)}
+                                    onBlur={() => setTimeout(() => setShowCountrySuggestions(false), 200)}
+                                    style={{ width: '100%', border: 'none', background: 'transparent', padding: '8px', outline: 'none', fontSize: '14px' }}
+                                />
+                                {countrySearch && (
+                                    <button onClick={clearCountryFilter} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#64748b', fontSize: '18px' }}>×</button>
+                                )}
+                            </div>
+                            
+                            {showCountrySuggestions && countrySuggestions.length > 0 && (
+                                <ul style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: 'white', border: '1px solid #e2e8f0', borderRadius: '8px', marginTop: '5px', listStyle: 'none', padding: 0, zIndex: 100, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                                    {countrySuggestions.map((country, index) => (
+                                        <li 
+                                            key={index}
+                                            onMouseDown={() => selectCountry(country)}
+                                            style={{ padding: '10px 15px', cursor: 'pointer', fontSize: '14px', borderBottom: index < countrySuggestions.length - 1 ? '1px solid #f1f5f9' : 'none' }}
+                                        >
+                                            {country}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                        {selectedCountry && (
+                            <div style={{ marginTop: '10px', padding: '8px', background: '#ecfdf5', borderRadius: '8px', border: '1px solid #10b981', color: '#047857', fontSize: '13px' }}>
+                                Filtering: <strong>{selectedCountry}</strong>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Membership Plans Moved Here */}
+                    <div className="tk23-hkCont_premserv__box" style={{ padding: '15px', background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', marginTop: '20px' }}>
+                        <h3 className="tk23-hkCont_premserv__ttl" style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Membership Plans</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '15px' }}>
+                            <Link to='/packages' className="plan-item">Standard Plan</Link>
+                            <Link to='/packages' className="plan-item">Advance Plan</Link>
+                            <Link to='/packages' className="plan-item">Premium Plan</Link>
+                        </div>
+                        <Link to='/packages' className="call-now-cta">Call Now</Link>
+                    </div>
+                </div>
+                <div className="buyers" style={{ flex: 1 }}>
+                    {filteredBuyers.length === 0 ? (
+                        <div style={{ padding: "20px", textAlign: "center", background: 'white', borderRadius: '10px' }}>
+                            <p>No wheat buyers found for the selected {selectedState ? 'state' : ''} {selectedState && selectedCountry ? 'and' : ''} {selectedCountry ? 'country' : ''}.</p>
+                            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '10px' }}>
+                                {(selectedState || selectedCountry) && (
+                                    <button 
+                                        onClick={() => {
+                                            setSelectedState(null);
+                                            setSelectedCountry(null);
+                                            setCountrySearch("");
+                                        }}
+                                        style={{ padding: '8px 16px', background: '#0f172a', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                                    >
+                                        Clear All Filters
                                     </button>
                                 )}
                             </div>
-                            <div className='btns-imp'>
-                                <Link to={'/login'}>
-                                    <button className="detailing-btn">View More</button>
-                                </Link>
-                                <Link to={'/register-Company'}>
-                                    <button className="regis-btn">Register Now</button>
-                                </Link>
-                            </div>
                         </div>
-                    ))}
-                </div>
-                <div className="sidebar">
-                    <div className="mains-slide">
-                        <div className="tk23-hkCont_onergt">
-                            <div className="tk23-hkCont_premserv__box">
-                                <h1 className="tk23-hkCont_premserv__ttl">Our Membership Plans</h1>
-                                <div className="tk23-hkCont_premserv__list">
-                                    <Link to={'/packages'}>
-                                        <div className="tk23-hkCont_premservs">
-                                            <span className='fontss' style={{ backgroundColor: '#fff' }}>Standard Plan</span>
-                                        </div>
-                                    </Link>
+                    ) : (
+                        filteredBuyers.map((buyer, index) => (
+                            <div key={index} className="buyer-card">
+                                <h2 style={{ color: "red" }}> Looking For: {buyer.productOrService || "Wheat"}</h2>
+                                <p><strong>Buyer Name:</strong> {buyer.name || "Verified Buyer"}</p>
+                                <p><strong>Quantity:</strong> {buyer.quantity} {buyer.unit}</p>
+                                <p><strong>State:</strong> {buyer.displayState || "India"}</p>
+                                <p><strong>Country:</strong> {buyer.country || "India"}</p>
+                                <p><strong>Mobile No.:</strong> {userIsPremium ? (shownNumbers.includes(index) ? buyer.mobileNumber : '********') : '********'}</p>
+                                <div style={{ display: "flex", gap: "10px" }}>
+                                    {userIsPremium && !shownNumbers.includes(index) && (
+                                        <button
+                                            className="detail-btn"
+                                            style={{
+                                                padding: "5px 10px",
+                                                background: "#f7f1f1",
+                                                color: "orange",
+                                                borderRadius: "3px",
+                                                cursor: "pointer",
+                                            }}
+                                            onClick={() => toggleNumber(index)}
+                                        >
+                                            Click to see
+                                        </button>
+                                    )}
                                 </div>
-                                <div className="tk23-hkCont_premserv__list">
-                                    <Link to={'/packages'}>
-                                        <div className="tk23-hkCont_premservs">
-                                            <span className='fontss' style={{ backgroundColor: '#fff' }}>Advance Plan</span>
-                                        </div>
-                                    </Link>
-                                </div>
-                                <div className="tk23-hkCont_premserv__list">
-                                    <Link to={'/packages'}>
-                                        <div className="tk23-hkCont_premservs">
-                                            <span className='fontss' style={{ backgroundColor: '#fff' }}>Premium Plan</span>
-                                        </div>
-                                    </Link>
-                                    <Link to={'/packages'}>
-                                        <div className="reach">
-                                            <span className="reahhere">Call Now</span>
-                                        </div>
-                                    </Link>
+                                <div className="btns-imp">
+                                    <Link to={"/login"}><button className="detailing-btn">View More</button></Link>
+                                    <Link to={"/register-Company"}><button className="regis-btn">Register Free</button></Link>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        ))
+                    )}
                 </div>
                 <Whyglobal />
             </div>

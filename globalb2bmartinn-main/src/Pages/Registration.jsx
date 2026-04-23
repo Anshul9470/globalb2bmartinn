@@ -378,10 +378,40 @@ const Registration = () => {
         "Jewellery", "Handicrafts", "Gifts & Decor", "Hardware", "Toys", "Sports Equipment", "Computer Hardware", "Agarbatti", "Event Management", "Solar Panel Installation"
     ];
 
+  const COUNTRIES = [
+    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
+    "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
+    "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic",
+    "Denmark", "Djibouti", "Dominica", "Dominican Republic",
+    "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia",
+    "Fiji", "Finland", "France",
+    "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guyana",
+    "Haiti", "Honduras", "Hungary",
+    "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast",
+    "Jamaica", "Japan", "Jordan",
+    "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan",
+    "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
+    "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar",
+    "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway",
+    "Oman",
+    "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
+    "Qatar",
+    "Romania", "Russia", "Rwanda",
+    "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria",
+    "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
+    "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan",
+    "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
+    "Yemen",
+    "Zambia", "Zimbabwe"
+  ];
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [city, setCity] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState(""); // Updated state for phone number
+  const [countryName, setCountryName] = useState("India");
+  const [countrySuggestions, setCountrySuggestions] = useState([]);
+  const [showCountrySuggestions, setShowCountrySuggestions] = useState(false);
+  const [stateName, setStateName] = useState(""); // Added stateName
+  const [phoneNumber, setPhoneNumber] = useState(""); 
   const [productOrService, setProductOrService] = useState("");
   const [quantity, setQuantity] = useState("");
   const [unit, setUnit] = useState("kg");
@@ -392,6 +422,36 @@ const Registration = () => {
   const [apiError, setApiError] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+
+  // Indian States List
+  const INDIAN_STATES = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", 
+    "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", 
+    "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", 
+    "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Andaman and Nicobar Islands", 
+    "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Jammu and Kashmir", "Ladakh", 
+    "Lakshadweep", "Puducherry"
+  ];
+
+  // Handle country input with suggestions
+  const handleCountrySearch = (value) => {
+    setCountryName(value);
+    if (value.trim().length > 0) {
+      const filtered = COUNTRIES.filter(c => 
+        c.toLowerCase().includes(value.toLowerCase())
+      ).slice(0, 10);
+      setCountrySuggestions(filtered);
+      setShowCountrySuggestions(true);
+    } else {
+      setCountrySuggestions([]);
+      setShowCountrySuggestions(false);
+    }
+  };
+
+  const handleCountrySuggestionClick = (suggestion) => {
+    setCountryName(suggestion);
+    setShowCountrySuggestions(false);
+  };
 
   // Handle product/service input with suggestions
   const handleProductInputChange = (value) => {
@@ -426,7 +486,9 @@ const Registration = () => {
     const formData = {
       name,
       email,
-      city,
+      country: countryName,
+      city: "", // Optional now
+      statename: stateName, // Added statename
       mobileNumber: phoneNumber,
       productOrService,
       quantity: Number(quantity),
@@ -438,7 +500,7 @@ const Registration = () => {
       await registerBuyer(formData);
       setName("");
       setEmail("");
-      setCity("");
+      setCountryName("India");
       setPhoneNumber("");
       setProductOrService("");
       setQuantity("");
@@ -482,16 +544,78 @@ const Registration = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="city">City:</label>
+              <div className="form-group" style={{ position: "relative" }}>
+                <label htmlFor="country">Country:</label>
                 <input
                   type="text"
                   className="reb-text"
-                  id="city"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  id="country"
+                  value={countryName}
+                  onChange={(e) => handleCountrySearch(e.target.value)}
+                  onFocus={() => {
+                    if (countryName.trim()) {
+                      handleCountrySearch(countryName);
+                    }
+                  }}
+                  onBlur={() => setTimeout(() => setShowCountrySuggestions(false), 200)}
                   required
+                  autoComplete="off"
                 />
+                {showCountrySuggestions && countrySuggestions.length > 0 && (
+                  <ul
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: 0,
+                      right: 0,
+                      backgroundColor: "#fff",
+                      border: "1px solid #ddd",
+                      borderTop: "none",
+                      borderRadius: "0 0 4px 4px",
+                      maxHeight: "200px",
+                      overflowY: "auto",
+                      zIndex: 1001,
+                      listStyle: "none",
+                      margin: 0,
+                      padding: "5px 0",
+                      boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
+                    }}
+                  >
+                    {countrySuggestions.map((suggestion, index) => (
+                      <li
+                        key={index}
+                        onMouseDown={() => handleCountrySuggestionClick(suggestion)}
+                        style={{
+                          padding: "10px 15px",
+                          cursor: "pointer",
+                          fontSize: "14px",
+                          color: "#333",
+                          borderBottom: "1px solid #f9f9f9"
+                        }}
+                        onMouseEnter={(e) => e.target.style.backgroundColor = "#f0f0f0"}
+                        onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
+                      >
+                        {suggestion}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div className="form-group">
+                <label htmlFor="state">State:</label>
+                <select
+                  id="state"
+                  className="reb-text"
+                  value={stateName}
+                  onChange={(e) => setStateName(e.target.value)}
+                  required={countryName === "India"}
+                  style={{ width: "100%", padding: "10px", backgroundColor: "#fff" }}
+                >
+                  <option value="">Select State</option>
+                  {INDIAN_STATES.map((state, index) => (
+                    <option key={index} value={state}>{state}</option>
+                  ))}
+                </select>
               </div>
               <div className="form-group">
                 <label htmlFor="phoneNumber">Mobile Number:</label>

@@ -16,7 +16,8 @@ const AdminSignup = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3005/admin/signup', formData);
+            const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+            await axios.post(`${apiEndpoint}/admin/signup`, formData);
             alert('Admin registered successfully! Please login.');
             navigate('/admin-login');
         } catch (err) {

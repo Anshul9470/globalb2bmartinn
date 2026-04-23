@@ -75,7 +75,7 @@ exports.resetPassword = async (req, res) => {
     }
 
     // Check if new password and confirm new password match
-    if (newPassword == confirmNewPassword) {
+    if (newPassword !== confirmNewPassword) {
       return res.status(400).json({ error: "Passwords do not match" });
     }
 
@@ -410,7 +410,9 @@ exports.getUsersByRole = async (req, res) => {
       return res.status(400).json({ message: "Invalid role. Role must be 'buyer' or 'seller'" });
     }
 
-    const users = await User.find({ role: role }).select('name email mobileNumber companyName cityname statename productOrService role images plan').lean();
+    const users = await User.find({ role: role })
+      .select('name email mobileNumber companyName cityname statename productOrService role images plan city state')
+      .lean();
 
     if (!users || users.length === 0) {
       return res.status(200).json({

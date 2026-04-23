@@ -34,7 +34,12 @@ const buyerSchema = new mongoose.Schema({
     },
     city: {
         type: String,
-        required: true,
+        required: false,
+        trim: true
+    },
+    statename: {
+        type: String,
+        required: false,
         trim: true
     },
     productOrService: {
@@ -51,6 +56,11 @@ const buyerSchema = new mongoose.Schema({
         type: String,
         required: false,
         enum: ['kg', 'pcs', 'dozen', 'meter', 'ton', 'liter', 'container'], // Enumerate the valid units
+        trim: true
+    },
+    country: {
+        type: String,
+        default: 'India',
         trim: true
     }
 }, { timestamps: true });

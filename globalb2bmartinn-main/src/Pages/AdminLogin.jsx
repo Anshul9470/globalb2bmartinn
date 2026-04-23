@@ -14,7 +14,8 @@ const AdminLogin = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3005/admin/login', { email, password });
+            const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+            const response = await axios.post(`${apiEndpoint}/admin/login`, { email, password });
             setUserId(response.data.user._id);
             setUserRole('admin');
             navigate('/admin-dashboard');

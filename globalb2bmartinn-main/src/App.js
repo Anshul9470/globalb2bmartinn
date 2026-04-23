@@ -806,18 +806,19 @@ import DoorHandleBuy from "./Buyers/DoorhandleBuy.jsx";
 import DoorLockBuy from "./Buyers/DoorLockBuy.jsx";
 import Globalb2bPricess from "./Pages/GlobalPackage.jsx";
 import SearchResults from "./Pages/SearchResults.jsx";
+import CategoryBuyerLeads from "./Buyers/CategoryBuyerLeads.jsx";
 
 import VideoPopup from "./Components/popup.jsx";
 
 function App() {
   return (
     // <UnderMentanceLanding />
-    <div className="App">
-      <Topbar />
-      <Header />
-      <ScrollToTop />
-      <div className="mainContent">
-        <AuthProvider>
+    <AuthProvider>
+      <div className="App">
+        <Topbar />
+        <Header />
+        <ScrollToTop />
+        <div className="mainContent">
           {/* <VideoPopup /> */}
           <Routes>
             <Route path="/" element={<Home />} />
@@ -837,6 +838,7 @@ function App() {
             <Route path="/help-center" element={<HelpCenter />} />
             <Route path="/refund" element={<Refund />} />
             <Route path="/search-results" element={<SearchResults />} />
+            <Route path="/buyer/:categoryName" element={<CategoryBuyerLeads />} />
             <Route
               path="/agriculture-farm-tools-suppliers"
               element={<Agriculture />}
@@ -2242,10 +2244,10 @@ function App() {
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </AuthProvider>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </AuthProvider>
   );
 }
 

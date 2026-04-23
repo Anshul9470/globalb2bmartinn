@@ -784,6 +784,7 @@ const products = [
     image: "./assets/eggshellpowder.png",
     items: ["Calcium Grade", "Industrial Use", "Poultry Feed", "Fertilizer"],
     trustPoints: ["120+ Verified Suppliers", "ISO 9001:2015 Cert.", "Global Export Quality"],
+    path: "/egg-supplier",
   },
   {
     id: 5,
@@ -791,7 +792,7 @@ const products = [
     image: "./assets/ai-cable-tie.jpg",
     items: ["Nylon Ties", "Metal Ties", "Reusable Ties", "Industrial Ties"],
     trustPoints: ["120+ Verified Suppliers", "ISO 9001:2015 Cert.", "Global Export Quality"],
-    path: "/wiresuppliers",
+    path: "/azoliya-cable-tie",
   },
   {
     id: 6,
@@ -799,7 +800,7 @@ const products = [
     image: "./assets/fruitspowder.png",
     items: ["Mango Powder", "Orange Powder", "Banana Powder", "Lemon Powder"],
     trustPoints: ["120+ Verified Suppliers", "ISO 9001:2015 Cert.", "Global Export Quality"],
-    path: "/fruitscomponent",
+    path: "/bananapowder",
   },
   {
     id: 7,
@@ -871,11 +872,11 @@ const products = [
     image: "./assets/shirts.png",
     items: ["Formal Shirts", "Casual Wear", "Cotton Shirts", "Slim Fit"],
     trustPoints: ["120+ Verified Suppliers", "ISO 9001:2015 Cert.", "Global Export Quality"],
-    path: "/garmentdedealer",
+    path: "/clothing-apparel-suppliers",
   },
   {
     id: 15,
-    title: "Gold Jewelry",
+    title: "Gold Jewelry",
     image: "./assets/goldjellerw.png",
     items: ["Necklaces", "Bangles", "Earrings", "Rings"],
     trustPoints: ["120+ Verified Suppliers", "ISO 9001:2015 Cert.", "Global Export Quality"],
@@ -887,7 +888,7 @@ const products = [
     image: "./assets/fresh-fruits.png",
     items: ["Organic Apples", "Banana Bunch", "Fresh Mangoes", "Citrus Fruits"],
     trustPoints: ["120+ Verified Suppliers", "ISO 9001:2015 Cert.", "Global Export Quality"],
-    path: "/agroproducts",
+    path: "/fruitscomponent",
   },
   {
     id: 18,
@@ -895,9 +896,10 @@ const products = [
     image: "./assets/mustard-oil.png",
     items: ["Pure Kachi Ghani", "Cold Pressed Oil", "Organic Quality", "High Purity"],
     trustPoints: ["120+ Verified Suppliers", "ISO 9001:2015 Cert.", "Global Export Quality"],
-    path: "/agroproducts",
+    path: "/mustard-oil",
   },
 ];
+
 
 export default function Allcategory() {
   const [parallaxY, setParallaxY] = React.useState(0);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faGauge, faShieldHalved, faMessage, faBriefcase, faScrewdriverWrench,
@@ -11,7 +11,10 @@ import {
 
 import FreeDash from './FreeDash';
 
+import { useAuth } from '../Buyers/AuthContext';
+
 const Dashboard = () => {
+    const { userId: authUserId, setUserId, logout, isLoading } = useAuth();
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState('');
     const [activeSection, setActiveSection] = useState('dashboard');
@@ -25,23 +28,56 @@ const Dashboard = () => {
     const [message, setMessage] = useState('');
 
     const location = useLocation();
+    const navigate = useNavigate();
+
+    // Check authentication and redirect to login if not authenticated
+    useEffect(() => {
+        if (!isLoading && !authUserId) {
+            navigate('/login');
+        }
+    }, [isLoading, authUserId, navigate]);
 
     // Fetch User Data
     useEffect(() => {
         const fetchUserData = async () => {
-            const userId = new URLSearchParams(location.search).get('id');
-            if (!userId) return;
+            // Primary source: AuthContext userId (restored from localStorage)
+            // Fallback: URL parameter (for backward compatibility)
+            const urlUserId = new URLSearchParams(location.search).get('id');
+            const targetUserId = urlUserId || authUserId;
+
+            if (!targetUserId) {
+                // No user ID found, should not happen due to above redirect
+                return;
+            }
+
+            // If we have a URL ID but it's different from context, sync it
+            if (urlUserId && urlUserId !== authUserId) {
+                setUserId(urlUserId);
+            }
+
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/login?id=${userId}`);
-                if (!response.ok) throw new Error('User not found');
+                const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/login?id=${targetUserId}`);
+                if (response.status === 404 || response.status === 401) {
+                    setUserId(null);
+                    navigate('/login');
+                    return;
+                }
+                if (!response.ok) throw new Error('Server connection error. Please try again.');
+                
                 const data = await response.json();
                 setUserData(data.user);
+                setError(''); 
             } catch (error) {
+                console.error("Fetch User Data Error:", error);
                 setError(error.message);
             }
         };
-        fetchUserData();
-    }, [location.search]);
+
+        // Only fetch if we have an authUserId and are not in loading state
+        if (!isLoading && authUserId) {
+            fetchUserData();
+        }
+    }, [authUserId, isLoading, setUserId, navigate]);
 
     // Fetch Viewed Leads
     useEffect(() => {
@@ -151,6 +187,16 @@ const Dashboard = () => {
                                     <p><FontAwesomeIcon icon={item.icon} /> <span>{item.label}</span></p>
                                 </div>
                             ))}
+                            <div 
+                                className="pre-item logout-item" 
+                                onClick={() => {
+                                    logout();
+                                    navigate('/');
+                                }}
+                                style={{ marginTop: 'auto', color: '#ff4d4d' }}
+                            >
+                                <p><FontAwesomeIcon icon={faSignOutAlt} /> <span>LOGOUT</span></p>
+                            </div>
                         </nav>
 
                         <div className="sidebar-footer">
@@ -166,7 +212,7 @@ const Dashboard = () => {
                     <main className="premium-content">
                         <header className="dashboard-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
                             <div className="header-greeting">
-                                <h1>{activeSection === 'dashboard' ? `Greetings, ${userData.name.split(' ')[0]}` : activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}</h1>
+                                <h1>{activeSection === 'dashboard' ? `Greetings, ${userData.name.split(' ')[0]} | ${userData.companyName}` : activeSection.charAt(0).toUpperCase() + activeSection.slice(1)}</h1>
                                 <p>Architectural oversight of your B2B commerce engine.</p>
                             </div>
 

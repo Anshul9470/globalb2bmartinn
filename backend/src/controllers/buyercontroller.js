@@ -9,14 +9,17 @@ exports.registerBuyer = async (req, res) => {
         res.status(201).send(buyerForm);
     } catch (error) {
         console.error('Error saving buyer information:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ 
+            message: 'Internal Server Error',
+            error: error.message 
+        });
     }
 };
 
 // Get all buyers
 exports.getAllBuyers = async (req, res) => {
     try {
-        const buyers = await Buyer.find().select('name email mobileNumber city productOrService quantity unit');
+        const buyers = await Buyer.find().lean();
         if (!buyers || buyers.length === 0) {
             return res.status(200).json({
                 message: 'No buyers found',

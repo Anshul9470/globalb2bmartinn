@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import gsap from "gsap";
 import styles from "./Navbar.module.css";
+import { resolveState } from "../services/stateResolver";
+import { useAuth } from "../Buyers/AuthContext";
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,6 +11,7 @@ function Header() {
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const navigate = useNavigate();
+  const { userId, logout } = useAuth();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -162,7 +165,7 @@ function Header() {
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion);
     setShowSuggestions(false);
-    // Removed automatic search to allow manual button click as requested
+    // Removed auto-search to allow user to choose between Buyer/Seller buttons
   };
 
   const handleSearch = async (type, queryOverride = null) => {
@@ -174,30 +177,47 @@ function Header() {
       return;
     }
 
+    // Strict Keyword Validation: Only allow searches for items in our KEYWORDS list
+    const isValideKeyword = KEYWORDS.some(k => k.toLowerCase() === query);
+
+    if (!isValideKeyword) {
+      console.log("Not a suggested keyword. Redirecting to 404.");
+      navigate('/not-found');
+      return;
+    }
+
     try {
       let response, results;
 
       // Fetch buyers or sellers based on type
       if (type === "buyer") {
-        // Fetch all buyers from API
-        response = await fetch('http://localhost:3005/buyers');
+        // Fetch all buyers from API with cache busting
+        response = await fetch(`http://localhost:3005/buyers?t=${Date.now()}`);
         const data = await response.json();
-        results = (data.buyers || []).filter(buyer => 
-          buyer.name.toLowerCase().includes(query) ||
-          buyer.email.toLowerCase().includes(query) ||
-          buyer.productOrService.toLowerCase().includes(query) ||
-          buyer.city.toLowerCase().includes(query)
-        );
+        results = (data.buyers || []).filter(buyer => {
+          const resolvedState = resolveState(buyer).toLowerCase();
+          return (
+            buyer.name.toLowerCase().includes(query) ||
+            buyer.email.toLowerCase().includes(query) ||
+            buyer.productOrService.toLowerCase().includes(query) ||
+            buyer.city.toLowerCase().includes(query) ||
+            resolvedState.includes(query)
+          );
+        });
       } else if (type === "company") {
-        // Fetch all sellers from API
-        response = await fetch('http://localhost:3005/by-role/seller');
+        // Fetch all sellers from API with cache busting
+        response = await fetch(`http://localhost:3005/by-role/seller?t=${Date.now()}`);
         const data = await response.json();
-        results = (data.users || []).filter(seller => 
-          seller.name.toLowerCase().includes(query) ||
-          seller.email.toLowerCase().includes(query) ||
-          seller.productOrService.toLowerCase().includes(query) ||
-          seller.companyName.toLowerCase().includes(query)
-        );
+        results = (data.users || []).filter(seller => {
+          const resolvedState = resolveState(seller).toLowerCase();
+          return (
+            seller.name.toLowerCase().includes(query) ||
+            seller.email.toLowerCase().includes(query) ||
+            seller.productOrService.toLowerCase().includes(query) ||
+            seller.companyName.toLowerCase().includes(query) ||
+            resolvedState.includes(query)
+          );
+        });
       }
 
       if (results && results.length > 0) {
@@ -206,17 +226,13 @@ function Header() {
           state: { results, searchType: type, searchQuery: query } 
         });
       } else {
-        // If no results found, show all buyers/sellers
-        navigate(`/search-results?query=${encodeURIComponent(query)}&type=${type}`, { 
-          state: { results: [], searchType: type, searchQuery: query, noResults: true } 
-        });
+        // If no results found, redirect to 404/NotFound page as requested
+        navigate('/not-found');
       }
     } catch (error) {
       console.error("Search error:", error);
-      // Show error and navigate to empty results
-      navigate(`/search-results?query=${encodeURIComponent(query)}&type=${type}`, { 
-        state: { results: [], searchType: type, searchQuery: query, error: true } 
-      });
+      // Fallback to not-found on error as well
+      navigate('/not-found');
     }
   };
 
@@ -259,20 +275,81 @@ function Header() {
         )}
         <div className={styles.heroOverlay}></div>
         <div className={styles.contentWrapper}>
-          <Link to="/" className={styles.topLogo}>
-            <img src="/assets/Globalb2bmart.png" alt="Global B2B Mart" />
-          </Link>
+          <div className={styles.navTopArea}>
+            <Link to="/" className={styles.topLogo}>
+              <img src="/assets/Globalb2bmart.png" alt="Global B2B Mart" />
+            </Link>
+            
+            {/* Subpage Compact Search Bar - Modern & Responsive */}
+            {!isHomePage && (
+              <div className={styles.navSearchWrapper}>
+                <div className={styles.navSearchContainer}>
+                  <input
+                    type="text"
+                    placeholder="Search products..."
+                    className={styles.navSearchInput}
+                    value={searchQuery}
+                    onChange={handleInputChange}
+                    onKeyDown={(e) => e.key === "Enter" && searchQuery.trim() && handleSearch("buyer")}
+                    onFocus={() => searchQuery.trim() && setShowSuggestions(true)}
+                    onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                  />
+                  {showSuggestions && suggestions.length > 0 && (
+                    <ul className={`${styles.suggestionsDropdown} ${styles.navSuggestionsDropdown}`}>
+                      {suggestions.map((suggestion, index) => (
+                        <li 
+                          key={index} 
+                          onMouseDown={() => handleSuggestionClick(suggestion)}
+                          className={styles.suggestionItem}
+                        >
+                          <i className="fa fa-search"></i> {suggestion}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <div className={styles.navSearchButtons}>
+                    <button
+                      className={`${styles.navSearchBtn} ${styles.navBtnOrange}`}
+                      onClick={() => handleSearch("buyer")}
+                      disabled={!searchQuery.trim()}
+                      title="Get Buyers"
+                    >
+                      <i className="fa fa-users"></i>
+                    </button>
+                    <button
+                      className={`${styles.navSearchBtn} ${styles.navBtnBlue}`}
+                      onClick={() => handleSearch("company")}
+                      disabled={!searchQuery.trim()}
+                      title="Get Sellers"
+                    >
+                      <i className="fa fa-briefcase"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
-          <div className={styles.topActions}>
-            <Link to="/register-buyer" className={styles.loginBtn}>
-              <i className="fa fa-paper-plane"></i> POST REQUIREMENT
-            </Link>
-            <Link to="/register-Company" className={styles.loginBtn}>
-              <i className="fa fa-user-plus"></i> JOIN FREE
-            </Link>
-            <Link to="/login" className={styles.loginBtn}>
-              <i className="fa fa-user"></i> LOGIN
-            </Link>
+            <div className={styles.topActions}>
+              <Link to="/register-buyer" className={styles.loginBtn}>
+                <i className="fa fa-paper-plane"></i> POST REQUIREMENT
+              </Link>
+              {userId ? (
+                <>
+                  <Link to="/dashboard" className={styles.loginBtn}>
+                    <i className="fa fa-gauge"></i> DASHBOARD
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/register-Company" className={styles.loginBtn}>
+                    <i className="fa fa-user-plus"></i> JOIN FREE
+                  </Link>
+                  <Link to="/login" className={styles.loginBtn}>
+                    <i className="fa fa-user"></i> LOGIN
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
 
           {isHomePage && (
@@ -281,30 +358,8 @@ function Header() {
                 Connect Smarter,<br />
                 <span>Trade Faster, Grow Bigger.</span>
               </h1>
-              <p>
-                The premium destination for global B2B trade. Find verified suppliers and
-                buyers from around the world.
-              </p>
+              {/* Content removed per user request */}
 
-              {/* Trust Badges Section */}
-              <div className={styles.uspSection}>
-                <div className={styles.uspItem}>
-                  <div className={styles.uspIcon}><i className="fa fa-check-circle"></i></div>
-                  <span>Verified Suppliers</span>
-                </div>
-                <div className={styles.uspItem}>
-                  <div className={styles.uspIcon}><i className="fa fa-shield-alt"></i></div>
-                  <span>Secure Trade</span>
-                </div>
-                <div className={styles.uspItem}>
-                  <div className={styles.uspIcon}><i className="fa fa-globe"></i></div>
-                  <span>Global Reach</span>
-                </div>
-                <div className={styles.uspItem}>
-                  <div className={styles.uspIcon}><i className="fa fa-bolt"></i></div>
-                  <span>Instant Leads</span>
-                </div>
-              </div>
               {/* Search Bar */}
               <div className={styles.searchContainer}>
                 <input
@@ -336,7 +391,7 @@ function Header() {
                     onClick={() => handleSearch("buyer")}
                     disabled={!searchQuery.trim()}
                   >
-                    <i className="fa fa-users"></i> GET BUYERS
+                    <i className="fa fa-users"></i> BUYERS
                   </button>
                   <div className={styles.separator}></div>
                   <button
@@ -344,7 +399,7 @@ function Header() {
                     onClick={() => handleSearch("company")}
                     disabled={!searchQuery.trim()}
                   >
-                    <i className="fa fa-briefcase"></i> GET SELLERS
+                    <i className="fa fa-briefcase"></i> SELLERS
                   </button>
                 </div>
               </div>

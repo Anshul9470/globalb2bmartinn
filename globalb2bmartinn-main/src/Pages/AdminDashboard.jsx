@@ -102,11 +102,12 @@ const AdminDashboard = () => {
 
         const fetchData = async () => {
             try {
+                const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
                 const [statsRes, buyersRes, sellersRes, analysisRes] = await Promise.all([
-                    axios.get('http://localhost:3005/admin/stats'),
-                    axios.get('http://localhost:3005/buyers'),
-                    axios.get('http://localhost:3005/by-role/seller'),
-                    axios.get('http://localhost:3005/admin/analysis')
+                    axios.get(`${apiEndpoint}/admin/stats`),
+                    axios.get(`${apiEndpoint}/buyers`),
+                    axios.get(`${apiEndpoint}/by-role/seller`),
+                    axios.get(`${apiEndpoint}/admin/analysis`)
                 ]);
 
                 setStats(statsRes.data.stats);
@@ -135,9 +136,10 @@ const AdminDashboard = () => {
 
     const handlePlanChange = async (sellerId, newPlan) => {
         try {
-            await axios.put('http://localhost:3005/update-plan', { userId: sellerId, plan: newPlan });
+            const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+            await axios.put(`${apiEndpoint}/update-plan`, { userId: sellerId, plan: newPlan });
             setAllSellers(allSellers.map(s => s._id === sellerId ? { ...s, plan: newPlan } : s));
-            const statsRes = await axios.get('http://localhost:3005/admin/stats');
+            const statsRes = await axios.get(`${apiEndpoint}/admin/stats`);
             setStats(statsRes.data.stats);
         } catch (err) {
             alert('Failed to update plan');
@@ -147,9 +149,10 @@ const AdminDashboard = () => {
     const handleDeleteBuyer = async (id) => {
         if (window.confirm('Permanently delete this buyer lead?')) {
             try {
-                await axios.delete(`http://localhost:3005/delete-buyer/${id}`);
+                const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+                await axios.delete(`${apiEndpoint}/delete-buyer/${id}`);
                 setAllBuyers(allBuyers.filter(b => b._id !== id));
-                const statsRes = await axios.get('http://localhost:3005/admin/stats');
+                const statsRes = await axios.get(`${apiEndpoint}/admin/stats`);
                 setStats(statsRes.data.stats);
             } catch (err) {
                 alert('Deletion failed');
@@ -160,9 +163,10 @@ const AdminDashboard = () => {
     const handleDeleteSeller = async (id) => {
         if (window.confirm('Permanently delete this seller account?')) {
             try {
-                await axios.delete(`http://localhost:3005/delete-user/${id}`);
+                const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+                await axios.delete(`${apiEndpoint}/delete-user/${id}`);
                 setAllSellers(allSellers.filter(s => s._id !== id));
-                const statsRes = await axios.get('http://localhost:3005/admin/stats');
+                const statsRes = await axios.get(`${apiEndpoint}/admin/stats`);
                 setStats(statsRes.data.stats);
             } catch (err) {
                 alert('Deletion failed');

@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../Buyers/AuthContext";
 import "./Topbar.css";
 
 function Topbar() {
+  const { userId } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
@@ -39,6 +41,7 @@ function Topbar() {
               </div>
               {isDropdownOpen && (
                 <div className="dropdownMenu">
+                  {userId && <Link to="/dashboard" onClick={() => setIsDropdownOpen(false)}>Dashboard</Link>}
                   <Link to="/contact-us" onClick={() => setIsDropdownOpen(false)}>Call us</Link>
                   <Link to="/contact-us" onClick={() => setIsDropdownOpen(false)}>Your Feedback</Link>
                   <Link to="/help-center" onClick={() => setIsDropdownOpen(false)}>Help Center</Link>
