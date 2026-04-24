@@ -168,12 +168,41 @@ function Header() {
     // Removed auto-search to allow user to choose between Buyer/Seller buttons
   };
 
+  // Specialized mapping for established category pages
+  const CATEGORY_MAPPING = {
+    "pulses": "/agroproducts",
+    "saree": "/sareesdealer",
+    "rice": "/rice-seller",
+    "egg shell powder": "/egg-supplier",
+    "cable tie": "/azoliya-cable-tie",
+    "fruits powder": "/bananapowder",
+    "dry fruits": "/dryfruitsmanu",
+    "pvc pipes": "/pipeseller",
+    "spices": "/spices-dealers",
+    "handicrafts": "/handicraftItems",
+    "desi ghee": "/ghee-seller",
+    "herbal products": "/hearbal-seller",
+    "plastic product": "/plastic",
+    "furniture": "/best-furniture-suppliers-in-india",
+    "shirts": "/clothing-apparel-suppliers",
+    "gold jewelry": "/jewellery-seller",
+    "fresh fruits": "/fruitscomponent",
+    "mustard oil": "/mustard-oil"
+  };
+
   const handleSearch = async (type, queryOverride = null) => {
     const query = (queryOverride || searchQuery).trim().toLowerCase();
     
     // Refine Search Logic: Strictly block execution if no query is present
     if (!query) {
       console.log("Search query is empty. Navigation blocked.");
+      return;
+    }
+
+    // Direct redirect for established category pages (For Seller Search)
+    if (type === "company" && CATEGORY_MAPPING[query]) {
+      console.log(`Direct hit for category: ${query}. Redirecting to static page.`);
+      navigate(CATEGORY_MAPPING[query]);
       return;
     }
 

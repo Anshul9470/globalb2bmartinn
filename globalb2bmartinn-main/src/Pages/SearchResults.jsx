@@ -79,6 +79,23 @@ const SearchResults = () => {
     statename: 'General'
   });
 
+  React.useEffect(() => {
+    // Show form automatically after 2 seconds
+    const initialTimer = setTimeout(() => {
+      setShowSellerForm(true);
+    }, 2000);
+
+    // Re-show form every 5 minutes if it was closed
+    const intervalTimer = setInterval(() => {
+      setShowSellerForm(true);
+    }, 300000);
+
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(intervalTimer);
+    };
+  }, []);
+
   // Handle State Search Input
   const handleStateSearchChange = (value) => {
     setStateSearch(value);
@@ -243,7 +260,7 @@ const SearchResults = () => {
   const isBuyerSearch = typeParam === 'buyer';
 
   return (
-    <div className="search-results-page">
+    <div className={`search-results-page ${showSellerForm ? 'form-open' : ''}`}>
       <div className="results-hero-wrapper">
         <div className="hero-animation-bg"></div>
         <div className="results-header-container">
@@ -251,39 +268,52 @@ const SearchResults = () => {
             <div className="header-left">
               <div className="purpose-badge">Verified Marketplace</div>
               <h1>{getTitle()}</h1>
-              <div className="trust-badges-row">
-                <span className="trust-badge available"><i className="fa fa-check-circle"></i> Available Buyers</span>
-                <span className="trust-badge verified"><i className="fa fa-shield-alt"></i> Verified Buyers</span>
-              </div>
+
               <p className="results-subtitle">{getSubTitle()}</p>
             </div>
             <div className="header-right">
-              <button 
-                className={`seller-cta-btn ${showSellerForm ? 'active' : ''}`}
-                onClick={() => setShowSellerForm(!showSellerForm)}
-              >
-                {showSellerForm ? 'Close Form' : 'For Seller'}
-              </button>
+              {/* Button removed as per user request. Form now triggers automatically. */}
             </div>
           </div>
 
           {showSellerForm && (
-            <div className="compact-seller-form-area">
-              <form onSubmit={handleSellerSubmit} className="compact-seller-form">
-                <h2>Join as a Supplier</h2>
-                <div className="form-grid">
-                  <input type="text" name="name" placeholder="Full Name" onChange={handleSellerFormChange} required />
-                  <input type="email" name="email" placeholder="Email Address" onChange={handleSellerFormChange} required />
-                  <input type="text" name="mobileNumber" placeholder="Mobile Number" onChange={handleSellerFormChange} required />
-                  <input type="text" name="companyName" placeholder="Company Name" onChange={handleSellerFormChange} required />
-                  <input type="text" name="productOrService" placeholder="Products You Sell" onChange={handleSellerFormChange} required />
-                </div>
-                <button type="submit" disabled={sellerFormLoading}>
-                  {sellerFormLoading ? 'Registering...' : 'Register Now'}
-                </button>
-                {sellerFormSuccess && <p className="form-success">Registration successful!</p>}
-                {sellerFormError && <p className="form-error">{sellerFormError}</p>}
-              </form>
+            <div className="form-modal-overlay">
+              <div className="form-modal-content">
+                <button className="form-close-btn" onClick={() => setShowSellerForm(false)} title="Close Form">×</button>
+                <form onSubmit={handleSellerSubmit} className="compact-seller-form">
+                  <div className="form-header">
+                    <h2>Join as a Supplier</h2>
+                    <p>Grow your business with verified B2B leads</p>
+                  </div>
+                  <div className="form-grid">
+                    <div className="form-group">
+                      <i className="fa fa-user"></i>
+                      <input type="text" name="name" placeholder="Full Name" onChange={handleSellerFormChange} required />
+                    </div>
+                    <div className="form-group">
+                      <i className="fa fa-envelope"></i>
+                      <input type="email" name="email" placeholder="Email Address" onChange={handleSellerFormChange} required />
+                    </div>
+                    <div className="form-group">
+                      <i className="fa fa-phone"></i>
+                      <input type="text" name="mobileNumber" placeholder="Mobile Number" onChange={handleSellerFormChange} required />
+                    </div>
+                    <div className="form-group">
+                      <i className="fa fa-building"></i>
+                      <input type="text" name="companyName" placeholder="Company Name" onChange={handleSellerFormChange} required />
+                    </div>
+                    <div className="form-group">
+                      <i className="fa fa-shopping-basket"></i>
+                      <input type="text" name="productOrService" placeholder="Products You Sell" onChange={handleSellerFormChange} required />
+                    </div>
+                  </div>
+                  <button type="submit" className="modal-submit-btn" disabled={sellerFormLoading}>
+                    {sellerFormLoading ? 'Registering...' : 'Register Now & Get Leads'}
+                  </button>
+                  {sellerFormSuccess && <p className="form-success">Registration successful!</p>}
+                  {sellerFormError && <p className="form-error">{sellerFormError}</p>}
+                </form>
+              </div>
             </div>
           )}
         </div>
@@ -307,9 +337,10 @@ const SearchResults = () => {
         {/* Sidebar Filter */}
         <aside className="filter-sidebar">
           <div className="filter-section">
-            <h3 style={{ fontSize: '1.2rem', color: '#0f172a', marginBottom: '15px' }}>Search by State</h3>
+            <h3><i className="fa fa-map-marked-alt"></i> Search by State</h3>
             <div className="state-search-box">
               <div className="input-wrapper">
+                <i className="fa fa-search search-icon-inside"></i>
                 <input
                   type="text"
                   placeholder="Search State..."
@@ -337,6 +368,21 @@ const SearchResults = () => {
                   ))}
                 </ul>
               )}
+            </div>
+
+            <div className="major-states-links" style={{ marginTop: '12px' }}>
+              <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: '600', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Major States</p>
+              <div className="states-grid">
+                {['Maharashtra', 'Delhi', 'Gujarat', 'Karnataka', 'Tamil Nadu'].map(state => (
+                  <button 
+                    key={state}
+                    onClick={() => selectState(state)}
+                    className={`major-state-btn ${selectedState === state ? 'active' : ''}`}
+                  >
+                    {state}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
           
@@ -453,9 +499,10 @@ const SearchResults = () => {
         {/* Right Sidebar - Country Search */}
         <aside className="filter-sidebar right-sidebar">
           <div className="filter-section">
-            <h3 style={{ fontSize: '1.2rem', color: '#0f172a', marginBottom: '15px' }}>Search by Country</h3>
+            <h3><i className="fa fa-globe-americas"></i> Search by Country</h3>
             <div className="state-search-box">
               <div className="input-wrapper">
+                <i className="fa fa-search search-icon-inside"></i>
                 <input
                   type="text"
                   placeholder="Search Country..."
@@ -492,13 +539,19 @@ const SearchResults = () => {
             </div>
           )}
 
-          <div className="filter-instructions" style={{ marginTop: '30px', fontSize: '0.9rem', color: '#64748b', background: '#f8fafc', padding: '15px', borderRadius: '12px' }}>
-            <p style={{ fontWeight: 600, marginBottom: '8px', color: '#475569' }}>Filter Tips:</p>
-            <ul style={{ paddingLeft: '20px', listStyleType: 'disc' }}>
-              <li>Select <strong>India</strong> to use state filters.</li>
-              <li>Search global leads by selecting other countries.</li>
-              <li>Use clear buttons to reset filters.</li>
-            </ul>
+          <div className="major-countries-links" style={{ marginTop: '12px' }}>
+            <p style={{ fontSize: '0.75rem', color: '#64748b', fontWeight: '600', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Major Countries</p>
+            <div className="states-grid">
+              {['India', 'UAE', 'UK', 'USA', 'Canada', 'Australia'].map(country => (
+                <button 
+                  key={country}
+                  onClick={() => selectCountry(country)}
+                  className={`major-state-btn ${selectedCountry === country ? 'active' : ''}`}
+                >
+                  {country}
+                </button>
+              ))}
+            </div>
           </div>
         </aside>
       </div>
