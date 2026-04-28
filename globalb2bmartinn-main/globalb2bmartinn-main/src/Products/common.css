@@ -1,0 +1,336 @@
+/* Container for main and aside */
+.main-box {
+    display: flex;
+    padding: 20px;
+}
+
+/* Aside styles */
+aside {
+    width: 20%;
+    padding-right: 20px;
+}
+
+.flt-box-wrap {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.flt-box {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.flt-head {
+    background-color: #007BFF;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.flt-title {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* .flt-content {
+    display: none;
+    margin-top: 10px;
+} */
+
+.flt-search {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.flt-search input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.flt-search svg {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ddd;
+}
+
+.flt-list {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.flt-list a {
+    display: block;
+    padding: 5px;
+    color: #007BFF;
+    transition: background-color 0.3s;
+}
+
+.flt-list a:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+/* Main styles */
+main {
+    width: 80%;
+}
+
+.section {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.sect-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.horprd {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.horprd .item {
+    width: calc(25% - 15px);
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.horprd-box {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    background: #fff;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.horprd-box:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.horprd-box figure {
+    margin-bottom: 10px;
+}
+
+.horprd-box img {
+    width: 119px;
+    height: 85px;
+}
+
+.horprd-box .title {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .main-box {
+        flex-direction: column;
+    }
+
+    aside {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    .horprd .item {
+        width: calc(50% - 15px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .horprd .item {
+        width: 100%;
+    }
+}
+
+.classified-wrap {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.classified {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+}
+
+.prd-info {
+    text-align: center;
+}
+
+.cinfo {
+    margin-top: 10px;
+}
+
+.cbox {
+    display: flex;
+}
+
+.cbox figure {
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.cmp-year {
+    background-color: #f0ad4e;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.cboxr {
+    flex: 1;
+}
+
+.cboxr .title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.cboxr .cloc {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #777;
+}
+
+.cboxr .tooltiptext {
+    visibility: hidden;
+    width: 220px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -110px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cboxr .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.rating-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.rtbox {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+.crate {
+    width: 50px;
+    height: 10px;
+    background-color: #ffd700;
+    position: relative;
+}
+
+.crate::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--_score);
+    height: 100%;
+    background-color: #4caf50;
+}
+
+.rate-text {
+    font-size: 12px;
+    color: #777;
+    margin-left: 5px;
+}
+
+.caddit {
+    margin-top: 10px;
+}
+
+.item {
+    margin-bottom: 10px;
+}
+
+.ca-box {
+    display: flex;
+    align-items: center;
+}
+
+.ca-box p {
+    margin: 0;
+}
+
+.l3icon {
+    margin-right: 5px;
+}
+
+.caction {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.caction p {
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 10px;
+    background: #d65858;
+}
+
+.caction p:hover {
+    background: #ea8c8c;
+    color: #333;
+}
+
+.classfied-wrap {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap: 50px;
+}

@@ -1,0 +1,51 @@
+# Monorepo .gitignore
+
+# Dependencies
+node_modules/
+backend/node_modules/
+globalb2bmartinn-main/node_modules/
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+globalb2bmartinn-main/.env
+globalb2bmartinn-main/.env.development
+globalb2bmartinn-main/.env.production
+
+# Build Outputs
+build/
+globalb2bmartinn-main/build/
+dist/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project Specific
+backend/uploads/
+backend/uploadsproducts/
+.netlify/
+coverage/
+
+# Scratch files
+check_db.js
+implementation_plan.md
+task.md
+walkthrough.md

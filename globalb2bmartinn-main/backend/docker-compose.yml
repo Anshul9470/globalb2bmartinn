@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  node-app:
+    build: .
+    image: globalb2b-server
+    environment:
+      - DATABASE_URL=mongodb://mongodb:27017/globalb2bDb
+      - PORT=3000
+    ports:
+      - '3005:3000'
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+      - ./uploads:/usr/src/app/uploads
+      - ./uploadsproducts:/usr/src/app/products
+    networks:
+      - node-network
+
+  mongodb:
+    image: mongo:7-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata6:/data/db
+    networks:
+      - node-network
+
+volumes:
+  dbdata6:
+
+networks:
+  node-network:
+    driver: bridge

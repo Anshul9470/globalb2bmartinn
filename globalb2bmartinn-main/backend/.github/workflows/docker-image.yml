@@ -1,0 +1,47 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check repository
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3.2.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Set docker tag var
+        id: vars
+        run: echo "docker_tag=$(date +%s)" >> $GITHUB_OUTPUT
+
+      - uses: mr-smithers-excellent/docker-build-push@v6.4
+        name: Build & push Docker image
+        with:
+          image: ${{ secrets.DOCKERHUB_USERNAME }}/globalb2b-server
+          tags: ${{ steps.vars.outputs.docker_tag }}, latest
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Deploy to swarm
+        uses: kitconcept/docker-stack-deploy@v1.2.0
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_GIT_TAG: ${{ steps.vars.outputs.docker_tag }}
+        with:
+          registry: "docker.io"
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          remote_host: ec2-13-127-78-0.ap-south-1.compute.amazonaws.com
+          remote_user: ubuntu
+          remote_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+          stack_file: "docker-prod-compose.yml"
+          stack_name: "globalb2b"

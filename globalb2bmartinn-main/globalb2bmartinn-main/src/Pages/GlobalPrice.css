@@ -1,0 +1,310 @@
+/* .membership-plan-selector {
+    font-family: Arial, sans-serif;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .membership-plan-selector h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  label {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  .plan-suggestion {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+  }
+   */
+/* 
+.membership-plan-selector {
+  font-family: Arial, sans-serif;
+  width: 600px; 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.membership-plan-selector h2 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.select-container {
+  width: 48%; 
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.plan-suggestion {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+} */
+/* .membership-plan-selector {
+  font-family: Arial, sans-serif;
+  width: 600px; 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+.membership-plan-selector h2 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Flexbox container for label and select in a row */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 15px; /* Space between rows */
+}
+
+.select-container {
+  width: 48%; /* Allows each select to take 48% of the container width, leaving space between them */
+}
+
+/* Styling for input fields */
+input[type="checkbox"] {
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.plan-suggestion {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
+/* Container for the membership plan selector */
+.membership-plan-selector {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.membership-plan-selector h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Flexbox layout for form fields */
+.membership-plan-selector .form-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Styling for each form group (label + input/select) */
+.membership-plan-selector label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.membership-plan-selector select,
+.membership-plan-selector input[type="checkbox"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.membership-plan-selector input[type="checkbox"] {
+  width: auto;
+}
+
+/* For each form field, set a base width of 45% for two-column layout */
+.membership-plan-selector .form-fields > div {
+  flex: 1 1 45%;
+}
+
+/* Submit button */
+.membership-plan-selector button {
+  width: 100%;
+  padding: 15px;
+  background-color: #28a745;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.membership-plan-selector button:hover {
+  background-color: #218838;
+}
+
+/* Plan suggestion styling */
+.plan-suggestion {
+  margin-top: 20px;
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+/* Responsiveness for smaller devices (tablet, mobile) */
+@media (max-width: 768px) {
+  .membership-plan-selector .form-fields > div {
+    flex: 1 1 100%; /* Stack fields vertically on smaller screens */
+  }
+
+  .membership-plan-selector h2 {
+    font-size: 1.5rem;
+  }
+
+  .membership-plan-selector button {
+    font-size: 1rem;
+  }
+
+  .plan-suggestion {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .membership-plan-selector {
+    padding: 15px;
+  }
+
+  .membership-plan-selector h2 {
+    font-size: 1.2rem;
+  }
+
+  .membership-plan-selector button {
+    font-size: 0.9rem;
+  }
+
+  .plan-suggestion {
+    font-size: 1rem;
+  }
+}

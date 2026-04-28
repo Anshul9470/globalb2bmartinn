@@ -1,0 +1,233 @@
+/* BuyerPremium.css - Matched exactly to User Image */
+.buyer-premium-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.buyer-premium-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.buyer-premium-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* 1. Identity Section */
+.identity-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex: 1.2;
+}
+
+.avatar-container {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+}
+
+.avatar-box {
+  width: 100%;
+  height: 100%;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e293b;
+  overflow: hidden;
+}
+
+.avatar-box img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.verified-check {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: #10b981;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  border: 2px solid white;
+}
+
+.identity-details h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 6px 0;
+}
+
+.category-rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cat-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.rating-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.rating-info span {
+  color: #64748b;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.transaction-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.transaction-count span {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.verified-label {
+  margin-top: 10px;
+  background: #ecfdf5;
+  color: #059669;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+/* 2. Requirement Section */
+.requirement-section {
+  flex: 1;
+  padding: 0 30px;
+  border-left: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.req-block-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+
+.req-product-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.quantity-pill {
+  background: #0f172a;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-block;
+}
+
+/* 3. Contact Section */
+.contact-section {
+  flex: 1;
+  padding-left: 30px;
+  border-left: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.contact-line i {
+  width: 16px;
+  color: #94a3b8;
+}
+
+.view-details-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1.5px solid #10b981;
+  color: #10b981;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.view-details-btn:hover {
+  background: #10b981;
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .buyer-premium-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+  }
+  .requirement-section, .contact-section {
+    padding: 0;
+    border: none;
+    width: 100%;
+  }
+  .identity-section {
+    width: 100%;
+  }
+}

@@ -1,0 +1,515 @@
+/* footer.css - Modern B2B Marketplace Footer */
+
+.footBg {
+  background: #050a18; /* Deep Midnight Navy */
+  color: #ffffff;
+  padding: 40px 20px 40px 20px; /* Reduced top padding from 80px */
+  width: 100%;
+  font-family: 'Inter', 'Outfit', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 20; /* Render above dashboard sidebar */
+}
+
+/* TOP INFO SECTION */
+.footer-top-info {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo-main {
+  max-width: 280px;
+  height: auto;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.footer-description-main {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* 5-COLUMN GRID */
+.footLinkWrap {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto !important;
+  padding: 0 15px;
+}
+
+.footer-links {
+  flex: 1 1 200px; /* Allow columns to grow and shrink, min 200px */
+  min-width: 200px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Left align content within column */
+}
+
+/* COLUMN TITLES */
+.footer-column-title {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+/* Accent Bars for Titles */
+.footer-column-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 35px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.title-blue::after {
+  background: #38bdf8; /* Vibrant Blue */
+}
+
+.title-orange::after {
+  background: #ff8c00; /* Vibrant Orange */
+}
+
+/* LINK GROUPS */
+.footer-link-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.linkNormal {
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-decoration: none !important;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  display: block;
+  line-height: 1.4;
+}
+.linkNormal:hover {
+  color: #ffffff !important;
+  transform: translateX(5px);
+}
+
+/* CONTACT SECTION */
+.contact-column {
+  gap: 18px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.contact-icon-blue {
+  color: #38bdf8;
+  font-size: 1rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+.company-name-row {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* BOTTOM SECTION SPACING */
+.footer-bottom-spacer {
+  margin-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.lastBar {
+  text-align: center;
+}
+
+.text-col {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 0.9rem;
+  text-decoration: none !important;
+  transition: color 0.3s ease;
+}
+
+.text-col:hover {
+  color: #ff8c00 !important;
+}
+
+/* RESPONSIVENESS FOR TOP COLS */
+@media (max-width: 1200px) {
+  .footer-links {
+    flex: 1 1 30%;
+    align-items: center; 
+    text-align: center;
+  }
+  .footer-column-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .footer-contact-item {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .footBg {
+    padding: 60px 20px 30px 20px;
+  }
+  .footer-logo-main {
+    max-width: 220px;
+  }
+  .footer-links {
+    flex: 1 1 100%;
+    margin-bottom: 50px;
+  }
+  .footer-description-main {
+    font-size: 0.95rem;
+  }
+}
+
+/* BOTTOM NAVIGATION AREA */
+.footer-bottom-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 40px auto 60px auto;
+  padding: 0 20px;
+}
+
+.footer-links-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 15px 30px;
+  width: 100%;
+}
+
+.footer-links-row a {
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-decoration: none !important;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.footer-links-row a:hover {
+  color: #ffffff !important;
+}
+
+.footer-links-row.sub-links a {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.footer-links-row.sub-links a:hover {
+  color: #ff8c00 !important;
+}
+
+/* CATEGORIES PILL BAR */
+.footer-categories-pill {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 18px 45px;
+  border-radius: 100px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: fit-content !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+  margin: 10px 0;
+}
+
+.pill-title {
+  color: #38bdf8 !important;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  padding-right: 25px;
+  line-height: 1;
+}
+
+.pill-links-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px 25px;
+}
+
+.pill-links-container a {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 1rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pill-links-container a:hover {
+  color: #ffffff !important;
+}
+
+/* MOBILE RESPONSIVENESS FOR BOTTOM NAV */
+@media (max-width: 992px) {
+  .footer-categories-pill {
+    border-radius: 20px;
+    padding: 20px;
+    flex-direction: column;
+    gap: 15px;
+    width: 100% !important;
+  }
+  .pill-title {
+    border-right: none;
+    padding-right: 0;
+    margin-bottom: 5px;
+  }
+  .footer-links-row {
+    gap: 15px;
+  }
+}
+
+/* Moved to consolidated catet.css */
+
+/* MOBILE BOTTOM NAVIGATION - PREMIUM APP STYLE */
+.mobile-bottom-nav {
+  display: none; /* Hidden on desktop */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(5, 10, 24, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 9999;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none !important;
+  font-size: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.nav-item svg {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.nav-item:active svg {
+  transform: scale(0.9);
+}
+
+.nav-item span {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* FIXED / DRAGGABLE SIDE TAB (BOOK A CALL) */
+.draggable-fab {
+  position: fixed;
+  right: 0 !important;
+  width: 48px !important;
+  height: auto !important;
+  min-height: 145px;
+  z-index: 10001;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 15px 5px !important;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none; /* Critical for dragging */
+  background: #36508c !important; /* Premium Blue matching the image */
+  border-radius: 12px 0 0 12px !important;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: none;
+}
+
+.draggable-fab.dragging {
+  cursor: grabbing !important;
+  background: #2a4073 !important;
+  box-shadow: -6px 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.draggable-fab.active {
+  background: #ff8c00 !important;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.fab-content {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.fab-icon-wrap {
+  font-size: 20px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.fab-label {
+  display: block !important;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.drag-handle {
+  display: none !important;
+}
+
+@keyframes chat-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* DRAGGABLE CHAT FAB - COMPACT FOR MOBILE */
+.draggable-chat-fab {
+  position: fixed;
+  right: 15px;
+  width: 55px; /* Smaller width */
+  height: 65px; /* Smaller height */
+  z-index: 10001;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* More centered content */
+  padding: 5px 0;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #22c55e; /* Vibrant Green */
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 30px; /* Small pill shape */
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+}
+
+.draggable-chat-fab.dragging {
+  cursor: grabbing;
+  transform: scale(1.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.chat-fab-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.chat-icon-wrap {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-icon-wrap svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.chat-drag-handle {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 2px 0 5px 0;
+  opacity: 0.6;
+}
+
+.chat-drag-handle span {
+  width: 15px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+
+.draggable-chat-fab:not(.dragging) {
+  animation: chat-pulse 4s infinite 1s;
+}
+
+/* RESPONSIVE TOGGLES */
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+  }
+  
+  .draggable-chat-fab {
+    display: flex !important;
+  }
+  
+  /* Padding for page content to not be hidden behind nav */
+  body {
+    padding-bottom: 75px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+  
+  /* Hide custom chat fab on desktop as Tawk default is usually better there, 
+     but we can keep it if user wants everything draggable. 
+     The user's prompt specifically asked for mobile/responsive. */
+  .draggable-chat-fab {
+    display: none !important;
+  }
+}
