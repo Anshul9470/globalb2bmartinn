@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface-container: #eeedf6;
+  --inverse-primary: #b6c4ff;
+  --tertiary: #531100;
+  --tertiary-fixed-dim: #ffb5a0;
+  --secondary-fixed-dim: #81cfff;
+  --surface: #faf8ff;
+  --on-primary: #ffffff;
+  --primary-fixed-dim: #b6c4ff;
+  --surface-variant: #e2e1eb;
+  --primary-container: #0033a0;
+  --secondary-fixed: #c6e7ff;
+  --outline: #747684;
+  --on-primary-container: #8ea6ff;
+  --on-tertiary-container: #ff8a68;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #004b69;
+  --on-tertiary-fixed: #3b0900;
+  --error: #ba1a1a;
+  --on-secondary-fixed-variant: #004c6b;
+  --inverse-on-surface: #f1f0f9;
+  --on-primary-fixed-variant: #133ca8;
+  --outline-variant: #c4c5d5;
+  --secondary: #00658d;
+  --on-error: #ffffff;
+  --surface-bright: #faf8ff;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #791d00;
+  --on-error-container: #93000a;
+  --surface-container-low: #f4f2fc;
+  --surface-tint: #3456c1;
+  --on-secondary-fixed: #001e2d;
+  --surface-dim: #dad9e3;
+  --on-surface: #1a1b22;
+  --primary-fixed: #dce1ff;
+  --inverse-surface: #2f3037;
+  --surface-container-highest: #e2e1eb;
+  --background: #faf8ff;
+  --secondary-container: #41befd;
+  --on-background: #1a1b22;
+  --on-tertiary-fixed-variant: #842506;
+  --primary: #00216e;
+  --surface-container-high: #e8e7f1;
+  --on-surface-variant: #444653;
+  --on-primary-fixed: #001550;
+  --tertiary-fixed: #ffdbd1;
+  --error-container: #ffdad6;
+  --surface-container-lowest: #ffffff;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--on-surface);
+  font-family: 'Inter', sans-serif;
+}
+
+.font-headline {
+  font-family: 'Manrope', sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.glass-header {
+  backdrop-filter: blur(12px);
+  background: rgba(250, 248, 255, 0.8);
+}
+
+.bento-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Tailwind Config via CSS variables */
+@layer base {
+  .bg-surface { background-color: var(--surface); }
+  .text-on-surface { color: var(--on-surface); }
+  .bg-primary { background-color: var(--primary); }
+  .text-primary { color: var(--primary); }
+  /* ... more as needed, but Tailwind CDN handles the class names if configured */
+}
+
+/* Injecting the tailwind config into the CSS for the CDN to pick up if possible, 
+   but since we use the script tag in layout.js, we need to ensure the variables are available. */
