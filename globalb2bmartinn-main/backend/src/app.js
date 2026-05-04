@@ -70,6 +70,15 @@
 //     console.log(`Server is running on port ${PORT}`);
 // });
 
+// Error handlers to prevent silent crashes
+process.on('uncaughtException', (err) => {
+  console.error('[CRITICAL] Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('[CRITICAL] Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
 require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
@@ -96,7 +105,10 @@ app.use("/premium-feature", checkPlan("Premium"), (req, res) => {
 app.use(express.json());
 app.use(cors({
   origin: [
-    "http://localhost:3000",           // React dev server
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",
     "https://www.globalb2bmart.in",    // Production frontend
     "https://globalb2bmart.in",
     "https://globalb2bmart.netlify.app"
@@ -126,6 +138,20 @@ app.use(adminRoutes);
 
 // Forced test route
 app.get('/backend-status', (req, res) => res.json({ status: 'updated', time: new Date() }));
+
+// Health Check with DB status
+app.get('/health', (req, res) => {
+  const mongoose = require('mongoose');
+  res.json({
+    status: 'online',
+    dbStatus: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected',
+    dbStateCode: mongoose.connection.readyState,
+    env: {
+      hasDbUrl: !!process.env.DATABASE_URL,
+      port: process.env.PORT
+    }
+  });
+});
 
 // Start server
 const PORT = process.env.PORT || 3005;

@@ -6,10 +6,14 @@ import {
     faBook, faCircleQuestion, faLeaf, faBell, faGem, faChartLine, 
     faLayerGroup, faArrowCircleUp, faHeadset, faMagnifyingGlass,
     faXmark, faBolt, faBuilding, faVial, faBoxOpen, faCar, faSignOutAlt,
-    faStar, faCheckCircle, faPenToSquare, faTrash, faSpinner
+    faStar, faCheckCircle, faPenToSquare, faTrash, faSpinner,
+    faBox, faEnvelope, faPhone, faLocationDot
 } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
 import './SearchResults.css';
+import TRADE_VISUALIZATION from '../assets/trade_visualization.png';
+import DASHBOARD_HERO from '../assets/dashboard_hero.png';
+import SUPPORT_ILLUSTRATION from '../assets/support_illustration.png';
 
 import { useAuth } from '../Buyers/AuthContext';
 import { CATEGORIES, SUB_CATEGORIES, getCategorySuggestions, getSubCategorySuggestions } from '../services/categoryData';
@@ -32,12 +36,15 @@ const FreeDash = () => {
     const [productCountry, setProductCountry] = useState('India');
     const [productState, setProductState] = useState('');
     const [productExperience, setProductExperience] = useState('');
+    const [productPrice, setProductPrice] = useState('');
+    const [productUnit, setProductUnit] = useState('kg');
     const [stateSuggestions, setStateSuggestions] = useState([]);
     const [showStateSuggestions, setShowStateSuggestions] = useState(false);
 
     const [viewedLeads, setViewedLeads] = useState([]);
     const [gstNumber, setGSTNumber] = useState('');
     const [message, setMessage] = useState('');
+    const [leadLoading, setLeadLoading] = useState(false);
     const [products, setProducts] = useState([]);
     const [catalogs, setCatalogs] = useState([]);
     const [catalogTitle, setCatalogTitle] = useState('');
@@ -46,6 +53,7 @@ const FreeDash = () => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [modalProductTitle, setModalProductTitle] = useState('');
     const [modalProductPrice, setModalProductPrice] = useState('');
+    const [modalProductUnit, setModalProductUnit] = useState('kg');
     const [modalProductMOQ, setModalProductMOQ] = useState('');
     const [modalProductDescription, setModalProductDescription] = useState('');
     
@@ -66,6 +74,8 @@ const FreeDash = () => {
     // Dropdown state
     const [showProfileDropdown, setShowProfileDropdown] = useState(false);
     const [leadDateFilter, setLeadDateFilter] = useState('');
+    const [leadMonthFilter, setLeadMonthFilter] = useState('');
+    const [leadYearFilter, setLeadYearFilter] = useState(new Date().getFullYear().toString());
 
     const masterProductList = [
         { title: 'CNC Machines', category: 'Machinery', icon: faGauge },
@@ -156,12 +166,16 @@ const FreeDash = () => {
     useEffect(() => {
         if (activeSection === 'viewleads' && userData) {
             const fetchLeads = async () => {
-                const apiBase = process.env.REACT_APP_API_ENDPOINT || "http://localhost:3005";
-                const response = await fetch(`${apiBase}/viewedLeads/${userData._id}`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setViewedLeads(data.viewedLeads);
-                }
+                setLeadLoading(true);
+                try {
+                    const apiBase = process.env.REACT_APP_API_ENDPOINT || "http://localhost:3005";
+                    const response = await fetch(`${apiBase}/viewedLeads/${userData._id}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        setViewedLeads(data.viewedLeads);
+                    }
+                } catch (e) { console.error(e); }
+                finally { setLeadLoading(false); }
             };
             fetchLeads();
         }
@@ -331,6 +345,7 @@ const FreeDash = () => {
         setModalProductTitle(prod.title);
         setModalProductDescription(prod.description || '');
         setModalProductPrice(prod.price || 'Ask for Price');
+        setModalProductUnit(prod.unit || 'kg');
         setModalProductMOQ(prod.moq || 'Negotiable');
         setIsEditModalOpen(true);
     };
@@ -344,6 +359,7 @@ const FreeDash = () => {
             formData.append('title', modalProductTitle);
             formData.append('description', modalProductDescription);
             formData.append('price', modalProductPrice);
+            formData.append('unit', modalProductUnit);
             formData.append('moq', modalProductMOQ);
             
             const res = await fetch(`${apiBase}/products/update/${userData._id}/${editingProduct._id}`, {
@@ -361,6 +377,7 @@ const FreeDash = () => {
                             title: modalProductTitle, 
                             description: modalProductDescription,
                             price: modalProductPrice,
+                            unit: modalProductUnit,
                             moq: modalProductMOQ
                         };
                     }
@@ -398,6 +415,8 @@ const FreeDash = () => {
         formData.append('country', productCountry);
         formData.append('state', productState);
         formData.append('experience', productExperience);
+        formData.append('price', productPrice || 'Ask for Price');
+        formData.append('unit', productUnit);
         selectedImages.forEach((image) => {
             formData.append('images', image);
         });
@@ -431,6 +450,8 @@ const FreeDash = () => {
                 setProductCountry('India');
                 setProductState('');
                 setProductExperience('');
+                setProductPrice('');
+                setProductUnit('kg');
                 setSelectedImages([]);
                 
                 // Refresh list
@@ -503,7 +524,8 @@ const FreeDash = () => {
     if (!userData) return <div className="dashboard-container" style={{justifyContent: 'center', alignItems: 'center'}}>Syncing with GlobalB2B Network...</div>;
 
     return (
-        <div className="Premium-container">
+        <div className="animated-grey-bg">
+
             {/* Unified Architectural Sidebar */}
             <aside className="premium-sidebar" style={{ 
                 background: 'linear-gradient(180deg, #0f172a 0%, #1e293b 100%)', 
@@ -566,7 +588,6 @@ const FreeDash = () => {
                     </div>
                     {[
                         { id: 'catalogProduct', icon: faCartPlus, label: 'Add Products' },
-                        { id: 'manageCatalogs', icon: faBook, label: 'Manage Catalogs' },
                         { id: 'viewleads', icon: faLeaf, label: 'Verified Buyers' },
                         { id: 'addgst', icon: faBook, label: 'Add GST' },
                     ].map(item => (
@@ -687,243 +708,183 @@ const FreeDash = () => {
 
             {/* Premium Content Canvas */}
             <main className="premium-content">
-                <header className="dashboard-header" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem', padding: '2rem', background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)', borderRadius: '24px', boxShadow: '0 10px 40px rgba(0,0,0,0.02)', marginBottom: '2.5rem', border: '1px solid rgba(255,255,255,0.8)'}}>
-                    <div className="header-greeting" style={{ flex: 1, minWidth: '300px' }}>
-                        <h1 style={{ fontSize: '2rem', fontWeight: 800, margin: '0 0 0.5rem 0', background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.5px' }}>
-                            {activeSection === 'dashboard' ? `Welcome back, ${userData.name.split(' ')[0]} 👋` : activeSection}
-                        </h1>
-                        <p style={{ margin: 0, fontSize: '1.05rem', color: 'var(--on-surface-variant)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <FontAwesomeIcon icon={faBuilding} style={{ color: 'var(--primary)' }} /> {userData.companyName}
-                            <span style={{ margin: '0 0.5rem', color: '#cbd5e1' }}>|</span>
-                            <span style={{ padding: '0.2rem 0.8rem', background: 'rgba(41,97,149,0.1)', color: 'var(--primary)', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 700 }}>{userData.plan || 'Free'} Merchant Workspace</span>
-                        </p>
-                    </div>
-
-                    {activeSection === 'dashboard' && (
-                        <div className="search-portal-wrapper" style={{ flex: 2, minWidth: '400px', maxWidth: '600px' }}>
-                            <div className="search-portal" style={{ background: '#fff', borderRadius: '16px', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', gap: '1rem', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', border: '1px solid #e2e8f0', transition: 'all 0.3s ease' }}>
-                                <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: '#94a3b8', fontSize: '1.2rem'}} />
-                                <input 
-                                    className="search-input-main" 
-                                    style={{ border: 'none', outline: 'none', width: '100%', fontSize: '1rem', padding: '0.8rem 0', color: '#334155', background: 'transparent' }}
-                                    placeholder="Search 10 Crore+ Products & Suppliers..." 
-                                    value={searchTerm}
-                                    onFocus={(e) => { setShowSuggestions(true); e.target.parentElement.style.boxShadow = '0 8px 25px rgba(0,0,0,0.06)'; e.target.parentElement.style.borderColor = 'var(--primary)'; }}
-                                    onBlur={(e) => { e.target.parentElement.style.boxShadow = '0 4px 15px rgba(0,0,0,0.03)'; e.target.parentElement.style.borderColor = '#e2e8f0'; }}
-                                    onChange={(e) => {
-                                        setSearchTerm(e.target.value);
-                                        setShowSuggestions(true);
-                                    }}
-                                />
-                                {searchTerm && (
-                                    <FontAwesomeIcon 
-                                        icon={faXmark} 
-                                        style={{cursor: 'pointer', color: '#94a3b8', padding: '0.5rem'}} 
-                                        onClick={() => setSearchTerm('')} 
-                                    />
-                                )}
-                            </div>
-
-                            {showSuggestions && searchTerm && (
-                                <div className="suggestions-dropdown" onMouseLeave={() => setShowSuggestions(false)} style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: '#fff', borderRadius: '16px', boxShadow: '0 10px 40px rgba(0,0,0,0.08)', border: '1px solid #f1f5f9', marginTop: '0.8rem', zIndex: 50, overflow: 'hidden' }}>
-                                    {filteredSuggestions.map((item, idx) => (
-                                        <div key={idx} className="suggestion-item" style={{ padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', cursor: 'pointer', transition: 'background 0.2s', borderBottom: '1px solid #f8fafc' }} onClick={() => {
-                                            setSearchTerm(item.title);
-                                            setShowSuggestions(false);
-                                        }}>
-                                            <div className="suggestion-icon" style={{ width: '40px', height: '40px', background: '#f8fafc', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
-                                                <FontAwesomeIcon icon={item.icon} />
-                                            </div>
-                                            <div className="suggestion-content">
-                                                <span className="s-title" style={{ display: 'block', fontWeight: 600, color: '#334155', fontSize: '0.95rem' }}>{item.title}</span>
-                                                <span className="s-category" style={{ display: 'block', fontSize: '0.8rem', color: '#64748b', marginTop: '0.2rem' }}>{item.category}</span>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    )}
-
-                    {activeSection === 'dashboard' && (
-                        <div className="header-actions" style={{display: 'flex', gap: '1.2rem', marginLeft: 'auto'}}>
-                            <button className="primary-action-btn buyers-btn" style={{
-                                padding: '1rem 2rem',
-                                borderRadius: '14px',
-                                border: 'none',
-                                background: 'linear-gradient(135deg, #1A237E 0%, #3949AB 100%)',
-                                color: 'white',
-                                fontWeight: 700,
-                                fontSize: '0.95rem',
-                                letterSpacing: '0.5px',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                boxShadow: '0 8px 20px rgba(26, 35, 126, 0.25)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '0.8rem'
-                            }}
-                            onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                            onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
-                                <FontAwesomeIcon icon={faChartLine} /> GET BUYERS
-                            </button>
-                            <button className="primary-action-btn sellers-btn" style={{
-                                padding: '1rem 2rem',
-                                borderRadius: '14px',
-                                border: '2px solid var(--primary)',
-                                background: 'transparent',
-                                color: 'var(--primary)',
-                                fontWeight: 700,
-                                fontSize: '0.95rem',
-                                letterSpacing: '0.5px',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s ease',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '0.8rem'
-                            }}
-                            onMouseOver={(e) => { e.currentTarget.style.background = 'rgba(41,97,149,0.05)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                            onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
-                                <FontAwesomeIcon icon={faCartPlus} /> GET SELLERS
-                            </button>
-                        </div>
-                    )}
-                </header>
 
                 {activeSection === 'dashboard' && (
                     <section className="dashboard-view">
-                        <div className="content-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
-                            <div className="stat-card" style={{ background: '#fff', borderRadius: '20px', padding: '1.8rem', display: 'flex', alignItems: 'center', gap: '1.2rem', border: '1px solid #eef2f6', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                                <div style={{ background: 'var(--surface-container)', width: '55px', height: '55px', borderRadius: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', fontSize: '1.5rem' }}>
+                        {/* PREMIUM HERO SECTION */}
+                        <div className="animate-up" style={{ 
+                            background: `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url(${DASHBOARD_HERO})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            padding: '4rem 3rem',
+                            borderRadius: '2.5rem',
+                            marginBottom: '2rem',
+                            color: 'white',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)'
+                        }}>
+                            <div style={{ position: 'relative', zIndex: 2 }}>
+                                <h1 style={{ fontSize: '3.2rem', fontWeight: 950, margin: 0, letterSpacing: '-2px' }}>
+                                    Dashboard <span style={{ fontSize: '1.5rem', verticalAlign: 'middle', margin: '0 1rem', opacity: 0.3 }}>|</span> 
+                                    <span style={{ color: '#3b82f6' }}>{userData.companyName}</span>
+                                </h1>
+                                <p style={{ fontSize: '1.2rem', opacity: 0.8, fontWeight: 600, marginTop: '1rem' }}>
+                                    Welcome, {userData.name}. Your global trade command center is now active.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="content-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
+                            <div className="stat-card" style={{ background: '#fff', borderRadius: '16px', padding: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem', border: '1px solid #eef2f6', boxShadow: '0 2px 10px rgba(0,0,0,0.02)' }}>
+                                <div className="stat-icon" style={{ background: '#f1f5f9', width: '45px', height: '45px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6', fontSize: '1.2rem' }}>
                                     <FontAwesomeIcon icon={faUser} />
                                 </div>
                                 <div className="stat-info">
-                                    <p className="label" style={{ margin: 0, fontSize: '0.85rem', color: 'var(--on-surface-variant)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Merchant ID</p>
-                                    <h3 className="value" style={{ margin: '0.2rem 0 0 0', fontSize: '1.3rem', fontWeight: 800, color: 'var(--on-surface)' }}>{userData._id.substring(0, 8).toUpperCase()}</h3>
+                                    <p className="label" style={{ margin: 0, fontSize: '0.75rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Merchant ID</p>
+                                    <h3 className="value" style={{ margin: '0.1rem 0 0 0', fontSize: '1.1rem', fontWeight: 800, color: '#1e293b' }}>{userData._id.substring(0, 8).toUpperCase()}</h3>
                                 </div>
                             </div>
                             
-                            <div className="stat-card" style={{ background: '#fff', borderRadius: '20px', padding: '1.8rem', display: 'flex', alignItems: 'center', gap: '1.2rem', border: '1px solid #eef2f6', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                                <div style={{ background: 'var(--primary-container)', width: '55px', height: '55px', borderRadius: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--on-primary-container)', fontSize: '1.5rem' }}>
+                            <div className="stat-card" style={{ background: '#fff', borderRadius: '16px', padding: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem', border: '1px solid #eef2f6', boxShadow: '0 2px 10px rgba(0,0,0,0.02)' }}>
+                                <div className="stat-icon" style={{ background: '#dbeafe', width: '45px', height: '45px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1e40af', fontSize: '1.2rem' }}>
                                     <FontAwesomeIcon icon={faGem} />
                                 </div>
                                 <div className="stat-info">
-                                    <p className="label" style={{ margin: 0, fontSize: '0.85rem', color: 'var(--on-surface-variant)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Visibility Plan</p>
-                                    <h3 className="value" style={{ margin: '0.2rem 0 0 0', fontSize: '1.3rem', fontWeight: 800, color: 'var(--on-surface)' }}>{(userData.plan || 'Free').toUpperCase()}</h3>
+                                    <p className="label" style={{ margin: 0, fontSize: '0.75rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Visibility Plan</p>
+                                    <h3 className="value" style={{ margin: '0.1rem 0 0 0', fontSize: '1.1rem', fontWeight: 800, color: '#1e293b' }}>{(userData.plan || 'Free').toUpperCase()}</h3>
                                 </div>
                             </div>
                             
-                            <div className="stat-card" style={{ background: '#fff', borderRadius: '20px', padding: '1.8rem', display: 'flex', alignItems: 'center', gap: '1.2rem', border: '1px solid #eef2f6', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-                                <div style={{ background: '#ffebee', width: '55px', height: '55px', borderRadius: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#d32f2f', fontSize: '1.5rem' }}>
+                            <div className="stat-card" style={{ background: '#fff', borderRadius: '16px', padding: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem', border: '1px solid #eef2f6', boxShadow: '0 2px 10px rgba(0,0,0,0.02)' }}>
+                                <div className="stat-icon" style={{ background: '#ffebee', width: '45px', height: '45px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#d32f2f', fontSize: '1.2rem' }}>
                                     <FontAwesomeIcon icon={faShieldHalved} />
                                 </div>
                                 <div className="stat-info">
-                                    <p className="label" style={{ margin: 0, fontSize: '0.85rem', color: 'var(--on-surface-variant)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Verification</p>
-                                    <h3 className="value" style={{ margin: '0.2rem 0 0 0', fontSize: '1.3rem', fontWeight: 800, color: '#d32f2f' }}>PENDING</h3>
+                                    <p className="label" style={{ margin: 0, fontSize: '0.75rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Verification</p>
+                                    <h3 className="value" style={{ margin: '0.1rem 0 0 0', fontSize: '1.1rem', fontWeight: 800, color: '#d32f2f' }}>PENDING</h3>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bottom-sections" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem', alignItems: 'start' }}>
-                            <div className="section-panel glass-panel" style={{ padding: '2.5rem', borderTop: 'none' }}>
-                                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--on-surface)', marginBottom: '1.8rem', display: 'flex', alignItems: 'center', gap: '0.8rem', background: 'none', WebkitTextFillColor: 'initial' }}>
-                                    <div style={{ width: '10px', height: '10px', borderRadius: '4px', background: 'var(--light-blue-dark)', boxShadow: '0 0 10px rgba(59, 130, 246, 0.4)' }}></div>
+                        <div className="bottom-sections" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem', alignItems: 'start' }}>
+                            <div className="section-panel" style={{ padding: '1.5rem', background: '#fff', borderRadius: '20px', border: '1px solid #f1f5f9' }}>
+                                <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b', marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                                    <div style={{ width: '6px', height: '18px', borderRadius: '2px', background: '#3b82f6' }}></div>
                                     Personal Details
                                 </h2>
-                                <div className="user-info-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', padding: '1.25rem 1.5rem', background: 'rgba(59, 130, 246, 0.04)', borderRadius: '16px', alignItems: 'center', border: '1px solid rgba(59, 130, 246, 0.05)' }}>
-                                        <p style={{ fontSize: '0.8rem', color: 'var(--on-surface-variant)', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Full Name</p>
-                                        <p style={{ margin: 0, fontWeight: 700, color: 'var(--on-surface)', fontSize: '1.05rem' }}>{userData.name}</p>
+                                <div className="user-info-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2.5fr', padding: '0.8rem 1.2rem', background: '#f8fafc', borderRadius: '12px', alignItems: 'center', border: '1px solid #f1f5f9' }}>
+                                        <p style={{ fontSize: '0.75rem', color: '#64748b', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Full Name</p>
+                                        <p style={{ margin: 0, fontWeight: 700, color: '#1e293b', fontSize: '0.95rem' }}>{userData.name}</p>
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', padding: '1.25rem 1.5rem', background: 'rgba(59, 130, 246, 0.04)', borderRadius: '16px', alignItems: 'center', border: '1px solid rgba(59, 130, 246, 0.05)' }}>
-                                        <p style={{ fontSize: '0.8rem', color: 'var(--on-surface-variant)', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Email</p>
-                                        <p style={{ margin: 0, fontWeight: 700, color: 'var(--on-surface)', fontSize: '1.05rem', wordBreak: 'break-all' }}>{userData.email}</p>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2.5fr', padding: '0.8rem 1.2rem', background: '#f8fafc', borderRadius: '12px', alignItems: 'center', border: '1px solid #f1f5f9' }}>
+                                        <p style={{ fontSize: '0.75rem', color: '#64748b', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Email</p>
+                                        <p style={{ margin: 0, fontWeight: 700, color: '#1e293b', fontSize: '0.95rem', wordBreak: 'break-all' }}>{userData.email}</p>
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', padding: '1.25rem 1.5rem', background: 'rgba(59, 130, 246, 0.04)', borderRadius: '16px', alignItems: 'center', border: '1px solid rgba(59, 130, 246, 0.05)' }}>
-                                        <p style={{ fontSize: '0.8rem', color: 'var(--on-surface-variant)', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Phone</p>
-                                        <p style={{ margin: 0, fontWeight: 700, color: 'var(--on-surface)', fontSize: '1.05rem' }}>{userData.mobileNumber}</p>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2.5fr', padding: '0.8rem 1.2rem', background: '#f8fafc', borderRadius: '12px', alignItems: 'center', border: '1px solid #f1f5f9' }}>
+                                        <p style={{ fontSize: '0.75rem', color: '#64748b', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Phone</p>
+                                        <p style={{ margin: 0, fontWeight: 700, color: '#1e293b', fontSize: '0.95rem' }}>{userData.mobileNumber}</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="section-panel glass-panel" style={{ padding: '2.5rem', borderTop: 'none' }}>
-                                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--on-surface)', marginBottom: '1.8rem', display: 'flex', alignItems: 'center', gap: '0.8rem', background: 'none', WebkitTextFillColor: 'initial' }}>
-                                    <div style={{ width: '10px', height: '10px', borderRadius: '4px', background: 'var(--light-orange-dark)', boxShadow: '0 0 10px rgba(249, 115, 22, 0.4)' }}></div>
+                            <div className="section-panel" style={{ padding: '1.5rem', background: '#fff', borderRadius: '20px', border: '1px solid #f1f5f9' }}>
+                                <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1e293b', marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                                    <div style={{ width: '6px', height: '18px', borderRadius: '2px', background: '#f97316' }}></div>
                                     Business Identity
                                 </h2>
-                                <div className="user-info-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', padding: '1.25rem 1.5rem', background: 'rgba(249, 115, 22, 0.04)', borderRadius: '16px', alignItems: 'center', border: '1px solid rgba(249, 115, 22, 0.05)' }}>
-                                        <p style={{ fontSize: '0.8rem', color: 'var(--on-surface-variant)', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Company</p>
-                                        <p style={{ margin: 0, fontWeight: 700, color: 'var(--on-surface)', fontSize: '1.05rem' }}>{userData.companyName}</p>
+                                <div className="user-info-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2.5fr', padding: '0.8rem 1.2rem', background: '#fffaf5', borderRadius: '12px', alignItems: 'center', border: '1px solid #fff2e6' }}>
+                                        <p style={{ fontSize: '0.75rem', color: '#9a3412', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Company</p>
+                                        <p style={{ margin: 0, fontWeight: 700, color: '#1e293b', fontSize: '0.95rem' }}>{userData.companyName}</p>
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', padding: '1.25rem 1.5rem', background: 'rgba(249, 115, 22, 0.04)', borderRadius: '16px', alignItems: 'center', border: '1px solid rgba(249, 115, 22, 0.05)' }}>
-                                        <p style={{ fontSize: '0.8rem', color: 'var(--on-surface-variant)', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>GSTIN</p>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                            {userData.gstNumber && <FontAwesomeIcon icon={faCheckCircle} style={{color: 'var(--light-green-dark)'}} />}
-                                            <p style={{ margin: 0, fontWeight: 700, color: userData.gstNumber ? 'var(--on-surface)' : 'var(--light-orange-dark)', fontSize: '1.05rem' }}>
-                                                {userData.gstNumber || 'Pending Verification'}
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2.5fr', padding: '0.8rem 1.2rem', background: '#fffaf5', borderRadius: '12px', alignItems: 'center', border: '1px solid #fff2e6' }}>
+                                        <p style={{ fontSize: '0.75rem', color: '#9a3412', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>GSTIN</p>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                            {userData.gstNumber && <FontAwesomeIcon icon={faCheckCircle} style={{color: '#16a34a', fontSize: '0.85rem'}} />}
+                                            <p style={{ margin: 0, fontWeight: 700, color: userData.gstNumber ? '#1e293b' : '#ea580c', fontSize: '0.95rem' }}>
+                                                {userData.gstNumber || 'Verification Pending'}
                                             </p>
                                         </div>
                                     </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2.5fr', padding: '1.25rem 1.5rem', background: 'rgba(34, 197, 94, 0.04)', borderRadius: '16px', alignItems: 'center', border: '1px solid rgba(34, 197, 94, 0.05)' }}>
-                                        <p style={{ fontSize: '0.8rem', color: 'var(--on-surface-variant)', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Category</p>
-                                        <p style={{ margin: 0, fontWeight: 700, color: 'var(--light-green-dark)', fontSize: '1.05rem' }}>{userData.productOrService}</p>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2.5fr', padding: '0.8rem 1.2rem', background: '#f0fdf4', borderRadius: '12px', alignItems: 'center', border: '1px solid #dcfce7' }}>
+                                        <p style={{ fontSize: '0.75rem', color: '#166534', margin: 0, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Category</p>
+                                        <p style={{ margin: 0, fontWeight: 700, color: '#16a34a', fontSize: '0.95rem' }}>{userData.productOrService}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                 )}
-
                 {activeSection === 'profileEdit' && (
-                    <section className="section-panel" style={{maxWidth: '1000px', margin: '0 auto'}}>
-                        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem'}}>
-                            <h2>Company Identity</h2>
-                            <p style={{fontSize: '0.85rem', color: 'var(--on-surface-variant)'}}>Manage your professional presence on GlobalB2B</p>
-                        </div>
-                        
-                        <div className="profile-form-grid" style={{
-                            display: 'grid', 
-                            gridTemplateColumns: '1fr 1fr', 
-                            gap: '2.5rem 2rem'
+                    <div style={{maxWidth: '800px', margin: '0 auto', padding: '0 1rem'}}>
+                        <div className="section-panel" style={{
+                            background: '#fff', 
+                            padding: '2.5rem', 
+                            borderRadius: '24px', 
+                            border: '1px solid #f1f5f9',
+                            boxShadow: '0 10px 40px rgba(0,0,0,0.02)'
                         }}>
-                            <div className="user-info-field">
-                                <label style={{display: 'block', marginBottom: '0.75rem', fontWeight: 600, fontSize: '0.9rem'}}>Full Name</label>
-                                <input className="dash-input" style={{width: '100%'}} name="name" value={userData.name} onChange={(e) => setUserData({...userData, name: e.target.value})} />
+                            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '1px solid #f8fafc', paddingBottom: '1rem'}}>
+                                <div>
+                                    <h2 style={{fontSize: '1.2rem', fontWeight: 800, color: '#1e293b', margin: 0}}>Company Identity</h2>
+                                    <p style={{fontSize: '0.85rem', color: '#64748b', marginTop: '0.2rem'}}>Update your professional profile information</p>
+                                </div>
                             </div>
                             
-                            <div className="user-info-field">
-                                <label style={{display: 'block', marginBottom: '0.75rem', fontWeight: 600, fontSize: '0.9rem'}}>Operational Email</label>
-                                <input className="dash-input" style={{width: '100%'}} name="email" value={userData.email} onChange={(e) => setUserData({...userData, email: e.target.value})} />
+                            <div className="profile-form-grid" style={{
+                                display: 'grid', 
+                                gridTemplateColumns: '1fr 1fr', 
+                                gap: '1.5rem 2rem'
+                            }}>
+                                <div className="user-info-field">
+                                    <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem', fontWeight: 600, fontSize: '0.8rem', color: '#475569'}}>
+                                        <FontAwesomeIcon icon={faUser} style={{fontSize: '0.7rem', color: '#3b82f6'}} /> Full Name
+                                    </label>
+                                    <input className="dash-input" style={{width: '100%', padding: '0.8rem 1rem', borderRadius: '12px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '0.9rem'}} name="name" value={userData.name} onChange={(e) => setUserData({...userData, name: e.target.value})} />
+                                </div>
+                                
+                                <div className="user-info-field">
+                                    <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem', fontWeight: 600, fontSize: '0.8rem', color: '#475569'}}>
+                                        <FontAwesomeIcon icon={faBuilding} style={{fontSize: '0.7rem', color: '#3b82f6'}} /> Email
+                                    </label>
+                                    <input className="dash-input" style={{width: '100%', padding: '0.8rem 1rem', borderRadius: '12px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '0.9rem'}} name="email" value={userData.email} onChange={(e) => setUserData({...userData, email: e.target.value})} />
+                                </div>
+    
+                                <div className="user-info-field">
+                                    <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem', fontWeight: 600, fontSize: '0.8rem', color: '#475569'}}>
+                                        <FontAwesomeIcon icon={faUser} style={{fontSize: '0.7rem', color: '#3b82f6'}} /> Mobile Number
+                                    </label>
+                                    <input className="dash-input" style={{width: '100%', padding: '0.8rem 1rem', borderRadius: '12px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '0.9rem'}} name="mobileNumber" value={userData.mobileNumber} onChange={(e) => setUserData({...userData, mobileNumber: e.target.value})} />
+                                </div>
+    
+                                <div className="user-info-field">
+                                    <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem', fontWeight: 600, fontSize: '0.8rem', color: '#475569'}}>
+                                        <FontAwesomeIcon icon={faBuilding} style={{fontSize: '0.7rem', color: '#3b82f6'}} /> Company Name
+                                    </label>
+                                    <input className="dash-input" style={{width: '100%', padding: '0.8rem 1rem', borderRadius: '12px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '0.9rem'}} name="companyName" value={userData.companyName} onChange={(e) => setUserData({...userData, companyName: e.target.value})} />
+                                </div>
+    
+                                <div className="user-info-field" style={{gridColumn: 'span 2'}}>
+                                    <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem', fontWeight: 600, fontSize: '0.8rem', color: '#475569'}}>
+                                        <FontAwesomeIcon icon={faGem} style={{fontSize: '0.7rem', color: '#3b82f6'}} /> Product/Service Segment
+                                    </label>
+                                    <input className="dash-input" style={{width: '100%', padding: '0.8rem 1rem', borderRadius: '12px', border: '1px solid #e2e8f0', background: '#f8fafc', fontSize: '0.9rem'}} name="productOrService" value={userData.productOrService} onChange={(e) => setUserData({...userData, productOrService: e.target.value})} />
+                                </div>
                             </div>
-
-                            <div className="user-info-field">
-                                <label style={{display: 'block', marginBottom: '0.75rem', fontWeight: 600, fontSize: '0.9rem'}}>Mobile Number</label>
-                                <input className="dash-input" style={{width: '100%'}} name="mobileNumber" value={userData.mobileNumber} onChange={(e) => setUserData({...userData, mobileNumber: e.target.value})} />
-                            </div>
-
-                            <div className="user-info-field">
-                                <label style={{display: 'block', marginBottom: '0.75rem', fontWeight: 600, fontSize: '0.9rem'}}>Company Name</label>
-                                <input className="dash-input" style={{width: '100%'}} name="companyName" value={userData.companyName} onChange={(e) => setUserData({...userData, companyName: e.target.value})} />
-                            </div>
-
-                            <div className="user-info-field" style={{gridColumn: 'span 2'}}>
-                                <label style={{display: 'block', marginBottom: '0.75rem', fontWeight: 600, fontSize: '0.9rem'}}>Product/Service Segment</label>
-                                <input className="dash-input" style={{width: '100%'}} name="productOrService" value={userData.productOrService} onChange={(e) => setUserData({...userData, productOrService: e.target.value})} />
+    
+                            <div style={{marginTop: '2.5rem', display: 'flex', justifyContent: 'center'}}>
+                                <button className="update-btn" onClick={handleUpdateUser} style={{background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', boxShadow: '0 10px 25px rgba(15, 23, 42, 0.15)', padding: '0.9rem 3rem', borderRadius: '14px', fontWeight: 700, fontSize: '0.95rem', color: '#fff', border: 'none', cursor: 'pointer', transition: 'all 0.3s ease'}}>
+                                    Update Identity
+                                </button>
                             </div>
                         </div>
-
-                        <div style={{marginTop: '4rem', display: 'flex', gap: '1rem'}}>
-                            <button className="update-btn" onClick={handleUpdateUser} style={{background: 'linear-gradient(135deg, #27ae60 0%, #219150 100%)', boxShadow: '0 10px 20px rgba(39, 174, 96, 0.2)'}}>
-                                Update Profile
-                            </button>
-                        </div>
-                    </section>
+                    </div>
                 )}
-
                 {activeSection === 'catalogProduct' && (
                     <section className="section-panel" style={{maxWidth: '1000px', margin: '0 auto'}}>
-                        <div style={{marginBottom: '3rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                        <div style={{marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                             <div>
                                 <h2 style={{color: 'var(--on-surface)', marginBottom: '0.5rem'}}>{editingProduct ? 'Update Product Details' : 'Add Product Details'}</h2>
                                 <p style={{fontSize: '0.85rem', color: 'var(--on-surface-variant)'}}>{editingProduct ? `Refining: ${editingProduct.title}` : 'Introduce your latest inventory to the GlobalB2B marketplace'}</p>
@@ -949,363 +910,238 @@ const FreeDash = () => {
                             )}
                         </div>
 
-                        <div className="product-form" style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
-                            <div className="user-info-field">
-                                <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', fontWeight: 600}}>
-                                    Product Title <FontAwesomeIcon icon={faGem} style={{fontSize: '0.7rem', color: 'var(--primary)'}} />
-                                </label>
-                                <input 
-                                    className="dash-input" 
-                                    style={{width: '100%', borderRadius: '0.75rem', padding: '15px 20px', fontSize: '1rem'}} 
-                                    placeholder="Enter Product Name..." 
-                                    value={productTitle} 
-                                    onChange={(e) => setProductTitle(e.target.value)} 
-                                />
-                            </div>
-
-                            <div className="user-info-field" style={{position: 'relative'}}>
-                                <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', fontWeight: 600}}>
-                                    Product Category <FontAwesomeIcon icon={faLayerGroup} style={{fontSize: '0.7rem', color: 'var(--primary)'}} />
-                                </label>
-                                <input 
-                                    className="dash-input" 
-                                    style={{width: '100%', borderRadius: '0.75rem', padding: '15px 20px', fontSize: '1rem'}} 
-                                    placeholder="e.g. RICE, PULSES, MACHINERY..." 
-                                    value={productCategory} 
-                                    onChange={(e) => handleCategoryChange(e.target.value)}
-                                    onFocus={() => handleCategoryChange(productCategory)}
-                                    onBlur={() => setTimeout(() => setShowCategorySuggestions(false), 200)}
-                                    autoComplete="off"
-                                />
-                                {showCategorySuggestions && categorySuggestions.length > 0 && (
-                                    <div className="suggestions-dropdown" style={{
-                                        position: 'absolute',
-                                        top: '100%',
-                                        left: 0,
-                                        right: 0,
-                                        background: 'rgba(255, 255, 255, 0.95)',
-                                        backdropFilter: 'blur(10px)',
-                                        border: '1px solid rgba(0,0,0,0.1)',
-                                        borderRadius: '0.75rem',
-                                        zIndex: 1001,
-                                        marginTop: '8px',
-                                        boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                                        maxHeight: '250px',
-                                        overflowY: 'auto'
-                                    }}>
-                                        {categorySuggestions.map((s, i) => (
-                                            <div 
-                                                key={i} 
-                                                onMouseDown={() => handleCategorySelect(s)}
-                                                style={{
-                                                    padding: '12px 20px',
-                                                    fontSize: '0.95rem',
-                                                    cursor: 'pointer',
-                                                    borderBottom: i === categorySuggestions.length - 1 ? 'none' : '1px solid rgba(0,0,0,0.05)',
-                                                    transition: 'all 0.2s',
-                                                    fontWeight: 500
-                                                }}
-                                                onMouseEnter={(e) => e.target.style.background = 'rgba(0,123,255, 0.05)'}
-                                                onMouseLeave={(e) => e.target.style.background = 'transparent'}
-                                            >
-                                                {s}
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="user-info-field" style={{position: 'relative', opacity: productCategory ? 1 : 0.5, transition: 'opacity 0.3s'}}>
-                                <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', fontWeight: 600}}>
-                                    Product Sub-Category <FontAwesomeIcon icon={faLayerGroup} style={{fontSize: '0.7rem', color: 'var(--primary)'}} />
-                                </label>
-                                <input 
-                                    className="dash-input" 
-                                    style={{width: '100%', borderRadius: '0.75rem', padding: '15px 20px', fontSize: '1rem'}} 
-                                    placeholder={productCategory ? "Select or type sub-category..." : "Please select Category first"} 
-                                    value={productSubCategory} 
-                                    onChange={(e) => handleSubCategoryChange(e.target.value)}
-                                    onFocus={() => productCategory && handleSubCategoryChange(productSubCategory)}
-                                    onBlur={() => setTimeout(() => setShowSubCategorySuggestions(false), 200)}
-                                    disabled={!productCategory}
-                                    autoComplete="off"
-                                />
-                                {showSubCategorySuggestions && subCategorySuggestions.length > 0 && (
-                                    <div className="suggestions-dropdown" style={{
-                                        position: 'absolute',
-                                        top: '100%',
-                                        left: 0,
-                                        right: 0,
-                                        background: 'rgba(255, 255, 255, 0.95)',
-                                        backdropFilter: 'blur(10px)',
-                                        border: '1px solid rgba(0,0,0,0.1)',
-                                        borderRadius: '0.75rem',
-                                        zIndex: 1000,
-                                        marginTop: '8px',
-                                        boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                                        maxHeight: '250px',
-                                        overflowY: 'auto'
-                                    }}>
-                                        {subCategorySuggestions.map((s, i) => (
-                                            <div 
-                                                key={i} 
-                                                onMouseDown={() => handleSubCategorySelect(s)}
-                                                style={{
-                                                    padding: '12px 20px',
-                                                    fontSize: '0.95rem',
-                                                    cursor: 'pointer',
-                                                    borderBottom: i === subCategorySuggestions.length - 1 ? 'none' : '1px solid rgba(0,0,0,0.05)',
-                                                    transition: 'all 0.2s',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: '10px',
-                                                    fontWeight: 500
-                                                }}
-                                                onMouseEnter={(e) => e.target.style.background = 'rgba(0,123,255, 0.05)'}
-                                                onMouseLeave={(e) => e.target.style.background = 'transparent'}
-                                            >
-                                                <i className="fa fa-search" style={{fontSize: '12px', color: '#94a3b8'}}></i>
-                                                {s}
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="user-info-field">
-                                <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', fontWeight: 600}}>
-                                    Country <FontAwesomeIcon icon={faShieldHalved} style={{fontSize: '0.7rem', color: 'var(--primary)'}} />
-                                </label>
-                                <select 
-                                    className="dash-input" 
-                                    style={{width: '100%', borderRadius: '0.75rem', padding: '15px 20px', fontSize: '1rem'}} 
-                                    value={productCountry} 
-                                    onChange={(e) => {
-                                        setProductCountry(e.target.value);
-                                        if (e.target.value !== 'India') setProductState('');
-                                    }}
-                                >
-                                    {COUNTRIES.map((c, i) => (
-                                        <option key={i} value={c}>{c}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            {productCountry === 'India' && (
-                                <div className="user-info-field" style={{position: 'relative'}}>
-                                    <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', fontWeight: 600}}>
-                                        State <FontAwesomeIcon icon={faShieldHalved} style={{fontSize: '0.7rem', color: 'var(--primary)'}} />
-                                    </label>
-                                    <input 
-                                        className="dash-input" 
-                                        style={{width: '100%', borderRadius: '0.75rem', padding: '15px 20px', fontSize: '1rem'}} 
-                                        placeholder="Type or select state..." 
-                                        value={productState} 
-                                        onChange={(e) => handleStateChange(e.target.value)}
-                                        onFocus={() => handleStateChange(productState)}
-                                        onBlur={() => setTimeout(() => setShowStateSuggestions(false), 200)}
-                                        autoComplete="off"
-                                    />
-                                    {showStateSuggestions && stateSuggestions.length > 0 && (
-                                        <div className="suggestions-dropdown" style={{
-                                            position: 'absolute',
-                                            top: '100%',
-                                            left: 0,
-                                            right: 0,
-                                            background: 'rgba(255, 255, 255, 0.95)',
-                                            backdropFilter: 'blur(10px)',
-                                            border: '1px solid rgba(0,0,0,0.1)',
-                                            borderRadius: '0.75rem',
-                                            zIndex: 1000,
-                                            marginTop: '8px',
-                                            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-                                            maxHeight: '250px',
-                                            overflowY: 'auto'
-                                        }}>
-                                            {stateSuggestions.map((s, i) => (
-                                                <div 
-                                                    key={i} 
-                                                    onMouseDown={() => handleStateSelect(s)}
-                                                    style={{
-                                                        padding: '12px 20px',
-                                                        fontSize: '0.95rem',
-                                                        cursor: 'pointer',
-                                                        borderBottom: i === stateSuggestions.length - 1 ? 'none' : '1px solid rgba(0,0,0,0.05)',
-                                                        transition: 'all 0.2s',
-                                                        fontWeight: 500
-                                                    }}
-                                                    onMouseEnter={(e) => e.target.style.background = 'rgba(0,123,255, 0.05)'}
-                                                    onMouseLeave={(e) => e.target.style.background = 'transparent'}
-                                                >
-                                                    {s}
-                                                </div>
-                                            ))}
+                            <div className="product-form" style={{display: 'flex', flexDirection: 'column', gap: '0.2rem'}}>
+                                {/* Group 1: Primary Details */}
+                                <div style={{background: '#fcfcfd', padding: '0.4rem', borderRadius: '12px', border: '1px solid #f1f5f9'}}>
+                                    <div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem'}}>
+                                        <div style={{width: '20px', height: '20px', borderRadius: '4px', background: 'rgba(59, 130, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6'}}>
+                                            <FontAwesomeIcon icon={faGem} style={{fontSize: '0.9rem'}} />
                                         </div>
-                                    )}
-                                </div>
-                            )}
-
-                            {productCountry !== 'India' && (
-                                <div className="user-info-field">
-                                    <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', fontWeight: 600}}>
-                                        Province/State (Optional) <FontAwesomeIcon icon={faShieldHalved} style={{fontSize: '0.7rem', color: 'var(--primary)'}} />
-                                    </label>
-                                    <input 
-                                        className="dash-input" 
-                                        style={{width: '100%', borderRadius: '0.75rem', padding: '15px 20px', fontSize: '1rem'}} 
-                                        placeholder="Enter province or state name..." 
-                                        value={productState} 
-                                        onChange={(e) => setProductState(e.target.value)}
-                                    />
-                                </div>
-                            )}
-
-                            <div className="user-info-field">
-                                <label style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', fontWeight: 600}}>
-                                    Business Experience (Years) <FontAwesomeIcon icon={faChartLine} style={{fontSize: '0.7rem', color: 'var(--primary)'}} />
-                                </label>
-                                <input 
-                                    className="dash-input" 
-                                    style={{width: '100%', borderRadius: '0.75rem', padding: '15px 20px', fontSize: '1rem'}} 
-                                    placeholder="e.g. 5 Years, 10+ Years..." 
-                                    value={productExperience} 
-                                    onChange={(e) => setProductExperience(e.target.value)}
-                                />
-                            </div>
-
-
-                            <div className="image-upload-section" style={{marginTop: '2rem', padding: '2.5rem', background: 'var(--surface-container-low)', borderRadius: '1.5rem', border: '2px dashed var(--surface-container)'}}>
-                                <h3 style={{fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem'}}>Add Product Imagery</h3>
-                                <p style={{fontSize: '0.85rem', color: 'var(--on-surface-variant)', marginBottom: '1.5rem'}}>You can select up to 200 high-fidelity images for your catalog.</p>
-                                
-                                <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-                                    <input 
-                                        type="file" 
-                                        id="product-images" 
-                                        hidden 
-                                        onChange={(e) => {
-                                            const files = Array.from(e.target.files);
-                                            setSelectedImages(files); // Replace instead of append
-                                        }}
-                                        onClick={(e) => e.target.value = null}
-                                    />
-                                    <label htmlFor="product-images" className="insight-btn" style={{width: 'fit-content', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
-                                        <FontAwesomeIcon icon={faCartPlus} /> Select Product Photo
-                                    </label>
-                                    <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
-                                        <small style={{color: 'var(--on-surface-variant)'}}>Single Image Upload • Optimized for 1080p</small>
-                                        {selectedImages.length > 0 && (
-                                            <span style={{
-                                                background: 'var(--primary-container)', 
-                                                color: 'var(--on-primary-container)',
-                                                padding: '4px 12px',
-                                                borderRadius: '20px',
-                                                fontSize: '0.8rem',
-                                                fontWeight: 700
-                                            }}>
-                                                Image Ready
-                                            </span>
-                                        )}
+                                        <h3 style={{fontSize: '0.85rem', fontWeight: 800, color: '#1e293b', margin: 0}}>Product Essentials</h3>
                                     </div>
-                                </div>
-
-                                {/* Preview Section */}
-                                <div className="preview-grid" style={{
-                                    display: 'grid', 
-                                    gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', 
-                                    gap: '1.5rem', 
-                                    marginTop: '2rem'
-                                }}>
-                                    {selectedImages.map((file, idx) => (
-                                        <div key={idx} style={{position: 'relative', aspectRatio: '1', borderRadius: '1rem', overflow: 'hidden', background: 'var(--surface-container)'}}>
-                                            <img 
-                                                src={URL.createObjectURL(file)} 
-                                                alt="preview" 
-                                                style={{width: '100%', height: '100%', objectFit: 'cover'} } 
+                                    
+                                    <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem'}}>
+                                        <div className="user-info-field" style={{gridColumn: 'span 2'}}>
+                                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.8rem', color: '#64748b'}}>Product Title</label>
+                                            <input 
+                                                className="dash-input" 
+                                                style={{width: '100%', borderRadius: '10px', padding: '0.5rem 0.75rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', background: '#fff'}} 
+                                                placeholder="Enter Product Name..." 
+                                                value={productTitle} 
+                                                onChange={(e) => setProductTitle(e.target.value)} 
                                             />
-                                            <div 
-                                                onClick={() => setSelectedImages(selectedImages.filter((_, i) => i !== idx))}
-                                                style={{position: 'absolute', top: '5px', right: '5px', background: 'rgba(0,0,0,0.5)', color: 'white', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '0.7rem'}}>
-                                                ✕
+                                        </div>
+
+                                        <div className="user-info-field" style={{position: 'relative'}}>
+                                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.8rem', color: '#64748b'}}>Category</label>
+                                            <input 
+                                                className="dash-input" 
+                                                style={{width: '100%', borderRadius: '10px', padding: '0.5rem 0.75rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', background: '#fff'}} 
+                                                placeholder="e.g. Machinery" 
+                                                value={productCategory} 
+                                                onChange={(e) => handleCategoryChange(e.target.value)}
+                                                onFocus={() => handleCategoryChange(productCategory)}
+                                                onBlur={() => setTimeout(() => setShowCategorySuggestions(false), 200)}
+                                                autoComplete="off"
+                                            />
+                                            {showCategorySuggestions && categorySuggestions.length > 0 && (
+                                                <div className="suggestions-dropdown" style={{position: 'absolute', top: '100%', left: 0, right: 0, background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', zIndex: 1001, marginTop: '5px', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', maxHeight: '200px', overflowY: 'auto'}}>
+                                                    {categorySuggestions.map((s, i) => (
+                                                        <div key={i} onMouseDown={() => handleCategorySelect(s)} style={{padding: '10px 15px', fontSize: '0.85rem', cursor: 'pointer', borderBottom: i === categorySuggestions.length - 1 ? 'none' : '1px solid #f8fafc'}} onMouseEnter={(e) => e.target.style.background = '#f8fafc'} onMouseLeave={(e) => e.target.style.background = 'transparent'}>{s}</div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className="user-info-field" style={{position: 'relative'}}>
+                                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.8rem', color: '#64748b'}}>Sub-Category</label>
+                                            <input 
+                                                className="dash-input" 
+                                                style={{width: '100%', borderRadius: '12px', padding: '0.75rem 1rem', fontSize: '0.9rem', border: '1px solid #e2e8f0', background: productCategory ? '#fff' : '#f8fafc'}} 
+                                                placeholder={productCategory ? "Select type..." : "Select category first"} 
+                                                value={productSubCategory} 
+                                                onChange={(e) => handleSubCategoryChange(e.target.value)}
+                                                onFocus={() => productCategory && handleSubCategoryChange(productSubCategory)}
+                                                onBlur={() => setTimeout(() => setShowSubCategorySuggestions(false), 200)}
+                                                disabled={!productCategory}
+                                                autoComplete="off"
+                                            />
+                                            {showSubCategorySuggestions && subCategorySuggestions.length > 0 && (
+                                                <div className="suggestions-dropdown" style={{position: 'absolute', top: '100%', left: 0, right: 0, background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', zIndex: 1000, marginTop: '5px', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', maxHeight: '200px', overflowY: 'auto'}}>
+                                                    {subCategorySuggestions.map((s, i) => (
+                                                        <div key={i} onMouseDown={() => handleSubCategorySelect(s)} style={{padding: '10px 15px', fontSize: '0.85rem', cursor: 'pointer', borderBottom: i === subCategorySuggestions.length - 1 ? 'none' : '1px solid #f8fafc'}} onMouseEnter={(e) => e.target.style.background = '#f8fafc'} onMouseLeave={(e) => e.target.style.background = 'transparent'}>{s}</div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Description Field */}
+                                        <div className="user-info-field" style={{gridColumn: 'span 2', marginTop: '0.4rem'}}>
+                                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.8rem', color: '#64748b'}}>Description <span style={{fontWeight: 400, color: '#94a3b8'}}>(Optional)</span></label>
+                                            <textarea
+                                                className="dash-input"
+                                                style={{width: '100%', borderRadius: '10px', padding: '0.5rem 0.75rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', background: '#fff', minHeight: '80px', resize: 'vertical', fontFamily: 'inherit', boxSizing: 'border-box'}}
+                                                placeholder="Describe your product — quality, features, usage, etc."
+                                                value={productDescription}
+                                                onChange={(e) => setProductDescription(e.target.value)}
+                                            />
+                                        </div>
+
+                                        {/* Price Field */}
+                                        <div className="user-info-field" style={{marginTop: '0.4rem', gridColumn: 'span 2'}}>
+                                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.8rem', color: '#64748b'}}>Price & Unit <span style={{fontWeight: 400, color: '#94a3b8'}}>(Optional)</span></label>
+                                            <div style={{display: 'flex', gap: '0.5rem'}}>
+                                                <input
+                                                    className="dash-input"
+                                                    style={{flex: 2, borderRadius: '10px', padding: '0.5rem 0.75rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', background: '#fff'}}
+                                                    placeholder="Price (e.g. 500)"
+                                                    value={productPrice}
+                                                    onChange={(e) => setProductPrice(e.target.value)}
+                                                />
+                                                <select
+                                                    className="dash-input"
+                                                    style={{flex: 1, borderRadius: '10px', padding: '0.5rem 0.75rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', background: '#fff', cursor: 'pointer'}}
+                                                    value={productUnit}
+                                                    onChange={(e) => setProductUnit(e.target.value)}
+                                                >
+                                                    <option value="kg">kg</option>
+                                                    <option value="pcs">pcs</option>
+                                                    <option value="dozen">dozen</option>
+                                                    <option value="meter">meter</option>
+                                                    <option value="ton">ton</option>
+                                                    <option value="liter">liter</option>
+                                                    <option value="container">container</option>
+                                                </select>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
 
-                            <div className="catalog-upload-section" style={{marginTop: '2rem', padding: '2.5rem', background: '#f0f4ff', borderRadius: '1.5rem', border: '2px solid #e0e7ff'}}>
-                                <h3 style={{fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem', color: '#1e3a8a'}}>Company Catalog (Optional)</h3>
-                                <p style={{fontSize: '0.85rem', color: '#64748b', marginBottom: '1.5rem'}}>Upload your business catalog or brochure (PDF or Images).</p>
-                                
-                                <div style={{display: 'flex', flexDirection: 'column', gap: '1.5rem'}}>
-                                    <div className="user-info-field">
-                                        <input 
-                                            className="dash-input" 
-                                            style={{width: '100%', background: '#fff'}} 
-                                            placeholder="Catalog Name (e.g. Summer Collection 2024)" 
-                                            value={catalogTitle}
-                                            onChange={(e) => setCatalogTitle(e.target.value)}
-                                        />
                                     </div>
-                                    
-                                    <input 
-                                        type="file" 
-                                        id="catalog-files" 
-                                        multiple 
-                                        accept="image/*,application/pdf" 
-                                        style={{display: 'none'}} 
-                                        onChange={(e) => {
-                                            const files = Array.from(e.target.files);
-                                            setCatalogFiles(prev => [...prev, ...files]);
-                                        }}
-                                        onClick={(e) => e.target.value = null}
-                                    />
-                                    <div style={{display: 'flex', gap: '1rem', alignItems: 'center'}}>
-                                        <label htmlFor="catalog-files" className="insight-btn" style={{width: 'fit-content', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.75rem', background: '#1e3a8a'}}>
-                                            <FontAwesomeIcon icon={faBook} /> Select Catalog Files
-                                        </label>
-                                        <button 
-                                            className="update-btn" 
-                                            style={{fontSize: '0.85rem', padding: '0.8rem 1.5rem', background: '#10b981'}}
-                                            onClick={handleCatalogUpload}
-                                            disabled={catalogFiles.length === 0}
-                                        >
-                                            Upload Catalog
-                                        </button>
-                                    </div>
-                                    
-                                    {catalogFiles.length > 0 && (
-                                        <div style={{background: '#fff', padding: '1rem', borderRadius: '12px', border: '1px solid #e2e8f0'}}>
-                                            <p style={{fontSize: '0.85rem', fontWeight: 700, marginBottom: '0.5rem'}}>Selected Files:</p>
-                                            <ul style={{margin: 0, paddingLeft: '1.2rem', fontSize: '0.8rem', color: '#64748b'}}>
-                                                {catalogFiles.map((f, i) => (
-                                                    <li key={i}>{f.name}</li>
-                                                ))}
-                                            </ul>
+                                </div>
+
+                                {/* Group 2: Business & Logistics */}
+                                <div style={{background: '#fcfcfd', padding: '0.4rem', borderRadius: '12px', border: '1px solid #f1f5f9'}}>
+                                    <div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem'}}>
+                                        <div style={{width: '20px', height: '20px', borderRadius: '4px', background: 'rgba(16, 185, 129, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981'}}>
+                                            <FontAwesomeIcon icon={faShieldHalved} style={{fontSize: '0.9rem'}} />
                                         </div>
-                                    )}
+                                        <h3 style={{fontSize: '1rem', fontWeight: 800, color: '#1e293b', margin: 0}}>Business Logistics</h3>
+                                    </div>
+
+                                    <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1.2rem'}}>
+                                        <div className="user-info-field">
+                                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.8rem', color: '#64748b'}}>Origin Country</label>
+                                            <select 
+                                                className="dash-input" 
+                                                style={{width: '100%', borderRadius: '10px', padding: '0.5rem 0.75rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', background: '#fff'}} 
+                                                value={productCountry} 
+                                                onChange={(e) => {
+                                                    setProductCountry(e.target.value);
+                                                    if (e.target.value !== 'India') setProductState('');
+                                                }}
+                                            >
+                                                {COUNTRIES.map((c, i) => (
+                                                    <option key={i} value={c}>{c}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        <div className="user-info-field" style={{position: 'relative'}}>
+                                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.8rem', color: '#64748b'}}>State/Province</label>
+                                            <input 
+                                                className="dash-input" 
+                                                style={{width: '100%', borderRadius: '10px', padding: '0.5rem 0.75rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', background: '#fff'}} 
+                                                placeholder="e.g. Haryana" 
+                                                value={productState} 
+                                                onChange={(e) => productCountry === 'India' ? handleStateChange(e.target.value) : setProductState(e.target.value)}
+                                                onFocus={() => productCountry === 'India' && handleStateChange(productState)}
+                                                onBlur={() => setTimeout(() => setShowStateSuggestions(false), 200)}
+                                                autoComplete="off"
+                                            />
+                                            {showStateSuggestions && stateSuggestions.length > 0 && (
+                                                <div className="suggestions-dropdown" style={{position: 'absolute', top: '100%', left: 0, right: 0, background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', zIndex: 1000, marginTop: '5px', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', maxHeight: '200px', overflowY: 'auto'}}>
+                                                    {stateSuggestions.map((s, i) => (
+                                                        <div key={i} onMouseDown={() => handleStateSelect(s)} style={{padding: '10px 15px', fontSize: '0.85rem', cursor: 'pointer', borderBottom: i === stateSuggestions.length - 1 ? 'none' : '1px solid #f8fafc'}} onMouseEnter={(e) => e.target.style.background = '#f8fafc'} onMouseLeave={(e) => e.target.style.background = 'transparent'}>{s}</div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className="user-info-field">
+                                            <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.8rem', color: '#64748b'}}>Experience (Yrs)</label>
+                                            <input 
+                                                className="dash-input" 
+                                                style={{width: '100%', borderRadius: '10px', padding: '0.5rem 0.75rem', fontSize: '0.85rem', border: '1px solid #e2e8f0', background: '#fff'}} 
+                                                placeholder="e.g. 5+" 
+                                                value={productExperience} 
+                                                onChange={(e) => setProductExperience(e.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Group 3: Assets & Media */}
+                                <div style={{background: '#fcfcfd', padding: '0.4rem', borderRadius: '12px', border: '1px solid #f1f5f9'}}>
+                                    <div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem'}}>
+                                        <div style={{width: '20px', height: '20px', borderRadius: '4px', background: 'rgba(249, 115, 22, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#f97316'}}>
+                                            <FontAwesomeIcon icon={faCartPlus} style={{fontSize: '0.9rem'}} />
+                                        </div>
+                                        <h3 style={{fontSize: '1rem', fontWeight: 800, color: '#1e293b', margin: 0}}>Imagery & Assets</h3>
+                                    </div>
+
+                                    <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem'}}>
+                                        <div className="image-upload-area" style={{padding: '0.6rem', background: '#fff', borderRadius: '16px', border: '2px dashed #e2e8f0', textAlign: 'center'}}>
+                                            <input type="file" id="product-images" hidden onChange={(e) => setSelectedImages(Array.from(e.target.files))} onClick={(e) => e.target.value = null} />
+                                            <label htmlFor="product-images" style={{cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem'}}>
+                                                <div style={{width: '40px', height: '40px', borderRadius: '50%', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6'}}>
+                                                    <FontAwesomeIcon icon={faCartPlus} />
+                                                </div>
+                                                <span style={{fontSize: '0.85rem', fontWeight: 700, color: '#1e293b'}}>Select Product Photo</span>
+                                                <span style={{fontSize: '0.7rem', color: '#94a3b8'}}>PNG, JPG up to 5MB</span>
+                                            </label>
+                                            {selectedImages.length > 0 && (
+                                                <div style={{marginTop: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center'}}>
+                                                    {selectedImages.map((file, idx) => (
+                                                        <div key={idx} style={{width: '50px', height: '50px', borderRadius: '8px', overflow: 'hidden', position: 'relative', border: '1px solid #e2e8f0'}}>
+                                                            <img src={URL.createObjectURL(file)} alt="" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div style={{marginTop: '0.5rem', display: 'flex', justifyContent: 'flex-end'}}>
+                                    <button 
+                                        type="button"
+                                        className="update-btn" 
+                                        style={{
+                                            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', 
+                                            padding: '1rem 4rem', 
+                                            fontSize: '1rem', 
+                                            fontWeight: 800,
+                                            borderRadius: '16px',
+                                            boxShadow: '0 15px 35px rgba(0,0,0,0.2)',
+                                            color: '#fff',
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            handleProductSubmit();
+                                        }}
+                                    >
+                                        {editingProduct ? 'Save Product Changes' : 'Publish Product to GlobalB2B'}
+                                    </button>
                                 </div>
                             </div>
-
-                            <div style={{marginTop: '2rem', position: 'relative', zIndex: 1000}}>
-                                <button 
-                                    type="button"
-                                    className="update-btn" 
-                                    style={{width: '100%', padding: '1.5rem', fontSize: '1.1rem', background: '#003366'}}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        e.stopPropagation();
-                                        handleProductSubmit();
-                                    }}
-                                >
-                                    Publish to Supplier
-                                </button>
-                            </div>
-                        </div>
 
                         {/* Real-time Product List Below Form */}
-                        <div style={{marginTop: '5rem', borderTop: '2px solid #e2e8f0', paddingTop: '3rem'}}>
-                            <h2 style={{fontSize: '2rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '3rem', textAlign: 'center'}}>Your Published Products</h2>
+                        <div style={{marginTop: '1.5rem', borderTop: '2px solid #e2e8f0', paddingTop: '1.5rem'}}>
+                            <h2 style={{fontSize: '1.4rem', fontWeight: 800, color: '#1e3a8a', marginBottom: '1.2rem', textAlign: 'center'}}>Your Published Products</h2>
                             <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
                                 {products.length > 0 ? products.map((prod, i) => (
                                 <div key={i} style={{
@@ -1336,23 +1172,23 @@ const FreeDash = () => {
                                             position: 'absolute',
                                             top: '1rem',
                                             left: '1rem',
-                                            background: '#10b981',
+                                            background: prod.isPublished ? '#10b981' : '#f59e0b',
                                             color: 'white',
                                             padding: '4px 12px',
                                             borderRadius: '50px',
                                             fontSize: '0.7rem',
                                             fontWeight: 800,
-                                            boxShadow: '0 2px 8px rgba(16, 185, 129, 0.3)'
+                                            boxShadow: prod.isPublished ? '0 2px 8px rgba(16, 185, 129, 0.3)' : '0 2px 8px rgba(245, 158, 11, 0.3)'
                                         }}>
-                                            <FontAwesomeIcon icon={faCheckCircle} style={{marginRight: '5px'}} />
-                                            VERIFIED
+                                            <FontAwesomeIcon icon={prod.isPublished ? faCheckCircle : faSpinner} spin={!prod.isPublished} style={{marginRight: '5px'}} />
+                                            {prod.isPublished ? 'VERIFIED' : 'PENDING'}
                                         </div>
                                     </div>
 
                                     {/* Column 2: Product Info */}
                                     <div style={{
                                         flex: 1,
-                                        padding: '1.5rem 2rem',
+                                        padding: '1rem 1.5rem',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         justifyContent: 'center',
@@ -1381,7 +1217,7 @@ const FreeDash = () => {
                                         }}>
                                             {prod.title}
                                         </h3>
-                                        <div style={{display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '1.2rem'}}>
+                                        <div style={{display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '0.6rem'}}>
                                             <div style={{display: 'flex', alignItems: 'center', gap: '0.4rem'}}>
                                                 <div style={{color: '#fbbf24', fontSize: '0.8rem'}}>
                                                     {[...Array(5)].map((_, idx) => <FontAwesomeIcon key={idx} icon={faStar} />)}
@@ -1407,31 +1243,84 @@ const FreeDash = () => {
                                             <FontAwesomeIcon icon={faBoxOpen} style={{color: '#1e3a8a'}} />
                                             <span>Bulk Supply Available Worldwide</span>
                                         </div>
+
+                                        {/* Price Badge */}
+                                        {prod.price && prod.price !== 'Ask for Price' && (
+                                            <div style={{
+                                                marginTop: '0.6rem',
+                                                display: 'inline-flex',
+                                                alignItems: 'center',
+                                                gap: '0.4rem',
+                                                background: 'rgba(30, 58, 138, 0.06)',
+                                                color: '#1e3a8a',
+                                                fontWeight: 800,
+                                                fontSize: '0.95rem',
+                                                padding: '0.4rem 0.9rem',
+                                                borderRadius: '0.6rem'
+                                            }}>
+                                                ₹ {prod.price} / {prod.unit || 'kg'}
+                                            </div>
+                                        )}
+
+                                        {/* Description Snippet */}
+                                        {prod.description && (
+                                            <div style={{
+                                                marginTop: '0.6rem',
+                                                fontSize: '0.8rem',
+                                                color: '#64748b',
+                                                lineHeight: '1.5',
+                                                overflow: 'hidden',
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 2,
+                                                WebkitBoxOrient: 'vertical',
+                                                textOverflow: 'ellipsis'
+                                            }}>
+                                                {prod.description}
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Column 3: Status & Actions */}
                                     <div style={{
                                         width: '220px',
                                         minWidth: '220px',
-                                        padding: '1.5rem',
+                                        padding: '1rem',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         background: '#fafcfd'
                                     }}>
-                                        <div style={{marginBottom: 'auto'}}>
-                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#475569', fontSize: '0.8rem', marginBottom: '0.6rem'}}>
-                                                <FontAwesomeIcon icon={faBuilding} style={{color: '#94a3b8'}} />
-                                                <span style={{fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}>{userData?.companyName || 'Verified Supplier'}</span>
+                                            <div style={{marginBottom: 'auto'}}>
+                                                <div style={{display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#475569', fontSize: '0.8rem', marginBottom: '0.6rem'}}>
+                                                    <FontAwesomeIcon icon={faBuilding} style={{color: '#94a3b8'}} />
+                                                    <span style={{fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}>{userData?.companyName || 'Verified Supplier'}</span>
+                                                </div>
+                                                <div style={{
+                                                    display: 'flex', 
+                                                    alignItems: 'center', 
+                                                    gap: '0.6rem', 
+                                                    color: prod.isPublished ? '#10b981' : '#f59e0b', 
+                                                    fontSize: '0.8rem', 
+                                                    fontWeight: 700
+                                                }}>
+                                                    <FontAwesomeIcon icon={prod.isPublished ? faCheckCircle : faBarsProgress} />
+                                                    <span>{prod.isPublished ? 'Live Listing' : 'Verification Pending'}</span>
+                                                </div>
                                             </div>
-                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#10b981', fontSize: '0.8rem', fontWeight: 700}}>
-                                                <FontAwesomeIcon icon={faCheckCircle} />
-                                                <span>Live Listing</span>
+                                            <div style={{
+                                                display: 'flex', 
+                                                alignItems: 'center', 
+                                                gap: '0.6rem', 
+                                                color: prod.isPublished ? '#10b981' : '#f59e0b', 
+                                                fontSize: '0.75rem', 
+                                                fontWeight: 700, 
+                                                marginTop: '1rem',
+                                                lineHeight: '1.4'
+                                            }}>
+                                                <FontAwesomeIcon icon={prod.isPublished ? faCheckCircle : faSpinner} spin={!prod.isPublished} />
+                                                <span>
+                                                    {prod.isPublished ? 'Published & Live' : 'Wait 2 to 3 working days for Admin approval'}
+                                                </span>
                                             </div>
-                                        </div>
-                                        <div style={{display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#10b981', fontSize: '0.8rem', fontWeight: 700, marginTop: '1rem'}}>
-                                            <FontAwesomeIcon icon={faCheckCircle} />
-                                            <span>Published & Live</span>
-                                        </div>
                                     </div>
                                 </div>
                                 )) : (
@@ -1545,7 +1434,13 @@ const FreeDash = () => {
 
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}>
                                     {isFetchingBuyers ? (
-                                        <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '4rem' }}><FontAwesomeIcon icon={faSpinner} spin size="2x" /></div>
+                                        [1, 2, 3, 4, 5, 6].map(i => (
+                                            <div key={i} className="glass-panel" style={{ padding: '2rem', borderRadius: '1.5rem', minHeight: '200px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                                <div className="skeleton-box" style={{ width: '150px', height: '20px' }}></div>
+                                                <div className="skeleton-box" style={{ width: '100px', height: '14px' }}></div>
+                                                <div className="skeleton-box" style={{ width: '100%', height: '45px', borderRadius: '1rem', marginTop: 'auto' }}></div>
+                                            </div>
+                                        ))
                                     ) : allBuyers.filter(b => b.buyerName?.toLowerCase().includes(buyerSearchTerm.toLowerCase())).map((lead, i) => (
                                         <div key={i} onClick={() => selectedLeads.includes(lead._id) ? setSelectedLeads(selectedLeads.filter(id => id !== lead._id)) : setSelectedLeads([...selectedLeads, lead._id])}
                                             style={{ padding: '1.5rem', background: selectedLeads.includes(lead._id) ? '#f0f9ff' : '#fff', borderRadius: '1.5rem', border: selectedLeads.includes(lead._id) ? '2.5px solid #0ea5e9' : '2px solid #f1f5f9', cursor: 'pointer', position: 'relative' }}>
@@ -1560,13 +1455,13 @@ const FreeDash = () => {
                         ) : (
                             /* --- CLIENT/SUPPLIER VIEW: SHARED LEADS --- */
                              <>
-                                <div style={{ marginBottom: '2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem' }}>
+                                <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '0.6rem' }}>
                                     <div>
-                                        <h2 style={{ fontSize: '2.2rem', fontWeight: 800, margin: 0, background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>My Verified Leads</h2>
-                                        <p style={{ color: '#64748b', fontSize: '1.1rem', marginTop: '0.5rem' }}>Premium leads specifically curated and shared with you by Admin.</p>
+                                        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0, background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>My Verified Leads</h2>
+                                        <p style={{ color: '#64748b', fontSize: '0.9rem', marginTop: '0.2rem' }}>Premium leads shared with you by Admin.</p>
                                     </div>
-                                    <div style={{ background: '#fff', padding: '1rem', borderRadius: '1.5rem', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', gap: '1rem', boxShadow: '0 4px 15px rgba(0,0,0,0.03)' }}>
-                                        <div style={{ color: '#64748b', fontSize: '0.9rem', fontWeight: 600 }}>Filter by Date:</div>
+                                    <div style={{ background: '#fff', padding: '0.5rem 0.8rem', borderRadius: '10px', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', gap: '0.6rem', boxShadow: '0 2px 10px rgba(0,0,0,0.01)' }}>
+                                        <div style={{ color: '#64748b', fontSize: '0.85rem', fontWeight: 600 }}>Filter by Date:</div>
                                         <input 
                                             type="date" 
                                             value={leadDateFilter}
@@ -1593,7 +1488,20 @@ const FreeDash = () => {
                                 </div>
 
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2rem' }}>
-                                    {viewedLeads.filter(lead => {
+                                    {leadLoading ? (
+                                        [1, 2, 3, 4].map(i => (
+                                            <div key={i} className="glass-panel" style={{ padding: '1.5rem', borderRadius: '1.2rem', minHeight: '180px', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                                                    <div className="skeleton-box" style={{ width: '40px', height: '40px', borderRadius: '10px' }}></div>
+                                                    <div>
+                                                        <div className="skeleton-box" style={{ width: '100px', height: '14px', marginBottom: '5px' }}></div>
+                                                        <div className="skeleton-box" style={{ width: '60px', height: '10px' }}></div>
+                                                    </div>
+                                                </div>
+                                                <div className="skeleton-box" style={{ width: '100%', height: '60px', borderRadius: '0.75rem' }}></div>
+                                            </div>
+                                        ))
+                                    ) : viewedLeads.filter(lead => {
                                         if (!leadDateFilter) return true;
                                         const leadDate = new Date(lead.dateViewed || lead.viewedAt || lead.createdAt).toISOString().split('T')[0];
                                         return leadDate === leadDateFilter;
@@ -1604,23 +1512,71 @@ const FreeDash = () => {
                                             return leadDate === leadDateFilter;
                                         })
                                         .map((lead, i) => (
-                                        <div key={i} style={{ padding: '2rem', background: '#fff', borderRadius: '2rem', border: '2px solid #f1f5f9', boxShadow: '0 4px 20px rgba(0,0,0,0.02)', transition: 'transform 0.2s', cursor: 'default' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '1.5rem' }}>
-                                                <div style={{ width: '50px', height: '50px', borderRadius: '15px', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10b981', fontWeight: 800, fontSize: '1.2rem' }}>{lead.buyerName?.charAt(0)}</div>
+                                        <div key={i} style={{ 
+                                            padding: '1.5rem', 
+                                            background: '#fff', 
+                                            borderRadius: '1.5rem', 
+                                            border: '1px solid #f1f5f9', 
+                                            boxShadow: '0 4px 15px rgba(0,0,0,0.02)', 
+                                            display: 'flex', 
+                                            flexDirection: 'column', 
+                                            gap: '1rem' 
+                                        }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                                <div style={{ 
+                                                    width: '50px', 
+                                                    height: '50px', 
+                                                    borderRadius: '12px', 
+                                                    background: '#f1f5f9', 
+                                                    display: 'flex', 
+                                                    alignItems: 'center', 
+                                                    justifyContent: 'center', 
+                                                    color: '#10b981', 
+                                                    fontWeight: 900, 
+                                                    fontSize: '1.2rem' 
+                                                }}>
+                                                    {lead.buyerName?.charAt(0)}
+                                                </div>
                                                 <div>
-                                                    <h4 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800 }}>{lead.buyerName}</h4>
-                                                    <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem' }}><FontAwesomeIcon icon={faHeadset} /> {lead.mobileNo}</p>
+                                                    <h4 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: '#0f172a' }}>{lead.buyerName}</h4>
+                                                    <div style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600 }}>
+                                                        <FontAwesomeIcon icon={faPhone} style={{ marginRight: '6px' }} />
+                                                        {lead.mobileNo}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div style={{ background: '#f0fdf4', padding: '1rem', borderRadius: '1rem', border: '1px solid #dcfce7', color: '#166534', fontWeight: 500 }}>
-                                                {lead.email && <div style={{ fontSize: '0.85rem', marginBottom: '0.5rem' }}>Email: {lead.email}</div>}
-                                                <div style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 800, marginBottom: '0.3rem' }}>Sourcing Request</div>
-                                                {lead.productName || lead.productOrService || 'Direct Business Opportunity'}
+
+                                            <div style={{ background: '#f8fafc', padding: '1.2rem', borderRadius: '1.2rem', border: '1px solid #f1f5f9' }}>
+                                                <div style={{ marginBottom: '0.8rem' }}>
+                                                    <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', fontWeight: 800, color: '#94a3b8', marginBottom: '4px', letterSpacing: '0.5px' }}>Requirement</div>
+                                                    <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#1e3a8a' }}>
+                                                        {lead.productName || lead.productOrService || 'Direct Inquiry'}
+                                                    </div>
+                                                </div>
+
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', borderTop: '1px solid #e2e8f0', paddingTop: '0.8rem' }}>
+                                                    <div>
+                                                        <div style={{ fontSize: '0.6rem', textTransform: 'uppercase', fontWeight: 800, color: '#94a3b8', marginBottom: '2px' }}>Quantity</div>
+                                                        <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#10b981' }}>
+                                                            {lead.quantity ? `${lead.quantity} ${lead.unit || 'Units'}` : 'Bulk'}
+                                                        </div>
+                                                    </div>
+                                                    <div style={{ textAlign: 'right' }}>
+                                                        <div style={{ fontSize: '0.6rem', textTransform: 'uppercase', fontWeight: 800, color: '#94a3b8', marginBottom: '2px' }}>Location</div>
+                                                        <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#64748b' }}>
+                                                            {lead.city || lead.statename ? `${lead.city || ''}${lead.city && lead.statename ? ', ' : ''}${lead.statename || ''}` : lead.country || 'India'}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                <span style={{ fontSize: '0.75rem', padding: '6px 12px', background: '#dcfce7', color: '#166534', borderRadius: '8px', fontWeight: 800 }}>SHARED BY ADMIN</span>
-                                                <span style={{ color: '#94a3b8', fontSize: '0.8rem', fontWeight: 600 }}>
-                                                    {new Date(lead.dateViewed || lead.viewedAt || lead.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.7rem', color: '#10b981', fontWeight: 800, background: '#ecfdf5', padding: '4px 10px', borderRadius: '6px' }}>
+                                                    <FontAwesomeIcon icon={faCheckCircle} />
+                                                    <span>VERIFIED LEAD</span>
+                                                </div>
+                                                <span style={{ color: '#94a3b8', fontSize: '0.75rem', fontWeight: 600 }}>
+                                                    {new Date(lead.dateViewed || lead.viewedAt || lead.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
                                                 </span>
                                             </div>
                                         </div>
@@ -1688,32 +1644,42 @@ const FreeDash = () => {
                 )}
 
                 {activeSection === 'needHelp' && (
-                    <section className="section-panel" style={{maxWidth: '800px', margin: '4rem auto', borderRadius: '3rem'}}>
-                        <div style={{textAlign: 'center', marginBottom: '4rem'}}>
-                            <h2 style={{fontSize: '2.5rem', marginBottom: '0.5rem'}}>Concierge Support</h2>
-                            <p style={{fontSize: '1rem', color: 'var(--on-surface-variant)'}}>Direct access to GlobalB2B Merchant Success Desk</p>
+                    <section className="section-panel" style={{ maxWidth: '1000px', margin: '4rem auto', border: 'none', background: 'transparent', boxShadow: 'none' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                            <div style={{ marginBottom: '2rem' }}>
+                                <img src={SUPPORT_ILLUSTRATION} alt="Support" style={{ width: '300px', filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.05))' }} />
+                            </div>
+                            <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '1rem', letterSpacing: '-1px', color: '#0f172a' }}>Merchant Success Desk</h2>
+                            <p style={{ fontSize: '1.1rem', color: '#64748b', fontWeight: 600, maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>Your dedicated GlobalB2B concierge team is available to help you scale your business.</p>
                         </div>
 
-                        <div className="content-grid" style={{gap: '2rem'}}>
-                            <div className="stat-card" style={{padding: '2.5rem', textAlign: 'center', background: 'var(--surface-container-low)'}}>
-                                <FontAwesomeIcon icon={faHeadset} style={{fontSize: '2.5rem', color: 'var(--primary)', marginBottom: '1.5rem'}} />
-                                <h4 style={{margin: '0 0 0.5rem 0', fontSize: '1.2rem'}}>Customer Care</h4>
-                                <p style={{fontSize: '1.4rem', fontWeight: 800, color: 'var(--on-surface)'}}>011-41029790</p>
-                                <p style={{fontSize: '0.85rem', color: 'var(--on-surface-variant)'}}>Available for immediate queries</p>
+                        <div className="content-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                            <div className="stat-card" style={{ padding: '2.5rem 1.5rem', textAlign: 'center', background: 'white', borderRadius: '1.5rem', border: '1px solid #f1f5f9', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
+                                <div style={{ width: '70px', height: '70px', background: '#eff6ff', color: '#3b82f6', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '1.8rem' }}>
+                                    <FontAwesomeIcon icon={faBell} />
+                                </div>
+                                <h4 style={{ margin: '0 0 0.8rem 0', fontSize: '1.3rem', fontWeight: 800, color: '#0f172a' }}>Executive Hub</h4>
+                                <p style={{ fontSize: '1rem', fontWeight: 800, color: '#3b82f6', wordBreak: 'break-all' }}>feedback@globalb2bmart.com</p>
+                                <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginTop: '1.2rem', fontWeight: 600 }}>Response: &lt; 2 Hours</p>
                             </div>
 
-                            <div className="stat-card" style={{padding: '2.5rem', textAlign: 'center', background: 'var(--surface-container-low)'}}>
-                                <FontAwesomeIcon icon={faBell} style={{fontSize: '2.5rem', color: 'var(--primary)', marginBottom: '1.5rem'}} />
-                                <h4 style={{margin: '0 0 0.5rem 0', fontSize: '1.2rem'}}>Executive Response</h4>
-                                <p style={{fontSize: '1.2rem', fontWeight: 700, color: 'var(--on-surface)'}}>feedback@globalb2bmart.com</p>
-                                <p style={{fontSize: '0.85rem', color: 'var(--on-surface-variant)'}}>Estimated Response: 2-4 Hours</p>
+                            <div className="stat-card" style={{ padding: '2.5rem 1.5rem', textAlign: 'center', background: 'white', borderRadius: '1.5rem', border: '1px solid #f1f5f9', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
+                                <div style={{ width: '70px', height: '70px', background: '#fff7ed', color: '#f97316', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '1.8rem' }}>
+                                    <FontAwesomeIcon icon={faHeadset} />
+                                </div>
+                                <h4 style={{ margin: '0 0 0.8rem 0', fontSize: '1.3rem', fontWeight: 800, color: '#0f172a' }}>Global Hotline</h4>
+                                <p style={{ fontSize: '1.4rem', fontWeight: 950, color: '#f97316' }}>011-41029790</p>
+                                <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginTop: '1.2rem', fontWeight: 600 }}>24/7 Support</p>
                             </div>
-                        </div>
 
-                        <div className="section-panel" style={{marginTop: '3rem', padding: '3rem', textAlign: 'center', background: 'linear-gradient(135deg, var(--surface-container) 0%, var(--surface-container-lowest) 100%)', border: '1px solid var(--surface-container-high)', borderRadius: '2rem'}}>
-                            <h3 style={{marginBottom: '1rem'}}>Share Your Feedback</h3>
-                            <p style={{fontSize: '0.9rem', color: 'var(--on-surface-variant)', marginBottom: '2rem'}}>Your editorial insight helps us craft a better marketplace experience.</p>
-                            <button className="insight-btn" style={{padding: '1rem 3rem'}}>Compose Feedback</button>
+                            <div className="stat-card" style={{ padding: '2.5rem 1.5rem', textAlign: 'center', background: 'white', borderRadius: '1.5rem', border: '1px solid #f1f5f9', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
+                                <div style={{ width: '70px', height: '70px', background: '#f0fdf4', color: '#22c55e', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', fontSize: '1.8rem' }}>
+                                    <FontAwesomeIcon icon={faShieldHalved} />
+                                </div>
+                                <h4 style={{ margin: '0 0 0.8rem 0', fontSize: '1.3rem', fontWeight: 800, color: '#0f172a' }}>Verified Safety</h4>
+                                <p style={{ fontSize: '1rem', fontWeight: 800, color: '#22c55e', wordBreak: 'break-all' }}>safety@globalb2b.com</p>
+                                <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginTop: '1.2rem', fontWeight: 600 }}>Security Desk</p>
+                            </div>
                         </div>
                     </section>
                 )}
@@ -1779,7 +1745,7 @@ const FreeDash = () => {
                             </div>
 
                             <div style={{display: 'flex', gap: '1.5rem'}}>
-                                <div style={{flex: 1}}>
+                                <div style={{flex: 2}}>
                                     <label style={{display: 'block', fontSize: '0.75rem', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', marginBottom: '0.6rem'}}>Price (Optional)</label>
                                     <input 
                                         type="text" 
@@ -1787,6 +1753,22 @@ const FreeDash = () => {
                                         onChange={(e) => setModalProductPrice(e.target.value)}
                                         style={{width: '100%', padding: '1rem', borderRadius: '1rem', border: '2px solid #e2e8f0', fontSize: '1rem', fontWeight: 600}}
                                     />
+                                </div>
+                                <div style={{flex: 1}}>
+                                    <label style={{display: 'block', fontSize: '0.75rem', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', marginBottom: '0.6rem'}}>Unit</label>
+                                    <select 
+                                        value={modalProductUnit} 
+                                        onChange={(e) => setModalProductUnit(e.target.value)}
+                                        style={{width: '100%', padding: '1rem', borderRadius: '1rem', border: '2px solid #e2e8f0', fontSize: '1rem', fontWeight: 600, cursor: 'pointer', background: '#fff'}}
+                                    >
+                                        <option value="kg">kg</option>
+                                        <option value="pcs">pcs</option>
+                                        <option value="dozen">dozen</option>
+                                        <option value="meter">meter</option>
+                                        <option value="ton">ton</option>
+                                        <option value="liter">liter</option>
+                                        <option value="container">container</option>
+                                    </select>
                                 </div>
                                 <div style={{flex: 1}}>
                                     <label style={{display: 'block', fontSize: '0.75rem', fontWeight: 800, color: '#64748b', textTransform: 'uppercase', marginBottom: '0.6rem'}}>MOQ</label>

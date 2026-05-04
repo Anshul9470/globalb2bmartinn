@@ -79,7 +79,7 @@ exports.addProduct = async (req, res) => {
     // Ensure req.body.images doesn't interfere with req.files
     if (req.body.images) delete req.body.images;
 
-    let { title, description, category, subCategory, country, state, city, experience, price, moq, isPublished } = req.body;
+    let { title, description, category, subCategory, country, state, city, experience, price, unit, moq, isPublished } = req.body;
 
     // Robust sanitization to ensure we always have strings and never nested arrays
     const ensureString = (val) => {
@@ -102,6 +102,7 @@ exports.addProduct = async (req, res) => {
     city = ensureString(city);
     experience = ensureString(experience);
     price = ensureString(price);
+    unit = ensureString(unit);
     moq = ensureString(moq);
     isPublished = isPublished === 'true' || isPublished === true;
 
@@ -125,6 +126,7 @@ exports.addProduct = async (req, res) => {
             city: city || '', 
             experience: experience || '',
             price: price || '',
+            unit: unit || 'kg',
             moq: moq || '',
             isPublished
         };
@@ -204,7 +206,7 @@ exports.addProduct = async (req, res) => {
 
 exports.updateProduct = async (req, res) => {
     const { userId, productId } = req.params;
-    let { title, description, category, subCategory, country, state, city, experience, price, moq } = req.body;
+    let { title, description, category, subCategory, country, state, city, experience, price, unit, moq } = req.body;
 
     const ensureString = (val) => {
         if (Array.isArray(val)) {
@@ -277,8 +279,9 @@ exports.updateProduct = async (req, res) => {
         if (state) productToUpdate.state = ensureString(state);
         if (city) productToUpdate.city = ensureString(city);
         if (experience) productToUpdate.experience = ensureString(experience);
-        if (price !== undefined) productToUpdate.price = ensureString(price);
-        if (moq !== undefined) productToUpdate.moq = ensureString(moq);
+        productToUpdate.price = ensureString(price);
+        productToUpdate.unit = ensureString(unit);
+        productToUpdate.moq = ensureString(moq);
         if (images.length > 0) productToUpdate.images = images;
 
         try {

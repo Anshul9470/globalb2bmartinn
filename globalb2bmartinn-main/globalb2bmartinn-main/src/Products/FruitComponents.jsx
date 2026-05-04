@@ -9,6 +9,7 @@ import {
   faFilter
 } from "@fortawesome/free-solid-svg-icons";
 import "./MarketplacePremium.css";
+import FullPageSkeleton from "../Components/FullPageSkeleton";
 
 const classifiedData = [
   {
@@ -138,6 +139,13 @@ const FruitComponents = () => {
   const [sortBy, setSortBy] = useState("Most Relevant");
   const [filteredData, setFilteredData] = useState(classifiedData);
   const [activeChip, setActiveChip] = useState("All");
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    // Simulated loading for premium feel
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCatChange = (cat) => {
     setSelectedCats(prev => 
@@ -196,6 +204,14 @@ const FruitComponents = () => {
     { label: "Bananas",    img: "/assets/banana.jpeg" },
     { label: "Coconut",    img: "/assets/cocout1.jpg" },
   ];
+
+  if (loading) {
+    return (
+      <div className="marketplace-container">
+        <FullPageSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className="marketplace-container">

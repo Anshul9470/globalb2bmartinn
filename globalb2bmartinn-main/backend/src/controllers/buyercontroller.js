@@ -19,7 +19,7 @@ exports.registerBuyer = async (req, res) => {
 // Get all buyers
 exports.getAllBuyers = async (req, res) => {
     try {
-        const buyers = await Buyer.find().lean();
+        const buyers = await Buyer.find({ approved: true }).lean();
         if (!buyers || buyers.length === 0) {
             return res.status(200).json({
                 message: 'No buyers found',

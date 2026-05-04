@@ -10,12 +10,45 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faCalendarAlt, faCheckCircle, faTags } from "@fortawesome/free-solid-svg-icons";
 import { gsap } from "gsap";
 import { submitContactForm } from "../services/api";
+import { useAuth } from "../Buyers/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Leads = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState("");
   const headerRef = useRef(null);
+  const { userId } = useAuth();
+  const navigate = useNavigate();
+  const [userPlan, setUserPlan] = useState("Free");
+
+  useEffect(() => {
+    if (userId) {
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/getUserWithPremiumStatus/${userId}`)
+        .then(res => res.json())
+        .then(data => {
+          setUserPlan(data.plan || "Free");
+        })
+        .catch(err => console.error("Error fetching status:", err));
+    }
+  }, [userId]);
+
+  const handleViewDetails = (e, category) => {
+    e.preventDefault();
+    if (!userId) {
+      toast.info("Please login to view details");
+      navigate("/login");
+      return;
+    }
+
+    if (userPlan.toLowerCase() === "free") {
+      toast.warn("Upgrade your plan to view buyer details");
+      navigate("/packages");
+    } else {
+      navigate(`/buyer/${category.toLowerCase().replace(/\s+/g, '-')}`);
+    }
+  };
 
   useEffect(() => {
     // GSAP background moving animation for header exclusively
@@ -174,10 +207,10 @@ const Leads = () => {
                         </div>
                         <hr className="card-divider" />
                         <div className="card-footer">
-                          <Link to={`/buyer/${lead.category.toLowerCase()}`} className="view-details-btn">
+                          <a href={`/buyer/${lead.category.toLowerCase()}`} className="view-details-btn" onClick={(e) => handleViewDetails(e, lead.category)}>
                             <span>View Details</span>
                             <FontAwesomeIcon icon={faArrowRight} className="moving-arrow" />
-                          </Link>
+                          </a>
                         </div>
                       </div>
                     ))}

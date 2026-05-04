@@ -11,6 +11,7 @@ import {
   faAngleRight
 } from "@fortawesome/free-solid-svg-icons";
 import "./MarketplacePremium.css";
+import FullPageSkeleton from "../Components/FullPageSkeleton";
 
 import { agroData } from "./MarketplaceData";
 
@@ -32,16 +33,20 @@ const AgroProductsSupplier = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [dbProducts, setDbProducts] = useState([]);
   const [activeChip, setActiveChip] = useState("All");
+  const [loading, setLoading] = useState(true);
 
   React.useEffect(() => {
     const fetchAgroProducts = async () => {
       try {
+        setLoading(true);
         const res = await axios.get(`${apiEndpoint}/products/category/Agro`);
         setDbProducts(res.data);
         setFilteredData([...agroData, ...res.data]);
       } catch (err) {
         console.error("Failed to fetch agro products:", err);
         setFilteredData(agroData);
+      } finally {
+        setTimeout(() => setLoading(false), 2000);
       }
     };
     fetchAgroProducts();
@@ -127,6 +132,14 @@ const AgroProductsSupplier = () => {
     { label: "Spices",     img: "/assets/agros.jpeg" },
     { label: "Vegetables", img: "/assets/agro2.jpeg" },
   ];
+
+  if (loading) {
+    return (
+      <div className="marketplace-container">
+        <FullPageSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className="marketplace-container">

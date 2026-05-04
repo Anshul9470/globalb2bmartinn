@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faStar, 
@@ -9,6 +10,8 @@ import {
   faFilter
 } from "@fortawesome/free-solid-svg-icons";
 import "./MarketplacePremium.css";
+
+const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
 
 const classifiedData = [
   {
@@ -85,8 +88,26 @@ const MustardOilStore = () => {
   const [locationSuggestions, setLocationSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [sortBy, setSortBy] = useState("Most Relevant");
-  const [filteredData, setFilteredData] = useState(classifiedData);
+  const [filteredData, setFilteredData] = useState([]);
+  const [dbProducts, setDbProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeChip, setActiveChip] = useState("All");
+
+  useEffect(() => {
+    const fetchOilProducts = async () => {
+      try {
+        const res = await axios.get(`${apiEndpoint}/products/category/Mustard Oil`);
+        setDbProducts(res.data);
+        setFilteredData([...classifiedData, ...res.data]);
+        setLoading(false);
+      } catch (err) {
+        console.error("Failed to fetch oil products:", err);
+        setFilteredData(classifiedData);
+        setLoading(false);
+      }
+    };
+    fetchOilProducts();
+  }, []);
 
   const handleCatChange = (cat) => {
     setSelectedCats(prev => 
@@ -95,27 +116,29 @@ const MustardOilStore = () => {
   };
 
   const handleApplyFilters = () => {
-    let result = [...classifiedData];
+    let combined = [...classifiedData, ...dbProducts];
+    let result = combined;
 
     if (selectedCats.length > 0) {
-      result = result.filter(item => 
-        selectedCats.some(c => 
-          item.mainProducts.toLowerCase().includes(c.toLowerCase()) || 
-          (item.productOrService && item.productOrService.toLowerCase().includes(c.toLowerCase()))
-        )
-      );
+      result = result.filter(item => {
+        const productStr = (item.mainProducts || item.title || '').toLowerCase();
+        const serviceStr = (item.productOrService || item.category || '').toLowerCase();
+        return selectedCats.some(c => 
+          productStr.includes(c.toLowerCase()) || serviceStr.includes(c.toLowerCase())
+        );
+      });
     }
 
     if (locationQuery) {
       const query = locationQuery.toLowerCase();
       result = result.filter(item => 
-        item.location.toLowerCase().includes(query) ||
-        item.companyName.toLowerCase().includes(query)
+        (item.location || item.state || '').toLowerCase().includes(query) ||
+        (item.companyName || (item.seller?.companyName) || '').toLowerCase().includes(query)
       );
     }
 
     if (sortBy === "Highest Rated") {
-      result.sort((a, b) => b.rating - a.rating);
+      result.sort((a, b) => (b.rating || 4.5) - (a.rating || 4.5));
     }
 
     setFilteredData(result);
@@ -124,17 +147,19 @@ const MustardOilStore = () => {
   const resetFilters = () => {
     setSelectedCats([]);
     setLocationQuery("");
-    setFilteredData(classifiedData);
+    setFilteredData([...classifiedData, ...dbProducts]);
     setActiveChip("All");
   };
 
   const handleCategoryChip = (cat) => {
     setActiveChip(cat);
     if (cat === "All") { resetFilters(); return; }
-    const result = classifiedData.filter(item =>
-      item.mainProducts.toLowerCase().includes(cat.toLowerCase()) ||
-      item.productOrService.toLowerCase().includes(cat.toLowerCase())
-    );
+    const combined = [...classifiedData, ...dbProducts];
+    const result = combined.filter(item => {
+        const productStr = (item.mainProducts || item.title || '').toLowerCase();
+        const serviceStr = (item.productOrService || item.category || '').toLowerCase();
+        return productStr.includes(cat.toLowerCase()) || serviceStr.includes(cat.toLowerCase());
+    });
     setFilteredData(result);
   };
 
@@ -246,45 +271,85 @@ const MustardOilStore = () => {
             ))}
           </div>
 
-          {filteredData.length > 0 ? (
+          {loading ? (
+            <div className="loading-state">Loading premium products...</div>
+          ) : filteredData.length > 0 ? (
             <div className="product-grid">
               {filteredData.map((item, index) => (
                 <div className="product-card" key={index}>
                   <div className="card-image-wrapper">
-                    <img src={item.imgSrc} alt={item.companyName} className="product-img" />
+                    <img 
+                        src={item.images?.[0] ? `${apiEndpoint}${encodeURI(item.images[0].replace(/\\/g, '/'))}` : item.imgSrc} 
+                        alt={item.title || item.companyName} 
+                        className="product-img" 
+                        onError={(e) => { if(!item.imgSrc) e.target.src="/assets/oils.jpeg" }}
+                    />
                     <div className="badge-overlay">
                       <span className="verified-badge">
                         <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SUPPLIER
                       </span>
                     </div>
-                    <span className="card-category-tag">{item.productOrService}</span>
+                    <span className="card-category-tag">{item.productOrService || item.category || 'Mustard Oil'}</span>
                   </div>
 
                   <div className="card-body">
-                    <h3 className="product-title">{item.mainProducts}</h3>
+                    <h3 className="product-title">{item.title || item.mainProducts}</h3>
                     
+                    {/* Price Badge */}
+                    {item.price && item.price !== 'Ask for Price' && (
+                      <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: 'rgba(30, 58, 138, 0.06)',
+                        color: '#1e3a8a',
+                        fontWeight: 800,
+                        fontSize: '0.9rem',
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        marginBottom: '10px'
+                      }}>
+                        ₹ {item.price} / {item.unit || 'kg'}
+                      </div>
+                    )}
+
+                    {/* Description Snippet */}
+                    <p style={{
+                        fontSize: '0.8rem',
+                        color: '#64748b',
+                        lineHeight: '1.4',
+                        marginBottom: '12px',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>
+                        {Array.isArray(item.description) ? item.description[0] : (item.description || 'Pure and refined quality oils from verified wholesale suppliers.')}
+                    </p>
+
                     <div className="supplier-section">
                       <span className="supplier-label">SUPPLIED BY</span>
                       
                       <div className="supplier-brand-row">
                         <div className="supplier-logo-placeholder">
-                          {item.companyName.charAt(0)}
+                          {(item.seller?.companyName || item.companyName || 'S').charAt(0)}
                         </div>
                         <div className="supplier-info-stack">
-                          <h4 className="supplier-name">{item.companyName}</h4>
+                          <h4 className="supplier-name">{item.seller?.companyName || item.companyName}</h4>
                           <div className="rating-box">
                             <FontAwesomeIcon icon={faStar} />
-                            <span>{item.rating}</span>
+                            <span>{item.rating || "4.5"}</span>
                           </div>
                         </div>
                       </div>
                       
                       <div className="supplier-meta-grid">
                         <span className="location-tag">
-                          <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location}
+                          <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || item.state || 'India'}
                         </span>
                         <span className="years-badge">
-                          <FontAwesomeIcon icon={faCheckCircle} /> {item.years || "1 YRS"} Experience
+                          <FontAwesomeIcon icon={faCheckCircle} /> {item.years || item.experience || "1 YRS"} Experience
                         </span>
                       </div>
                     </div>

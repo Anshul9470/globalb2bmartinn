@@ -83,12 +83,14 @@ const AdminDashboard = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [recentActivity, setRecentActivity] = useState({ sellers: [], buyers: [] });
     const [allBuyers, setAllBuyers] = useState([]);
+    const [pendingBuyers, setPendingBuyers] = useState([]);
     const [allSellers, setAllSellers] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedItem, setSelectedItem] = useState(null);
     const [editingProduct, setEditingProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [deliberateLoading, setDeliberateLoading] = useState(true);
     const { userId, userRole, setUserId, setUserRole } = useAuth();
     const navigate = useNavigate();
 
@@ -127,6 +129,13 @@ const AdminDashboard = () => {
     };
 
     useEffect(() => {
+        const timer = setTimeout(() => {
+            setDeliberateLoading(false);
+        }, 4000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
         if (!userId || userRole !== 'admin') {
             navigate('/admin-login');
             return;
@@ -135,17 +144,19 @@ const AdminDashboard = () => {
         const fetchData = async () => {
             try {
                 const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
-                const [statsRes, buyersRes, sellersRes, analysisRes, productsRes] = await Promise.all([
+                const [statsRes, buyersRes, sellersRes, analysisRes, productsRes, pendingBuyersRes] = await Promise.all([
                     axios.get(`${apiEndpoint}/admin/stats`),
                     axios.get(`${apiEndpoint}/buyers`),
                     axios.get(`${apiEndpoint}/by-role/seller`),
                     axios.get(`${apiEndpoint}/admin/analysis`),
-                    axios.get(`${apiEndpoint}/all-products`)
+                    axios.get(`${apiEndpoint}/all-products`),
+                    axios.get(`${apiEndpoint}/admin/pending-buyers`)
                 ]);
 
                 setStats(statsRes.data.stats);
                 setRecentActivity(statsRes.data.recentActivity || { sellers: [], buyers: [] });
                 setAllBuyers(buyersRes.data.buyers || []);
+                setPendingBuyers(pendingBuyersRes.data.buyers || []);
                 setAllSellers(sellersRes.data.users || []);
                 setAnalysisData(analysisRes.data.analysis || []);
                 setStateDistribution(analysisRes.data.stateDistribution || []);
@@ -205,6 +216,19 @@ const AdminDashboard = () => {
             } catch (err) {
                 alert('Deletion failed');
             }
+        }
+    };
+
+    const handleApproveBuyer = async (id) => {
+        try {
+            const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+            await axios.put(`${apiEndpoint}/admin/approve-buyer/${id}`);
+            const approvedBuyer = pendingBuyers.find(b => b._id === id);
+            setAllBuyers([...allBuyers, { ...approvedBuyer, approved: true }]);
+            setPendingBuyers(pendingBuyers.filter(b => b._id !== id));
+            alert('Buyer approved successfully! Now live on marketplace.');
+        } catch (err) {
+            alert('Approval failed');
         }
     };
 
@@ -318,25 +342,42 @@ const AdminDashboard = () => {
 
     const filteredProducts = allProducts.filter(p => {
         const matchesSearch = String(p.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            String(p.seller?.name || '').toLowerCase().includes(searchTerm.toLowerCase());
+            String(p.seller?.name || '').toLowerCase().includes(searchTerm.toLowerCase());
         const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
         const matchesSubCategory = selectedSubCategory === 'All' || p.subCategory === selectedSubCategory;
         return matchesSearch && matchesCategory && matchesSubCategory;
     });
-
     const uniqueCategoriesInProducts = ['All', ...new Set(allProducts.map(p => p.category).filter(Boolean))];
     const uniqueSubCategoriesInProducts = ['All', ...new Set(allProducts.filter(p => selectedCategory === 'All' || p.category === selectedCategory).map(p => p.subCategory).filter(Boolean))];
 
     const selectedMonthStr = selectedDate.toLocaleString('default', { month: 'short', year: 'numeric' });
     const selectedMonthData = analysisData.find(d => d.month === selectedMonthStr) || { free: 0, standard: 0, advanced: 0, premium: 0, buyers: 0 };
 
-    if (loading) return (
-        <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center', background: palette.bg }}>
-            <div style={{ color: palette.navy, fontSize: '1.2rem', fontWeight: 'bold' }}>Constructing Dashboard...</div>
+    if (loading || deliberateLoading) return (
+        <div className="animated-grey-bg" style={{ padding: '2rem', display: 'flex', minHeight: '100vh', background: '#f8fafc' }}>
+            {/* Sidebar Skeleton */}
+            <aside style={{ width: '300px', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div className="skeleton-box" style={{ width: '80%', height: '40px', marginBottom: '2rem', background: '#e2e8f0', borderRadius: '8px' }}></div>
+                {[1, 2, 3, 4, 5, 6].map(i => (
+                    <div key={i} className="skeleton-box" style={{ width: '100%', height: '50px', borderRadius: '12px', background: '#e2e8f0' }}></div>
+                ))}
+            </aside>
+
+            {/* Main Content Skeleton */}
+            <main style={{ flex: 1, padding: '2rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+                    <div className="skeleton-box" style={{ width: '300px', height: '50px', background: '#e2e8f0', borderRadius: '8px' }}></div>
+                    <div className="skeleton-box" style={{ width: '200px', height: '50px', borderRadius: '100px', background: '#e2e8f0' }}></div>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', marginBottom: '3rem' }}>
+                    {[1, 2, 3, 4].map(i => (
+                        <div key={i} className="skeleton-box" style={{ height: '180px', borderRadius: '24px', background: '#e2e8f0' }}></div>
+                    ))}
+                </div>
+                <div className="skeleton-box" style={{ width: '100%', height: '600px', borderRadius: '2.5rem', background: '#e2e8f0' }}></div>
+            </main>
         </div>
     );
-
-
 
     return (
         <div style={{ display: 'flex', minHeight: '100vh', background: palette.bg, fontFamily: "'Inter', sans-serif" }}>
@@ -350,7 +391,7 @@ const AdminDashboard = () => {
                         { id: 'overview', label: 'Overview', icon: faChartPie },
                         { id: 'analysis', label: 'Data Analysis', icon: faChartBar },
                         { id: 'categories', label: 'Categories', icon: faLayerGroup },
-                        { id: 'buyers', label: 'Buyers', icon: faHandshake },
+                        { id: 'buyers', label: 'Buyers', icon: faHandshake, badge: pendingBuyers.length > 0 },
                         { id: 'sellers', label: 'Sellers', icon: faUserTie },
                         { id: 'products', label: 'Products', icon: faBoxOpen, badge: allProducts.some(p => !p.isPublished) }
                     ].map(tab => (
@@ -390,9 +431,9 @@ const AdminDashboard = () => {
                 </button>
             </aside>
 
-            <main style={{ flex: 1, marginLeft: '280px', padding: '3rem 4rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
-                    <h2 style={{ fontSize: '2rem', fontWeight: '800', color: palette.navy, margin: 0 }}>{activeTab.toUpperCase()}</h2>
+            <main style={{ flex: 1, marginLeft: '280px', padding: '1.5rem 3rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+                    <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: palette.navy, margin: 0 }}>{activeTab.toUpperCase()}</h2>
                     {activeTab !== 'overview' && (
                         <div style={{ width: '400px', position: 'relative' }}>
                             <FontAwesomeIcon icon={faSearch} style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', color: palette.subText }} />
@@ -427,34 +468,69 @@ const AdminDashboard = () => {
                         {/* Middle Section: Charts & Activity */}
                         <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '2rem' }}>
                             {/* Membership Pie Chart */}
-                            <div style={{ background: '#fff', padding: '2rem', borderRadius: '30px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)' }}>
-                                <h3 style={{ margin: '0 0 1.5rem 0', color: palette.navy, fontSize: '1.1rem' }}>Membership Distribution</h3>
-                                <div style={{ height: '300px' }}>
-                                    <ResponsiveContainer width="100%" height="100%">
-                                        <PieChart>
-                                            <Pie
-                                                data={[
-                                                    { name: 'Free', value: stats.breakdown?.free || 0 },
-                                                    { name: 'Standard', value: stats.breakdown?.standard || 0 },
-                                                    { name: 'Advanced', value: stats.breakdown?.advanced || 0 },
-                                                    { name: 'Premium', value: stats.breakdown?.premium || 0 }
-                                                ]}
-                                                cx="50%"
-                                                cy="50%"
-                                                innerRadius={60}
-                                                outerRadius={100}
-                                                paddingAngle={5}
-                                                dataKey="value"
-                                            >
-                                                <Cell fill="#94a3b8" />
-                                                <Cell fill="#3b82f6" />
-                                                <Cell fill="#a855f7" />
-                                                <Cell fill="#f59e0b" />
-                                            </Pie>
-                                            <Tooltip />
-                                            <Legend />
-                                        </PieChart>
-                                    </ResponsiveContainer>
+                            <div style={{ background: '#fff', padding: '2rem', borderRadius: '30px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', position: 'relative' }}>
+                                <h3 style={{ margin: '0 0 1.5rem 0', color: palette.navy, fontSize: '1.1rem', fontWeight: 800 }}>Membership Distribution</h3>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+                                    <div style={{ height: '300px', width: '250px', position: 'relative' }}>
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <PieChart>
+                                                <Pie
+                                                    data={[
+                                                        { name: 'Free', value: stats.breakdown?.free || 0 },
+                                                        { name: 'Standard', value: stats.breakdown?.standard || 0 },
+                                                        { name: 'Advanced', value: stats.breakdown?.advanced || 0 },
+                                                        { name: 'Premium', value: stats.breakdown?.premium || 0 }
+                                                    ]}
+                                                    cx="50%"
+                                                    cy="50%"
+                                                    innerRadius={70}
+                                                    outerRadius={100}
+                                                    paddingAngle={5}
+                                                    dataKey="value"
+                                                    animationBegin={0}
+                                                    animationDuration={1500}
+                                                >
+                                                    <Cell fill="#94a3b8" />
+                                                    <Cell fill="#3b82f6" />
+                                                    <Cell fill="#a855f7" />
+                                                    <Cell fill="#f59e0b" />
+                                                </Pie>
+                                                <Tooltip
+                                                    contentStyle={{ borderRadius: '15px', border: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
+                                                    formatter={(value) => [`${value} Sellers`, 'Count']}
+                                                />
+                                            </PieChart>
+                                        </ResponsiveContainer>
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '55%',
+                                            left: '50%',
+                                            transform: 'translate(-50%, -50%)',
+                                            textAlign: 'center',
+                                            pointerEvents: 'none'
+                                        }}>
+                                            <div style={{ fontSize: '2rem', fontWeight: 900, color: palette.navy }}>{stats.totalSellers}</div>
+                                            <div style={{ fontSize: '0.6rem', color: palette.subText, fontWeight: 800, textTransform: 'uppercase' }}>Total Sellers</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Stats List on the right */}
+                                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                                        {[
+                                            { name: 'Free Plan', value: stats.breakdown?.free || 0, color: '#94a3b8', icon: faUserTie },
+                                            { name: 'Standard Plan', value: stats.breakdown?.standard || 0, color: '#3b82f6', icon: faCheckCircle },
+                                            { name: 'Advanced Plan', value: stats.breakdown?.advanced || 0, color: '#a855f7', icon: faChartLine },
+                                            { name: 'Premium Plan', value: stats.breakdown?.premium || 0, color: '#f59e0b', icon: faCrown }
+                                        ].map((p, idx) => (
+                                            <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', background: '#f8fafc', borderRadius: '15px', border: `1.5px solid ${p.color}11` }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                                    <div style={{ color: p.color, fontSize: '0.9rem' }}><FontAwesomeIcon icon={p.icon} /></div>
+                                                    <span style={{ fontSize: '0.85rem', fontWeight: '800', color: palette.navy }}>{p.name}</span>
+                                                </div>
+                                                <span style={{ fontSize: '1rem', fontWeight: '900', color: p.color }}>{p.value}</span>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
@@ -561,7 +637,9 @@ const AdminDashboard = () => {
                                             <Geographies geography={INDIA_TOPO_JSON}>
                                                 {({ geographies }) =>
                                                     geographies.map((geo) => {
-                                                        const stateData = stateDistribution.find(s => s.state === geo.properties.name);
+                                                        const stateData = stateDistribution.find(s =>
+                                                            String(s.state || '').toLowerCase() === String(geo.properties.name || '').toLowerCase()
+                                                        );
                                                         return (
                                                             <Geography
                                                                 key={geo.rsmKey}
@@ -607,7 +685,7 @@ const AdminDashboard = () => {
                                             <div style={{ height: '10px', background: '#f1f5f9', borderRadius: '5px', overflow: 'hidden' }}>
                                                 <div
                                                     style={{
-                                                        width: `${(st.count / stateDistribution[0].count) * 100}%`,
+                                                        width: `${stateDistribution[0]?.count ? (st.count / stateDistribution[0].count) * 100 : 0}%`,
                                                         height: '100%',
                                                         background: `linear-gradient(90deg, ${palette.lightBlue}, ${palette.navy})`,
                                                         borderRadius: '5px'
@@ -669,7 +747,7 @@ const AdminDashboard = () => {
                                         ))}
                                         {subs.length > 3 && <span style={{ color: palette.lightBlue, fontSize: '0.7rem', fontWeight: 'bold' }}>+{subs.length - 3} more</span>}
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => { setSelectedCategory(cat); setActiveTab('products'); }}
                                         style={{ width: '100%', marginTop: '2rem', padding: '12px', background: '#f8fafc', border: '1.5px solid #e2e8f0', borderRadius: '15px', color: palette.navy, fontWeight: '800', cursor: 'pointer', transition: 'all 0.2s' }}
                                     >
@@ -681,203 +759,259 @@ const AdminDashboard = () => {
                     </div>
                 )}
                 {activeTab === 'buyers' && (
-                    <div style={{ display: 'flex', gap: '2rem' }}>
-                        <div style={{ flex: 1.5, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                                <h3 style={{ margin: 0, color: palette.navy }}>Verified Buyer Pool</h3>
-                                {selectedLeads.length > 0 && (
-                                    <div style={{ background: palette.orange, color: '#fff', padding: '5px 15px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>
-                                        {selectedLeads.length} Selected
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                        {/* Pending Buyers Section */}
+                        {pendingBuyers.length > 0 && (
+                            <div style={{ background: '#fff7ed', padding: '2rem', borderRadius: '30px', border: '2px dashed #fb923c' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '1.5rem' }}>
+                                    <div style={{ background: '#fb923c', color: '#fff', width: '45px', height: '45px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <FontAwesomeIcon icon={faClock} />
                                     </div>
-                                )}
-                            </div>
-
-                            {filteredBuyers.map(item => (
-                                <div
-                                    key={item._id}
-                                    onClick={() => toggleLeadSelection(item._id)}
-                                    style={{
-                                        background: '#fff',
-                                        padding: '1.2rem 2rem',
-                                        borderRadius: '20px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '1.5rem',
-                                        boxShadow: selectedLeads.includes(item._id) ? `0 0 0 2px ${palette.orange}` : '0 2px 10px rgba(0,0,0,0.01)',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2s'
-                                    }}
-                                >
-                                    <FontAwesomeIcon
-                                        icon={selectedLeads.includes(item._id) ? faCheckSquare : faSquare}
-                                        style={{ color: selectedLeads.includes(item._id) ? palette.orange : '#e2e8f0', fontSize: '1.2rem' }}
-                                    />
-                                    <div style={{ width: '200px' }}>
-                                        <div style={{ fontWeight: '800', fontSize: '1.1rem', color: palette.navy }}>{item.name}</div>
-                                        <div style={{ fontSize: '0.7rem', color: palette.lightBlue, fontWeight: '700' }}>{item.productOrService}</div>
-                                    </div>
-                                    <div style={{ flex: 1, color: palette.subText, fontSize: '0.85rem' }}>
-                                        <FontAwesomeIcon icon={faMapMarkerAlt} style={{ color: palette.orange }} /> {item.city}
-                                    </div>
-                                    <div style={{ flex: 1, color: palette.subText, fontSize: '0.85rem' }}>
-                                        <div>{item.email}</div>
-                                        <div style={{ fontWeight: '700', color: palette.navy }}>{item.mobileNumber}</div>
-                                    </div>
-                                    <div style={{ display: 'flex', gap: '10px' }} onClick={e => e.stopPropagation()}>
-                                        <button onClick={() => setSelectedItem(item)} style={{ background: palette.bg, border: 'none', width: '38px', height: '38px', borderRadius: '10px', cursor: 'pointer', color: palette.navy }}>
-                                            <FontAwesomeIcon icon={faEye} />
-                                        </button>
-                                        <button onClick={() => handleDeleteBuyer(item._id)} style={{ background: '#fef2f2', border: 'none', width: '38px', height: '38px', borderRadius: '10px', cursor: 'pointer', color: palette.danger }}>
-                                            <FontAwesomeIcon icon={faTrashAlt} />
-                                        </button>
+                                    <div>
+                                        <h3 style={{ margin: 0, color: '#9a3412' }}>Approval Queue ({pendingBuyers.length})</h3>
+                                        <p style={{ margin: 0, fontSize: '0.8rem', color: '#c2410c' }}>New requirements waiting for your verification.</p>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-
-                        <div style={{ flex: 1, background: '#fff', padding: '2rem', borderRadius: '30px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', height: 'fit-content', position: 'sticky', top: '2rem' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '1.5rem' }}>
-                                <div style={{ background: `linear-gradient(135deg, ${palette.lightBlue}, ${palette.navy})`, color: '#fff', width: '50px', height: '50px', borderRadius: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <FontAwesomeIcon icon={faShareAlt} />
-                                </div>
-                                <h3 style={{ margin: 0, color: palette.navy }}>Distribution Hub</h3>
-                            </div>
-
-                            <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
-                                <FontAwesomeIcon icon={faSearch} style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', color: palette.subText, opacity: 0.5 }} />
-                                <input
-                                    type="text"
-                                    placeholder="Search Supplier..."
-                                    value={shareSearchQuery}
-                                    onChange={(e) => setShareSearchQuery(e.target.value)}
-                                    style={{ width: '100%', padding: '12px 12px 12px 45px', borderRadius: '15px', border: '1.5px solid #f1f5f9', background: '#f8fafc', outline: 'none' }}
-                                />
-                            </div>
-
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '400px', overflowY: 'auto', paddingRight: '5px' }}>
-                                {allSellers
-                                    .filter(u => u && u.role !== 'admin' && (String(u.name || '').toLowerCase().includes(shareSearchQuery.toLowerCase()) || String(u.companyName || '').toLowerCase().includes(shareSearchQuery.toLowerCase())))
-                                    .map(user => (
-                                        <div
-                                            key={user._id}
-                                            onClick={() => setSelectedTargetUser(user)}
-                                            style={{
-                                                padding: '15px',
-                                                background: selectedTargetUser?._id === user._id ? palette.navy + '11' : '#f8fafc',
-                                                borderRadius: '15px',
-                                                display: 'flex',
-                                                justifyContent: 'space-between',
-                                                alignItems: 'center',
-                                                border: selectedTargetUser?._id === user._id ? `2px solid ${palette.navy}` : '2px solid transparent',
-                                                cursor: 'pointer'
-                                            }}
-                                        >
+                                <div style={{ display: 'grid', gap: '1rem' }}>
+                                    {pendingBuyers.map(buyer => (
+                                        <div key={buyer._id} style={{ background: '#fff', padding: '1.2rem', borderRadius: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 4px 12px rgba(251,146,60,0.1)' }}>
                                             <div>
-                                                <div style={{ fontWeight: 'bold', color: palette.navy, fontSize: '0.9rem' }}>{user.companyName || user.name}</div>
-                                                <div style={{ fontSize: '0.75rem', color: palette.subText }}>{user.name} • {user.plan}</div>
+                                                <div style={{ fontWeight: '800', color: palette.navy }}>{buyer.name} <span style={{ fontWeight: '400', color: palette.subText, fontSize: '0.8rem' }}>({buyer.mobileNumber})</span></div>
+                                                <div style={{ fontSize: '0.9rem', color: palette.orange, fontWeight: '700' }}>Seeking: {buyer.productOrService}</div>
+                                                <div style={{ fontSize: '0.7rem', color: palette.subText }}>Location: {buyer.city || buyer.statename || 'India'} | Posted: {new Date(buyer.createdAt).toLocaleString()}</div>
                                             </div>
-                                            <div style={{ display: 'flex', gap: '5px' }}>
+                                            <div style={{ display: 'flex', gap: '10px' }}>
                                                 <button
-                                                    onClick={(e) => { e.stopPropagation(); setSelectedHistoryUser(user); }}
-                                                    title="View Share History"
-                                                    style={{ background: '#f0f9ff', border: 'none', width: '32px', height: '32px', borderRadius: '8px', cursor: 'pointer', color: palette.lightBlue }}
+                                                    onClick={() => handleApproveBuyer(buyer._id)}
+                                                    style={{ background: palette.success, color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '12px', fontWeight: '800', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
                                                 >
-                                                    <FontAwesomeIcon icon={faHistory} />
+                                                    <FontAwesomeIcon icon={faCheckCircle} /> APPROVE
                                                 </button>
-                                                {selectedTargetUser?._id === user._id && (
-                                                    <div style={{ color: palette.navy, alignSelf: 'center', marginLeft: '5px' }}>
-                                                        <FontAwesomeIcon icon={faCheckCircle} />
-                                                    </div>
-                                                )}
+                                                <button
+                                                    onClick={() => handleDeleteBuyer(buyer._id)}
+                                                    style={{ background: '#fef2f2', color: palette.danger, border: 'none', width: '42px', height: '42px', borderRadius: '12px', cursor: 'pointer' }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTrashAlt} />
+                                                </button>
                                             </div>
                                         </div>
                                     ))}
+                                </div>
                             </div>
+                        )}
 
-                            {/* SHARE HISTORY MODAL */}
-                            {selectedHistoryUser && (
-                                <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2000, padding: '20px' }}>
-                                    <div style={{ background: '#fff', width: '100%', maxWidth: '600px', maxHeight: '80vh', borderRadius: '30px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                                        <div style={{ padding: '1.5rem', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                            <h3 style={{ margin: 0, color: palette.navy }}>Share History: {selectedHistoryUser.companyName || selectedHistoryUser.name}</h3>
-                                            <button onClick={() => setSelectedHistoryUser(null)} style={{ background: '#fef2f2', border: 'none', width: '36px', height: '36px', borderRadius: '50%', cursor: 'pointer', color: palette.danger }}>
-                                                <FontAwesomeIcon icon={faXmark} />
-                                            </button>
-                                        </div>
-
-                                        <div style={{ padding: '1rem 1.5rem', background: '#f8fafc', borderBottom: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                            <div style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Filter Date:</div>
-                                            <input type="date" value={historyDateFilter} onChange={(e) => setHistoryDateFilter(e.target.value)} style={{ padding: '5px 10px', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
-                                            {historyDateFilter && <button onClick={() => setHistoryDateFilter('')} style={{ fontSize: '0.7rem', background: palette.navy, color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '5px', cursor: 'pointer' }}>Clear</button>}
-                                        </div>
-
-                                        <div style={{ flex: 1, overflowY: 'auto', padding: '1.5rem' }}>
-                                            {selectedHistoryUser.viewedLeads && selectedHistoryUser.viewedLeads.filter(l => {
-                                                if (!historyDateFilter) return true;
-                                                const d = new Date(l.dateViewed || l.viewedAt).toISOString().split('T')[0];
-                                                return d === historyDateFilter;
-                                            }).length > 0 ? (
-                                                <div style={{ display: 'grid', gap: '10px' }}>
-                                                    {selectedHistoryUser.viewedLeads
-                                                        .filter(l => {
-                                                            if (!historyDateFilter) return true;
-                                                            const d = new Date(l.dateViewed || l.viewedAt).toISOString().split('T')[0];
-                                                            return d === historyDateFilter;
-                                                        })
-                                                        .map((lead, idx) => (
-                                                            <div key={idx} style={{ padding: '1rem', background: '#f8fafc', borderRadius: '15px', display: 'flex', justifyContent: 'space-between' }}>
-                                                                <div>
-                                                                    <div style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>{lead.buyerName}</div>
-                                                                    <div style={{ fontSize: '0.75rem', color: palette.subText }}>{lead.mobileNo}</div>
-                                                                </div>
-                                                                <div style={{ textAlign: 'right' }}>
-                                                                    <div style={{ fontSize: '0.65rem', color: palette.orange, fontWeight: 'bold' }}>Shared On</div>
-                                                                    <div style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>{new Date(lead.dateViewed || lead.viewedAt).toLocaleDateString('en-IN')}</div>
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                </div>
-                                            ) : (
-                                                <div style={{ textAlign: 'center', padding: '2rem', color: palette.subText }}>No history found.</div>
-                                            )}
-                                        </div>
+                        <div style={{ display: 'flex', gap: '2rem' }}>
+                            <div style={{ flex: 1.5, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                                    <h3 style={{ margin: 0, color: palette.navy }}>Verified Buyer Pool</h3>
+                                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                        <button
+                                            onClick={() => setSelectedLeads(filteredBuyers.map(b => b._id))}
+                                            style={{ background: '#f1f5f9', border: 'none', padding: '5px 12px', borderRadius: '8px', fontSize: '0.7rem', fontWeight: '800', cursor: 'pointer', color: palette.navy }}
+                                        >
+                                            SELECT ALL
+                                        </button>
+                                        <button
+                                            onClick={() => setSelectedLeads([])}
+                                            style={{ background: '#fef2f2', border: 'none', padding: '5px 12px', borderRadius: '8px', fontSize: '0.7rem', fontWeight: '800', cursor: 'pointer', color: palette.danger }}
+                                        >
+                                            DESELECT
+                                        </button>
+                                        {selectedLeads.length > 0 && (
+                                            <div style={{ background: palette.orange, color: '#fff', padding: '5px 15px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>
+                                                {selectedLeads.length} Selected
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
-                            )}
 
-                            <button
-                                disabled={isSharing || selectedLeads.length === 0 || !selectedTargetUser}
-                                onClick={handleShareLeads}
-                                style={{
-                                    width: '100%',
-                                    marginTop: '1.5rem',
-                                    padding: '1rem',
-                                    background: (isSharing || selectedLeads.length === 0 || !selectedTargetUser) ? '#e2e8f0' : palette.orange,
-                                    color: '#fff',
-                                    border: 'none',
-                                    borderRadius: '15px',
-                                    fontSize: '1rem',
-                                    fontWeight: '900',
-                                    cursor: (isSharing || selectedLeads.length === 0 || !selectedTargetUser) ? 'not-allowed' : 'pointer',
-                                    boxShadow: (selectedLeads.length > 0 && selectedTargetUser) ? `0 10px 20px ${palette.orange}33` : 'none',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '1px'
-                                }}
-                            >
-                                {isSharing ? <FontAwesomeIcon icon={faSpinner} spin /> : `Share ${selectedLeads.length} Leads Now`}
-                            </button>
+                                {filteredBuyers.map(item => (
+                                    <div
+                                        key={item._id}
+                                        onClick={() => toggleLeadSelection(item._id)}
+                                        style={{
+                                            background: '#fff',
+                                            padding: '1.2rem 2rem',
+                                            borderRadius: '20px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '1.5rem',
+                                            boxShadow: selectedLeads.includes(item._id) ? `0 0 0 2px ${palette.orange}` : '0 2px 10px rgba(0,0,0,0.01)',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.2s'
+                                        }}
+                                    >
+                                        <FontAwesomeIcon
+                                            icon={selectedLeads.includes(item._id) ? faCheckSquare : faSquare}
+                                            style={{ color: selectedLeads.includes(item._id) ? palette.orange : '#e2e8f0', fontSize: '1.2rem' }}
+                                        />
+                                        <div style={{ width: '200px' }}>
+                                            <div style={{ fontWeight: '800', fontSize: '1.1rem', color: palette.navy }}>{item.name}</div>
+                                            <div style={{ fontSize: '0.7rem', color: palette.lightBlue, fontWeight: '700' }}>{item.productOrService}</div>
+                                        </div>
+                                        <div style={{ flex: 1, color: palette.subText, fontSize: '0.85rem' }}>
+                                            <FontAwesomeIcon icon={faMapMarkerAlt} style={{ color: palette.orange }} /> {item.city}
+                                        </div>
+                                        <div style={{ flex: 1, color: palette.subText, fontSize: '0.85rem' }}>
+                                            <div>{item.email}</div>
+                                            <div style={{ fontWeight: '700', color: palette.navy }}>{item.mobileNumber}</div>
+                                        </div>
+                                        <div style={{ display: 'flex', gap: '10px' }} onClick={e => e.stopPropagation()}>
+                                            <button onClick={() => setSelectedItem(item)} style={{ background: palette.bg, border: 'none', width: '38px', height: '38px', borderRadius: '10px', cursor: 'pointer', color: palette.navy }}>
+                                                <FontAwesomeIcon icon={faEye} />
+                                            </button>
+                                            <button onClick={() => handleDeleteBuyer(item._id)} style={{ background: '#fef2f2', border: 'none', width: '38px', height: '38px', borderRadius: '10px', cursor: 'pointer', color: palette.danger }}>
+                                                <FontAwesomeIcon icon={faTrashAlt} />
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
 
-                            {selectedLeads.length === 0 && (
-                                <div style={{ marginTop: '1rem', textAlign: 'center', color: palette.orange, fontSize: '0.8rem', fontWeight: 'bold' }}>
-                                    Pehle Buyers select karo bhai!
+                            <div style={{ flex: 1, background: '#fff', padding: '2rem', borderRadius: '30px', boxShadow: '0 10px 40px rgba(0,0,0,0.05)', height: 'fit-content', position: 'sticky', top: '2rem' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '1.5rem' }}>
+                                    <div style={{ background: `linear-gradient(135deg, ${palette.lightBlue}, ${palette.navy})`, color: '#fff', width: '50px', height: '50px', borderRadius: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <FontAwesomeIcon icon={faShareAlt} />
+                                    </div>
+                                    <h3 style={{ margin: 0, color: palette.navy }}>Distribution Hub</h3>
                                 </div>
-                            )}
 
-                            {selectedLeads.length > 0 && !selectedTargetUser && (
-                                <div style={{ marginTop: '1rem', textAlign: 'center', color: palette.navy, fontSize: '0.8rem', fontWeight: 'bold' }}>
-                                    Ab niche se Supplier select karo!
+                                <div style={{ position: 'relative', marginBottom: '1.5rem' }}>
+                                    <FontAwesomeIcon icon={faSearch} style={{ position: 'absolute', left: '15px', top: '50%', transform: 'translateY(-50%)', color: palette.subText, opacity: 0.5 }} />
+                                    <input
+                                        type="text"
+                                        placeholder="Search Supplier..."
+                                        value={shareSearchQuery}
+                                        onChange={(e) => setShareSearchQuery(e.target.value)}
+                                        style={{ width: '100%', padding: '12px 12px 12px 45px', borderRadius: '15px', border: '1.5px solid #f1f5f9', background: '#f8fafc', outline: 'none' }}
+                                    />
                                 </div>
-                            )}
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '400px', overflowY: 'auto', paddingRight: '5px' }}>
+                                    {allSellers
+                                        .filter(u => u && u.role !== 'admin' && (String(u.name || '').toLowerCase().includes(shareSearchQuery.toLowerCase()) || String(u.companyName || '').toLowerCase().includes(shareSearchQuery.toLowerCase())))
+                                        .map(user => (
+                                            <div
+                                                key={user._id}
+                                                onClick={() => setSelectedTargetUser(user)}
+                                                style={{
+                                                    padding: '15px',
+                                                    background: selectedTargetUser?._id === user._id ? palette.navy + '11' : '#f8fafc',
+                                                    borderRadius: '15px',
+                                                    display: 'flex',
+                                                    justifyContent: 'space-between',
+                                                    alignItems: 'center',
+                                                    border: selectedTargetUser?._id === user._id ? `2px solid ${palette.navy}` : '2px solid transparent',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                <div>
+                                                    <div style={{ fontWeight: 'bold', color: palette.navy, fontSize: '0.9rem' }}>{user.companyName || user.name}</div>
+                                                    <div style={{ fontSize: '0.75rem', color: palette.subText }}>{user.name} • {user.plan}</div>
+                                                </div>
+                                                <div style={{ display: 'flex', gap: '5px' }}>
+                                                    <button
+                                                        onClick={(e) => { e.stopPropagation(); setSelectedHistoryUser(user); }}
+                                                        title="View Share History"
+                                                        style={{ background: '#f0f9ff', border: 'none', width: '32px', height: '32px', borderRadius: '8px', cursor: 'pointer', color: palette.lightBlue }}
+                                                    >
+                                                        <FontAwesomeIcon icon={faHistory} />
+                                                    </button>
+                                                    {selectedTargetUser?._id === user._id && (
+                                                        <div style={{ color: palette.navy, alignSelf: 'center', marginLeft: '5px' }}>
+                                                            <FontAwesomeIcon icon={faCheckCircle} />
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        ))}
+                                </div>
+
+                                {/* SHARE HISTORY MODAL */}
+                                {selectedHistoryUser && (
+                                    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(5px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2000, padding: '20px' }}>
+                                        <div style={{ background: '#fff', width: '100%', maxWidth: '600px', maxHeight: '80vh', borderRadius: '30px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+                                            <div style={{ padding: '1.5rem', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <h3 style={{ margin: 0, color: palette.navy }}>Share History: {selectedHistoryUser.companyName || selectedHistoryUser.name}</h3>
+                                                <button onClick={() => setSelectedHistoryUser(null)} style={{ background: '#fef2f2', border: 'none', width: '36px', height: '36px', borderRadius: '50%', cursor: 'pointer', color: palette.danger }}>
+                                                    <FontAwesomeIcon icon={faXmark} />
+                                                </button>
+                                            </div>
+
+                                            <div style={{ padding: '1rem 1.5rem', background: '#f8fafc', borderBottom: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                                <div style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>Filter Date:</div>
+                                                <input type="date" value={historyDateFilter} onChange={(e) => setHistoryDateFilter(e.target.value)} style={{ padding: '5px 10px', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                                {historyDateFilter && <button onClick={() => setHistoryDateFilter('')} style={{ fontSize: '0.7rem', background: palette.navy, color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '5px', cursor: 'pointer' }}>Clear</button>}
+                                            </div>
+
+                                            <div style={{ flex: 1, overflowY: 'auto', padding: '1.5rem' }}>
+                                                {selectedHistoryUser.viewedLeads && selectedHistoryUser.viewedLeads.filter(l => {
+                                                    if (!historyDateFilter) return true;
+                                                    const d = new Date(l.dateViewed || l.viewedAt).toISOString().split('T')[0];
+                                                    return d === historyDateFilter;
+                                                }).length > 0 ? (
+                                                    <div style={{ display: 'grid', gap: '10px' }}>
+                                                        {selectedHistoryUser.viewedLeads
+                                                            .filter(l => {
+                                                                if (!historyDateFilter) return true;
+                                                                const d = new Date(l.dateViewed || l.viewedAt).toISOString().split('T')[0];
+                                                                return d === historyDateFilter;
+                                                            })
+                                                            .map((lead, idx) => (
+                                                                <div key={idx} style={{ padding: '1rem', background: '#f8fafc', borderRadius: '15px', display: 'flex', justifyContent: 'space-between' }}>
+                                                                    <div>
+                                                                        <div style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>{lead.buyerName}</div>
+                                                                        <div style={{ fontSize: '0.75rem', color: palette.subText }}>{lead.mobileNo}</div>
+                                                                    </div>
+                                                                    <div style={{ textAlign: 'right' }}>
+                                                                        <div style={{ fontSize: '0.65rem', color: palette.orange, fontWeight: 'bold' }}>Shared On</div>
+                                                                        <div style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>{new Date(lead.dateViewed || lead.viewedAt).toLocaleDateString('en-IN')}</div>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                    </div>
+                                                ) : (
+                                                    <div style={{ textAlign: 'center', padding: '2rem', color: palette.subText }}>No history found.</div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                <button
+                                    disabled={isSharing || selectedLeads.length === 0 || !selectedTargetUser}
+                                    onClick={handleShareLeads}
+                                    style={{
+                                        width: '100%',
+                                        marginTop: '1.5rem',
+                                        padding: '1rem',
+                                        background: (isSharing || selectedLeads.length === 0 || !selectedTargetUser) ? '#e2e8f0' : palette.orange,
+                                        color: '#fff',
+                                        border: 'none',
+                                        borderRadius: '15px',
+                                        fontSize: '1rem',
+                                        fontWeight: '900',
+                                        cursor: (isSharing || selectedLeads.length === 0 || !selectedTargetUser) ? 'not-allowed' : 'pointer',
+                                        boxShadow: (selectedLeads.length > 0 && selectedTargetUser) ? `0 10px 20px ${palette.orange}33` : 'none',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '1px'
+                                    }}
+                                >
+                                    {isSharing ? <FontAwesomeIcon icon={faSpinner} spin /> : `Share ${selectedLeads.length} Leads Now`}
+                                </button>
+
+                                {selectedLeads.length === 0 && (
+                                    <div style={{ marginTop: '1rem', textAlign: 'center', color: palette.orange, fontSize: '0.8rem', fontWeight: 'bold' }}>
+                                        Pehle Buyers select karo bhai!
+                                    </div>
+                                )}
+
+                                {selectedLeads.length > 0 && !selectedTargetUser && (
+                                    <div style={{ marginTop: '1rem', textAlign: 'center', color: palette.navy, fontSize: '0.8rem', fontWeight: 'bold' }}>
+                                        Ab niche se Supplier select karo!
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 )}
@@ -891,6 +1025,12 @@ const AdminDashboard = () => {
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
                                         <div style={{ background: config.bg, color: config.color, padding: '5px 12px', borderRadius: '10px', fontSize: '0.7rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '5px' }}>
                                             <FontAwesomeIcon icon={config.icon} /> {item.plan?.toUpperCase()}
+                                            <span style={{ opacity: 0.7, fontSize: '0.6rem', marginLeft: '5px' }}>
+                                                ({item.plan === 'Free' ? 'No' :
+                                                    item.plan === 'Standard' ? '25' :
+                                                        item.plan === 'Advanced' ? '50' :
+                                                            item.plan === 'Premium' ? '75' : '0'} Leads/Mo)
+                                            </span>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                             {sellersWithPendingProducts.has(item._id) && (
@@ -952,8 +1092,8 @@ const AdminDashboard = () => {
                         <div style={{ background: '#fff', padding: '1.5rem 2rem', borderRadius: '25px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', gap: '2rem', alignItems: 'center' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                                 <div style={{ fontSize: '0.7rem', fontWeight: '900', color: palette.navy }}>FILTER BY CATEGORY:</div>
-                                <select 
-                                    value={selectedCategory} 
+                                <select
+                                    value={selectedCategory}
                                     onChange={(e) => { setSelectedCategory(e.target.value); setSelectedSubCategory('All'); }}
                                     style={{ padding: '8px 15px', borderRadius: '10px', border: '1.5px solid #f1f5f9', background: '#f8fafc', fontWeight: '700', color: palette.navy, outline: 'none' }}
                                 >
@@ -962,8 +1102,8 @@ const AdminDashboard = () => {
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                                 <div style={{ fontSize: '0.7rem', fontWeight: '900', color: palette.navy }}>SUB-CATEGORY:</div>
-                                <select 
-                                    value={selectedSubCategory} 
+                                <select
+                                    value={selectedSubCategory}
                                     onChange={(e) => setSelectedSubCategory(e.target.value)}
                                     style={{ padding: '8px 15px', borderRadius: '10px', border: '1.5px solid #f1f5f9', background: '#f8fafc', fontWeight: '700', color: palette.navy, outline: 'none' }}
                                 >
@@ -976,107 +1116,107 @@ const AdminDashboard = () => {
                         </div>
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                        {filteredProducts.map(product => (
-                            <div key={product._id} style={{
-                                background: '#fff',
-                                borderRadius: '30px',
-                                overflow: 'hidden',
-                                boxShadow: '0 10px 40px rgba(0,0,0,0.03)',
-                                border: '1px solid #f1f5f9',
-                                display: 'flex',
-                                minHeight: '220px',
-                                transition: 'all 0.3s ease'
-                            }}>
-                                {/* LEFT: IMAGE SECTION */}
-                                <div style={{ width: '280px', position: 'relative', flexShrink: 0 }}>
-                                    {product.images?.[0] ? (
-                                        <img
-                                            src={`${process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005'}${encodeURI(product.images[0])}`}
-                                            alt={product.title}
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                        />
-                                    ) : (
-                                        <div style={{ width: '100%', height: '100%', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            <FontAwesomeIcon icon={faBoxOpen} style={{ fontSize: '3rem', color: '#e2e8f0' }} />
+                            {filteredProducts.map(product => (
+                                <div key={product._id} style={{
+                                    background: '#fff',
+                                    borderRadius: '30px',
+                                    overflow: 'hidden',
+                                    boxShadow: '0 10px 40px rgba(0,0,0,0.03)',
+                                    border: '1px solid #f1f5f9',
+                                    display: 'flex',
+                                    minHeight: '220px',
+                                    transition: 'all 0.3s ease'
+                                }}>
+                                    {/* LEFT: IMAGE SECTION */}
+                                    <div style={{ width: '280px', position: 'relative', flexShrink: 0 }}>
+                                        {product.images?.[0] ? (
+                                            <img
+                                                src={`${process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005'}${encodeURI(product.images[0])}`}
+                                                alt={product.title}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            />
+                                        ) : (
+                                            <div style={{ width: '100%', height: '100%', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                <FontAwesomeIcon icon={faBoxOpen} style={{ fontSize: '3rem', color: '#e2e8f0' }} />
+                                            </div>
+                                        )}
+                                        <div style={{ position: 'absolute', top: '15px', left: '15px' }}>
+                                            <div style={{ background: palette.success, color: '#fff', padding: '6px 15px', borderRadius: '10px', fontSize: '0.65rem', fontWeight: '900', display: 'flex', alignItems: 'center', gap: '6px', boxShadow: '0 5px 15px rgba(16,185,129,0.3)' }}>
+                                                <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED
+                                            </div>
                                         </div>
-                                    )}
-                                    <div style={{ position: 'absolute', top: '15px', left: '15px' }}>
-                                        <div style={{ background: palette.success, color: '#fff', padding: '6px 15px', borderRadius: '10px', fontSize: '0.65rem', fontWeight: '900', display: 'flex', alignItems: 'center', gap: '6px', boxShadow: '0 5px 15px rgba(16,185,129,0.3)' }}>
-                                            <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED
+                                    </div>
+
+                                    {/* CENTER: CONTENT SECTION */}
+                                    <div style={{ flex: 1, padding: '1.8rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderRight: '1.5px solid #f8fafc' }}>
+                                        <div style={{ fontSize: '0.75rem', fontWeight: '800', color: palette.lightBlue, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>
+                                            {product.category || 'GENERAL'} <span style={{ color: '#cbd5e1', margin: '0 10px' }}>&gt;</span> {product.subCategory || 'ALL ITEMS'}
+                                        </div>
+
+                                        <h4 style={{ margin: '0 0 12px 0', fontSize: '1.5rem', color: palette.navy, fontWeight: '900' }}>
+                                            {Array.isArray(product.title) ? product.title[0] : product.title}
+                                        </h4>
+
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
+                                            <div style={{ color: '#f59e0b', fontSize: '0.9rem', display: 'flex', gap: '2px' }}>
+                                                {[1, 2, 3, 4, 5].map(i => <FontAwesomeIcon key={i} icon={faStar} />)}
+                                            </div>
+                                            <span style={{ fontSize: '0.85rem', color: palette.subText, fontWeight: '600' }}>(150+ Reviews)</span>
+                                            <div style={{ background: '#ecfdf5', color: '#059669', padding: '4px 12px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                                <FontAwesomeIcon icon={faShieldHalved} /> {product.experience || '1 YRS'} EXP.
+                                            </div>
+                                        </div>
+
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                            <div style={{ background: '#f1f5f9', color: palette.navy, padding: '8px 18px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                <FontAwesomeIcon icon={faBoxOpen} style={{ color: palette.orange }} />
+                                                Bulk Supply Available Worldwide
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* RIGHT: ACTIONS & SELLER INFO */}
+                                    <div style={{ width: '280px', padding: '1.8rem 2rem', background: '#fafbfc', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                                        <div>
+                                            <div style={{ fontSize: '0.7rem', fontWeight: '900', color: palette.subText, marginBottom: '5px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                <FontAwesomeIcon icon={faBuilding} style={{ color: palette.lightBlue }} /> {product.seller?.companyName || 'Private Company'}
+                                            </div>
+                                            <div style={{ color: palette.success, fontSize: '0.8rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                <FontAwesomeIcon icon={faCheckCircle} /> Live Listing
+                                            </div>
+                                        </div>
+
+                                        <div style={{ marginTop: 'auto' }}>
+                                            <div style={{ color: product.isPublished ? palette.success : palette.orange, fontSize: '0.8rem', fontWeight: '900', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '15px' }}>
+                                                <FontAwesomeIcon icon={faCheckCircle} /> {product.isPublished ? 'Published & Live' : 'Pending Approval'}
+                                            </div>
+
+                                            <div style={{ display: 'flex', gap: '8px' }}>
+                                                <button
+                                                    onClick={() => handleTogglePublish(product.userId, product._id, product.isPublished)}
+                                                    style={{ flex: 1, padding: '0.8rem', borderRadius: '12px', border: 'none', background: product.isPublished ? '#f1f5f9' : palette.navy, color: product.isPublished ? palette.navy : '#fff', fontWeight: '800', fontSize: '0.75rem', cursor: 'pointer' }}
+                                                >
+                                                    {product.isPublished ? 'UNPUBLISH' : 'PUBLISH'}
+                                                </button>
+                                                <button
+                                                    onClick={() => setEditingProduct(product)}
+                                                    style={{ width: '42px', borderRadius: '12px', border: '1.5px solid #e2e8f0', background: '#fff', color: palette.navy, cursor: 'pointer' }}
+                                                >
+                                                    <FontAwesomeIcon icon={faFileAlt} />
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDeleteProduct(product.userId, product._id)}
+                                                    style={{ width: '42px', borderRadius: '12px', border: '1.5px solid #fef2f2', background: '#fff', color: palette.danger, cursor: 'pointer' }}
+                                                >
+                                                    <FontAwesomeIcon icon={faTrashAlt} />
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* CENTER: CONTENT SECTION */}
-                                <div style={{ flex: 1, padding: '1.8rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderRight: '1.5px solid #f8fafc' }}>
-                                    <div style={{ fontSize: '0.75rem', fontWeight: '800', color: palette.lightBlue, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>
-                                        {product.category || 'GENERAL'} <span style={{ color: '#cbd5e1', margin: '0 10px' }}>&gt;</span> {product.subCategory || 'ALL ITEMS'}
-                                    </div>
-
-                                    <h4 style={{ margin: '0 0 12px 0', fontSize: '1.5rem', color: palette.navy, fontWeight: '900' }}>
-                                        {Array.isArray(product.title) ? product.title[0] : product.title}
-                                    </h4>
-
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-                                        <div style={{ color: '#f59e0b', fontSize: '0.9rem', display: 'flex', gap: '2px' }}>
-                                            {[1, 2, 3, 4, 5].map(i => <FontAwesomeIcon key={i} icon={faStar} />)}
-                                        </div>
-                                        <span style={{ fontSize: '0.85rem', color: palette.subText, fontWeight: '600' }}>(150+ Reviews)</span>
-                                        <div style={{ background: '#ecfdf5', color: '#059669', padding: '4px 12px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                            <FontAwesomeIcon icon={faShieldHalved} /> {product.experience || '1 YRS'} EXP.
-                                        </div>
-                                    </div>
-
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                        <div style={{ background: '#f1f5f9', color: palette.navy, padding: '8px 18px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                            <FontAwesomeIcon icon={faBoxOpen} style={{ color: palette.orange }} />
-                                            Bulk Supply Available Worldwide
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* RIGHT: ACTIONS & SELLER INFO */}
-                                <div style={{ width: '280px', padding: '1.8rem 2rem', background: '#fafbfc', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                                    <div>
-                                        <div style={{ fontSize: '0.7rem', fontWeight: '900', color: palette.subText, marginBottom: '5px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                            <FontAwesomeIcon icon={faBuilding} style={{ color: palette.lightBlue }} /> {product.seller?.companyName || 'Private Company'}
-                                        </div>
-                                        <div style={{ color: palette.success, fontSize: '0.8rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                            <FontAwesomeIcon icon={faCheckCircle} /> Live Listing
-                                        </div>
-                                    </div>
-
-                                    <div style={{ marginTop: 'auto' }}>
-                                        <div style={{ color: product.isPublished ? palette.success : palette.orange, fontSize: '0.8rem', fontWeight: '900', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '15px' }}>
-                                            <FontAwesomeIcon icon={faCheckCircle} /> {product.isPublished ? 'Published & Live' : 'Pending Approval'}
-                                        </div>
-
-                                        <div style={{ display: 'flex', gap: '8px' }}>
-                                            <button
-                                                onClick={() => handleTogglePublish(product.userId, product._id, product.isPublished)}
-                                                style={{ flex: 1, padding: '0.8rem', borderRadius: '12px', border: 'none', background: product.isPublished ? '#f1f5f9' : palette.navy, color: product.isPublished ? palette.navy : '#fff', fontWeight: '800', fontSize: '0.75rem', cursor: 'pointer' }}
-                                            >
-                                                {product.isPublished ? 'UNPUBLISH' : 'PUBLISH'}
-                                            </button>
-                                            <button
-                                                onClick={() => setEditingProduct(product)}
-                                                style={{ width: '42px', borderRadius: '12px', border: '1.5px solid #e2e8f0', background: '#fff', color: palette.navy, cursor: 'pointer' }}
-                                            >
-                                                <FontAwesomeIcon icon={faFileAlt} />
-                                            </button>
-                                            <button
-                                                onClick={() => handleDeleteProduct(product.userId, product._id)}
-                                                style={{ width: '42px', borderRadius: '12px', border: '1.5px solid #fef2f2', background: '#fff', color: palette.danger, cursor: 'pointer' }}
-                                            >
-                                                <FontAwesomeIcon icon={faTrashAlt} />
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
                 )}
 
                 {activeTab === 'catalog' && (

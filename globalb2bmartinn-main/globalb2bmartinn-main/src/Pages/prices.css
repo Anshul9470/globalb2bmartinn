@@ -158,8 +158,8 @@
 .pricing-contact-full-width {
     width: 100%;
     background: linear-gradient(135deg, #1a365d 0%, #001529 100%);
-    border-radius: 30px;
-    padding: 60px;
+    border-radius: 20px;
+    padding: 40px;
     color: white;
     position: relative;
     overflow: hidden;
@@ -169,30 +169,30 @@
 .contact-full-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
+    justify-content: center;
+    text-align: center;
 }
 
 .contact-text-content {
     flex: 1;
-    text-align: left;
+    text-align: center;
 }
 
 .contact-text-content h3 {
-    font-size: 2.5rem;
-    margin: 15px 0;
+    font-size: 2rem;
+    margin: 10px 0;
     font-weight: 800;
 }
 
 .phone-num-large {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #fb743f;
     font-weight: 800;
     margin-bottom: 25px;
 }
 
 .pulse-icon {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     color: #fb743f;
     animation: pulse 2s infinite;
 }

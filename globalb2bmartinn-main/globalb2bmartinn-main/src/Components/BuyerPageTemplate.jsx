@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { resolveState } from "../services/stateResolver";
 import "../Pages/SearchResults.css"; 
 import "./BuyerPremium.css"; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BuyerPageTemplate = ({ keyword, title, initialData = null }) => {
   const { userId } = useAuth();
@@ -15,8 +17,14 @@ const BuyerPageTemplate = ({ keyword, title, initialData = null }) => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [stateSearch, setStateSearch] = useState("");
   const [countrySearch, setCountrySearch] = useState("");
+  const [categorySearch, setCategorySearch] = useState("");
   const [showStateSuggestions, setShowStateSuggestions] = useState(false);
   const [showCountrySuggestions, setShowCountrySuggestions] = useState(false);
+  const [userPlan, setUserPlan] = useState("Free");
+  const [viewLimit, setViewLimit] = useState(0);
+  const [leadsViewedToday, setLeadsViewedToday] = useState(0);
+  const [unlockedLeads, setUnlockedLeads] = useState([]);
+  const [resetsAt, setResetsAt] = useState(null);
 
   const INDIAN_STATES = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", 
@@ -30,20 +38,19 @@ const BuyerPageTemplate = ({ keyword, title, initialData = null }) => {
   ];
 
   useEffect(() => {
-    if (initialData) {
+    /* if (initialData) {
       setBuyers(initialData);
       setLoading(false);
       return;
-    }
+    } */
 
     const fetchBuyers = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/buyers?t=${Date.now()}`);
+        const apiBase = process.env.REACT_APP_API_ENDPOINT || "http://localhost:3005";
+        const response = await fetch(`${apiBase}/buyers?t=${Date.now()}`);
         const data = await response.json();
-        const filtered = (data.buyers || []).filter(buyer => 
-          (buyer.productOrService || '').toLowerCase().includes(keyword.toLowerCase())
-        );
-        setBuyers(filtered);
+        const allBuyers = data.buyers || [];
+        setBuyers(allBuyers);
         setLoading(false);
       } catch (error) {
         console.error(`Error fetching ${keyword} buyers:`, error);
@@ -55,15 +62,43 @@ const BuyerPageTemplate = ({ keyword, title, initialData = null }) => {
 
   useEffect(() => {
     if (!userId) return;
-    const storedViewedLeads = JSON.parse(localStorage.getItem(`${keyword}ViewedLeads_${userId}`)) || [];
-    setShownNumbers(storedViewedLeads);
-    fetch(`${process.env.REACT_APP_API_ENDPOINT}/getUserWithPremiumStatus/${userId}`)
+    
+    const apiBase = process.env.REACT_APP_API_ENDPOINT || "http://localhost:3005";
+    
+    // Fetch user status using the same reliable endpoint as the Dashboard
+    fetch(`${apiBase}/login?id=${userId}`)
         .then(response => response.json())
         .then(data => {
-            setUserIsPremium(data.isPremium);
+            if (data && data.user) {
+                const user = data.user;
+                const plan = user.plan || "Free";
+                
+                // Calculate limit locally for consistency
+                let limit = 0;
+                const lowerPlan = plan.toLowerCase();
+                if (lowerPlan === "premium") limit = 75;
+                else if (lowerPlan === "advanced") limit = 50;
+                else if (lowerPlan === "standard") limit = 25;
+
+                setUserIsPremium(lowerPlan !== "free");
+                setUserPlan(plan);
+                setLeadsViewedToday(user.leadsViewed || 0);
+                setViewLimit(limit);
+            }
         })
-        .catch(error => console.error('Error:', error));
-  }, [userId, keyword]);
+        .catch(error => console.error('Error fetching user status:', error));
+
+    // Fetch already viewed leads to unlock them
+    fetch(`${apiBase}/viewedLeads/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.viewedLeads) {
+                const viewedEmails = data.viewedLeads.map(l => (l.email || "").toLowerCase().trim());
+                setUnlockedLeads(viewedEmails);
+            }
+        })
+        .catch(error => console.error('Error fetching viewed leads:', error));
+  }, [userId]);
 
   const processedBuyers = useMemo(() => {
     return buyers.map(b => ({
@@ -80,8 +115,22 @@ const BuyerPageTemplate = ({ keyword, title, initialData = null }) => {
     if (selectedCountry) {
       filtered = filtered.filter(b => (b.country || 'India').toLowerCase() === selectedCountry.toLowerCase());
     }
+    if (keyword) {
+      filtered = filtered.filter(b => 
+        (b.productOrService || '').toLowerCase().includes(keyword.toLowerCase()) ||
+        (b.requirement || '').toLowerCase().includes(keyword.toLowerCase())
+      );
+    }
+
+    if (categorySearch.trim()) {
+      filtered = filtered.filter(b => 
+        (b.productOrService || '').toLowerCase().includes(categorySearch.toLowerCase()) ||
+        (b.buyerName || '').toLowerCase().includes(categorySearch.toLowerCase()) ||
+        (b.requirement || '').toLowerCase().includes(categorySearch.toLowerCase())
+      );
+    }
     return filtered;
-  }, [processedBuyers, selectedState, selectedCountry]);
+  }, [processedBuyers, selectedState, selectedCountry, categorySearch]);
 
   const stateSuggestions = useMemo(() => {
     if (!stateSearch.trim()) return [];
@@ -104,11 +153,69 @@ const BuyerPageTemplate = ({ keyword, title, initialData = null }) => {
     return `${phone.substring(0, 3)} *******${phone.substring(phone.length - 2)}`;
   };
 
-  const handleViewMore = () => {
-    if (userId) {
-      window.location.href = '/dashboard';
-    } else {
-      window.location.href = '/login';
+  const handleViewMore = async (item) => {
+    if (!userId) {
+      toast.info("Please login to view details");
+      setTimeout(() => {
+        window.location.href = '/login';
+      }, 2000);
+      return;
+    }
+
+    const currentEmail = (item.email || "").toLowerCase().trim();
+
+    if (userPlan.toLowerCase() === "free") {
+      toast.warn("Upgrade to a membership plan to view buyer details");
+      setTimeout(() => {
+        window.location.href = '/packages';
+      }, 2000);
+      return;
+    }
+
+    // Check if already unlocked (case-insensitive)
+    if (unlockedLeads.some(email => email.toLowerCase().trim() === currentEmail)) {
+      toast.info("Contact details already visible");
+      return;
+    }
+
+    // Check limit
+    if (leadsViewedToday >= viewLimit) {
+      toast.error(`Monthly limit reached! ${userPlan} plan allows ${viewLimit} views per month.`);
+      return;
+    }
+
+    try {
+      const apiBase = process.env.REACT_APP_API_ENDPOINT || "http://localhost:3005";
+      const response = await fetch(`${apiBase}/incrementLeadsViewed/${userId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          buyerName: item.name || item.buyerName,
+          mobileNo: item.mobileNumber,
+          email: currentEmail
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setLeadsViewedToday(data.leadsViewed);
+        setUnlockedLeads(prev => [...prev, currentEmail]);
+        if (data.resetsAt) setResetsAt(new Date(data.resetsAt));
+        toast.success("Contact details unlocked!");
+      } else {
+        // Show reset time if limit reached
+        if (data.resetsAt) {
+          const resetTime = new Date(data.resetsAt);
+          const timeStr = resetTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+          toast.error(`${data.error} Resets at ${timeStr}`);
+        } else {
+          toast.error(data.error || "Failed to unlock contact");
+        }
+      }
+    } catch (error) {
+      console.error("Error unlocking lead:", error);
+      toast.error("An error occurred while unlocking. Please try again.");
     }
   };
 
@@ -134,59 +241,150 @@ const BuyerPageTemplate = ({ keyword, title, initialData = null }) => {
     }
   };
 
-  if (loading) return <div className="loading-fresher">Loading premium leads...</div>;
+  if (loading) {
+    return (
+      <div className="search-results-page">
+        <div className="results-container" style={{ paddingTop: '20px' }}>
+          <aside className="filter-sidebar">
+            <div className="skeleton-box" style={{ width: '100%', height: '40px', marginBottom: '20px' }}></div>
+            <div className="skeleton-box" style={{ width: '100%', height: '400px' }}></div>
+          </aside>
+          <main className="results-content">
+            <div className="buyer-premium-grid">
+              {[1, 2, 3, 4, 5, 6].map(i => (
+                <div key={i} className="buyer-premium-card" style={{ opacity: 0.6 }}>
+                  <div className="identity-section" style={{ display: 'flex', gap: '1.5rem' }}>
+                    <div className="skeleton-box" style={{ width: '80px', height: '80px', borderRadius: '24px' }}></div>
+                    <div style={{ flex: 1 }}>
+                      <div className="skeleton-box" style={{ width: '60%', height: '24px', marginBottom: '10px' }}></div>
+                      <div className="skeleton-box" style={{ width: '40%', height: '14px', marginBottom: '10px' }}></div>
+                      <div className="skeleton-box" style={{ width: '30%', height: '12px' }}></div>
+                    </div>
+                  </div>
+                  <div className="requirement-section" style={{ marginTop: '2rem' }}>
+                    <div className="skeleton-box" style={{ width: '100%', height: '60px', borderRadius: '1.5rem' }}></div>
+                  </div>
+                  <div className="contact-section" style={{ marginTop: '2rem' }}>
+                    <div className="skeleton-box" style={{ width: '80%', height: '14px', marginBottom: '10px' }}></div>
+                    <div className="skeleton-box" style={{ width: '70%', height: '14px', marginBottom: '10px' }}></div>
+                    <div className="skeleton-box" style={{ width: '100%', height: '45px', borderRadius: '1.2rem', marginTop: '1rem' }}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </main>
+          <aside className="filter-sidebar right-sidebar">
+            <div className="skeleton-box" style={{ width: '100%', height: '40px', marginBottom: '20px' }}></div>
+            <div className="skeleton-box" style={{ width: '100%', height: '300px' }}></div>
+          </aside>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`search-results-page ${showSellerForm ? 'form-open' : ''}`}>
+      <div className="category-header-premium">
+        <h1>{title} Buyers</h1>
+        <div className="plan-status-banner">
+          <span className={`plan-badge plan-${userPlan.toLowerCase()}`}>{userPlan} Plan</span>
+          <span className="limit-status">
+            Monthly Limit: <strong>{leadsViewedToday}/{viewLimit}</strong> leads viewed
+          </span>
+          {resetsAt && (
+            <span className="reset-timer" style={{ fontSize: '12px', color: '#888', marginLeft: '10px' }}>
+              <i className="fas fa-clock" style={{ marginRight: '4px' }}></i>
+              Resets at {resetsAt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+            </span>
+          )}
+        </div>
+      </div>
+
       {showSellerForm && (
         <div className="form-modal-overlay">
           <div className="form-modal-content">
-            <button className="form-close-btn" onClick={() => setShowSellerForm(false)}>×</button>
+            <button className="form-close-btn" onClick={() => setShowSellerForm(false)}>
+              <i className="fas fa-times"></i>
+            </button>
             <form onSubmit={handleSellerSubmit} className="compact-seller-form">
               <div className="form-header">
+                <div className="form-header-icon">
+                  <i className="fas fa-rocket"></i>
+                </div>
                 <h2>Join as a Supplier</h2>
                 <p>Register to get verified {keyword} leads</p>
               </div>
-              <div className="form-group"><input type="text" placeholder="Name" onChange={e => setSellerFormData({...sellerFormData, name: e.target.value})} required /></div>
-              <div className="form-group"><input type="email" placeholder="Email" onChange={e => setSellerFormData({...sellerFormData, email: e.target.value})} required /></div>
-              <div className="form-group"><input type="text" placeholder="Mobile" onChange={e => setSellerFormData({...sellerFormData, mobileNumber: e.target.value})} required /></div>
-              <div className="form-group"><input type="text" placeholder="Company" onChange={e => setSellerFormData({...sellerFormData, companyName: e.target.value})} required /></div>
-              <div className="form-group"><input type="text" placeholder="Product/Service" onChange={e => setSellerFormData({...sellerFormData, productOrService: e.target.value})} required /></div>
-              <button type="submit" className="modal-submit-btn">Register Now</button>
+              
+              <div className="form-group icon-input">
+                <i className="fas fa-user input-icon"></i>
+                <input type="text" placeholder="Full Name" onChange={e => setSellerFormData({...sellerFormData, name: e.target.value})} required />
+              </div>
+              
+              <div className="form-group icon-input">
+                <i className="fas fa-envelope input-icon"></i>
+                <input type="email" placeholder="Business Email" onChange={e => setSellerFormData({...sellerFormData, email: e.target.value})} required />
+              </div>
+              
+              <div className="form-group icon-input">
+                <i className="fas fa-phone-alt input-icon"></i>
+                <input type="text" placeholder="Mobile Number" onChange={e => setSellerFormData({...sellerFormData, mobileNumber: e.target.value})} required />
+              </div>
+              
+              <div className="form-group icon-input">
+                <i className="fas fa-building input-icon"></i>
+                <input type="text" placeholder="Company Name" onChange={e => setSellerFormData({...sellerFormData, companyName: e.target.value})} required />
+              </div>
+              
+              <div className="form-group icon-input">
+                <i className="fas fa-box-open input-icon"></i>
+                <input type="text" placeholder="Product or Service" onChange={e => setSellerFormData({...sellerFormData, productOrService: e.target.value})} required />
+              </div>
+              
+              <button type="submit" className="modal-submit-btn">
+                <span>Register Now</span>
+                <i className="fas fa-arrow-right" style={{ marginLeft: '10px' }}></i>
+              </button>
             </form>
           </div>
         </div>
       )}
 
-      {/* Hero Section */}
-      <div className="results-hero-wrapper" style={{ padding: '60px 0', textAlign: 'center' }}>
-        <div className="hero-content-container" style={{ margin: '0 auto', maxWidth: '900px' }}>
-          <div className="purpose-badge">Verified {keyword} Marketplace</div>
-          <h1 className="hero-title-highlight">{title} Buyers</h1>
-          <p className="results-subtitle" style={{ margin: '20px auto 0' }}>
-            Connect with verified {keyword} buyers and explore latest trade opportunities to grow your export business.
-          </p>
-        </div>
-      </div>
-
-      <div className="results-container">
+      <div className="results-container" style={{ paddingTop: '20px' }}>
         {/* Left Sidebar - State Only */}
         <aside className="filter-sidebar">
           <div className="filter-section">
             <h3 className="sidebar-title">Browse by State</h3>
-            <div className="filter-scroll-box" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-              <div className={`filter-list-item ${!selectedState ? 'active' : ''}`} onClick={() => setSelectedState(null)}>
+            <div style={{ position: 'relative', marginBottom: '20px' }}>
+              <select 
+                className="state-filter-input" 
+                value={selectedState || ''} 
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setSelectedState(val === '' ? null : val);
+                  setStateSearch(val);
+                }}
+                style={{ appearance: 'auto', cursor: 'pointer' }}
+              >
+                <option value="">All India</option>
+                {INDIAN_STATES.sort().map(s => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="filter-scroll-box" style={{ maxHeight: '500px', overflowY: 'auto', paddingRight: '5px' }}>
+              <div className="req-block-label" style={{ marginBottom: '10px' }}>All States</div>
+              <div className={`filter-list-item ${!selectedState ? 'active' : ''}`} onClick={() => { setSelectedState(null); setStateSearch(''); }}>
                 All India
               </div>
-              {processedBuyers.reduce((acc, b) => {
-                const s = b.displayState;
-                if (s && !acc.find(x => x.name === s)) acc.push({ name: s, count: processedBuyers.filter(x => x.displayState === s).length });
-                return acc;
-              }, []).sort((a,b) => b.count - a.count).map(state => (
-                <div key={state.name} className={`filter-list-item ${selectedState === state.name ? 'active' : ''}`} onClick={() => setSelectedState(state.name)}>
-                  {state.name} <span className="count-badge">{state.count}</span>
-                </div>
-              ))}
+              {INDIAN_STATES.sort().map(stateName => {
+                const count = processedBuyers.filter(x => x.displayState === stateName).length;
+                return (
+                  <div key={stateName} className={`filter-list-item ${selectedState === stateName ? 'active' : ''}`} onClick={() => setSelectedState(stateName)}>
+                    {stateName}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </aside>
@@ -243,17 +441,26 @@ const BuyerPageTemplate = ({ keyword, title, initialData = null }) => {
                   </div>
 
                   {/* 3. Contact Section */}
-                  <div className="contact-section">
+                    <div className="contact-section">
                     <div className="contact-line">
-                      <i className="fas fa-envelope"></i> {maskEmail(item.email)}
+                      <i className="fas fa-envelope"></i> {unlockedLeads.includes((item.email || "").toLowerCase().trim()) ? item.email : maskEmail(item.email)}
                     </div>
                     <div className="contact-line">
-                      <i className="fas fa-phone-alt"></i> {maskPhone(item.mobileNumber)}
+                      <i className="fas fa-phone-alt"></i> {unlockedLeads.includes((item.email || "").toLowerCase().trim()) ? item.mobileNumber : maskPhone(item.mobileNumber)}
                     </div>
                     <div className="contact-line">
                       <i className="fas fa-map-marker-alt"></i> {item.displayState}, {item.country || 'India'}
                     </div>
-                    <button className="view-details-btn" onClick={handleViewMore}>View More Details</button>
+                    <button 
+                      className="view-details-btn" 
+                      onClick={() => handleViewMore(item)}
+                      style={{ 
+                        background: unlockedLeads.includes((item.email || "").toLowerCase().trim()) ? '#10b981' : '',
+                        cursor: unlockedLeads.includes((item.email || "").toLowerCase().trim()) ? 'default' : 'pointer'
+                      }}
+                    >
+                      {unlockedLeads.includes((item.email || "").toLowerCase().trim()) ? 'Contact Unlocked' : 'View Contact Details'}
+                    </button>
                   </div>
                 </div>
               );
@@ -265,45 +472,43 @@ const BuyerPageTemplate = ({ keyword, title, initialData = null }) => {
         <aside className="filter-sidebar right-sidebar">
           <div className="filter-section">
             <h3 className="sidebar-title">Search by Country</h3>
-            <div style={{ position: 'relative' }}>
-              <input
-                type="text"
-                placeholder="Search Country..."
-                className="state-filter-input"
-                value={countrySearch}
+            <div style={{ position: 'relative', marginBottom: '20px' }}>
+              <select 
+                className="state-filter-input" 
+                value={selectedCountry || ''} 
                 onChange={(e) => {
-                  setCountrySearch(e.target.value);
-                  setShowCountrySuggestions(true);
+                  const val = e.target.value;
+                  setSelectedCountry(val === '' ? null : val);
+                  setCountrySearch(val);
                 }}
-              />
-              {showCountrySuggestions && countrySearch && (
-                <ul className="state-suggestions">
-                  {COUNTRIES.filter(c => c.toLowerCase().includes(countrySearch.toLowerCase())).map(c => (
-                    <li key={c} onMouseDown={() => { setSelectedCountry(c); setCountrySearch(c); setShowCountrySuggestions(false); }} className="state-suggestion-item">{c}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-            
-            <div className="scrollable-filter-list-container" style={{ marginTop: '16px' }}>
-              <div className="filter-scroll-box" style={{ maxHeight: '300px' }}>
-                <div className={`filter-list-item ${!selectedCountry ? 'active' : ''}`} onClick={() => setSelectedCountry(null)}>All Countries</div>
-                {COUNTRIES.map(country => (
-                  <div key={country} className={`filter-list-item ${selectedCountry === country ? 'active' : ''}`} onClick={() => setSelectedCountry(country)}>
-                    {country}
-                  </div>
+                style={{ appearance: 'auto', cursor: 'pointer' }}
+              >
+                <option value="">All Countries</option>
+                {COUNTRIES.sort().map(c => (
+                  <option key={c} value={c}>{c}</option>
                 ))}
+              </select>
+            </div>
+            <div className="filter-scroll-box" style={{ maxHeight: '500px', overflowY: 'auto' }}>
+              <div className="req-block-label" style={{ marginBottom: '10px' }}>Quick Select</div>
+              <div className={`filter-list-item ${!selectedCountry ? 'active' : ''}`} onClick={() => { setSelectedCountry(null); setCountrySearch(''); }}>
+                All Countries
               </div>
+              {COUNTRIES.slice(0, 15).map(country => (
+                <div key={country} className={`filter-list-item ${selectedCountry === country ? 'active' : ''}`} onClick={() => setSelectedCountry(country)}>
+                  {country}
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="filter-section">
+          {/* <div className="filter-section">
             <h3 className="sidebar-title">Membership Plans</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <Link to="/packages" className="plan-item" style={{ padding: '10px', background: '#f8fafc', borderRadius: '8px', textDecoration: 'none', color: '#1e293b', fontWeight: '600' }}>Standard Plan</Link>
               <Link to="/packages" className="plan-item" style={{ padding: '10px', background: '#f8fafc', borderRadius: '8px', textDecoration: 'none', color: '#1e293b', fontWeight: '600' }}>Premium Plan</Link>
             </div>
-          </div>
+          </div> */}
         </aside>
       </div>
     </div>

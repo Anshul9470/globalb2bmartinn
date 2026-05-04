@@ -20,7 +20,7 @@ function Header() {
   // Comprehensive list of 500+ keywords for suggestions
   // Comprehensive list of keywords for suggestions
   const FEATURED_PRODUCTS_KEYWORDS = [
-    "Pulses", "Saree", "Rice", "Egg Shell Powder", "Cable Tie", "Fruits Powder", "Dry Fruits", "PVC Pipes", "Spices", "Handicrafts", "Desi Ghee", "Herbal Products", "Plastic Product", "Furniture", "Shirts", "Gold Jewelry", "Fresh Fruits", "Mustard Oil"
+    "Pulses", "Saree", "Rice", "Egg Shell Powder", "Cable Tie", "Fruits Powder", "Dry Fruits", "PVC Pipes", "Spices", "Handicrafts", "Desi Ghee", "Herbal Products", "Plastic Product", "Furniture", "Shirts", "Gold Jewelry", "Fresh Fruits", "Mustard Oil", "Onion", "Potato", "Tomato Powder", "Mushroom", "Apple", "Poultry", "Maize", "Decorative Items", "Arts", "Candles"
   ];
 
   const KEYWORDS = Array.from(new Set([
@@ -80,7 +80,17 @@ function Header() {
     "gold jewelry": "/jewellery-seller",
     "fresh fruits": "/fruitscomponent",
     "mustard oil": "/mustard-oil",
-    "wheat": "/wheatsupplier"
+    "wheat": "/wheatsupplier",
+    "onion": "/onion-seeds-dehydrated-onions-white",
+    "potato": "/potatosupplier",
+    "tomato powder": "/tomato-powder",
+    "mushroom": "/mushroom-supplier",
+    "apple": "/apple-seller",
+    "poultry": "/poulitryfarmstore",
+    "maize": "/maizemanu",
+    "decorative items": "/decorativeItems",
+    "arts": "/arts",
+    "candles": "/candledealers"
   };
 
   // Specialized mapping for established buyer pages
@@ -92,6 +102,8 @@ function Header() {
     "saree": "/saree-buyers",
     "onion": "/buyer/onions",
     "potato": "/buyer/potato",
+    "tomato": "/tomato/buyers",
+    "tomato powder": "/tomato/buyers",
     "apple": "/applebuy",
     "banana": "/bananabuy",
     "coconut": "/coconut-buyer",
@@ -176,8 +188,14 @@ function Header() {
     }
 
     // 3. Dynamic Search Fallback (Prevent 404)
+    if (type === "buyer") {
+      // Redirect to dynamic buyer page for premium experience
+      navigate(`/buyer/${query.replace(/\s+/g, '-')}`);
+      return;
+    }
+
     const encodedQuery = encodeURIComponent(query);
-    navigate(`/search-results?query=${encodedQuery}&type=${type === "company" ? "seller" : "buyer"}`);
+    navigate(`/search-results?query=${encodedQuery}&type=seller`);
     return;
 
     try {

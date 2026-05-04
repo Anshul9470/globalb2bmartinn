@@ -1,351 +1,328 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./common.css";
+import axios from 'axios';
+import { Helmet } from "react-helmet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faStar, 
+  faMapMarkerAlt, 
+  faCheckCircle, 
+  faSearch, 
+  faFilter
+} from "@fortawesome/free-solid-svg-icons";
+import "./MarketplacePremium.css";
+
+const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+
+const INDIAN_STATES = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+  "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+  "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+  "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+  "Delhi", "Jammu & Kashmir", "Ladakh", "Chandigarh", "Puducherry"
+];
 
 const poultryFarmData = [
   {
     name: "Deepak Chauhan",
-    email: "abc@gmail.com",
-    mobileNumber: "9767686900",
     companyName: "Supreme Farm",
     productOrService: "Poultry Farm",
-    imgSrc: "/assets/chi4.jpg", // Example image path, adjust as necessary
-    altText: "Poultry Farm - Supreme Farm",
+    imgSrc: "/assets/chi4.jpg",
     mainProducts: "Chicken, Eggs, Poultry Feed",
     years: "1 YRS",
-    location: "Punjab, India", // Update with actual location if available
-    tooltipText: "789 Poultry Lane, Farm City, Punjab, India",
-    rating: "4.8",
-    ratingPercent: "96%",
-    ratingsCount: "450",
+    location: "Punjab, India",
+    rating: 4.8,
+    ratingsCount: 450,
     responseRate: "92%",
+    verified: true
   },
   {
     name: "Vivek Makkar",
-    email: "abc@gmail.com",
-    mobileNumber: "9594099310",
     companyName: "Mauli Agro Farm",
     productOrService: "Poultry Farm",
     imgSrc: "/assets/chi5.jpg",
-    altText: "Poultry Farm - Mauli Agro Farm",
     mainProducts: "Chicken, Eggs, Poultry Feed",
     years: "1 YRS",
     location: "Maharashtra, India",
-    tooltipText: "123 Agro Lane, Farm City, Maharashtra, India",
-    rating: "4.8",
-    ratingPercent: "96%",
-    ratingsCount: "450",
+    rating: 4.8,
+    ratingsCount: 450,
     responseRate: "92%",
-  },
-  {
-    _id: "al-shifa-food-products-chennai",
-    name: "Shahul Hameed",
-    email: "alshifafoodproducts2023@gmail.com",
-    password: "9442857620",
-    mobileNumber: "9442857620",
-    companyName: "Al-Shifa Food Products",
-    productOrService: "Quail Eggs & Country Chicken Eggs",
-    imgSrc: "/assets/egg1.jpg",
-    mainProducts: "Quail Eggs & Country Chicken Eggs",
-    altText: "Al-Shifa Food Products - Quail Eggs & Country Chicken Eggs",
-    years: "1 YRS",
-    location: "Chennai, Tamil Nadu, India",
-    tooltipText:
-      "Al-Shifa Food Products, Quail Eggs & Country Chicken Eggs, Chennai",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "35",
-    responseRate: "87%",
-    whatsappConfirmed: true,
-  },
-  {
-    _id: "elzhadai-international-tuticorin",
-    name: "Sam Victor Amburose.S",
-    email: "samvrose1975@gmail.com",
-    password: "8144439900",
-    mobileNumber: "8144439900",
-    companyName: "Elzhadai International",
-    productOrService: "Fish Dry fish",
-    imgSrc: "/assets/fish1.jpg",
-    mainProducts: "Fish Dry fish",
-    altText: "Elzhadai International - Fish Dry fish",
-    years: "1 YRS",
-    location: "Tuticorin, Tamil Nadu, India",
-    tooltipText: "Elzhadai International, Fish Dry fish, Tuticorin",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "35",
-    responseRate: "87%",
-    whatsappConfirmed: true,
-  },
-  {
-    _id: "vyankatesh-agro-satara",
-    name: "Deepak",
-    email: "deepak@gmail.com",
-    password: "12345678",
-    mobileNumber: "9604474079",
-    companyName: "Vyankatesh Agro",
-    productOrService: "Desi Chick",
-    imgSrc: "/assets/desi-chik.jpg", // Placeholder image path
-    mainProducts: "Desi Chick",
-    altText: "Vyankatesh Agro - Desi Chick",
-    years: "1 YRS", // Random value
-    location: "Satara, Maharashtra, India",
-    tooltipText: "Vyankatesh Agro, Desi Chick, Satara",
-    rating: "4.5", // Random value
-    ratingPercent: "90%", // Random value
-    ratingsCount: "28", // Random value
-    responseRate: "85%", // Random value
-    whatsappConfirmed: true,
-  },
-  {
-    _id: "juned-virani-veraval-gujarat",
-    name: "Juned Virani",
-    email: "Junedvirani@gmail.com",
-    password: "Juned Virani",
-    mobileNumber: "8200899943",
-    companyName: "Juned Virani enterprises",
-    statename: "Gujrat",
-    cityname: "Veraval",
-    productOrService: "Jawla Fish",
-    imgSrc: "/assets/fish2.jpg",
-    mainProducts: "Jawla Fish",
-    altText: "Juned Virani Enterprises - Veraval",
-    years: "1 YRS",
-    location: "Veraval, Gujarat",
-    tooltipText: "Juned Virani Enterprises, Veraval",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "60",
-    responseRate: "95%",
-    whatsappConfirmed: true,
-  },
-  {
-    _id: "meer-ali-lucknow-uttar-pradesh",
-    name: "Meer Ali",
-    email: "meerali@gmail.com",
-    password: "Meer ali",
-    mobileNumber: "6386838214",
-    companyName: "Meer Chikan Wale",
-    statename: "Uttar Pradesh",
-    cityname: "Lucknow",
-    productOrService: "Lucknowi Chikankari Handicrafts",
-    imgSrc: "/assets/Chicken4.jpg",
-    mainProducts: "Lucknowi Chikankari Handicrafts",
-    altText: "Meer Chikan Wale - Lucknowi Chikankari Handicrafts in Lucknow",
-    years: "1 YRS",
-    location: "Lucknow, Uttar Pradesh",
-    tooltipText: "Meer Chikan Wale, Lucknow - Lucknowi Chikankari Handicrafts",
-    rating: "4.7",
-    ratingPercent: "94%",
-    ratingsCount: "300",
-    responseRate: "93%",
-    whatsappConfirmed: true,
-  },
-
-  // Add more items if needed
+    verified: true
+  }
 ];
 
 const PoultryFarmStore = () => {
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [locationQuery, setLocationQuery] = useState("");
+  const [locationSuggestions, setLocationSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredData, setFilteredData] = useState(poultryFarmData);
+  const [searchContext, setSearchContext] = useState("Premium Poultry Suppliers");
+  const [activeChip, setActiveChip] = useState("All");
+  const [dbProducts, setDbProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchPoultryProducts = async () => {
+      try {
+        const res = await axios.get(`${apiEndpoint}/products/category/Poultry`);
+        setDbProducts(res.data);
+        setFilteredData([...poultryFarmData, ...res.data]);
+      } catch (err) {
+        console.error("Failed to fetch poultry products:", err);
+        setFilteredData(poultryFarmData);
+      }
+    };
+    fetchPoultryProducts();
+  }, []);
+
+  const handleTypeChange = (type) => {
+    setSelectedTypes(prev => 
+      prev.includes(type) 
+        ? prev.filter(t => t !== type) 
+        : [...prev, type]
+    );
+  };
+
+  const handleApplyFilters = () => {
+    let result = [...poultryFarmData, ...dbProducts];
+
+    if (selectedTypes.length > 0) {
+      result = result.filter(item => 
+        selectedTypes.some(t => {
+          const text = [
+            item.mainProducts, 
+            item.productOrService, 
+            item.title,
+            item.category
+          ].filter(Boolean).join(' ').toLowerCase();
+          return text.includes(t.toLowerCase());
+        })
+      );
+    }
+
+    if (locationQuery) {
+      const query = locationQuery.toLowerCase();
+      result = result.filter(item => {
+        const locText = [
+            item.location, 
+            item.state, 
+            item.city, 
+            item.seller?.statename, 
+            item.seller?.cityname
+        ].filter(Boolean).join(' ').toLowerCase();
+        return locText.includes(query);
+      });
+    }
+
+    setFilteredData(result);
+    setSearchContext(selectedTypes.length > 0 ? selectedTypes.join(", ") + " Poultry Suppliers" : "Premium Poultry Suppliers");
+  };
+
+  const resetFilters = () => {
+    setSelectedTypes([]);
+    setLocationQuery("");
+    setFilteredData([...poultryFarmData, ...dbProducts]);
+    setSearchContext("Premium Poultry Suppliers");
+    setActiveChip("All");
+  };
+
+  const handleCategoryChip = (cat) => {
+    setActiveChip(cat);
+    if (cat === "All") { resetFilters(); return; }
+    
+    const allData = [...poultryFarmData, ...dbProducts];
+    const result = allData.filter(item => {
+      const searchableText = [
+        item.mainProducts, 
+        item.productOrService, 
+        item.title,
+        item.category
+      ].filter(Boolean).join(' ').toLowerCase();
+      return searchableText.includes(cat.toLowerCase());
+    });
+    
+    setFilteredData(result);
+    setSearchContext(cat + " Poultry");
+  };
+
+  const categories = [
+    { label: "All",     img: "/assets/chi1.jpg" },
+    { label: "Chicken", img: "/assets/chi2.jpg" },
+    { label: "Eggs",    img: "/assets/egg1.jpg" },
+    { label: "Feed",    img: "/assets/chi3.jpg" },
+    { label: "Quail",   img: "/assets/egg1.jpg" },
+  ];
+
   return (
-    <div className="main-box">
-      {/* Aside section for filters */}
-      <aside>
-        <div className="flt-box-wrap">
-          <div className="flt-box mb-0 flt-head">Filters By</div>
-          <div className="flt-box bdrt-0">
-            <p className="flt-title">Related Categories</p>
-            <div className="flt-content">
-              <ul className="flt-list cust-scroll">
-                <li>
-                  <Link to="#">Chicken</Link>
-                </li>
-                <li>
-                  <Link to="#">Eggs</Link>
-                </li>
-                <li>
-                  <Link to="#">Poultry Feed</Link>
-                </li>
-              </ul>
+    <div className="marketplace-container">
+      <Helmet>
+        <title>Verified Poultry Farms & Egg Suppliers | Global B2B Mart</title>
+        <meta name="description" content="Find top poultry farms. Connect with verified suppliers of chicken, eggs, and poultry feed. Premium B2B agricultural marketplace." />
+      </Helmet>
+
+      <div className="marketplace-layout">
+        <aside className="filters-sidebar">
+          <div className="sidebar-header">
+            <div className="header-title">
+              <FontAwesomeIcon icon={faFilter} />
+              <h2>Filters</h2>
             </div>
+            <button className="reset-link" onClick={resetFilters}>Reset</button>
           </div>
-        </div>
-        <div className="flt-box">
-          <p className="flt-title">By State</p>
-          <div className="flt-content">
-            <div className="flt-search">
-              <input
-                type="text"
-                name="state_id"
-                placeholder="Search State"
-                id="state-search-input"
-              />
+
+          <div className="filter-group-container">
+            <div className="filter-group">
+              <label className="filter-label">Product Type</label>
+              <div className="checkbox-group">
+                {["Chicken", "Eggs", "Poultry Feed", "Quail Eggs"].map(type => (
+                  <label key={type} className="checkbox-item">
+                    <input 
+                      type="checkbox" 
+                      checked={selectedTypes.includes(type)}
+                      onChange={() => handleTypeChange(type)}
+                    /> <span>{type}</span>
+                  </label>
+                ))}
+              </div>
             </div>
-            <ul className="flt-list cust-scroll" id="state-lists">
-              <li>
-                <Link to="#">All India</Link>
-              </li>
-              <li>
-                <Link to="#">Punjab</Link>
-              </li>
-              <li>
-                <Link to="#">Haryana</Link>
-              </li>
-              <li>
-                <Link to="#">Uttar Pradesh</Link>
-              </li>
-              <li>
-                <Link to="#">Maharashtra</Link>
-              </li>
-              <li>
-                <Link to="#">Rajasthan</Link>
-              </li>
-            </ul>
+
+            <div className="filter-group">
+              <label className="filter-label">Supplier Location</label>
+              <div className="search-input-wrapper" style={{ position: "relative" }}>
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="search-icon" />
+                <input 
+                  type="text" 
+                  placeholder="Search state or city..." 
+                  className="filter-search-input" 
+                  value={locationQuery}
+                  autoComplete="off"
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setLocationQuery(val);
+                    if (val.trim().length > 0) {
+                      const filtered = INDIAN_STATES.filter(s =>
+                        s.toLowerCase().includes(val.toLowerCase())
+                      );
+                      setLocationSuggestions(filtered);
+                      setShowSuggestions(true);
+                    } else {
+                      setShowSuggestions(false);
+                    }
+                  }}
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                />
+                {showSuggestions && locationSuggestions.length > 0 && (
+                  <ul className="location-suggestions-dropdown">
+                    {locationSuggestions.map((s) => (
+                      <li
+                        key={s}
+                        className="location-suggestion-item"
+                        onMouseDown={() => {
+                          setLocationQuery(s);
+                          setShowSuggestions(false);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faMapMarkerAlt} className="sugg-icon" />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+
+            <button className="apply-filters-btn" onClick={handleApplyFilters}>Apply Filters</button>
           </div>
-        </div>
-      </aside>
-      {/* Main section for classified listings */}
-      <main>
-        <section className="section">
-          <p className="sect-title">Explore by Categories</p>
-          {/* Categories section */}
-          <div className="horprd expcatg" id="expcatg">
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/chi1.jpg"
-                      width={55}
-                      height={55}
-                      alt="Chicken"
-                    />
-                  </figure>
-                  <p className="title">Chicken</p>
+        </aside>
+
+        <main className="content-area">
+          <div className="category-chips-bar">
+            {categories.map((cat) => (
+              <button
+                key={cat.label}
+                className={`category-chip ${activeChip === cat.label ? "chip-active" : ""}`}
+                onClick={() => handleCategoryChip(cat.label)}
+              >
+                <div className="chip-img-ring">
+                  <img src={cat.img} alt={cat.label} onError={(e) => e.target.src="/assets/chi1.jpg"} />
                 </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/chi2.jpg"
-                      width={55}
-                      height={55}
-                      alt="Eggs"
-                    />
-                  </figure>
-                  <p className="title">Eggs</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/chi3.jpg"
-                      width={55}
-                      height={55}
-                      alt="Poultry Feed"
-                    />
-                  </figure>
-                  <p className="title">Poultry Feed</p>
-                </div>
-              </Link>
-            </div>
+                <span className="chip-label">{cat.label}</span>
+              </button>
+            ))}
           </div>
-        </section>
-        {/* Classified listings */}
-        <ul className="classfied-wrap">
-          {poultryFarmData.map((item, index) => (
-            <li key={index}>
-              <div className="classified">
-                <div className="prd-info">
-                  <div className="prd-box">
-                    <img
-                      src={item.imgSrc}
-                      alt={item.altText}
-                      width={250}
-                      height={250}
+
+          <div className="results-info-bar">
+            <h1 className="search-context-title">{searchContext}</h1>
+            <p className="results-count">Showing {filteredData.length} Suppliers</p>
+          </div>
+
+          {filteredData.length > 0 ? (
+            <div className="product-grid">
+              {filteredData.map((item, index) => (
+                <div className="product-card" key={index}>
+                  <div className="card-image-wrapper">
+                    <img 
+                      src={item.imgSrc || (item.images?.[0] ? `${apiEndpoint}${item.images[0].replace(/\\/g, '/')}` : "/assets/chi1.jpg")} 
+                      alt={item.companyName || item.title} 
+                      className="product-img" 
                     />
+                    <div className="badge-overlay">
+                      <span className="verified-badge">
+                        <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SUPPLIER
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="cinfo">
-                  <div className="cbox">
-                    <figure>
-                      <span className="cmp-year">{item.years}</span>
-                    </figure>
-                    <div className="cboxr">
-                      <Link to="#" target="_blank">
-                        <h4 className="title">{item.companyName}</h4>
-                      </Link>
-                      <p className="cloc tooltip ellipsis">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width={16}
-                          height={16}
-                          fill="currentColor"
-                          className="bi-location"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                        </svg>
-                        {item.location}
-                        <span className="tooltiptext">{item.tooltipText}</span>
-                      </p>
-                      <div className="rating-wrap">
-                        <span className="rtbox">{item.rating}</span>
-                        <span
-                          className="crate"
-                          style={{ "--_score": item.ratingPercent }}
-                        />
-                        <span className="rate-text">
-                          {item.ratingsCount} Ratings
+
+                  <div className="card-body">
+                    <h3 className="product-title">{item.productOrService || item.title || item.mainProducts}</h3>
+                    
+                    <div className="supplier-section">
+                      <span className="supplier-label">SUPPLIED BY</span>
+                      <div className="supplier-brand-row">
+                        <div className="supplier-logo-placeholder">
+                          {(item.companyName || item.seller?.companyName || "P").charAt(0)}
+                        </div>
+                        <div className="supplier-info-stack">
+                          <h4 className="supplier-name">{item.companyName || item.seller?.companyName || item.name}</h4>
+                          <div className="rating-box">
+                            <FontAwesomeIcon icon={faStar} />
+                            <span>{item.rating || 4.5}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="supplier-meta-grid">
+                        <span className="location-tag">
+                          <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || "India"}
+                        </span>
+                        <span className="years-badge">
+                          <FontAwesomeIcon icon={faCheckCircle} /> {item.years || '1+ YRS'} Experience
                         </span>
                       </div>
                     </div>
-                  </div>
-                  <div className="caddit">
-                    <div className="item">
-                      <div
-                        className="ca-box modal-btn"
-                        data-modal="motc"
-                        data-src={item.trustCertificateUrl}
-                      >
-                        <p>
-                          <i className="l3icon motc-icon" />
-                        </p>
-                      </div>
+
+                    <div className="card-actions">
+                      <Link to="/register-buyer" className="btn-quick-quote">Quick Quote</Link>
+                      <Link to="/register-buyer" className="btn-contact">Contact</Link>
                     </div>
-                    <div className="item">
-                      <div className="ca-box">
-                        <p>
-                          <i className="l3icon resp-icon" />
-                        </p>
-                        <p>
-                          <span>Response Rate</span> <b>{item.responseRate}</b>
-                        </p>
-                      </div>
-                      <p>
-                        <span>Main Products</span> <b>{item.mainProducts}</b>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="caction">
-                    <Link to={"/register-buyer"}>
-                      <p>Contact Supplier</p>
-                    </Link>
                   </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </main>
+              ))}
+            </div>
+          ) : (
+            <div className="no-results">
+              <FontAwesomeIcon icon={faSearch} size="3x" />
+              <h3>No suppliers found</h3>
+              <p>Try adjusting your filters or location.</p>
+              <button className="btn-primary" onClick={resetFilters}>Clear All Filters</button>
+            </div>
+          )}
+        </main>
+      </div>
     </div>
   );
 };
 
 export default PoultryFarmStore;
+

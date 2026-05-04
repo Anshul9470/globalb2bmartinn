@@ -293,6 +293,39 @@ const Sarees = () => {
                   <div className="card-body">
                     <h3 className="product-title">{Array.isArray(item.title) ? item.title[0] : item.title || item.mainProducts}</h3>
                     
+                    {/* Price Badge */}
+                    {item.price && item.price !== 'Ask for Price' && (
+                      <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: 'rgba(30, 58, 138, 0.06)',
+                        color: '#1e3a8a',
+                        fontWeight: 800,
+                        fontSize: '0.9rem',
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        margin: '8px 0'
+                      }}>
+                        ₹ {item.price} / {item.unit || 'kg'}
+                      </div>
+                    )}
+
+                    {/* Description Snippet */}
+                    <p style={{
+                      fontSize: '0.8rem',
+                      color: '#64748b',
+                      lineHeight: '1.4',
+                      marginBottom: '12px',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
+                    }}>
+                      {Array.isArray(item.description) ? item.description[0] : (item.description || 'Premium quality product from verified textile manufacturers.')}
+                    </p>
+                    
                     <div className="supplier-section">
                       <span className="supplier-label">SUPPLIED BY</span>
                       

@@ -758,8 +758,8 @@ const Registration = () => {
               </button>
               {apiError && <div style={{ color: "red", marginTop: "8px" }}>{apiError}</div>}
               {submitted && (
-                <div style={{ color: "green", marginTop: "10px" }}>
-                  ✅ Requirement submitted successfully!
+                <div style={{ color: "green", marginTop: "10px", fontWeight: "600" }}>
+                  ✅ Requirement submitted successfully! It will be live on the marketplace after admin approval.
                 </div>
               )}
             </form>

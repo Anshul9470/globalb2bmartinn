@@ -645,3 +645,16 @@
     grid-template-columns: 1fr;
   }
 }
+
+@keyframes shimmer {
+  0% { background-position: -450px 0; }
+  100% { background-position: 450px 0; }
+}
+
+.skeleton-box {
+  background: linear-gradient(to right, #e2e8f0 8%, #cbd5e1 18%, #e2e8f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 2.5s infinite linear;
+  border-radius: 8px;
+  display: inline-block;
+}

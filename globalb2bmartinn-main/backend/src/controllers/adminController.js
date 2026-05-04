@@ -66,7 +66,20 @@ exports.adminLogin = async (req, res) => {
     }
 
     console.log(`[AdminLogin] Success for admin: "${email}"`);
-    res.status(200).json({ message: "Admin login successful", user });
+    
+    // Create a safe user object to avoid circular references/large data
+    const safeUser = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      plan: user.plan
+    };
+
+    res.status(200).json({ 
+      message: "Admin login successful", 
+      user: safeUser 
+    });
   } catch (error) {
     console.error(`[AdminLogin] EXCEPTION:`, error);
     res.status(500).json({ error: "Internal server error" });
@@ -256,8 +269,15 @@ exports.shareLeads = async (req, res) => {
     console.log(`[ShareLeads] Number of leads: ${leads.length}`);
     console.log(`[ShareLeads] Leads data:`, JSON.stringify(leads, null, 2));
 
-    // TODO: Store this share event in a database collection if needed
-    // For now, we're just logging and confirming the action
+    // Persist the leads to the target user's viewedLeads array
+    const leadsWithDate = leads.map(l => ({
+      ...l,
+      dateViewed: new Date()
+    }));
+
+    await User.findByIdAndUpdate(targetUserId, {
+      $push: { viewedLeads: { $each: leadsWithDate } }
+    });
 
     res.status(200).json({ 
       message: `Successfully shared ${leads.length} leads with ${targetUser.companyName || targetUser.name}`,
@@ -268,5 +288,36 @@ exports.shareLeads = async (req, res) => {
   } catch (error) {
     console.error("[ShareLeads] Error:", error);
     res.status(500).json({ error: "Failed to share leads: " + error.message });
+  }
+};
+
+// Get Pending Buyers
+exports.getPendingBuyers = async (req, res) => {
+  try {
+    const pendingBuyers = await Buyer.find({ approved: false }).sort({ createdAt: -1 });
+    res.status(200).json({
+      success: true,
+      buyers: pendingBuyers
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch pending buyers" });
+  }
+};
+
+// Approve Buyer
+exports.approveBuyer = async (req, res) => {
+  try {
+    const { buyerId } = req.params;
+    const buyer = await Buyer.findByIdAndUpdate(buyerId, { approved: true }, { new: true });
+    if (!buyer) {
+      return res.status(404).json({ error: "Buyer not found" });
+    }
+    res.status(200).json({
+      message: "Buyer approved successfully",
+      success: true,
+      buyer
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to approve buyer" });
   }
 };

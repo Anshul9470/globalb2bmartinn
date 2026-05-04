@@ -109,33 +109,6 @@ const Testing = () => {
 
     return (
         <>
-            <div className="page-banner-area page-banner-height" id="membership-banner">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xl-12">
-                            <div className="page-banner-content text-center">
-                                <h4 className="breadcrumb-title">Our Membership Plan</h4>
-                                <div className="breadcrumb-two">
-                                    <nav>
-                                        <nav className="breadcrumb-trail breadcrumbs">
-                                            <ul className="breadcrumb-menu">
-                                                <li className="breadcrumb-trail">
-                                                    <a href="/">
-                                                        <span>Home</span>
-                                                    </a>
-                                                </li>
-                                                <li className="trail-item">
-                                                    <span>Membership Plan</span>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div className="prices-container">
                 <div className="price-card">
                     <h2>Standard</h2>
@@ -212,12 +185,6 @@ const Testing = () => {
                         <li ><h2 style={{ color: '#fb743f', margin: '5px 0px' }}> <span style={{ color: 'black' }}> Call Us</span> Now</h2></li>
                         <hr />
                         <li ><h2 style={{ color: '#fb743f', marginTop: '10px' }}>+91 8527116857</h2></li>
-                        <li>
-                            <img style={{ height: '591px', marginTop: '35px' }} src="./assets/mancropped.png" alt="man" />
-                        </li>
-                        <li>
-                            <img style={{ height: '238px', marginTop: '60px' }} src="./assets/joinUs.jpeg" alt="joinnow" />
-                        </li>
                     </ul>
                 </div>
             </div>

@@ -41,6 +41,10 @@ const productDetailSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    unit: {
+        type: String,
+        default: 'kg'
+    },
     moq: {
         type: String,
         default: ''

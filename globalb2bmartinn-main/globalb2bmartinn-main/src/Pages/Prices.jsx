@@ -150,27 +150,6 @@ const Prices = () => {
                 <div className="blob blob-3" style={{ transform: `translate3d(${mousePosition.x * 0.8}px, ${mousePosition.y * -0.5}px, 0)` }}></div>
             </div>
 
-            <div className="page-banner-area page-banner-height" id="membership-banner">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xl-12">
-                            <div className="page-banner-content text-center">
-                                <h4 className="breadcrumb-title">Membership Plans</h4>
-                                <div className="breadcrumb-two">
-                                    <nav>
-                                        <nav className="breadcrumb-trail breadcrumbs">
-                                            <ul className="breadcrumb-menu">
-                                                <li className="breadcrumb-trail"><a href="/"><span>Home</span></a></li>
-                                                <li className="trail-item"><span>Pricing</span></li>
-                                            </ul>
-                                        </nav>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div className="pricing-section-container">
                 <div className="pricing-header-text">
@@ -220,9 +199,6 @@ const Prices = () => {
                             <h3>Call Us Now</h3>
                             <p className="phone-num-large">+91 8527116857</p>
                             <div className="join-tag-modern"><p>Join 1000+ Verified Sellers Today!</p></div>
-                        </div>
-                        <div className="contact-image-content">
-                            <img src="./assets/mancropped.png" alt="expert" className="expert-img-horizontal" />
                         </div>
                     </div>
                 </div>

@@ -1,627 +1,392 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./common.css";
+import axios from 'axios';
+import { Helmet } from "react-helmet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faStar, 
+  faMapMarkerAlt, 
+  faCheckCircle, 
+  faSearch, 
+  faFilter
+} from "@fortawesome/free-solid-svg-icons";
+import "./MarketplacePremium.css";
 
-const classifiedData = [
+const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+
+const INDIAN_STATES = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+  "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+  "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+  "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+  "Delhi", "Jammu & Kashmir", "Ladakh", "Chandigarh", "Puducherry",
+  "Jaipur", "Agra", "Chennai", "Mumbai", "Varanasi", "Bangalore", "Kolkata"
+];
+
+const artsData = [
   {
-    _id: "sweta-andrapradesh",
     name: "Sweta",
-    email: "sweta@gmail.com",
-    password: "12345678",
-    mobileNumber: "9985770691",
-    companyName: "Sweta",
-    statename: "Andhra Pradesh",
-    cityname: "Andhra Pradesh",
-    productOrService: "Statue",
+    companyName: "Sweta Statue Arts",
+    productOrService: "Statue Manufacturer",
     imgSrc: "/assets/statue3.jpg",
-    mainProducts: "Statues",
-    altText: "Sweta - Andhra Pradesh",
+    mainProducts: "Statues, Marble Sculptures",
     years: "1 YRS",
-    location: "Andhra Pradesh",
-    tooltipText: "Sweta, Andhra Pradesh",
-    rating: "4.3",
-    ratingPercent: "86%",
-    ratingsCount: "78",
+    location: "Andhra Pradesh, India",
+    rating: 4.3,
+    ratingsCount: 78,
     responseRate: "85%",
-    whatsappConfirmed: true,
+    verified: true
   },
-
   {
     name: "Prem",
-    email: "PremArts1234@gmail.com",
-    mobileNumber: "9763254634",
     companyName: "Prem Arts",
     productOrService: "Arts",
-    imgSrc: "/assets/arts.jpg", // You need to provide the correct image path
-    altText: "Arts - Prem Arts",
+    imgSrc: "/assets/arts.jpg",
     mainProducts: "Paintings, Sculputres, Drawings, Prints, Photography",
     years: "1 YRS",
     location: "Delhi, India",
-    tooltipText: "456 Arts Avenue, Creative Colony, Delhi, India",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "50",
+    rating: 4.5,
+    ratingsCount: 50,
     responseRate: "95%",
-  },
-  {
-    name: "Vaibhav Baranwal",
-    email: "Vaibhav1124@gmail.com",
-    mobileNumber: "9839140178",
-    companyName: "Bhadohi Arts weave",
-    productOrService: "Rugs Manufacturer",
-    imgSrc: "/assets/art2.jpg", // You need to provide the correct image path
-    altText: "Rugs Manufacturer - Bhadohi Arts weave",
-    years: "1 YRS",
-    location: "Guragaon, Haryana",
-    tooltipText: "Address Here",
-    rating: "8.8",
-    mainProducts: "Paintings, Sculputres, Drawings, Prints, Photography",
-    ratingPercent: "98%",
-    ratingsCount: "55",
-    responseRate: "90%",
+    verified: true
   },
   {
     name: "Mr. Hemant Kumar",
-    email: "hk72609@gmail.com",
-    password: "kumar@123",
-    mobileNumber: "9758197207",
     companyName: "BAJRANG STONE & ART'S",
     productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/statues.jpeg", // Provide the correct image path
+    imgSrc: "/assets/statues.jpeg",
     mainProducts: "Marble Statues, Stone Sculptures, Religious Statues",
-    altText: "Statue Manufacturer - BAJRANG STONE & ART'S",
-    years: "1 YR",
-    location: "Jaipur, India",
-    tooltipText: "Location details not provided",
-    rating: "76%",
-    ratingPercent: "87%",
-    ratingsCount: "50",
+    years: "1 YRS",
+    location: "Jaipur, Rajasthan, India",
+    rating: 4.6,
+    ratingsCount: 50,
     responseRate: "82%",
-  },
-  {
-    name: "Mr. Pradeep Kumar Sharma",
-    email: "devmoortiemporium@gmail.com",
-    password: "pradeep123",
-    mobileNumber: "9785302512",
-    companyName: "DEV MOORTI EMPORIUM",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta1.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - DEV MOORTI EMPORIUM",
-    years: "1 YR",
-    location: "Jaipur, India",
-    tooltipText: "Location details not provided",
-    rating: "75%",
-    ratingPercent: "86%",
-    ratingsCount: "40",
-    responseRate: "81%",
-  },
-  {
-    name: "Mr. Pradeep Kumar Sharma",
-    email: "devmoortiemporium@gmail.com",
-    password: "pradeep123",
-    mobileNumber: "9785302512",
-    companyName: "DEV MOORTI EMPORIUM",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta2.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - DEV MOORTI EMPORIUM",
-    years: "1 YR",
-    location: "Jaipur, India",
-    tooltipText: "Location details not provided",
-    rating: "75%",
-    ratingPercent: "86%",
-    ratingsCount: "40",
-    responseRate: "81%",
+    verified: true
   },
   {
     name: "Mr. Goutam Sharma",
-    email: "radharanimoortiart@gmail.com",
-    password: "sharma123",
-    mobileNumber: "9166026512",
     companyName: "RADHA RANI MOORTI ART",
     productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta3.jpeg", // Provide the correct image path
+    imgSrc: "/assets/sta3.jpeg",
     mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - RADHA RANI MOORTI ART",
     years: "1 YRS",
     location: "Jaipur, India",
-    tooltipText: "Location details not provided",
-    rating: "80%",
-    ratingPercent: "90%",
-    ratingsCount: "50",
+    rating: 4.5,
+    ratingsCount: 50,
     responseRate: "85%",
+    verified: true
   },
   {
     name: "Mr. Devendra Kumar",
-    email: "sindiaindustry@gmail.com",
-    mobileNumber: "9520646336",
     companyName: "S INDIA INDUSTRIES",
     productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta5.jpeg", // Provide the correct image path
+    imgSrc: "/assets/sta5.jpeg",
     mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - S INDIA INDUSTRIES",
     years: "1 YRS",
     location: "Jaipur, India",
-    tooltipText: "Location details not provided",
-    rating: "82%",
-    ratingPercent: "88%",
-    ratingsCount: "70",
+    rating: 4.4,
+    ratingsCount: 70,
     responseRate: "84%",
-  },
-  {
-    name: "Mr. Mukesh Kumar Saini",
-    email: "vamjaipur@gmail.com",
-    password: "mukesh123",
-    mobileNumber: "7976820877",
-    companyName: "VINAYAK ART & MARBLE",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta4.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - VINAYAK ART & MARBLE",
-    years: "1 YRS",
-    location: "Jaipur, India",
-    tooltipText: "Location details not provided",
-    rating: "78%",
-    ratingPercent: "85%",
-    ratingsCount: "60",
-    responseRate: "82%",
-  },
-  {
-    name: "Ms. Revathi",
-    email: "sales@anmoroverseas.com",
-    mobileNumber: "8695444506",
-    companyName: "ANMOR OVERSEAS VENTURE PRIVATE LIMITED",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta3.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Bronze Sculptures, Custom Statues",
-    altText: "Statue Manufacturer - ANMOR OVERSEAS VENTURE PRIVATE LIMITED",
-    years: "1 YRS",
-    location: "Chennai, India",
-    tooltipText: "Location details not provided",
-    rating: "85%",
-    ratingPercent: "90%",
-    ratingsCount: "75",
-    responseRate: "88%",
-  },
-  {
-    name: "Mr. Pankaj Sharma",
-    email: "pksharma1078@gmail.com",
-    mobileNumber: "9909909121",
-    companyName: "ASHA MURTI BHANDAR",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta6.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - ASHA MURTI BHANDAR",
-    years: "1 YRS",
-    location: "Jaipur, India",
-    tooltipText: "Location details not provided",
-    rating: "80%",
-    ratingPercent: "86%",
-    ratingsCount: "50",
-    responseRate: "83%",
-  },
-  {
-    name: "Mr. Vishal Sharma",
-    email: "vspandit7159@gmail.com",
-    mobileNumber: "7976394002",
-    companyName: "SHIVANI MURTI KALA KENDRA",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/art8.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - SHIVANI MURTI KALA KENDRA",
-    years: "1 YRS",
-    location: "Agra, India",
-    tooltipText: "Location details not provided",
-    rating: "79%",
-    ratingPercent: "84%",
-    ratingsCount: "62",
-    responseRate: "81%",
-  },
-  {
-    name: "Mr. Mukesh Kumar Saini",
-    email: "vamjaipur@gmail.com",
-    mobileNumber: "7976820877",
-    companyName: "VINAYAK ART & MARBLE",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta7.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Stone Sculptures, Custom Idols",
-    altText: "Statue Manufacturer - VINAYAK ART & MARBLE",
-    years: "1 YRS",
-    location: "Jaipur, India",
-    tooltipText: "Location details not provided",
-    rating: "83%",
-    ratingPercent: "88%",
-    ratingsCount: "65",
-    responseRate: "87%",
-  },
-  {
-    name: "Mr. Subhash Dhankar",
-    email: "info@sudhan-india.co.in",
-    mobileNumber: "9416544371",
-    companyName: "SUDHAN INDIA LIGHTING PVT. LTD.",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta8.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - SUDHAN INDIA LIGHTING PVT. LTD.",
-    years: "1 YRS",
-    location: "Mumbai, India",
-    tooltipText: "Location details not provided",
-    rating: "85%",
-    ratingPercent: "90%",
-    ratingsCount: "70",
-    responseRate: "88%",
-  },
-  {
-    name: "Ms. Revathi",
-    email: "sales@anmoroverseas.com",
-    mobileNumber: "8695444506",
-    companyName: "ANMOR OVERSEAS VENTURE PRIVATE LIMITED",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta9.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Bronze Sculptures, Custom Statues",
-    altText: "Statue Manufacturer - ANMOR OVERSEAS VENTURE PRIVATE LIMITED",
-    years: "1 YRS",
-    location: "Chennai, India",
-    tooltipText: "Location details not provided",
-    rating: "85%",
-    ratingPercent: "90%",
-    ratingsCount: "75",
-    responseRate: "88%",
-  },
-  {
-    name: "Mr. Vishal Sharma",
-    email: "vspandit7159@gmail.com",
-    mobileNumber: "7976394002",
-    companyName: "SHIVANI MURTI KALA KENDRA",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta11.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - SHIVANI MURTI KALA KENDRA",
-    years: "1 YRS",
-    location: "Jaipur, India",
-    tooltipText: "Location details not provided",
-    rating: "80%",
-    ratingPercent: "85%",
-    ratingsCount: "60",
-    responseRate: "83%",
+    verified: true
   },
   {
     name: "Mr. Manoj Kumar Yadav",
-    email: "dhramagepl@gmail.com",
-    mobileNumber: "9646108921",
     companyName: "DHRAMA GOODS EXPORTS PVT LTD",
     productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/scr10.jpeg", // Provide the correct image path
+    imgSrc: "/assets/scr10.jpeg",
     mainProducts: "Marble Statues, Stone Sculptures, Decorative Idols",
-    altText: "Statue Manufacturer - DHRAMA GOODS EXPORTS PVT LTD",
     years: "7 YRS",
     location: "Delhi, India",
-    tooltipText: "Location details not provided",
-    rating: "90%",
-    ratingPercent: "92%",
-    ratingsCount: "60",
+    rating: 4.8,
+    ratingsCount: 60,
     responseRate: "85%",
+    verified: true
   },
   {
     name: "Mr. Manish Prajapati",
-    email: "Gayatrihandicraft9@gmail.com",
-    mobileNumber: "6397597020",
     companyName: "M/S GAYATRI HANDICRAFT",
     productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/statue1.jpeg", // Provide the correct image path
+    imgSrc: "/assets/statue1.jpeg",
     mainProducts: "Marble Statues, Stone Sculptures, Decorative Idols",
-    altText: "Statue Manufacturer - M/S GAYATRI HANDICRAFT",
     years: "5 YRS",
     location: "Agra, India",
-    tooltipText: "Location details not provided",
-    rating: "80%",
-    ratingPercent: "85%",
-    ratingsCount: "45",
+    rating: 4.2,
+    ratingsCount: 45,
     responseRate: "78%",
-  },
-
-  {
-    name: "Mr. Pankaj Sharma",
-    email: "pksharma1078@gmail.com",
-    mobileNumber: "9909909121",
-    companyName: "ASHA MURTI BHANDAR",
-    productOrService: "Statue Manufacturer",
-    imgSrc: "/assets/sta10.jpeg", // Provide the correct image path
-    mainProducts: "Marble Statues, Stone Sculptures, Religious Idols",
-    altText: "Statue Manufacturer - ASHA MURTI BHANDAR",
-    years: "1 YRS",
-    location: "Varanasi, India",
-    tooltipText: "Location details not provided",
-    rating: "78%",
-    ratingPercent: "83%",
-    ratingsCount: "52",
-    responseRate: "80%",
-  },
-  {
-    _id: "f4g5h6i7890123456789abcd", // Random unique ID
-    name: "SHameem",
-    email: "SHameem123@gmail.com",
-    password: "SHameem123", // Including the password as specified
-    mobileNumber: "9096668366",
-    companyName: "SHameem Mart Gallery",
-    productOrService: "Mart Gallery",
-    imgSrc: "/assets/gallary.jpeg", // Example image path
-    mainProducts: "Groceries, Household Items, Apparel, Gifts",
-    altText: "Mart Gallery - SHameem Mart Gallery",
-    years: "1 YRS",
-    location: "Delhi, India",
-    tooltipText: "789 Market Street, Delhi, India",
-    rating: "4.2",
-    ratingPercent: "88%",
-    ratingsCount: "50",
-    responseRate: "90%",
-  },
-  {
-    _id: "vijay-arts-maharashtra",
-    name: "vijay",
-    email: "vijayarts@gmail.com",
-    password: "12345678",
-    mobileNumber: "8983000939",
-    companyName: "vijay arts",
-    statename: "Maharashtra",
-    cityname: "Maharashtra",
-    productOrService: "bords",
-    imgSrc: "/assets/vijay-arts.jpg",
-    mainProducts: "Boards",
-    altText: "vijay arts - Boards",
-    years: "1 YRS",
-    location: "Maharashtra, India",
-    tooltipText: "vijay arts - Board Manufacturer",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "150",
-    responseRate: "92%",
-    whatsappConfirmed: true,
-  },
-
-  // Add more items if needed
+    verified: true
+  }
 ];
 
 const Arts = () => {
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [locationQuery, setLocationQuery] = useState("");
+  const [locationSuggestions, setLocationSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredData, setFilteredData] = useState(artsData);
+  const [searchContext, setSearchContext] = useState("Premium Arts & Sculptures Suppliers");
+  const [activeChip, setActiveChip] = useState("All");
+  const [dbProducts, setDbProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchArtsProducts = async () => {
+      try {
+        const res = await axios.get(`${apiEndpoint}/products/category/Arts`);
+        setDbProducts(res.data);
+        setFilteredData([...artsData, ...res.data]);
+      } catch (err) {
+        console.error("Failed to fetch arts products:", err);
+        setFilteredData(artsData);
+      }
+    };
+    fetchArtsProducts();
+  }, []);
+
+  const handleTypeChange = (type) => {
+    setSelectedTypes(prev => 
+      prev.includes(type) 
+        ? prev.filter(t => t !== type) 
+        : [...prev, type]
+    );
+  };
+
+  const handleApplyFilters = () => {
+    let result = [...artsData, ...dbProducts];
+
+    if (selectedTypes.length > 0) {
+      result = result.filter(item => 
+        selectedTypes.some(t => {
+          const text = [
+            item.mainProducts, 
+            item.productOrService, 
+            item.title,
+            item.category
+          ].filter(Boolean).join(' ').toLowerCase();
+          return text.includes(t.toLowerCase());
+        })
+      );
+    }
+
+    if (locationQuery) {
+      const query = locationQuery.toLowerCase();
+      result = result.filter(item => {
+        const locText = [
+            item.location, 
+            item.state, 
+            item.city, 
+            item.seller?.statename, 
+            item.seller?.cityname
+        ].filter(Boolean).join(' ').toLowerCase();
+        return locText.includes(query);
+      });
+    }
+
+    setFilteredData(result);
+    setSearchContext(selectedTypes.length > 0 ? selectedTypes.join(", ") + " Suppliers" : "Premium Arts & Sculptures Suppliers");
+  };
+
+  const resetFilters = () => {
+    setSelectedTypes([]);
+    setLocationQuery("");
+    setFilteredData([...artsData, ...dbProducts]);
+    setSearchContext("Premium Arts & Sculptures Suppliers");
+    setActiveChip("All");
+  };
+
+  const handleCategoryChip = (cat) => {
+    setActiveChip(cat);
+    if (cat === "All") { resetFilters(); return; }
+    
+    const allData = [...artsData, ...dbProducts];
+    const result = allData.filter(item => {
+      const searchableText = [
+        item.mainProducts, 
+        item.productOrService, 
+        item.title,
+        item.category
+      ].filter(Boolean).join(' ').toLowerCase();
+      return searchableText.includes(cat.toLowerCase());
+    });
+    
+    setFilteredData(result);
+    setSearchContext(cat + " Artworks");
+  };
+
+  const categories = [
+    { label: "All",        img: "/assets/arts.jpg" },
+    { label: "Paintings",  img: "/assets/art1.jpg" },
+    { label: "Sculptures", img: "/assets/art2.jpg" },
+    { label: "Statues",    img: "/assets/statues.jpeg" },
+    { label: "Drawings",   img: "/assets/art3.jpg" },
+    { label: "Prints",     img: "/assets/art4.jpeg" },
+  ];
+
   return (
-    <div className="main-box">
-      <aside>
-        <div className="flt-box-wrap">
-          <div className="flt-box mb-0 flt-head">Filters By</div>
-          <div className="flt-box bdrt-0">
-            <p className="flt-title">Related Categories</p>
-            <div className="flt-content">
-              <ul className="flt-list cust-scroll">
-                <li>
-                  <Link to="#">Paintings</Link>
-                </li>
-                <li>
-                  <Link to="#">Sculptures</Link>
-                </li>
-                <li>
-                  <Link to="#">Drawings</Link>
-                </li>
-                <li>
-                  <Link to="#">Prints</Link>
-                </li>
-                <li>
-                  <Link to="#">Photography</Link>
-                </li>
-                <li>
-                  <Link to="#">Crafts</Link>
-                </li>
-                <li>
-                  <Link to="#">Mixed Media</Link>
-                </li>
-                <li>
-                  <Link to="#">Digital Art</Link>
-                </li>
-              </ul>
+    <div className="marketplace-container">
+      <Helmet>
+        <title>Premium Arts & Sculptures Suppliers | Global B2B Mart</title>
+        <meta name="description" content="Connect with top arts and sculpture suppliers. Find paintings, marble statues, and stone sculptures from verified manufacturers. Premium B2B artistic marketplace." />
+      </Helmet>
+
+      <div className="marketplace-layout">
+        <aside className="filters-sidebar">
+          <div className="sidebar-header">
+            <div className="header-title">
+              <FontAwesomeIcon icon={faFilter} />
+              <h2>Filters</h2>
             </div>
+            <button className="reset-link" onClick={resetFilters}>Reset</button>
           </div>
-          <div className="flt-box">
-            <p className="flt-title">By State</p>
-            <div className="flt-content">
-              <div className="flt-search">
-                <input
-                  type="text"
-                  name="state_id"
-                  placeholder="Search State"
-                  id="state-search-input"
-                />
+
+          <div className="filter-group-container">
+            <div className="filter-group">
+              <label className="filter-label">Art Type</label>
+              <div className="checkbox-group">
+                {["Paintings", "Sculptures", "Statues", "Drawings", "Prints"].map(type => (
+                  <label key={type} className="checkbox-item">
+                    <input 
+                      type="checkbox" 
+                      checked={selectedTypes.includes(type)}
+                      onChange={() => handleTypeChange(type)}
+                    /> <span>{type}</span>
+                  </label>
+                ))}
               </div>
-              <ul className="flt-list cust-scroll" id="state-lists">
-                <li>
-                  <Link to="#">All India</Link>
-                </li>
-                <li>
-                  <Link to="#">Delhi</Link>
-                </li>
-                <li>
-                  <Link to="#">Maharashtra</Link>
-                </li>
-                <li>
-                  <Link to="#">Tamil Nadu</Link>
-                </li>
-                <li>
-                  <Link to="#">West Bengal</Link>
-                </li>
-                <li>
-                  <Link to="#">Karnataka</Link>
-                </li>
-              </ul>
             </div>
+
+            <div className="filter-group">
+              <label className="filter-label">Supplier Location</label>
+              <div className="search-input-wrapper" style={{ position: "relative" }}>
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="search-icon" />
+                <input 
+                  type="text" 
+                  placeholder="Search state or city..." 
+                  className="filter-search-input" 
+                  value={locationQuery}
+                  autoComplete="off"
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setLocationQuery(val);
+                    if (val.trim().length > 0) {
+                      const filtered = INDIAN_STATES.filter(s =>
+                        s.toLowerCase().includes(val.toLowerCase())
+                      );
+                      setLocationSuggestions(filtered);
+                      setShowSuggestions(true);
+                    } else {
+                      setShowSuggestions(false);
+                    }
+                  }}
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                />
+                {showSuggestions && locationSuggestions.length > 0 && (
+                  <ul className="location-suggestions-dropdown">
+                    {locationSuggestions.map((s) => (
+                      <li
+                        key={s}
+                        className="location-suggestion-item"
+                        onMouseDown={() => {
+                          setLocationQuery(s);
+                          setShowSuggestions(false);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faMapMarkerAlt} className="sugg-icon" />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+
+            <button className="apply-filters-btn" onClick={handleApplyFilters}>Apply Filters</button>
           </div>
-        </div>
-      </aside>
-      <main>
-        <section className="section">
-          <p className="sect-title">Explore by Categories</p>
-          <div className="horprd expcatg" id="expcatg">
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/art1.jpg"
-                      width={55}
-                      height={55}
-                      alt="Paintings"
-                    />
-                  </figure>
-                  <p className="title">Paintings</p>
+        </aside>
+
+        <main className="content-area">
+          <div className="category-chips-bar">
+            {categories.map((cat) => (
+              <button
+                key={cat.label}
+                className={`category-chip ${activeChip === cat.label ? "chip-active" : ""}`}
+                onClick={() => handleCategoryChip(cat.label)}
+              >
+                <div className="chip-img-ring">
+                  <img src={cat.img} alt={cat.label} onError={(e) => e.target.src="/assets/arts.jpg"} />
                 </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/art2.jpg"
-                      width={55}
-                      height={55}
-                      alt="Sculptures"
-                    />
-                  </figure>
-                  <p className="title">Sculptures</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/art3.jpg"
-                      width={55}
-                      height={55}
-                      alt="Drawings"
-                    />
-                  </figure>
-                  <p className="title">Drawings</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/art4.jpeg"
-                      width={55}
-                      height={55}
-                      alt="Prints"
-                    />
-                  </figure>
-                  <p className="title">Prints</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/art5.webp"
-                      width={55}
-                      height={55}
-                      alt="Photography"
-                    />
-                  </figure>
-                  <p className="title">Photography</p>
-                </div>
-              </Link>
-            </div>
+                <span className="chip-label">{cat.label}</span>
+              </button>
+            ))}
           </div>
-        </section>
-        <ul className="classfied-wrap">
-          {classifiedData.map((item, index) => (
-            <li key={index}>
-              <div className="classified">
-                <div className="prd-info">
-                  <div className="prd-box">
-                    <img
-                      src={item.imgSrc}
-                      alt={item.altText}
-                      width={250}
-                      height={250}
+
+          <div className="results-info-bar">
+            <h1 className="search-context-title">{searchContext}</h1>
+            <p className="results-count">Showing {filteredData.length} Suppliers</p>
+          </div>
+
+          {filteredData.length > 0 ? (
+            <div className="product-grid">
+              {filteredData.map((item, index) => (
+                <div className="product-card" key={index}>
+                  <div className="card-image-wrapper">
+                    <img 
+                      src={item.imgSrc || (item.images?.[0] ? `${apiEndpoint}${item.images[0].replace(/\\/g, '/')}` : "/assets/arts.jpg")} 
+                      alt={item.companyName || item.title} 
+                      className="product-img" 
                     />
+                    <div className="badge-overlay">
+                      <span className="verified-badge">
+                        <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SUPPLIER
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="cinfo">
-                  <div className="cbox">
-                    <figure>
-                      <span className="cmp-year">{item.years}</span>
-                    </figure>
-                    <div className="cboxr">
-                      <Link to="#" target="_blank">
-                        <h4 className="title">{item.companyName}</h4>
-                      </Link>
-                      <p className="cloc tooltip ellipsis">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width={16}
-                          height={16}
-                          fill="currentColor"
-                          className="bi-location"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                        </svg>
-                        {item.location}
-                        <span className="tooltiptext">{item.tooltipText}</span>
-                      </p>
-                      <div className="rating-wrap">
-                        <span className="rtbox">{item.rating}</span>
-                        <span
-                          className="crate"
-                          style={{ "--_score": item.ratingPercent }}
-                        />
-                        <span className="rate-text">
-                          {item.ratingsCount} Ratings
+
+                  <div className="card-body">
+                    <h3 className="product-title">{item.productOrService || item.title || item.mainProducts}</h3>
+                    
+                    <div className="supplier-section">
+                      <span className="supplier-label">SUPPLIED BY</span>
+                      <div className="supplier-brand-row">
+                        <div className="supplier-logo-placeholder">
+                          {(item.companyName || item.seller?.companyName || "A").charAt(0)}
+                        </div>
+                        <div className="supplier-info-stack">
+                          <h4 className="supplier-name">{item.companyName || item.seller?.companyName || item.name}</h4>
+                          <div className="rating-box">
+                            <FontAwesomeIcon icon={faStar} />
+                            <span>{item.rating || 4.5}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="supplier-meta-grid">
+                        <span className="location-tag">
+                          <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || "India"}
+                        </span>
+                        <span className="years-badge">
+                          <FontAwesomeIcon icon={faCheckCircle} /> {item.years || '1+ YRS'} Experience
                         </span>
                       </div>
                     </div>
-                  </div>
-                  <div className="caddit">
-                    <div className="item">
-                      <div
-                        className="ca-box modal-btn"
-                        data-modal="motc"
-                        data-src={item.trustCertificateUrl}
-                      >
-                        <p>
-                          <i className="l3icon motc-icon" />
-                        </p>
-                      </div>
+
+                    <div className="card-actions">
+                      <Link to="/register-buyer" className="btn-quick-quote">Quick Quote</Link>
+                      <Link to="/register-buyer" className="btn-contact">Contact</Link>
                     </div>
-                    <div className="item">
-                      <div className="ca-box">
-                        <p>
-                          <i className="l3icon resp-icon" />
-                        </p>
-                        <p>
-                          <span>Response Rate</span> <b>{item.responseRate}</b>
-                        </p>
-                      </div>
-                      <p>
-                        <span>Main Products:</span> <b>{item.mainProducts}</b>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="caction">
-                    <Link to={"/register-buyer"}>
-                      <p>Contact Supplier</p>
-                    </Link>
                   </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </main>
+              ))}
+            </div>
+          ) : (
+            <div className="no-results">
+              <FontAwesomeIcon icon={faSearch} size="3x" />
+              <h3>No suppliers found</h3>
+              <p>Try adjusting your filters or location.</p>
+              <button className="btn-primary" onClick={resetFilters}>Clear All Filters</button>
+            </div>
+          )}
+        </main>
+      </div>
     </div>
   );
 };

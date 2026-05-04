@@ -98,6 +98,8 @@ import ScrollToTop from "./Components/ScrollToTop";
 import Contact from "./Pages/Contact";
 import HelpCenter from "./Pages/HelpCenter";
 import Agriculture from "./Pages/Agriculture";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Fashion from "./Categoriess/Fashion";
 import Chemicals from "./Categoriess/Chemicals";
 import Gifts from "./Categoriess/Gifts";
@@ -263,6 +265,7 @@ import CloveBuy from "./Buyers/CloveBuy";
 import FennelSeedsBuy from "./Buyers/FennelSeedsBuys";
 import MachineManufacturer from "./Products/MachineManufacturer";
 import PotatoSuppliers from "./Products/PotatoSuppliers";
+import TomatoPowder from "./Products/TomatoPowder";
 import MarineItems from "./Products/MarineItems";
 import WireSuppliers from "./Products/WireSuppliers";
 import GranulesSuppliers from "./Products/GranulesSuppliers";
@@ -809,7 +812,6 @@ import VegetablePowderBuy from "./Buyers/VegetablePowderBuy.jsx";
 import DoorHandleBuy from "./Buyers/DoorhandleBuy.jsx";
 import DoorLockBuy from "./Buyers/DoorLockBuy.jsx";
 import Globalb2bPricess from "./Pages/GlobalPackage.jsx";
-import CategoryBuyerLeads from "./Buyers/CategoryBuyerLeads.jsx";
 
 import VideoPopup from "./Components/popup.jsx";
 
@@ -1047,6 +1049,7 @@ function App() {
 
             <Route path="machinemanufacturer" element={<MachineManufacturer />} />
             <Route path="potatosupplier" element={<PotatoSuppliers />} />
+            <Route path="tomato-powder" element={<TomatoPowder />} />
             <Route path="marineitems" element={<MarineItems />} />
             <Route path="wiresuppliers" element={<WireSuppliers />} />
             <Route path="granuless" element={<GranulesSuppliers />} />
@@ -2260,6 +2263,7 @@ function App() {
         </div>
         {!isAdminRoute && <Footer />}
       </div>
+      <ToastContainer position="top-right" autoClose={3000} />
     </AuthProvider>
   );
 }
@@ -2267,10 +2271,9 @@ function App() {
 // Helper components for Dynamic Routing
 function DynamicBuyerWrapper() {
   const { categoryName } = useParams();
-  // We don't need to replace hyphens here if the backend handles it, 
-  // but if the URL is /buyer/rice-machine, CategoryBuyerLeads will use "rice-machine".
-  // So we'll pass it through.
-  return <CategoryBuyerLeads />;
+  const keyword = categoryName ? categoryName.replace(/-/g, ' ') : "";
+  const title = keyword.charAt(0).toUpperCase() + keyword.slice(1);
+  return <BuyerPageTemplate keyword={keyword} title={title} />;
 }
 
 function SearchResultsWrapper() {

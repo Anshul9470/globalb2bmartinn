@@ -31,6 +31,7 @@ const RiceDealers = () => {
   const [sortBy, setSortBy] = useState("Most Relevant");
   const [filteredData, setFilteredData] = useState([]);
   const [dbProducts, setDbProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchContext, setSearchContext] = useState("Premium Indian Rice");
   const [activeChip, setActiveChip] = useState("All");
 
@@ -40,9 +41,11 @@ const RiceDealers = () => {
         const res = await axios.get(`${apiEndpoint}/products/category/Rice`);
         setDbProducts(res.data);
         setFilteredData([...riceData, ...res.data]); // combine static and dynamic
+        setLoading(false);
       } catch (err) {
         console.error("Failed to fetch rice products:", err);
         setFilteredData(riceData); // fallback to static
+        setLoading(false);
       }
     };
     fetchRiceProducts();
@@ -167,95 +170,158 @@ const RiceDealers = () => {
             <button className="reset-link" onClick={resetFilters}>Reset</button>
           </div>
 
-          <div className="filter-group-container">
-            <div className="filter-group">
-              <label className="filter-label">Rice Variety</label>
-              <div className="checkbox-group">
-                {["Basmati", "Sona Masoori", "Brown Rice", "Long Grain", "Matta Rice"].map(variety => (
-                  <label key={variety} className="checkbox-item">
-                    <input 
-                      type="checkbox" 
-                      checked={selectedVarieties.includes(variety)}
-                      onChange={() => handleVarietyChange(variety)}
-                    /> <span>{variety}</span>
-                  </label>
-                ))}
+          {loading ? (
+            <div className="filter-group-container">
+              <div className="filter-group">
+                <div className="skeleton-box" style={{ width: '40%', height: '12px', marginBottom: '15px' }}></div>
+                <div className="checkbox-group">
+                  {[1, 2, 3, 4, 5].map(i => (
+                    <div key={i} className="checkbox-item">
+                      <div className="skeleton-box" style={{ width: '16px', height: '16px', borderRadius: '4px' }}></div>
+                      <div className="skeleton-box" style={{ width: '60%', height: '14px' }}></div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            <div className="filter-group">
-              <label className="filter-label">Supplier Location</label>
-              <div className="search-input-wrapper" style={{ position: "relative" }}>
-                <FontAwesomeIcon icon={faMapMarkerAlt} className="search-icon" />
-                <input 
-                  type="text" 
-                  placeholder="Search state or city..." 
-                  className="filter-search-input" 
-                  value={locationQuery}
-                  autoComplete="off"
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    setLocationQuery(val);
-                    if (val.trim().length > 0) {
-                      const filtered = INDIAN_STATES.filter(s =>
-                        s.toLowerCase().includes(val.toLowerCase())
-                      );
-                      setLocationSuggestions(filtered);
-                      setShowSuggestions(true);
-                    } else {
-                      setShowSuggestions(false);
-                    }
-                  }}
-                  onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
-                />
-                {showSuggestions && locationSuggestions.length > 0 && (
-                  <ul className="location-suggestions-dropdown">
-                    {locationSuggestions.map((s) => (
-                      <li
-                        key={s}
-                        className="location-suggestion-item"
-                        onMouseDown={() => {
-                          setLocationQuery(s);
-                          setShowSuggestions(false);
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faMapMarkerAlt} className="sugg-icon" />
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+              <div className="filter-group">
+                <div className="skeleton-box" style={{ width: '50%', height: '12px', marginBottom: '15px' }}></div>
+                <div className="skeleton-box" style={{ width: '100%', height: '45px', borderRadius: '10px' }}></div>
               </div>
+              <div className="skeleton-box" style={{ width: '100%', height: '45px', borderRadius: '10px', marginTop: '10px' }}></div>
             </div>
+          ) : (
+            <div className="filter-group-container">
+              <div className="filter-group">
+                <label className="filter-label">Rice Variety</label>
+                <div className="checkbox-group">
+                  {["Basmati", "Sona Masoori", "Brown Rice", "Long Grain", "Matta Rice"].map(variety => (
+                    <label key={variety} className="checkbox-item">
+                      <input 
+                        type="checkbox" 
+                        checked={selectedVarieties.includes(variety)}
+                        onChange={() => handleVarietyChange(variety)}
+                      /> <span>{variety}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
 
-            <button className="apply-filters-btn" onClick={handleApplyFilters}>Apply Filters</button>
-          </div>
+              <div className="filter-group">
+                <label className="filter-label">Supplier Location</label>
+                <div className="search-input-wrapper" style={{ position: "relative" }}>
+                  <FontAwesomeIcon icon={faMapMarkerAlt} className="search-icon" />
+                  <input 
+                    type="text" 
+                    placeholder="Search state or city..." 
+                    className="filter-search-input" 
+                    value={locationQuery}
+                    autoComplete="off"
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setLocationQuery(val);
+                      if (val.trim().length > 0) {
+                        const filtered = INDIAN_STATES.filter(s =>
+                          s.toLowerCase().includes(val.toLowerCase())
+                        );
+                        setLocationSuggestions(filtered);
+                        setShowSuggestions(true);
+                      } else {
+                        setShowSuggestions(false);
+                      }
+                    }}
+                    onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                  />
+                  {showSuggestions && locationSuggestions.length > 0 && (
+                    <ul className="location-suggestions-dropdown">
+                      {locationSuggestions.map((s) => (
+                        <li
+                          key={s}
+                          className="location-suggestion-item"
+                          onMouseDown={() => {
+                            setLocationQuery(s);
+                            setShowSuggestions(false);
+                          }}
+                        >
+                          <FontAwesomeIcon icon={faMapMarkerAlt} className="sugg-icon" />
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
 
-          <div className="pro-ad-card">
-            <div className="pro-badge">PRO MEMBER AD</div>
-            <h3>Export Your Rice Globally</h3>
-            <p>Connect with international buyers looking for premium Indian grains.</p>
-            <Link to="/packages" className="upgrade-link">Upgrade Now &gt;</Link>
-          </div>
+              <button className="apply-filters-btn" onClick={handleApplyFilters}>Apply Filters</button>
+            </div>
+          )}
+
+          {loading ? (
+            <div className="skeleton-box" style={{ width: '100%', height: '180px', borderRadius: '16px', marginTop: '30px' }}></div>
+          ) : (
+            <div className="pro-ad-card">
+              <div className="pro-badge">PRO MEMBER AD</div>
+              <h3>Export Your Rice Globally</h3>
+              <p>Connect with international buyers looking for premium Indian grains.</p>
+              <Link to="/packages" className="upgrade-link">Upgrade Now &gt;</Link>
+            </div>
+          )}
         </aside>
 
         <main className="content-area">
-          <div className="category-chips-bar">
-            {riceCategories.map((cat) => (
-              <button
-                key={cat.label}
-                className={`category-chip ${activeChip === cat.label ? "chip-active" : ""}`}
-                onClick={() => handleCategoryChip(cat.label)}
-              >
-                <div className="chip-img-ring">
-                  <img src={cat.img} alt={cat.label} />
+          {loading ? (
+            <div className="category-chips-bar">
+              {[1, 2, 3, 4, 5].map(i => (
+                <div key={i} className="category-chip" style={{ opacity: 0.8 }}>
+                  <div className="skeleton-box" style={{ width: '64px', height: '64px', borderRadius: '50%' }}></div>
+                  <div className="skeleton-box" style={{ width: '40px', height: '12px', marginTop: '10px' }}></div>
                 </div>
-                <span className="chip-label">{cat.label}</span>
-              </button>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="category-chips-bar">
+              {riceCategories.map((cat) => (
+                <button
+                  key={cat.label}
+                  className={`category-chip ${activeChip === cat.label ? "chip-active" : ""}`}
+                  onClick={() => handleCategoryChip(cat.label)}
+                >
+                  <div className="chip-img-ring">
+                    <img src={cat.img} alt={cat.label} />
+                  </div>
+                  <span className="chip-label">{cat.label}</span>
+                </button>
+              ))}
+            </div>
+          )}
 
-          {filteredData.length > 0 ? (
+          {loading ? (
+            <div className="product-grid">
+              {[1, 2, 3, 4, 5, 6].map(i => (
+                <div key={i} className="product-card" style={{ opacity: 0.6 }}>
+                  <div className="card-image-wrapper">
+                    <div className="skeleton-box" style={{ width: '100%', height: '100%' }}></div>
+                  </div>
+                  <div className="card-body">
+                    <div className="skeleton-box" style={{ width: '80%', height: '24px', marginBottom: '12px' }}></div>
+                    <div className="supplier-section">
+                      <div className="skeleton-box" style={{ width: '40%', height: '10px', marginBottom: '12px' }}></div>
+                      <div className="supplier-brand-row">
+                        <div className="skeleton-box" style={{ width: '44px', height: '44px', borderRadius: '10px' }}></div>
+                        <div style={{ flex: 1 }}>
+                          <div className="skeleton-box" style={{ width: '60%', height: '16px', marginBottom: '4px' }}></div>
+                          <div className="skeleton-box" style={{ width: '30%', height: '12px' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="card-actions">
+                      <div className="skeleton-box" style={{ flex: 1, height: '45px', borderRadius: '8px' }}></div>
+                      <div className="skeleton-box" style={{ flex: 1, height: '45px', borderRadius: '8px' }}></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : filteredData.length > 0 ? (
             <div className="product-grid">
               {filteredData.map((item, index) => (
                 <div className="product-card" key={index}>
@@ -277,6 +343,41 @@ const RiceDealers = () => {
                   <div className="card-body">
                     <h3 className="product-title">{Array.isArray(item.title) ? item.title[0] : item.title || item.mainProducts}</h3>
                     
+                    {/* Price Badge */}
+                    {item.price && item.price !== 'Ask for Price' && (
+                      <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: 'rgba(30, 58, 138, 0.06)',
+                        color: '#1e3a8a',
+                        fontWeight: 800,
+                        fontSize: '0.9rem',
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        marginBottom: '10px'
+                      }}>
+                        ₹ {item.price} / {item.unit || 'kg'}
+                      </div>
+                    )}
+
+                    {/* Description Snippet */}
+                    {(item.description || item.images) && (
+                      <p style={{
+                        fontSize: '0.8rem',
+                        color: '#64748b',
+                        lineHeight: '1.4',
+                        marginBottom: '12px',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                      }}>
+                        {Array.isArray(item.description) ? item.description[0] : (item.description || 'Premium quality product from verified supplier.')}
+                      </p>
+                    )}
+
                     <div className="supplier-section">
                       <span className="supplier-label">SUPPLIED BY</span>
                       

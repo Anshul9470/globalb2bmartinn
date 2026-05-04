@@ -9,6 +9,7 @@ import {
   faFilter
 } from "@fortawesome/free-solid-svg-icons";
 import "./MarketplacePremium.css";
+import FullPageSkeleton from "../Components/FullPageSkeleton";
 
 import { wheatData } from "./MarketplaceData";
 
@@ -25,6 +26,13 @@ const WheatSupplier = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [filteredData, setFilteredData] = useState(classifiedData);
   const [activeChip, setActiveChip] = useState("All");
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    // Simulated loading for premium feel
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCatChange = (cat) => {
     setSelectedCats(prev => 
@@ -78,6 +86,14 @@ const WheatSupplier = () => {
     { label: "Organic",  img: "/assets/whe6.jpeg" },
     { label: "Bran",     img: "/assets/whe3.jpg" },
   ];
+
+  if (loading) {
+    return (
+      <div className="marketplace-container">
+        <FullPageSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className="marketplace-container">

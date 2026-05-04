@@ -1,459 +1,392 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./common.css";
+import axios from 'axios';
+import { Helmet } from "react-helmet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faStar, 
+  faMapMarkerAlt, 
+  faCheckCircle, 
+  faSearch, 
+  faFilter
+} from "@fortawesome/free-solid-svg-icons";
+import "./MarketplacePremium.css";
 
-const classifiedData = [
+const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+
+const INDIAN_STATES = [
+  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+  "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+  "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram",
+  "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu",
+  "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal",
+  "Delhi", "Jammu & Kashmir", "Ladakh", "Chandigarh", "Puducherry",
+  "Firozabad", "Moradabad", "Pune", "Gurugram", "Agra", "Mumbai", "Jaipur", "Surat"
+];
+
+const decorativeData = [
   {
-    _id: "b1234567890abc5678",
     name: "Harshit Gupta",
-    email: "hrstgupta1997@gmail.com",
-    password: "harshit@1234",
-    mobileNumber: "+91 7417 918 221",
     companyName: "Jai Shree Krishna Decoration Company",
     productOrService: "Glass Products & Decor Items",
-    imgSrc: "/assets/kris5.webp", // Placeholder for image path
+    imgSrc: "/assets/kris5.webp",
     mainProducts: "Decorative Glass Items, Home Decor, Glass Art",
-    altText: "Jai Shree Krishna Decoration Company - Glass Products",
-    years: "1 YRS", // Placeholder for years of experience
-    location: "Firozabad, Uttar Pradesh, India", // Placeholder for location
-    tooltipText: "Jai Shree Krishna Decoration Company, Firozabad",
-    rating: "4.8", // Placeholder for rating
-    ratingPercent: "96%", // Placeholder for rating percentage
-    ratingsCount: "120", // Placeholder for ratings count
-    responseRate: "90%", // Placeholder for response rate
-    path: "/new-jai-shree-krishna-glass-decorators",
+    years: "1 YRS",
+    location: "Firozabad, Uttar Pradesh, India",
+    rating: 4.8,
+    ratingsCount: 120,
+    responseRate: "90%",
+    verified: true
   },
   {
     name: "mm-overseas",
-    email: "",
-    mobileNumber: "",
     companyName: "mm-overseas",
     productOrService: "Decorative Items, Glass Decorative items",
     imgSrc: "/assets/mm2.webp",
     mainProducts: "Decorative Items",
-    altText: "mm-overseas - Decorative Items",
     years: "1 YRS",
     location: "Moradabad, Uttar Pradesh, India",
-    tooltipText: "mm-overseas, Moradabad",
-    rating: "4.0",
-    ratingPercent: "80%",
-    ratingsCount: "50",
+    rating: 4.0,
+    ratingsCount: 50,
     responseRate: "85%",
-    path: "/mm-overseas",
+    verified: true
   },
-
   {
     name: "Wall Mantra",
-    email: "support@wallmantra.com",
-    mobileNumber: "7011847342",
     companyName: "Wall Mantra",
     productOrService: "Decorative Items",
-    imgSrc: "/assets/decors.jpg", // You need to provide the correct image path
+    imgSrc: "/assets/decors.jpg",
     mainProducts: "Decorative Mirrors, Wall Arts, Photo Frames, etc.",
-    altText: "Decorative Items - Wall Mantra",
     years: "1 YRS",
     location: "Delhi, India",
-    tooltipText: "123 Decor Street, Near Market, Delhi, India",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "75",
+    rating: 4.5,
+    ratingsCount: 75,
     responseRate: "92%",
+    verified: true
   },
   {
     name: "Shikha Dhingra",
-    email: "abc@gmail.com",
-    mobileNumber: "9711004442",
     companyName: "Adikala Home Décor & Craft Store",
     productOrService: "Handicraft",
-    imgSrc: "/assets/decor6.jpeg", // Provide the correct image path
+    imgSrc: "/assets/decor6.jpeg",
     mainProducts: "Handcrafted Décor, Custom Crafts, Artistic Home Accessories",
-    altText: "Handicraft - Adikala Home Décor & Craft Store",
     years: "1 YRS",
     location: "Delhi, India",
-    tooltipText: "Location details not provided",
-    rating: "85%",
-    ratingPercent: "88%",
-    ratingsCount: "30",
+    rating: 4.4,
+    ratingsCount: 30,
     responseRate: "80%",
+    verified: true
   },
-
   {
     name: "Dharamveer Singh",
-    email: "dharamveersingh@gmail.com",
-    mobileNumber: "9690028658",
     companyName: "M K Bharty Marvel Handicraft",
     productOrService: "Decorative Items",
-    imgSrc: "/assets/decor5.jpg", // You need to provide the correct image path
+    imgSrc: "/assets/decor5.jpg",
     mainProducts: "Decorative Mirrors, Wall Arts, Photo Frames, etc.",
-    altText: "Decorative Items - M K Bharty Marvel Handicraft",
     years: "1 YRS",
     location: "Delhi, India",
-    tooltipText: "123 Decor Street, Near Market, Delhi, India",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "75",
+    rating: 4.5,
+    ratingsCount: 75,
     responseRate: "92%",
+    verified: true
   },
   {
     name: "Parveen",
-    email: "parveen@gmail.com",
-    mobileNumber: "9779635125",
     companyName: "JR Crafts India",
     productOrService: "Marble Decorative Items",
-    imgSrc: "/assets/marble3.jpeg", // You need to provide the correct image path
+    imgSrc: "/assets/marble3.jpeg",
     mainProducts: "Marble Statues, Marble Vases, Marble Decor Pieces",
-    altText: "Marble Decorative Items - JR Crafts India",
     years: "1 YRS",
     location: "Delhi, India",
-    tooltipText: "123 Decor Street, Near Market, Delhi, India",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "75",
+    rating: 4.5,
+    ratingsCount: 75,
     responseRate: "92%",
+    verified: true
   },
   {
-    _id: "e1234567890abc5678",
     name: "Lalita Sharma",
-    email: "Lalita123@gmail.com",
-    password: "Lalita1234",
-    mobileNumber: "8920449089",
     companyName: "Value Plus International",
     productOrService: "Decor",
     imgSrc: "/assets/decor7.jpeg",
     mainProducts: "Home Decor, Office Decor, Custom Design Pieces",
-    altText: "Value Plus International - Decor",
     years: "1 YRS",
     location: "Gurugram, Delhi, India",
-    tooltipText: "Value Plus International, Gurugram",
-    rating: "4.6",
-    ratingPercent: "92%",
-    ratingsCount: "85",
+    rating: 4.6,
+    ratingsCount: 85,
     responseRate: "88%",
-    whatsappConfirmed: true,
-  },
-  {
-    _id: "np-enterprises-pune",
-    name: "Nitin",
-    email: "npatil4141@gmail.com",
-    password: "nitinnitin",
-    mobileNumber: "7798854138",
-    companyName: "Np Enterprises",
-    productOrService: "Decorative Item",
-    imgSrc: "/assets/decorative1.jpg",
-    mainProducts: "Decorative Item",
-    altText: "Np Enterprises - Decorative Item",
-    years: "1 YRS",
-    location: "Pune, Maharashtra, India",
-    tooltipText: "Np Enterprises, Decorative Item, Pune",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "20",
-    responseRate: "85%",
-    whatsappConfirmed: true,
-  },
-  {
-    name: "Harshit",
-    email: "harshit@gmail.com",
-    password: "12345678",
-    mobileNumber: "7417343221",
-    companyName: "Jai Shri Krishna Glass Decorators",
-    productOrService: "Glass",
-    imgSrc: "/assets/glassitem1.jpg",
-    mainProducts: "Glass, Glass Decor Products",
-    altText: "Jai Shri Krishna Glass Decorators - Glass",
-    years: "1 YRS",
-    location: "UP, India",
-    tooltipText: "Jai Shri Krishna Glass Decorators, UP",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "40",
-    responseRate: "85%",
-    whatsappConfirmed: true,
-  },
-  {
-    name: "Silambarasan",
-    email: "8610812075@gmail.com",
-    password: "8610812075",
-    mobileNumber: "8610812075",
-    companyName: "Ik Enterprise",
-    productOrService: "Clay Handicraft, Honey, Nuts",
-    imgSrc: "/assets/clay6.jpg",
-    mainProducts: "Clay Handicrafts, Honey, Nuts",
-    altText: "Ik Enterprise - Clay Handicraft, Honey, Nuts",
-    years: "1 YRS",
-    location: "Tiruvallur, Tamil Nadu, India",
-    tooltipText: "Ik Enterprise, Tamil Nadu",
-    rating: "4.2",
-    ratingPercent: "84%",
-    ratingsCount: "60",
-    responseRate: "90%",
-    whatsappConfirmed: false,
-  },
-  {
-    _id: "tharanvelu-mura-decors-private-limited-erode",
-    name: "tharanvelu",
-    email: "tharanvelu@gmail.com",
-    password: "9655488311",
-    mobileNumber: "9655488311",
-    companyName: "MURA DECORS PRIVATE LIMITED",
-    productOrService: "Home and office Decoration material manufacturer",
-    imgSrc: "/assets/deco10.jpg",
-    mainProducts: "Home and office Decoration material",
-    altText:
-      "MURA DECORS PRIVATE LIMITED - Home and office Decoration material manufacturer",
-    years: "1 YRS",
-    location: "Erode, Tamil Nadu, India",
-    tooltipText:
-      "MURA DECORS PRIVATE LIMITED, Home and office Decoration material manufacturer, Erode",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "30",
-    responseRate: "85%",
-    whatsappConfirmed: true,
-  },
-
-  // Add more items if needed
+    verified: true
+  }
 ];
 
 const DecorativeItems = () => {
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [locationQuery, setLocationQuery] = useState("");
+  const [locationSuggestions, setLocationSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredData, setFilteredData] = useState(decorativeData);
+  const [searchContext, setSearchContext] = useState("Premium Decorative Items Suppliers");
+  const [activeChip, setActiveChip] = useState("All");
+  const [dbProducts, setDbProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchDecorativeProducts = async () => {
+      try {
+        const res = await axios.get(`${apiEndpoint}/products/category/Decorative`);
+        setDbProducts(res.data);
+        setFilteredData([...decorativeData, ...res.data]);
+      } catch (err) {
+        console.error("Failed to fetch decorative products:", err);
+        setFilteredData(decorativeData);
+      }
+    };
+    fetchDecorativeProducts();
+  }, []);
+
+  const handleTypeChange = (type) => {
+    setSelectedTypes(prev => 
+      prev.includes(type) 
+        ? prev.filter(t => t !== type) 
+        : [...prev, type]
+    );
+  };
+
+  const handleApplyFilters = () => {
+    let result = [...decorativeData, ...dbProducts];
+
+    if (selectedTypes.length > 0) {
+      result = result.filter(item => 
+        selectedTypes.some(t => {
+          const text = [
+            item.mainProducts, 
+            item.productOrService, 
+            item.title,
+            item.category
+          ].filter(Boolean).join(' ').toLowerCase();
+          return text.includes(t.toLowerCase());
+        })
+      );
+    }
+
+    if (locationQuery) {
+      const query = locationQuery.toLowerCase();
+      result = result.filter(item => {
+        const locText = [
+            item.location, 
+            item.state, 
+            item.city, 
+            item.seller?.statename, 
+            item.seller?.cityname
+        ].filter(Boolean).join(' ').toLowerCase();
+        return locText.includes(query);
+      });
+    }
+
+    setFilteredData(result);
+    setSearchContext(selectedTypes.length > 0 ? selectedTypes.join(", ") + " Suppliers" : "Premium Decorative Items Suppliers");
+  };
+
+  const resetFilters = () => {
+    setSelectedTypes([]);
+    setLocationQuery("");
+    setFilteredData([...decorativeData, ...dbProducts]);
+    setSearchContext("Premium Decorative Items Suppliers");
+    setActiveChip("All");
+  };
+
+  const handleCategoryChip = (cat) => {
+    setActiveChip(cat);
+    if (cat === "All") { resetFilters(); return; }
+    
+    const allData = [...decorativeData, ...dbProducts];
+    const result = allData.filter(item => {
+      const searchableText = [
+        item.mainProducts, 
+        item.productOrService, 
+        item.title,
+        item.category
+      ].filter(Boolean).join(' ').toLowerCase();
+      return searchableText.includes(cat.toLowerCase());
+    });
+    
+    setFilteredData(result);
+    setSearchContext(cat + " Decor");
+  };
+
+  const categories = [
+    { label: "All",      img: "/assets/decors.jpg" },
+    { label: "Wall Art", img: "/assets/deco1.jpg" },
+    { label: "Mirrors",  img: "/assets/decor2.webp" },
+    { label: "Vases",    img: "/assets/decor5.jpg" },
+    { label: "Marble",   img: "/assets/marble3.jpeg" },
+    { label: "Glass",    img: "/assets/kris5.webp" },
+  ];
+
   return (
-    <div className="main-box">
-      <aside>
-        <div className="flt-box-wrap">
-          <div className="flt-box mb-0 flt-head">Filters By</div>
-          <div className="flt-box bdrt-0">
-            <p className="flt-title">Related Categories</p>
-            <div className="flt-content">
-              <ul className="flt-list cust-scroll">
-                <li>
-                  <Link to="#">Wall Art</Link>
-                </li>
-                <li>
-                  <Link to="#">Decorative Mirrors</Link>
-                </li>
-                <li>
-                  <Link to="#">Photo Frames</Link>
-                </li>
-                <li>
-                  <Link to="#">Table Decor</Link>
-                </li>
-                <li>
-                  <Link to="#">Lamps & Lighting</Link>
-                </li>
-                <li>
-                  <Link to="#">Vases</Link>
-                </li>
-                <li>
-                  <Link to="#">Clocks</Link>
-                </li>
-                <li>
-                  <Link to="#">Decorative Items</Link>
-                </li>
-              </ul>
+    <div className="marketplace-container">
+      <Helmet>
+        <title>Premium Decorative Items Suppliers & Manufacturers | Global B2B Mart</title>
+        <meta name="description" content="Connect with top decorative items suppliers. Find wall art, mirrors, vases, and glass decor from verified manufacturers. Premium B2B home decor marketplace." />
+      </Helmet>
+
+      <div className="marketplace-layout">
+        <aside className="filters-sidebar">
+          <div className="sidebar-header">
+            <div className="header-title">
+              <FontAwesomeIcon icon={faFilter} />
+              <h2>Filters</h2>
             </div>
+            <button className="reset-link" onClick={resetFilters}>Reset</button>
           </div>
-          <div className="flt-box">
-            <p className="flt-title">By State</p>
-            <div className="flt-content">
-              <div className="flt-search">
-                <input
-                  type="text"
-                  name="state_id"
-                  placeholder="Search State"
-                  id="state-search-input"
-                />
+
+          <div className="filter-group-container">
+            <div className="filter-group">
+              <label className="filter-label">Decor Category</label>
+              <div className="checkbox-group">
+                {["Wall Art", "Mirrors", "Photo Frames", "Vases", "Glass Art"].map(type => (
+                  <label key={type} className="checkbox-item">
+                    <input 
+                      type="checkbox" 
+                      checked={selectedTypes.includes(type)}
+                      onChange={() => handleTypeChange(type)}
+                    /> <span>{type}</span>
+                  </label>
+                ))}
               </div>
-              <ul className="flt-list cust-scroll" id="state-lists">
-                <li>
-                  <Link to="#">All India</Link>
-                </li>
-                <li>
-                  <Link to="#">Maharashtra</Link>
-                </li>
-                <li>
-                  <Link to="#">Tamil Nadu</Link>
-                </li>
-                <li>
-                  <Link to="#">Gujarat</Link>
-                </li>
-                <li>
-                  <Link to="#">Madhya Pradesh</Link>
-                </li>
-                <li>
-                  <Link to="#">Uttar Pradesh</Link>
-                </li>
-              </ul>
             </div>
+
+            <div className="filter-group">
+              <label className="filter-label">Supplier Location</label>
+              <div className="search-input-wrapper" style={{ position: "relative" }}>
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="search-icon" />
+                <input 
+                  type="text" 
+                  placeholder="Search state or city..." 
+                  className="filter-search-input" 
+                  value={locationQuery}
+                  autoComplete="off"
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setLocationQuery(val);
+                    if (val.trim().length > 0) {
+                      const filtered = INDIAN_STATES.filter(s =>
+                        s.toLowerCase().includes(val.toLowerCase())
+                      );
+                      setLocationSuggestions(filtered);
+                      setShowSuggestions(true);
+                    } else {
+                      setShowSuggestions(false);
+                    }
+                  }}
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                />
+                {showSuggestions && locationSuggestions.length > 0 && (
+                  <ul className="location-suggestions-dropdown">
+                    {locationSuggestions.map((s) => (
+                      <li
+                        key={s}
+                        className="location-suggestion-item"
+                        onMouseDown={() => {
+                          setLocationQuery(s);
+                          setShowSuggestions(false);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faMapMarkerAlt} className="sugg-icon" />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+
+            <button className="apply-filters-btn" onClick={handleApplyFilters}>Apply Filters</button>
           </div>
-        </div>
-      </aside>
-      <main>
-        <section className="section">
-          <p className="sect-title">Explore by Categories</p>
-          <div className="horprd expcatg" id="expcatg">
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/deco1.jpg"
-                      width={55}
-                      height={55}
-                      alt="Wall Art"
-                    />
-                  </figure>
-                  <p className="title">Wall Art</p>
+        </aside>
+
+        <main className="content-area">
+          <div className="category-chips-bar">
+            {categories.map((cat) => (
+              <button
+                key={cat.label}
+                className={`category-chip ${activeChip === cat.label ? "chip-active" : ""}`}
+                onClick={() => handleCategoryChip(cat.label)}
+              >
+                <div className="chip-img-ring">
+                  <img src={cat.img} alt={cat.label} onError={(e) => e.target.src="/assets/decors.jpg"} />
                 </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/decor2.webp"
-                      width={55}
-                      height={55}
-                      alt="Decorative Mirrors"
-                    />
-                  </figure>
-                  <p className="title">Decorative Mirrors</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/decor3.jpg"
-                      width={55}
-                      height={55}
-                      alt="Photo Frames"
-                    />
-                  </figure>
-                  <p className="title">Photo Frames</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/decor3.webp"
-                      width={55}
-                      height={55}
-                      alt="Table Decor"
-                    />
-                  </figure>
-                  <p className="title">Table Decor</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/decor5.jpg"
-                      width={55}
-                      height={55}
-                      alt="Lamps & Lighting"
-                    />
-                  </figure>
-                  <p className="title">Lamps & Lighting</p>
-                </div>
-              </Link>
-            </div>
+                <span className="chip-label">{cat.label}</span>
+              </button>
+            ))}
           </div>
-        </section>
-        <ul className="classfied-wrap">
-          {classifiedData.map((item, index) => (
-            <li key={index}>
-              <div className="classified">
-                <div className="prd-info">
-                  <div className="prd-box">
-                    <img
-                      src={item.imgSrc}
-                      alt={item.altText}
-                      width={250}
-                      height={250}
+
+          <div className="results-info-bar">
+            <h1 className="search-context-title">{searchContext}</h1>
+            <p className="results-count">Showing {filteredData.length} Suppliers</p>
+          </div>
+
+          {filteredData.length > 0 ? (
+            <div className="product-grid">
+              {filteredData.map((item, index) => (
+                <div className="product-card" key={index}>
+                  <div className="card-image-wrapper">
+                    <img 
+                      src={item.imgSrc || (item.images?.[0] ? `${apiEndpoint}${item.images[0].replace(/\\/g, '/')}` : "/assets/decors.jpg")} 
+                      alt={item.companyName || item.title} 
+                      className="product-img" 
                     />
+                    <div className="badge-overlay">
+                      <span className="verified-badge">
+                        <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SUPPLIER
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="cinfo">
-                  <div className="cbox">
-                    <figure>
-                      <span className="cmp-year">{item.years}</span>
-                    </figure>
-                    <div className="cboxr">
-                      <Link to={item.path}>
-                        <h4 className="title">{item.companyName}</h4>
-                      </Link>
-                      <p className="cloc tooltip ellipsis">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width={16}
-                          height={16}
-                          fill="currentColor"
-                          className="bi-location"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                        </svg>
-                        {item.location}
-                        <span className="tooltiptext">{item.tooltipText}</span>
-                      </p>
-                      <div className="rating-wrap">
-                        <span className="rtbox">{item.rating}</span>
-                        <span
-                          className="crate"
-                          style={{ "--_score": item.ratingPercent }}
-                        />
-                        <span className="rate-text">
-                          {item.ratingsCount} Ratings
+
+                  <div className="card-body">
+                    <h3 className="product-title">{item.productOrService || item.title || item.mainProducts}</h3>
+                    
+                    <div className="supplier-section">
+                      <span className="supplier-label">SUPPLIED BY</span>
+                      <div className="supplier-brand-row">
+                        <div className="supplier-logo-placeholder">
+                          {(item.companyName || item.seller?.companyName || "D").charAt(0)}
+                        </div>
+                        <div className="supplier-info-stack">
+                          <h4 className="supplier-name">{item.companyName || item.seller?.companyName || item.name}</h4>
+                          <div className="rating-box">
+                            <FontAwesomeIcon icon={faStar} />
+                            <span>{item.rating || 4.5}</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="supplier-meta-grid">
+                        <span className="location-tag">
+                          <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || "India"}
+                        </span>
+                        <span className="years-badge">
+                          <FontAwesomeIcon icon={faCheckCircle} /> {item.years || '1+ YRS'} Experience
                         </span>
                       </div>
                     </div>
-                  </div>
-                  <div className="caddit">
-                    <div className="item">
-                      <div
-                        className="ca-box modal-btn"
-                        data-modal="motc"
-                        data-src={item.trustCertificateUrl}
-                      >
-                        <p>
-                          <i className="l3icon motc-icon" />
-                        </p>
-                      </div>
+
+                    <div className="card-actions">
+                      <Link to="/register-buyer" className="btn-quick-quote">Quick Quote</Link>
+                      <Link to="/register-buyer" className="btn-contact">Contact</Link>
                     </div>
-                    <div className="item">
-                      <div className="ca-box">
-                        <p>
-                          <i className="l3icon resp-icon" />
-                        </p>
-                        <p>
-                          <span>Response Rate</span> <b>{item.responseRate}</b>
-                        </p>
-                      </div>
-                      <p>
-                        <span>Main Products</span> <b>{item.mainProducts}</b>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="caction">
-                    <Link to={"/register-buyer"}>
-                      <p>Contact Supplier</p>
-                    </Link>
                   </div>
                 </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </main>
+              ))}
+            </div>
+          ) : (
+            <div className="no-results">
+              <FontAwesomeIcon icon={faSearch} size="3x" />
+              <h3>No suppliers found</h3>
+              <p>Try adjusting your filters or location.</p>
+              <button className="btn-primary" onClick={resetFilters}>Clear All Filters</button>
+            </div>
+          )}
+        </main>
+      </div>
     </div>
   );
 };

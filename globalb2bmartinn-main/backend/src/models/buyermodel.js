@@ -70,6 +70,10 @@ const buyerSchema = new mongoose.Schema({
     subCategory: {
         type: String,
         trim: true
+    },
+    approved: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true });
 

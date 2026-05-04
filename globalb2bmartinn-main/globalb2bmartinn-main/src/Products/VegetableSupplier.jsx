@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './common.css';
+import FullPageSkeleton from "../Components/FullPageSkeleton";
+import "../Products/MarketplacePremium.css";
 
 const apiEndpoint = 'http://localhost:5000'; // Update this if needed
 
@@ -25,7 +27,11 @@ const VegetableSupplier = () => {
     }, []);
 
     if (loading) {
-        return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '1.5rem', color: '#1e3a8a', fontWeight: '800' }}>Loading Marketplace...</div>;
+        return (
+            <div className="marketplace-container">
+                <FullPageSkeleton />
+            </div>
+        );
     }
     return (
         <div className="main-box">
