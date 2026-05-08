@@ -113,19 +113,26 @@ const DressesDealer = () => {
       try {
         const res = await axios.get(`${apiEndpoint}/products/category/Dresses`);
         // Transform DB products to match classifiedData structure
-        const transformedDb = res.data.map(p => ({
-          _id: p._id,
-          name: p.seller?.name || "Verified Seller",
-          companyName: p.seller?.companyName || p.title || "Elite Fashion",
-          productOrService: p.description || p.subCategory || "Premium Dresses",
-          imgSrc: p.image || p.images?.[0] || "/assets/clothing.jpg",
-          mainProducts: p.title || p.mainProducts || "Designer Garments",
-          years: p.experience || "5 YRS",
-          location: p.location || p.seller?.cityname || "India",
-          rating: p.rating || (Math.random() * (5 - 4.5) + 4.5).toFixed(1),
-          isCatalogActive: p.isCatalogActive || p.hasCatalog || false,
-          catalogId: p.catalogId || p.seller?._id
-        }));
+        const transformedDb = res.data.map(p => {
+          const imagePath = p.images?.[0] || p.image;
+          const fullImgSrc = imagePath 
+            ? `${apiEndpoint}${encodeURI(imagePath.replace(/\\/g, '/'))}`
+            : "/assets/clothing.jpg";
+
+          return {
+            _id: p._id,
+            name: p.seller?.name || "Verified Seller",
+            companyName: p.seller?.companyName || p.title || "Elite Fashion",
+            productOrService: p.description || p.subCategory || "Premium Dresses",
+            imgSrc: fullImgSrc,
+            mainProducts: p.title || p.mainProducts || "Designer Garments",
+            years: p.experience || "5 YRS",
+            location: p.location || p.seller?.cityname || "India",
+            rating: p.rating || (Math.random() * (5 - 4.5) + 4.5).toFixed(1),
+            isCatalogActive: p.isCatalogActive || p.hasCatalog || false,
+            catalogId: p.catalogId || p.seller?._id
+          };
+        });
 
         setDbProducts(transformedDb);
         setFilteredData([...classifiedData, ...transformedDb]);
