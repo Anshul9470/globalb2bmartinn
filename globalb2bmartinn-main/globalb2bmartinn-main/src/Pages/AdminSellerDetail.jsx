@@ -504,7 +504,7 @@ const AdminSellerDetail = () => {
                                 <option value="Fruit Powder">Fruit Powder Supplier</option>
                                 <option value="Jewellery">Jewellery Dealer</option>
                                 <option value="Dresses">Dresses & Garments</option>
-                                <option value="Dry Fruits">Dry Fruits Dealer</option>
+                                <option value="Dryfruits">Dry Fruits Dealer</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
@@ -793,7 +793,7 @@ const AdminSellerDetail = () => {
                                     <option value="Fruits">Fruits Supplier</option>
                                     <option value="Jewellery">Jewellery Dealer</option>
                                     <option value="Dresses">Dresses & Garments</option>
-                                    <option value="Dry Fruits">Dry Fruits Dealer</option>
+                                    <option value="Dryfruits">Dry Fruits Dealer</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
@@ -1287,7 +1287,7 @@ const AdminSellerDetail = () => {
                                                             <option value="Fruit Powder">Fruit Powder Supplier</option>
                                                             <option value="Jewellery">Jewellery Dealer</option>
                                                             <option value="Dresses">Dresses & Garments</option>
-                                                            <option value="Dry Fruits">Dry Fruits Dealer</option>
+                                                            <option value="Dryfruits">Dry Fruits Dealer</option>
                                                             <option value="Other">Other</option>
                                                         </select>
                                                     )}

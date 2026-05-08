@@ -107,9 +107,21 @@ const Dryfruits = () => {
     const fetchDryFruits = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${apiEndpoint}/products/category/Dry Fruits`);
+        // Fetch both "Dryfruits" and "Dry Fruits" to be safe
+        const [res1, res2] = await Promise.all([
+          axios.get(`${apiEndpoint}/products/category/Dryfruits`),
+          axios.get(`${apiEndpoint}/products/category/Dry Fruits`)
+        ]);
         
-        const products = (response.data?.products || []).map(p => {
+        const combinedRaw = [
+          ...(res1.data?.products || []),
+          ...(res2.data?.products || [])
+        ];
+
+        // Remove duplicates by _id
+        const uniqueRaw = Array.from(new Map(combinedRaw.map(item => [item._id, item])).values());
+
+        const products = uniqueRaw.map(p => {
           const imagePath = p.images && p.images.length > 0 ? p.images[0] : "";
           const fullImgSrc = imagePath 
             ? `${apiEndpoint}${encodeURI(imagePath.replace(/\\/g, '/'))}` 
