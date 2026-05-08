@@ -605,9 +605,24 @@ const SearchResults = ({ forcedQuery = null }) => {
                   );
                 }
 
+                const sellerObj = item.userId && typeof item.userId === 'object' ? item.userId : item.seller;
+                const hasCatalog = item.isCatalogActive || sellerObj?.isCatalogActive || (sellerObj?.featuredProductIds?.length > 0);
+                const sellerTargetId = sellerObj?._id || (item.userId?._id || item.userId) || item._id;
+
                 // Default Seller Card
                 return (
-                  <div className="product-card" key={index}>
+                  <div 
+                    className={`product-card ${hasCatalog ? 'has-catalog-link' : ''}`} 
+                    key={index}
+                    onClick={() => {
+                      if (hasCatalog && sellerTargetId) {
+                        navigate(`/catalog/${sellerTargetId}`);
+                      }
+                    }}
+                    style={{ 
+                      cursor: hasCatalog ? 'pointer' : 'default' 
+                    }}
+                  >
                     <div className="top-right-meta">
                       <div className="rating-pill">
                         <i className="fa fa-star"></i>
@@ -626,6 +641,24 @@ const SearchResults = ({ forcedQuery = null }) => {
                       <div className="verified-badge-top">
                         <i className="fa fa-check-circle"></i> VERIFIED
                       </div>
+                      {hasCatalog && (
+                        <div className="catalog-badge-overlay" style={{
+                          position: 'absolute',
+                          bottom: '10px',
+                          left: '10px',
+                          background: 'rgba(21, 21, 125, 0.9)',
+                          color: '#fff',
+                          fontSize: '10px',
+                          fontWeight: '800',
+                          padding: '4px 10px',
+                          borderRadius: '4px',
+                          letterSpacing: '1px',
+                          zIndex: 2,
+                          boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+                        }}>
+                          <i className="fa fa-th-large" style={{ marginRight: '5px' }}></i> VIEW CATALOG
+                        </div>
+                      )}
                     </div>
 
                     <div className="card-body">
@@ -691,8 +724,8 @@ const SearchResults = ({ forcedQuery = null }) => {
         </main>
       </div>
     </div>
-    </div>
-  );
+  </div>
+);
 };
 
 export default SearchResults;

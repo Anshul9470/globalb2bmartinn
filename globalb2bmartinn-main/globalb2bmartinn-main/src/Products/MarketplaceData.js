@@ -28,6 +28,21 @@ const sareeAssets = [
   "/assets/saree2.jpg", "/assets/saree6.jpeg", "/assets/saree.jpeg", "/assets/saree15.jpeg"
 ];
 export const sareesData = generateData([
+  { 
+    name: "Marikamu Textiles", 
+    companyName: "Marikamu Textiles", 
+    productOrService: "Kanchi Cotton Sarees", 
+    imgSrc: "/assets/saree_cotton.png", 
+    mainProducts: "100 Count Kanchi Cotton, Chettinad Trendy Cotton", 
+    description: "Authentic manufacturer of premium South Indian cotton sarees. Specializing in handcrafted 100-count Kanchi Cotton and trendy Chettinad collections.",
+    years: "12 YRS", 
+    location: "Theni, Tamil Nadu", 
+    rating: "5.0", 
+    moq: 5,
+    hasCatalog: true,
+    catalogId: "marikamu-textiles",
+    createdAt: "2012-05-10" 
+  },
   { name: "Soma Sundaram", companyName: "Sakthi Tex", productOrService: "Sarees", imgSrc: "/assets/premium_saree.png", mainProducts: "Silk Sarees, Cotton Sarees, Designer Sarees", years: "5 YRS", location: "Chinnalapatti, TN", rating: "4.7", moq: 10, createdAt: "2024-01-01" },
   { name: "Anita Devi", companyName: "Anita Handlooms", productOrService: "Banarasi Saree", imgSrc: "/assets/saree_banarasi.png", mainProducts: "Banarasi Silk, Zari", years: "10 YRS", location: "Varanasi, UP", rating: "4.9", moq: 10, createdAt: "2024-03-15" },
   { name: "Priya Singh", companyName: "Priya Creations", productOrService: "Linen Saree", imgSrc: "/assets/saree_cotton.png", mainProducts: "Pure Linen, Handblock", years: "3 YRS", location: "Jaipur, Rajasthan", rating: "4.4", moq: 15, createdAt: "2024-04-01" }
@@ -263,3 +278,10 @@ export const eggData = generateData([
   { name: "Ms. Priya", companyName: "Golden Valley Farms", productOrService: "Organic Eggs", imgSrc: "/assets/egg_2.png", mainProducts: "Organic Brown Eggs, Free Range Eggs", years: "3 YRS", location: "Coimbatore, Tamil Nadu", rating: "4.8", moq: 100, createdAt: "2021-02-14" },
   { name: "Zubair Ahmed", companyName: "A-1 Egg Trading Co.", productOrService: "White Table Eggs", imgSrc: "/assets/egg_main.png", mainProducts: "Fresh White Eggs, Bulk Supply", years: "12 YRS", location: "Mumbai, MH", rating: "4.4", moq: 1000, createdAt: "2012-10-05" }
 ], 10, "Eggs", eggAssets);
+
+// --- CNC MACHINES ---
+const cncAssets = ["/assets/cnc_premium.png", "/assets/indus5.webp", "/assets/indus1.jpg", "/assets/indus2.jpg"];
+export const cncData = generateData([
+  { name: "Suresh Mehra", companyName: "Mehra Precision Tools", productOrService: "CNC Machines", imgSrc: "/assets/cnc_premium.png", mainProducts: "VMC Machines, CNC Lathe, CNC Router", years: "15 YRS", location: "Pune, MH", rating: "4.9", moq: 1, createdAt: "2024-01-01" },
+  { name: "Rahul Sharma", companyName: "Sharma Industrial Solutions", productOrService: "CNC Machinery", imgSrc: "/assets/indus5.webp", mainProducts: "CNC Milling Machine, Plasma Cutter", years: "10 YRS", location: "Ludhiana, PB", rating: "4.7", moq: 1, createdAt: "2024-02-10" }
+], 15, "CNC Machines", cncAssets);

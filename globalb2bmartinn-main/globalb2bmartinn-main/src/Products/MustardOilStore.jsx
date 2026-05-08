@@ -7,7 +7,8 @@ import {
   faMapMarkerAlt, 
   faCheckCircle, 
   faSearch, 
-  faFilter
+  faFilter,
+  faAngleRight
 } from "@fortawesome/free-solid-svg-icons";
 import "./MarketplacePremium.css";
 
@@ -275,92 +276,135 @@ const MustardOilStore = () => {
             <div className="loading-state">Loading premium products...</div>
           ) : filteredData.length > 0 ? (
             <div className="product-grid">
-              {filteredData.map((item, index) => (
-                <div className="product-card" key={index}>
-                  <div className="card-image-wrapper">
-                    <img 
-                        src={item.images?.[0] ? `${apiEndpoint}${encodeURI(item.images[0].replace(/\\/g, '/'))}` : item.imgSrc} 
-                        alt={item.title || item.companyName} 
-                        className="product-img" 
-                        onError={(e) => { if(!item.imgSrc) e.target.src="/assets/oils.jpeg" }}
-                    />
-                    <div className="badge-overlay">
-                      <span className="verified-badge">
-                        <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SUPPLIER
-                      </span>
-                    </div>
-                    <span className="card-category-tag">{item.productOrService || item.category || 'Mustard Oil'}</span>
-                  </div>
+              {filteredData.map((item, index) => {
+                const sellerObj = item.userId && typeof item.userId === 'object' ? item.userId : (item.seller || {});
+                const hasCatalog = item.isCatalogActive || sellerObj.isCatalogActive || (sellerObj.featuredProductIds?.length > 0) || item.hasCatalog;
+                const catalogId = item.catalogId || sellerObj._id || (item.userId?._id || item.userId) || item._id;
 
-                  <div className="card-body">
-                    <h3 className="product-title">{item.title || item.mainProducts}</h3>
-                    
-                    {/* Price Badge */}
-                    {item.price && item.price !== 'Ask for Price' && (
-                      <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        background: 'rgba(30, 58, 138, 0.06)',
-                        color: '#1e3a8a',
-                        fontWeight: 800,
-                        fontSize: '0.9rem',
-                        padding: '4px 10px',
-                        borderRadius: '6px',
-                        marginBottom: '10px'
-                      }}>
-                        ₹ {item.price} / {item.unit || 'kg'}
+                const CardContent = (
+                  <>
+                    <div className="card-image-wrapper">
+                      <img 
+                          src={item.images?.[0] ? `${apiEndpoint}${encodeURI(item.images[0].replace(/\\/g, '/'))}` : item.imgSrc} 
+                          alt={item.title || item.companyName} 
+                          className="product-img" 
+                          onError={(e) => { if(!item.imgSrc) e.target.src="/assets/oils.jpeg" }}
+                      />
+                      <div className="badge-overlay">
+                        <span className="verified-badge">
+                          <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SUPPLIER
+                        </span>
                       </div>
-                    )}
-
-                    {/* Description Snippet */}
-                    <p style={{
-                        fontSize: '0.8rem',
-                        color: '#64748b',
-                        lineHeight: '1.4',
-                        marginBottom: '12px',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                    }}>
-                        {Array.isArray(item.description) ? item.description[0] : (item.description || 'Pure and refined quality oils from verified wholesale suppliers.')}
-                    </p>
-
-                    <div className="supplier-section">
-                      <span className="supplier-label">SUPPLIED BY</span>
-                      
-                      <div className="supplier-brand-row">
-                        <div className="supplier-logo-placeholder">
-                          {(item.seller?.companyName || item.companyName || 'S').charAt(0)}
+                      {hasCatalog && (
+                        <div className="catalog-badge-overlay" style={{
+                          position: 'absolute',
+                          bottom: '10px',
+                          left: '10px',
+                          background: 'rgba(21, 21, 125, 0.9)',
+                          color: '#fff',
+                          fontSize: '10px',
+                          fontWeight: '800',
+                          padding: '4px 10px',
+                          borderRadius: '4px',
+                          letterSpacing: '1px',
+                          zIndex: 2,
+                          boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+                        }}>
+                          <FontAwesomeIcon icon={faAngleRight} style={{ marginRight: '5px' }} /> VIEW CATALOG
                         </div>
-                        <div className="supplier-info-stack">
-                          <h4 className="supplier-name">{item.seller?.companyName || item.companyName}</h4>
-                          <div className="rating-box">
-                            <FontAwesomeIcon icon={faStar} />
-                            <span>{item.rating || "4.5"}</span>
+                      )}
+                      <span className="card-category-tag">{item.productOrService || item.category || 'Mustard Oil'}</span>
+                    </div>
+
+                    <div className="card-body">
+                      <h3 className="product-title">{item.title || item.mainProducts}</h3>
+                      
+                      {/* Price Badge */}
+                      {item.price && item.price !== 'Ask for Price' && (
+                        <div style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          background: 'rgba(30, 58, 138, 0.06)',
+                          color: '#1e3a8a',
+                          fontWeight: 800,
+                          fontSize: '0.9rem',
+                          padding: '4px 10px',
+                          borderRadius: '6px',
+                          marginBottom: '10px'
+                        }}>
+                          ₹ {item.price} / {item.unit || 'kg'}
+                        </div>
+                      )}
+
+                      {/* Description Snippet */}
+                      <p style={{
+                          fontSize: '0.8rem',
+                          color: '#64748b',
+                          lineHeight: '1.4',
+                          marginBottom: '12px',
+                          display: '-webkit-box',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis'
+                      }}>
+                          {Array.isArray(item.description) ? item.description[0] : (item.description || 'Pure and refined quality oils from verified wholesale suppliers.')}
+                      </p>
+
+                      <div className="supplier-section">
+                        <span className="supplier-label">SUPPLIED BY</span>
+                        
+                        <div className="supplier-brand-row">
+                          <div className="supplier-logo-placeholder">
+                            {(item.seller?.companyName || item.companyName || 'S').charAt(0)}
+                          </div>
+                          <div className="supplier-info-stack">
+                            <h4 className="supplier-name">{item.seller?.companyName || item.companyName}</h4>
+                            <div className="rating-box">
+                              <FontAwesomeIcon icon={faStar} />
+                              <span>{item.rating || "4.5"}</span>
+                            </div>
                           </div>
                         </div>
+                        
+                        <div className="supplier-meta-grid">
+                          <span className="location-tag">
+                            <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || item.state || 'India'}
+                          </span>
+                          <span className="years-badge">
+                            <FontAwesomeIcon icon={faCheckCircle} /> {item.years || item.experience || "1 YRS"} Experience
+                          </span>
+                        </div>
                       </div>
-                      
-                      <div className="supplier-meta-grid">
-                        <span className="location-tag">
-                          <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || item.state || 'India'}
-                        </span>
-                        <span className="years-badge">
-                          <FontAwesomeIcon icon={faCheckCircle} /> {item.years || item.experience || "1 YRS"} Experience
-                        </span>
-                      </div>
-                    </div>
 
-                    <div className="card-actions">
-                      <Link to="/register-buyer" className="btn-quick-quote">Quick Quote</Link>
-                      <Link to="/register-buyer" className="btn-contact">Contact</Link>
+                      <div className="card-actions">
+                        <button className="btn-quick-quote" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href='/register-buyer'; }}>Quick Quote</button>
+                        <button className="btn-contact" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href='/register-buyer'; }}>Contact</button>
+                      </div>
                     </div>
+                  </>
+                );
+
+                if (hasCatalog) {
+                  return (
+                    <Link 
+                      to={`/catalog/${catalogId}`} 
+                      className="product-card" 
+                      key={index}
+                      style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}
+                    >
+                      {CardContent}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <div className="product-card" key={index}>
+                    {CardContent}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div className="no-results">

@@ -1224,7 +1224,7 @@ const FreeDash = () => {
                                                 </div>
                                                 <span style={{fontSize: '0.8rem', color: '#94a3b8', fontWeight: 600}}>(150+ Reviews)</span>
                                             </div>
-                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', color: '#059669', fontWeight: 700}}>
+                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', color: '#ff8000', fontWeight: 700}}>
                                                 <FontAwesomeIcon icon={faShieldHalved} />
                                                 <span>{prod.experience || '3+'} YRS EXP.</span>
                                             </div>
@@ -1457,7 +1457,7 @@ const FreeDash = () => {
                              <>
                                 <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '0.6rem' }}>
                                     <div>
-                                        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0, background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>My Verified Leads</h2>
+                                        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, margin: 0, background: 'linear-gradient(135deg, #ffcc33 0%, #ff8000 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>My Verified Leads</h2>
                                         <p style={{ color: '#64748b', fontSize: '0.9rem', marginTop: '0.2rem' }}>Premium leads shared with you by Admin.</p>
                                     </div>
                                     <div style={{ background: '#fff', padding: '0.5rem 0.8rem', borderRadius: '10px', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', gap: '0.6rem', boxShadow: '0 2px 10px rgba(0,0,0,0.01)' }}>

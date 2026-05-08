@@ -129,6 +129,20 @@ const Leads = () => {
       imagePath: "/assets/flag.svg",
       category: "Electronics"
     },
+    {
+      title: "Fruit Powder Mix",
+      country: "India",
+      postDate: "02-11-2025",
+      imagePath: "/assets/flag.svg",
+      category: "Food"
+    },
+    {
+      title: "Designer Ethnic Dresses",
+      country: "India",
+      postDate: "05-11-2025",
+      imagePath: "/assets/flag.svg",
+      category: "Fashion"
+    },
   ];
 
   // Chunk the leads data into groups of 4 for better layout

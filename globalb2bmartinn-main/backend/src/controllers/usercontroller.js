@@ -3,6 +3,7 @@ const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 
 // In usercontroller.js
 // Update User GST Number
@@ -153,16 +154,21 @@ exports.getViewedLeads = async (req, res) => {
 
 
 // Configure multer storage
+const uploadDir = path.join(__dirname, "../../uploadsprducts");
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   },
 });
 
-const upload = multer({ storage: storage }).array("images");
+const upload = multer({ storage: storage }).any();
 
 // Register User
 exports.registerUser = async (req, res) => {
@@ -266,16 +272,44 @@ exports.updateUserById = async (req, res) => {
         return res.status(404).json({ message: "User not found" });
       }
 
-      const updateData = {
-        name: req.body.name,
-        email: req.body.email,
-        mobileNumber: req.body.mobileNumber,
-        companyName: req.body.companyName,
-        productOrService: req.body.productOrService,
-        gstNumber: req.body.gstNumber,
-        // Merge existing images with new ones
-        images: [...user.images, ...req.files.map((file) => file.path)],
-      };
+      // Only update fields that are present in the request body
+      const updateData = { ...user.toObject() };
+      
+      const fields = [
+        'name', 'email', 'mobileNumber', 'companyName', 'productOrService', 'gstNumber',
+        'catalogSubtitle', 'aboutUs', 'catalogHeroTitle', 'catalogHeroDescription',
+        'catalogContactEmail', 'catalogContactPhone', 'catalogContactAddress',
+        'verificationStatus', 'yearsInBusiness', 'responseRate', 'responseTime',
+        'isCatalogActive'
+      ];
+
+      fields.forEach(field => {
+        if (req.body[field] !== undefined) {
+          updateData[field] = req.body[field];
+        }
+      });
+
+      if (req.body.certifications) {
+        updateData.certifications = typeof req.body.certifications === 'string' ? JSON.parse(req.body.certifications) : req.body.certifications;
+      }
+      if (req.body.featuredProductIds) {
+        updateData.featuredProductIds = typeof req.body.featuredProductIds === 'string' ? JSON.parse(req.body.featuredProductIds) : req.body.featuredProductIds;
+      }
+
+      // Handle specific uploaded files
+      if (req.files && req.files.length > 0) {
+        const heroFile = req.files.find(f => f.fieldname === 'heroImage');
+        const aboutFile = req.files.find(f => f.fieldname === 'aboutImage');
+        const logoFile = req.files.find(f => f.fieldname === 'sellerLogo');
+        const generalImages = req.files.filter(f => f.fieldname === 'images');
+
+        if (heroFile) updateData.catalogHeroImage = `/uploadsprducts/${heroFile.filename}`;
+        if (aboutFile) updateData.aboutUsImage = `/uploadsprducts/${aboutFile.filename}`;
+        if (logoFile) updateData.sellerLogo = `/uploadsprducts/${logoFile.filename}`;
+        if (generalImages.length > 0) {
+          updateData.images = [...user.images, ...generalImages.map(f => `/uploadsprducts/${f.filename}`)];
+        }
+      }
 
       const updatedUser = await User.findByIdAndUpdate(userId, updateData, {
         new: true,
@@ -351,7 +385,7 @@ exports.getUsersByRole = async (req, res) => {
     }
 
     const users = await User.find({ role: role })
-      .select('name email mobileNumber companyName cityname statename productOrService role images plan city state viewedLeads')
+      .select('name email mobileNumber companyName cityname statename productOrService role images plan city state viewedLeads isCatalogActive featuredProductIds')
       .lean();
 
     if (!users || users.length === 0) {
@@ -381,7 +415,7 @@ exports.getSellersByCategory = async (req, res) => {
         { companyName: { $regex: category, $options: 'i' } }
       ]
     })
-    .select('name email mobileNumber companyName cityname statename productOrService role images plan city state')
+    .select('name email mobileNumber companyName cityname statename productOrService role images plan city state isCatalogActive featuredProductIds')
     .lean();
 
     res.status(200).json(users);

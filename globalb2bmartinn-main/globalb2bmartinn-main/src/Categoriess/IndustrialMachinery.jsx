@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./commn.css";
 
 const IndustrialMachinery = () => {
@@ -69,6 +70,17 @@ const IndustrialMachinery = () => {
         { name: "View More", url: "#" },
       ],
     },
+    {
+      title: "CNC Machines",
+      imageSrc: "/assets/cnc1.jpg",
+      links: [
+        { name: "VMC Machine", url: "/cnc-machines-suppliers" },
+        { name: "CNC Lathe", url: "/cnc-machines-suppliers" },
+        { name: "CNC Router", url: "/cnc-machines-suppliers" },
+        { name: "Milling Machine", url: "/cnc-machines-suppliers" },
+        { name: "View All", url: "/cnc-machines-suppliers" },
+      ],
+    },
   ];
 
   return (
@@ -101,7 +113,7 @@ const IndustrialMachinery = () => {
                       <ul>
                         {product.links.map((link, linkIndex) => (
                           <li key={linkIndex}>
-                            <a href={link.url}>{link.name}</a>
+                            <Link to={link.url}>{link.name}</Link>
                           </li>
                         ))}
                       </ul>

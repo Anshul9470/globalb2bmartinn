@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from "react";
-import "./OnionBuy.css"; // Assuming a similar CSS file is used.
-import { useAuth } from "./AuthContext";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faMapMarkerAlt, 
+  faCheckCircle, 
+  faCalendarAlt, 
+  faPhone,
+  faEye,
+  faShieldHalved,
+  faFilter,
+  faSearch,
+  faAngleRight
+} from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "./AuthContext";
 import Whyglobal from "../Components/Whyglobal";
+import FullPageSkeleton from "../Components/FullPageSkeleton";
+import "../Products/MarketplacePremium.css";
 
-const PerfumeBuys = [
+const PerfumeBuysData = [
   {
     _id: "77123c299f2cecbc7aa11411",
     name: "Sneha Sharma",
     email: "snehasharma@gmail.com",
     mobileNumber: "+919876543111",
-    productOrService:
-      "Looking to import luxury perfumes for a high-end retail store.",
-    locationandDate: "Mumbai 18-10-2024",
-    // productOrService: "Luxury Perfume",
+    productOrService: "Looking to import luxury perfumes for a high-end retail store.",
+    location: "Mumbai, MH",
+    date: "18-10-2024",
     quantity: 200,
     unit: "bottles",
   },
@@ -22,10 +34,9 @@ const PerfumeBuys = [
     name: "Aarav Jain",
     email: "aaravjain@gmail.com",
     mobileNumber: "+919876543222",
-    productOrService:
-      "Urgently need bulk supply of perfumes for an upcoming promotional event.",
-    locationandDate: "Delhi 19-10-2024",
-
+    productOrService: "Urgently need bulk supply of perfumes for an upcoming promotional event.",
+    location: "Delhi, DL",
+    date: "19-10-2024",
     quantity: 1000,
     unit: "bottles",
   },
@@ -34,10 +45,9 @@ const PerfumeBuys = [
     name: "Rohit Mehta",
     email: "rohitmehta@gmail.com",
     mobileNumber: "+919876543333",
-    productOrService:
-      "Seeking to buy perfumes for distribution in the local market.",
-    locationandDate: "Bangalore 20-10-2024",
-
+    productOrService: "Seeking to buy perfumes for distribution in the local market.",
+    location: "Bangalore, KA",
+    date: "20-10-2024",
     quantity: 500,
     unit: "bottles",
   },
@@ -46,10 +56,9 @@ const PerfumeBuys = [
     name: "Priya Kapoor",
     email: "priyak@gmail.com",
     mobileNumber: "+919876543444",
-    productOrService:
-      "Interested in purchasing artisanal perfumes for a boutique store.",
-    locationandDate: "Pune 21-10-2024",
-    // productOrService: "Artisanal Perfume",
+    productOrService: "Interested in purchasing artisanal perfumes for a boutique store.",
+    location: "Pune, MH",
+    date: "21-10-2024",
     quantity: 300,
     unit: "bottles",
   },
@@ -60,234 +69,162 @@ const PerfumeBuyer = () => {
   const [userIsPremium, setUserIsPremium] = useState(false);
   const [shownNumbers, setShownNumbers] = useState([]);
   const [leadsViewed, setLeadsViewed] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("All");
 
   useEffect(() => {
-    if (!userId) return;
+    if (!userId) {
+        setLoading(false);
+        return;
+    }
 
-    // Load the viewed leads from local storage
-    const storedViewedLeads =
-      JSON.parse(localStorage.getItem(`perfumeViewedLeads_${userId}`)) || [];
-    setShownNumbers(storedViewedLeads);
+    const fetchData = async () => {
+      try {
+        const storedViewedLeads = JSON.parse(localStorage.getItem(`perfumeViewedLeads_${userId}`)) || [];
+        setShownNumbers(storedViewedLeads);
 
-    fetch(
-      `${process.env.REACT_APP_API_ENDPOINT}/getUserWithPremiumStatus/${userId}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
+        const res = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/getUserWithPremiumStatus/${userId}`);
+        const data = await res.json();
         setUserIsPremium(data.isPremium);
         setLeadsViewed(data.leadsViewed);
-        console.log("Premium Status:", data.isPremium);
-      })
-      .catch((error) => {
-        console.error("Error fetching user information:", error);
-      });
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      } finally {
+        setTimeout(() => setLoading(false), 1500);
+      }
+    };
+    fetchData();
   }, [userId]);
 
-  const toggleNumber = async (index) => {
-    if (!userIsPremium) return; // Only premium users can see numbers
+  const toggleNumber = async (leadId) => {
+    if (!userIsPremium) {
+        alert("Premium membership required to view contact details.");
+        return;
+    }
 
     if (leadsViewed >= 25) {
-      alert("You have reached the limit of 25 leads viewed per month.");
+      alert("Monthly limit of 25 leads reached.");
       return;
     }
 
-    if (shownNumbers.includes(index)) return; // If already shown, do nothing
+    if (shownNumbers.includes(leadId)) return;
 
-    const updatedShownNumbers = [...shownNumbers, index];
+    const updatedShownNumbers = [...shownNumbers, leadId];
     setShownNumbers(updatedShownNumbers);
+    localStorage.setItem(`perfumeViewedLeads_${userId}`, JSON.stringify(updatedShownNumbers));
 
-    // Update local storage
-    localStorage.setItem(
-      `perfumeViewedLeads_${userId}`,
-      JSON.stringify(updatedShownNumbers)
-    );
-
-    const buyer = PerfumeBuys[index]; // Get the buyer information
+    const lead = PerfumeBuysData.find(l => l._id === leadId);
 
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_ENDPOINT}/incrementLeadsViewed/${userId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            buyerName: buyer.name,
-            mobileNo: buyer.mobileNumber,
-          }),
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        setLeadsViewed(data.leadsViewed);
-      } else {
-        const errorData = await response.json();
-        console.error("Error incrementing leads viewed:", errorData.error);
-      }
+      await fetch(`${process.env.REACT_APP_API_ENDPOINT}/incrementLeadsViewed/${userId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ buyerName: lead.name, mobileNo: lead.mobileNumber }),
+      });
     } catch (error) {
-      console.error("Error incrementing leads viewed:", error.message);
+      console.error("Error incrementing leads:", error);
     }
   };
 
+  if (loading) return <FullPageSkeleton />;
+
   return (
-    <>
-      <div className="container">
-        <ol className="breadcrumb">
-          <li
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              margin: "5px 30px",
-            }}
-            className="breadcrumb-item"
-          >
-            <Link to={"/"}>Home</Link>
-          </li>
-          <li
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              margin: "5px -25px",
-            }}
-          >
-            /
-          </li>
-          <li
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              margin: "5px 30px",
-            }}
-            className="breadcrumb-item active"
-          >
-            Perfume Leads
-          </li>
-        </ol>
-      </div>
-      <div className="containersx">
-        <div style={{ width: "200px", padding: "10px" }} className="browsers">
-          <h3 style={{ marginTop: "30px" }}>Browse by Category</h3>
-          <ul className="flt-list cust-scroll" id="category-lists">
-            <li>
-              <Link to="#">All Perfumes</Link>
-            </li>
-            <li>
-              <Link to="#">Luxury Perfumes</Link>
-            </li>
-            <li>
-              <Link to="#">Artisanal Perfumes</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="buyers">
-          {PerfumeBuys.map((buyer, index) => (
-            <div key={index} className="buyer-card">
-              <h2 style={{ color: "red" }}>{buyer.productOrService}</h2>
-              <p>
-                <strong>Buyer Name:</strong> {buyer.name}
-              </p>
-              <p>
-                <strong>Quantity:</strong> {buyer.quantity} {buyer.unit}
-              </p>
-              <p>
-                <strong>Location & Date:</strong> {buyer.locationandDate}
-              </p>
-              {/* <p>
-                <strong>Looking For:</strong> {buyer.productOrService}
-              </p> */}
-              <p>
-                <strong>Mobile No.:</strong>{" "}
-                {userIsPremium
-                  ? shownNumbers.includes(index)
-                    ? buyer.mobileNumber
-                    : "********"
-                  : "********"}
-              </p>
-              <div style={{ display: "flex", gap: "10px" }}>
-                {userIsPremium && (
-                  <button
-                    className="detail-btn"
-                    style={{
-                      padding: "5px 10px",
-                      background: "#f7f1f1",
-                      color: "orange",
-                      borderRadius: "3px",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => toggleNumber(index)}
-                  >
-                    Click to see
-                  </button>
-                )}
-              </div>
-              <div className="btns-imp">
-                <Link to={"/login"}>
-                  <button className="detailing-btn">View More</button>
-                </Link>
-                <Link to={"/register-Company"}>
-                  <button className="regis-btn">Register Now</button>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="sidebar">
-          <div className="mains-slide">
-            <div className="tk23-hkCont_onergt">
-              <div className="tk23-hkCont_premserv__box">
-                <h1 className="tk23-hkCont_premserv__ttl">
-                  Our Membership Plans
-                </h1>
-                <div className="tk23-hkCont_premserv__list">
-                  <Link to={"/packages"}>
-                    <div className="tk23-hkCont_premservs">
-                      <span
-                        className="fontss"
-                        style={{ backgroundColor: "#fff" }}
-                      >
-                        Standard Plan
-                      </span>
-                    </div>
-                  </Link>
-                </div>
-                <div className="tk23-hkCont_premserv__list">
-                  <Link to={"/packages"}>
-                    <div className="tk23-hkCont_premservs">
-                      <span
-                        className="fontss"
-                        style={{ backgroundColor: "#fff" }}
-                      >
-                        Advance Plan
-                      </span>
-                    </div>
-                  </Link>
-                </div>
-                <div className="tk23-hkCont_premserv__list">
-                  <Link to={"/packages"}>
-                    <div className="tk23-hkCont_premservs">
-                      <span
-                        className="fontss"
-                        style={{ backgroundColor: "#fff" }}
-                      >
-                        Premium Plan
-                      </span>
-                    </div>
-                  </Link>
-                  <Link to={"/packages"}>
-                    <div className="reach">
-                      <span className="reahhere">Call Now</span>
-                    </div>
-                  </Link>
-                </div>
-              </div>
+    <div className="marketplace-container">
+      <div className="marketplace-layout">
+        <aside className="filters-sidebar">
+          <div className="sidebar-header">
+            <div className="header-title">
+              <FontAwesomeIcon icon={faFilter} />
+              <h2>Category</h2>
             </div>
           </div>
-        </div>
+
+          <div className="filter-group-container">
+            <div className="filter-group">
+              <div className="checkbox-group">
+                {["All Perfumes", "Luxury Perfumes", "Artisanal Perfumes", "Designer Fragrances"].map(cat => (
+                  <label key={cat} className="checkbox-item">
+                    <input 
+                        type="radio" 
+                        name="perfume-cat" 
+                        checked={activeTab === cat}
+                        onChange={() => setActiveTab(cat)}
+                    /> <span>{cat}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="pro-ad-card" style={{ marginTop: '2rem', background: 'linear-gradient(135deg, #6366f1 0%, #4338ca 100%)' }}>
+                <div className="pro-badge" style={{ color: '#4338ca' }}>PLATINUM</div>
+                <h3 style={{ color: '#fff' }}>Global Perfume Network</h3>
+                <p style={{ color: 'rgba(255,255,255,0.9)' }}>Access premium buyers from Dubai, France, and UK markets.</p>
+                <Link to="/packages" className="upgrade-link" style={{ color: '#fff' }}>Upgrade Now &gt;</Link>
+            </div>
+          </div>
+        </aside>
+
+        <main className="content-area">
+          <div className="page-header" style={{ marginBottom: '2rem' }}>
+            <h1 style={{ fontSize: '2.2rem', fontWeight: 900, color: '#0f172a', letterSpacing: '-1px' }}>Premium Perfume Leads</h1>
+            <p style={{ color: '#64748b', fontSize: '1.1rem' }}>Direct connections to verified bulk perfume importers and distributors.</p>
+          </div>
+
+          <div className="product-grid">
+            {PerfumeBuysData.map((lead) => (
+              <div key={lead._id} className="product-card">
+                <div className="card-body">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                    <span className="verified-badge" style={{ background: '#dcfce7', color: '#166534', padding: '0.3rem 0.7rem', borderRadius: '20px', fontSize: '0.7rem', fontWeight: 700 }}>
+                        <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED BUYER
+                    </span>
+                    <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
+                        <FontAwesomeIcon icon={faCalendarAlt} /> {lead.date}
+                    </span>
+                  </div>
+
+                  <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#1e293b', lineHeight: '1.4', marginBottom: '1rem' }}>{lead.productOrService}</h3>
+                  
+                  <div style={{ background: '#f8fafc', borderRadius: '12px', padding: '1rem', display: 'flex', gap: '2rem', marginBottom: '1.5rem' }}>
+                    <div>
+                        <span style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: 700, textTransform: 'uppercase', display: 'block' }}>REQD QUANTITY</span>
+                        <span style={{ fontWeight: 800, color: '#0f172a' }}>{lead.quantity} {lead.unit}</span>
+                    </div>
+                    <div>
+                        <span style={{ fontSize: '0.65rem', color: '#64748b', fontWeight: 700, textTransform: 'uppercase', display: 'block' }}>REGION</span>
+                        <span style={{ fontWeight: 800, color: '#0f172a' }}>{lead.location}</span>
+                    </div>
+                  </div>
+
+                  <div className="supplier-brand-row" style={{ marginBottom: '1.5rem' }}>
+                    <div className="supplier-logo-placeholder" style={{ background: '#6366f1' }}>{lead.name.charAt(0)}</div>
+                    <div className="supplier-info-stack">
+                        <h4 className="supplier-name">{lead.name}</h4>
+                        <div className="contact-status" style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                            <FontAwesomeIcon icon={faPhone} style={{ color: '#10b981', marginRight: '0.5rem' }} />
+                            {userIsPremium && shownNumbers.includes(lead._id) ? lead.mobileNumber : "XXXXXXXXXX"}
+                        </div>
+                    </div>
+                  </div>
+
+                  <div className="card-actions">
+                    <button 
+                        className="btn-quick-quote" 
+                        style={{ width: '100%', justifyContent: 'center' }}
+                        onClick={() => toggleNumber(lead._id)}
+                    >
+                        <FontAwesomeIcon icon={faEye} style={{ marginRight: '0.6rem' }} /> 
+                        {shownNumbers.includes(lead._id) ? "Contact Visible" : "View Contact Details"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </main>
       </div>
       <Whyglobal />
-    </>
+    </div>
   );
 };
 

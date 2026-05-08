@@ -1391,3 +1391,53 @@
     width: 100%;
   }
 }
+
+/* Institutional Global Navbar Styles */
+.institutionalNav {
+  background: #003049;
+  width: 100%;
+  padding: 14px 0;
+  z-index: 100;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.institutionalNavInner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 0 4%;
+}
+
+.instNavItem {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.instNavItem:hover,
+.instNavItem.active {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.instIcon {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .institutionalNavInner {
+    gap: 20px;
+  }
+  .instNavItem {
+    font-size: 12px;
+  }
+}

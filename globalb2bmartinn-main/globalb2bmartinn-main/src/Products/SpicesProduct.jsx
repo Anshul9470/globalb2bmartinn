@@ -8,7 +8,8 @@ import {
   faSearch, 
   faFilter,
   faChevronDown,
-  faChevronUp
+  faChevronUp,
+  faAngleRight
 } from "@fortawesome/free-solid-svg-icons";
 import "./MarketplacePremium.css";
 
@@ -20,8 +21,13 @@ const ProductCard = ({ item, index, apiEndpoint }) => {
   const description = item.description || "";
   const hasLongDesc = description.length > 60;
 
-  return (
-    <div className="product-card" key={index}>
+  // Catalog Logic
+  const sellerObj = item.userId && typeof item.userId === 'object' ? item.userId : (item.seller || item);
+  const hasCatalog = item.isCatalogActive || sellerObj?.isCatalogActive || (sellerObj?.featuredProductIds?.length > 0) || item.hasCatalog;
+  const catalogId = item.catalogId || sellerObj?._id || (item.userId?._id || item.userId) || item._id;
+
+  const CardContent = (
+    <>
       <div className="card-image-wrapper">
         <img 
           src={item.imgSrc || (item.images && item.images.length > 0 ? (item.images[0].startsWith('http') ? item.images[0] : `${apiEndpoint}${item.images[0]}`) : "/assets/spices11.jpeg")} 
@@ -35,6 +41,25 @@ const ProductCard = ({ item, index, apiEndpoint }) => {
           </span>
         </div>
         <span className="card-category-tag">{item.productOrService || item.category}</span>
+        
+        {hasCatalog && (
+          <div className="catalog-badge-overlay" style={{
+            position: 'absolute',
+            bottom: '10px',
+            left: '10px',
+            background: 'rgba(21, 21, 125, 0.9)',
+            color: '#fff',
+            fontSize: '10px',
+            fontWeight: '800',
+            padding: '4px 10px',
+            borderRadius: '4px',
+            letterSpacing: '1px',
+            zIndex: 2,
+            boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+          }}>
+            <FontAwesomeIcon icon={faAngleRight} style={{ marginRight: '5px' }} /> VIEW CATALOG
+          </div>
+        )}
       </div>
 
       <div className="card-body">
@@ -64,7 +89,7 @@ const ProductCard = ({ item, index, apiEndpoint }) => {
               {description}
             </p>
             {hasLongDesc && (
-              <button className="view-more-btn" onClick={() => setIsExpanded(!isExpanded)}>
+              <button className="view-more-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsExpanded(!isExpanded); }}>
                 {isExpanded ? "View Less" : "View More"}
                 <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} />
               </button>
@@ -104,10 +129,29 @@ const ProductCard = ({ item, index, apiEndpoint }) => {
         </div>
 
         <div className="card-actions">
-          <Link to="/register-buyer" className="btn-quick-quote">Quick Quote</Link>
-          <Link to="/register-buyer" className="btn-contact">Contact</Link>
+          <button className="btn-quick-quote" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href='/register-buyer'; }}>Quick Quote</button>
+          <button className="btn-contact" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href='/register-buyer'; }}>Contact</button>
         </div>
       </div>
+    </>
+  );
+
+  if (hasCatalog) {
+    return (
+      <Link 
+        to={`/catalog/${catalogId}`} 
+        className="product-card" 
+        key={index}
+        style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}
+      >
+        {CardContent}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="product-card" key={index}>
+      {CardContent}
     </div>
   );
 };

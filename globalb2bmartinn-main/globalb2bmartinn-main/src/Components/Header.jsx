@@ -20,7 +20,7 @@ function Header() {
   // Comprehensive list of 500+ keywords for suggestions
   // Comprehensive list of keywords for suggestions
   const FEATURED_PRODUCTS_KEYWORDS = [
-    "Pulses", "Saree", "Rice", "Egg Shell Powder", "Cable Tie", "Fruits Powder", "Dry Fruits", "PVC Pipes", "Spices", "Handicrafts", "Desi Ghee", "Herbal Products", "Plastic Product", "Furniture", "Shirts", "Gold Jewelry", "Fresh Fruits", "Mustard Oil", "Onion", "Potato", "Tomato Powder", "Mushroom", "Apple", "Poultry", "Maize", "Decorative Items", "Arts", "Candles"
+    "Pulses", "Saree", "Rice", "Egg Shell Powder", "Cable Tie", "Fruits Powder", "Dry Fruits", "PVC Pipes", "Spices", "Handicrafts", "Desi Ghee", "Herbal Products", "Plastic Product", "Furniture", "Shirts", "Dresses", "Gold Jewelry", "Fresh Fruits", "Mustard Oil", "Onion", "Potato", "Tomato Powder", "Mushroom", "Apple", "Poultry", "Maize", "Decorative Items", "Arts", "Candles", "Perfumes and Skin Care", "CNC Machines"
   ];
 
   const KEYWORDS = Array.from(new Set([
@@ -67,7 +67,7 @@ function Header() {
     "rice": "/rice-seller",
     "egg shell powder": "/egg-supplier",
     "cable tie": "/azoliya-cable-tie",
-    "fruits powder": "/bananapowder",
+    "fruits powder": "/fruit-powder",
     "dry fruits": "/dryfruitsmanu",
     "pvc pipes": "/pipeseller",
     "spices": "/spices-dealers",
@@ -90,7 +90,13 @@ function Header() {
     "maize": "/maizemanu",
     "decorative items": "/decorativeItems",
     "arts": "/arts",
-    "candles": "/candledealers"
+    "candles": "/candledealers",
+    "perfumes and skin care": "/beautyproductsdealer",
+    "cnc machines": "/cnc-machines-suppliers",
+    "fruits": "/fruitscomponent",
+    "jewellery": "/jewellery-seller",
+    "dress": "/dresses-dealers",
+    "dresses": "/dresses-dealers"
   };
 
   // Specialized mapping for established buyer pages
@@ -122,6 +128,7 @@ function Header() {
     "coffee": "/coffeebeanbuyer",
     "dry fruits": "/dryfruit/buyers",
     "clothes": "/clothes-buyer",
+    "dresses": "/clothes-buyer",
     "shirts": "/shirt-buyer",
     "tshirts": "/tshirtbuy",
     "shorts": "/shortsbuyer",
@@ -152,7 +159,11 @@ function Header() {
     "beauty": "/Beauty-products-buyer",
     "toys": "/toy-buyer",
     "sports": "/sports-buyer",
-    "stationery": "/stationery"
+    "stationery": "/stationery",
+    "perfumes and skin care": "/Beauty-products-buyer",
+    "cnc machines": "/buymachines",
+    "fruits": "/fruitscomponent",
+    "jewellery": "/jewellery-seller"
   };
 
   const handleSearch = async (type, queryOverride = null) => {

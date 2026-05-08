@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faStar, 
   faMapMarkerAlt, 
   faCheckCircle, 
   faSearch, 
-  faFilter
+  faFilter,
+  faAngleRight
 } from "@fortawesome/free-solid-svg-icons";
 import "./MarketplacePremium.css";
 
+const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
 const classifiedData = [
   {
     name: "Aqsa",
@@ -100,13 +103,32 @@ const INDIAN_STATES = [
 ];
 
 const Handicraft = () => {
+  const navigate = useNavigate();
   const [selectedCats, setSelectedCats] = useState([]);
   const [locationQuery, setLocationQuery] = useState("");
   const [locationSuggestions, setLocationSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [sortBy, setSortBy] = useState("Most Relevant");
-  const [filteredData, setFilteredData] = useState(classifiedData);
+  const [filteredData, setFilteredData] = useState([]);
+  const [dbProducts, setDbProducts] = useState([]);
   const [activeChip, setActiveChip] = useState("All");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get(`${apiEndpoint}/products/category/Handicraft`);
+        setDbProducts(res.data);
+        setFilteredData([...classifiedData, ...res.data]);
+        setLoading(false);
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+        setFilteredData(classifiedData);
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const handleCatChange = (cat) => {
     setSelectedCats(prev => 
@@ -115,27 +137,40 @@ const Handicraft = () => {
   };
 
   const handleApplyFilters = () => {
-    let result = [...classifiedData];
+    let result = [...classifiedData, ...dbProducts];
 
     if (selectedCats.length > 0) {
-      result = result.filter(item => 
-        selectedCats.some(c => 
-          item.mainProducts.toLowerCase().includes(c.toLowerCase()) || 
-          (item.productOrService && item.productOrService.toLowerCase().includes(c.toLowerCase()))
-        )
-      );
+      result = result.filter(item => {
+        const text = [
+          item.mainProducts, 
+          item.productOrService,
+          Array.isArray(item.title) ? item.title[0] : item.title
+        ].filter(Boolean).join(' ').toLowerCase();
+        return selectedCats.some(c => text.includes(c.toLowerCase()));
+      });
     }
 
     if (locationQuery) {
       const query = locationQuery.toLowerCase();
-      result = result.filter(item => 
-        item.location.toLowerCase().includes(query) ||
-        item.companyName.toLowerCase().includes(query)
-      );
+      result = result.filter(item => {
+        const locText = [
+          item.location, 
+          item.state, 
+          item.city, 
+          item.seller?.statename, 
+          item.seller?.cityname
+        ].filter(Boolean).join(' ').toLowerCase();
+        const compText = [
+          item.companyName, 
+          item.seller?.companyName, 
+          item.seller?.name
+        ].filter(Boolean).join(' ').toLowerCase();
+        return locText.includes(query) || compText.includes(query);
+      });
     }
 
     if (sortBy === "Highest Rated") {
-      result.sort((a, b) => b.rating - a.rating);
+      result.sort((a, b) => (b.rating || 0) - (a.rating || 0));
     }
 
     setFilteredData(result);
@@ -144,17 +179,24 @@ const Handicraft = () => {
   const resetFilters = () => {
     setSelectedCats([]);
     setLocationQuery("");
-    setFilteredData(classifiedData);
+    setFilteredData([...classifiedData, ...dbProducts]);
     setActiveChip("All");
   };
 
   const handleCategoryChip = (cat) => {
     setActiveChip(cat);
     if (cat === "All") { resetFilters(); return; }
-    const result = classifiedData.filter(item =>
-      item.mainProducts.toLowerCase().includes(cat.toLowerCase()) ||
-      item.productOrService.toLowerCase().includes(cat.toLowerCase())
-    );
+    
+    const allData = [...classifiedData, ...dbProducts];
+    const result = allData.filter(item => {
+      const text = [
+        item.mainProducts, 
+        item.productOrService,
+        Array.isArray(item.title) ? item.title[0] : item.title,
+        item.category
+      ].filter(Boolean).join(' ').toLowerCase();
+      return text.includes(cat.toLowerCase());
+    });
     setFilteredData(result);
   };
 
@@ -268,54 +310,99 @@ const Handicraft = () => {
 
           {filteredData.length > 0 ? (
             <div className="product-grid">
-              {filteredData.map((item, index) => (
-                <div className="product-card" key={index}>
-                  <div className="card-image-wrapper">
-                    <img src={item.imgSrc} alt={item.companyName} className="product-img" />
-                    <div className="badge-overlay">
-                      <span className="verified-badge">
-                        <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SUPPLIER
-                      </span>
-                    </div>
-                    <span className="card-category-tag">{item.productOrService}</span>
-                  </div>
+              {filteredData.map((item, index) => {
+                const sellerObj = item.userId && typeof item.userId === 'object' ? item.userId : item.seller;
+                const hasCatalog = item.isCatalogActive || sellerObj?.isCatalogActive || (sellerObj?.featuredProductIds?.length > 0) || item.hasCatalog;
+                const catalogId = item.catalogId || sellerObj?._id || (item.userId?._id || item.userId) || item._id;
+                const companyName = item.companyName || item.seller?.companyName || item.seller?.name || "Verified Supplier";
+                const title = Array.isArray(item.title) ? item.title[0] : (item.mainProducts || item.productOrService);
 
-                  <div className="card-body">
-                    <h3 className="product-title">{item.mainProducts}</h3>
-                    
-                    <div className="supplier-section">
-                      <span className="supplier-label">SUPPLIED BY</span>
-                      
-                      <div className="supplier-brand-row">
-                        <div className="supplier-logo-placeholder">
-                          {item.companyName.charAt(0)}
+                const CardContent = (
+                  <>
+                    <div className="card-image-wrapper">
+                      <img 
+                        src={item.images?.[0] ? `${apiEndpoint}${encodeURI(item.images[0].replace(/\\/g, '/'))}` : (item.imgSrc || "/assets/hand.avif")} 
+                        alt={companyName} 
+                        className="product-img" 
+                        onError={(e) => e.target.src="/assets/hand.avif"}
+                      />
+                      <div className="badge-overlay">
+                        <span className="verified-badge">
+                          <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SUPPLIER
+                        </span>
+                      </div>
+                      <span className="card-category-tag">{item.productOrService || item.category || "Handicraft"}</span>
+                      {hasCatalog && (
+                        <div className="catalog-badge-overlay" style={{
+                          position: 'absolute',
+                          bottom: '10px',
+                          left: '10px',
+                          background: 'rgba(21, 21, 125, 0.9)',
+                          color: '#fff',
+                          fontSize: '10px',
+                          fontWeight: '800',
+                          padding: '4px 10px',
+                          borderRadius: '4px',
+                          letterSpacing: '1px',
+                          zIndex: 2,
+                          boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+                        }}>
+                          <FontAwesomeIcon icon={faAngleRight} style={{ marginRight: '5px' }} /> VIEW CATALOG
                         </div>
-                        <div className="supplier-info-stack">
-                          <h4 className="supplier-name">{item.companyName}</h4>
-                          <div className="rating-box">
-                            <FontAwesomeIcon icon={faStar} />
-                            <span>{item.rating}</span>
+                      )}
+                    </div>
+
+                    <div className="card-body">
+                      <h3 className="product-title">{title}</h3>
+                      
+                      <div className="supplier-section">
+                        <span className="supplier-label">SUPPLIED BY</span>
+                        
+                        <div className="supplier-brand-row">
+                          <div className="supplier-logo-placeholder">
+                            {companyName.charAt(0)}
+                          </div>
+                          <div className="supplier-info-stack">
+                            <h4 className="supplier-name">{companyName}</h4>
+                            <div className="rating-box">
+                              <FontAwesomeIcon icon={faStar} />
+                              <span>{item.rating || "4.5"}</span>
+                            </div>
                           </div>
                         </div>
+                        
+                        <div className="supplier-meta-grid">
+                          <span className="location-tag">
+                            <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || item.state || "India"}
+                          </span>
+                          <span className="years-badge">
+                            <FontAwesomeIcon icon={faCheckCircle} /> {item.years || item.experience || "1 YRS"} Experience
+                          </span>
+                        </div>
                       </div>
-                      
-                      <div className="supplier-meta-grid">
-                        <span className="location-tag">
-                          <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location}
-                        </span>
-                        <span className="years-badge">
-                          <FontAwesomeIcon icon={faCheckCircle} /> {item.years || "1 YRS"} Experience
-                        </span>
-                      </div>
-                    </div>
 
-                    <div className="card-actions">
-                      <Link to="/register-buyer" className="btn-quick-quote">Quick Quote</Link>
-                      <Link to="/register-buyer" className="btn-contact">Contact</Link>
+                      <div className="card-actions">
+                        <button className="btn-quick-quote" onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigate('/register-buyer'); }}>Quick Quote</button>
+                        <button className="btn-contact" onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigate('/register-buyer'); }}>Contact</button>
+                      </div>
                     </div>
+                  </>
+                );
+
+                if (hasCatalog && catalogId) {
+                  return (
+                    <Link to={`/catalog/${catalogId}`} className="product-card" key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      {CardContent}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <div className="product-card" key={index}>
+                    {CardContent}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div className="no-results">

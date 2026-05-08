@@ -40,6 +40,23 @@ const userSchema = new mongoose.Schema({
   images: [String], // Add this field
   plan: { type: String, enum: ["Free", "Standard", "Advanced", "Premium"], default: "Free" },
   role: { type: String, enum: ["buyer", "seller", "admin"], default: "seller" }, // Add role field
+  catalogSubtitle: String,
+  aboutUs: String,
+  catalogHeroTitle: String,
+  catalogHeroDescription: String,
+  catalogContactEmail: String,
+  catalogContactPhone: String,
+  catalogContactAddress: String,
+  catalogHeroImage: String,
+  sellerLogo: String,
+  verificationStatus: { type: String, default: 'Verified' },
+  yearsInBusiness: String,
+  responseRate: String,
+  responseTime: String,
+  certifications: [String],
+  aboutUsImage: String,
+  featuredProductIds: [String],
+  isCatalogActive: { type: Boolean, default: false },
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);

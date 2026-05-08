@@ -30,6 +30,10 @@
 // import FoodPro from './Categoriess/FoodPro';
 // import Jwellery from './Categoriess/Jwellery';
 // import { AuthProvider } from './Buyers/AuthContext';
+import DynamicSellerCatalog from "./Catalog/DynamicSellerCatalog";
+import MarikamuCatalog from "./Catalog/MarikamuCatalog";
+
+
 
 // function App() {
 //   return (
@@ -158,6 +162,8 @@ import LaserProductsSupplier from "./Products/Laserproduct";
 import CeramicTilesSupplier from "./Products/Tiles";
 import RugsManufacturer from "./Products/Rugs&Carpet";
 import LeatherProductsManufacturer from "./Products/LeatherProducts";
+import FruitPowderDealer from "./Products/FruitPowderDealer";
+import DressesDealer from "./Products/DressesDealer";
 import DryFruitBuy from "./Buyers/DryFruitBuy";
 import DecorativeItemBuy from "./Buyers/DecorativeBuy";
 import CoconutOilBuy from "./Buyers/CoconutoilBuy";
@@ -238,6 +244,7 @@ import SriBalajiIndustriesComp from "./Companies/SriBalajiIndustriesComp";
 import HariOmIndustriesComp from "./Companies/Haricomp";
 import VighneshEnterprisesComp from "./Companies/VighneshEnterprisesComp";
 import PulsesDealer from "./Products/Pulses";
+import CncMachinesSupplier from "./Products/CncMachines";
 import SpicesFoodProducts from "./Products/SpicesProduct";
 import IronHammer from "./Products/IronHammer";
 import Rocks from "./Products/Rockts";
@@ -818,15 +825,17 @@ import VideoPopup from "./Components/popup.jsx";
 function App() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
+  const isCatalogRoute = location.pathname.startsWith('/catalog');
+  const isStandaloneRoute = isAdminRoute || isCatalogRoute;
 
   return (
     // <UnderMentanceLanding />
     <AuthProvider>
       <div className="App">
-        {!isAdminRoute && <Topbar />}
-        {!isAdminRoute && <Header />}
+        {!isStandaloneRoute && <Topbar />}
+        {!isStandaloneRoute && <Header />}
         <ScrollToTop />
-        <div className={isAdminRoute ? "" : "mainContent"}>
+        <div className={isStandaloneRoute ? "" : "mainContent"}>
           {/* <VideoPopup /> */}
           <Routes>
             <Route path="/" element={<Home />} />
@@ -1016,6 +1025,7 @@ function App() {
             <Route path="bagsandbeltdealer" element={<BagsAndBeltsSupplier />} />
             <Route path="laserproducts" element={<LaserProductsSupplier />} />
             <Route path="texttlie" element={<CeramicTilesSupplier />} />
+            <Route path="cnc-machines-suppliers" element={<CncMachinesSupplier />} />
 
             <Route path="watertank" element={<WaterTank />} />
             <Route path="clothes" element={<Clothing />} />
@@ -1115,6 +1125,8 @@ function App() {
             <Route path="lifts" element={<LiftComponents />} />
             <Route path="portableofficecabin" element={<PortableOfficeCabin />} />
             <Route path="fruitscomponent" element={<FruitComponents />} />
+            <Route path="fruit-powder" element={<FruitPowderDealer />} />
+            <Route path="dresses-dealers" element={<DressesDealer />} />
             <Route path="flourmils" element={<FlourMillComponents />} />
             <Route
               path="freightforward"
@@ -2192,6 +2204,8 @@ function App() {
             />
             <Route path="ashifa-nursery" element={<TenthCatalog />} />
             <Route path="hv-enterprises" element={<EleventhCatalog />} />
+            <Route path="marikamu-textiles" element={<MarikamuCatalog />} />
+
             <Route path="sunrise-tank" element={<TwelthCatalog />} />
             <Route path="mm-overseas" element={<ThirteenCatalog />} />
             <Route path="kalptaru-tractor-agro" element={<FourteenCatalog />} />
@@ -2257,11 +2271,13 @@ function App() {
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/admin/seller/:id" element={<AdminSellerDetail />} />
             <Route path="/admin/seller/:id/:tab" element={<AdminSellerDetail />} />
+            <Route path="/catalog/:sellerId" element={<DynamicSellerCatalog />} />
             <Route path="/search/:keyword" element={<SearchResultsWrapper />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-        {!isAdminRoute && <Footer />}
+        {!isStandaloneRoute && <Footer />}
       </div>
       <ToastContainer position="top-right" autoClose={3000} />
     </AuthProvider>

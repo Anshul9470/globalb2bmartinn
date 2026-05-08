@@ -127,7 +127,7 @@
 .verified-label {
   margin-top: 10px;
   background: #ecfdf5;
-  color: #059669;
+  color: #ff8000;
   font-size: 11px;
   font-weight: 800;
   padding: 4px 12px;
@@ -538,7 +538,7 @@
 .modal-submit-btn {
   width: 100%;
   padding: 16px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #ffcc33 0%, #ff8000 100%);
   color: white;
   border: none;
   border-radius: 12px;

@@ -43,7 +43,7 @@
     left: 0;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, #3b82f6, #f97316, #10b981); /* Blue-Orange-Green Gradient */
+    background: linear-gradient(90deg, #3b82f6, #f97316, #ffcc33); /* Blue-Orange-Green Gradient */
 }
 
 /* Heading Styling */
@@ -103,7 +103,7 @@
 }
 
 .form-group:nth-of-type(3n) .reb-text:focus {
-    border-color: #10b981;
+    border-color: #ffcc33;
     box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
 }
 
@@ -196,7 +196,7 @@
     font-size: 1.1rem;
     font-weight: 700;
     color: #fff;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, #ffcc33 0%, #ff8000 100%);
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -253,7 +253,7 @@
 
 /* Custom Success/Helper Messages */
 .submitted-msg {
-    color: #059669;
+    color: #ff8000;
     font-weight: 600;
     margin-top: 15px;
     text-align: center;

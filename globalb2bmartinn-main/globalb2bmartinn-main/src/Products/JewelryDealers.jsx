@@ -8,7 +8,8 @@ import {
   faSearch, 
   faFilter,
   faChevronDown,
-  faChevronUp
+  faChevronUp,
+  faAngleRight
 } from "@fortawesome/free-solid-svg-icons";
 import "./MarketplacePremium.css";
 import axios from "axios";
@@ -18,12 +19,18 @@ const ProductCard = ({ item, index, apiEndpoint }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const description = item.description || "";
   const hasLongDesc = description.length > 60;
+  
+  const sellerObj = item.userId && typeof item.userId === 'object' ? item.userId : (item.seller || {});
+  const hasCatalog = item.isCatalogActive || sellerObj.isCatalogActive || (sellerObj.featuredProductIds?.length > 0) || item.hasCatalog;
+  const catalogId = item.catalogId || sellerObj._id || (item.userId?._id || item.userId) || item._id;
 
-  return (
-    <div className="product-card" key={index}>
+  const cardContent = (
+    <>
       <div className="card-image-wrapper">
         <img 
-          src={item.imgSrc || (item.images && item.images.length > 0 ? (item.images[0].startsWith('http') ? item.images[0] : `${apiEndpoint}${item.images[0]}`) : "/assets/premium_jewelry.png")} 
+          src={item.images?.[0] 
+            ? (item.images[0].startsWith('http') ? item.images[0] : `${apiEndpoint}${item.images[0].startsWith('/') ? '' : '/'}${item.images[0]}`) 
+            : (item.imgSrc || "/assets/premium_jewelry.png")} 
           alt={item.companyName || item.title} 
           className="product-img" 
           onError={(e) => e.target.src="/assets/premium_jewelry.png"}
@@ -33,19 +40,37 @@ const ProductCard = ({ item, index, apiEndpoint }) => {
             <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SUPPLIER
           </span>
         </div>
-        <span className="card-category-tag">{item.productOrService || item.category}</span>
+        {hasCatalog && (
+          <div className="catalog-badge-overlay" style={{
+            position: 'absolute',
+            bottom: '10px',
+            left: '10px',
+            background: 'rgba(255, 140, 0, 0.9)',
+            color: '#fff',
+            fontSize: '10px',
+            fontWeight: '800',
+            padding: '4px 10px',
+            borderRadius: '4px',
+            letterSpacing: '1px',
+            zIndex: 2,
+            boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+          }}>
+            <FontAwesomeIcon icon={faAngleRight} style={{ marginRight: '5px' }} /> VIEW CATALOG
+          </div>
+        )}
+        <span className="card-category-tag">{item.productOrService || item.category || "Jewellery"}</span>
       </div>
 
       <div className="card-body">
-        <h3 className="product-title">{item.mainProducts || item.title}</h3>
+        <h3 className="product-title">{item.title || item.mainProducts}</h3>
         
-        {description && (
+        {(description || item.productOrService) && (
           <div className="desc-container">
             <p className={`product-desc ${isExpanded ? 'expanded' : ''}`}>
-              {description}
+              {description || item.productOrService}
             </p>
             {hasLongDesc && (
-              <button className="view-more-btn" onClick={() => setIsExpanded(!isExpanded)}>
+              <button className="view-more-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsExpanded(!isExpanded); }}>
                 {isExpanded ? "View Less" : "View More"}
                 <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} />
               </button>
@@ -58,10 +83,10 @@ const ProductCard = ({ item, index, apiEndpoint }) => {
           
           <div className="supplier-brand-row">
             <div className="supplier-logo-placeholder">
-              {(item.companyName || "S").charAt(0)}
+              {(item.companyName || sellerObj.companyName || sellerObj.name || "S").charAt(0)}
             </div>
             <div className="supplier-info-stack">
-              <h4 className="supplier-name">{item.companyName || "Verified Seller"}</h4>
+              <h4 className="supplier-name">{item.companyName || sellerObj.companyName || sellerObj.name || "Verified Seller"}</h4>
               <div className="rating-box">
                 <FontAwesomeIcon icon={faStar} />
                 <span>{item.rating || "4.5"}</span>
@@ -71,7 +96,7 @@ const ProductCard = ({ item, index, apiEndpoint }) => {
           
           <div className="supplier-meta-grid">
             <span className="location-tag">
-              <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || "India"}
+              <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || sellerObj.cityname || "India"}
             </span>
             <span className="years-badge">
               <FontAwesomeIcon icon={faCheckCircle} /> {item.years || "1 YRS"} Experience
@@ -80,10 +105,24 @@ const ProductCard = ({ item, index, apiEndpoint }) => {
         </div>
 
         <div className="card-actions">
-          <Link to="/register-buyer" className="btn-quick-quote">Quick Quote</Link>
-          <Link to="/register-buyer" className="btn-contact">Contact</Link>
+          <Link to="/register-buyer" className="btn-quick-quote" onClick={(e) => e.stopPropagation()}>Quick Quote</Link>
+          <Link to="/register-buyer" className="btn-contact" onClick={(e) => e.stopPropagation()}>Contact</Link>
         </div>
       </div>
+    </>
+  );
+
+  if (hasCatalog) {
+    return (
+      <Link to={`/catalog/${catalogId}`} className="product-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+        {cardContent}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="product-card">
+      {cardContent}
     </div>
   );
 };
@@ -112,55 +151,10 @@ const JewelryDealers = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Broad search for jewelry related sellers
-        const res = await axios.get(`${apiEndpoint}/by-category/Jewelry`);
-        const dbSellers = res.data || [];
-
-        const jewelryAssets = [
-          "/assets/premium_jewelry.png", 
-          "/assets/jewelry_silver.png", 
-          "/assets/jewelry_pearl.png", 
-          "/assets/gold3.jpg", 
-          "/assets/jwellery1.jpeg",
-          "/assets/jwellery2.jpeg",
-          "/assets/jwellery3.jpeg",
-          "/assets/jwellery4.jpeg",
-          "/assets/jwellery5.jpeg",
-          "/assets/jwellery7.jpeg",
-          "/assets/jwellery8.jpeg"
-        ];
-
-        const mappedSellers = dbSellers
-          .filter(s => {
-            const forbiddenKeywords = ["rice", "animal feed", "coal", "coir", "agro", "cement", "oil"];
-            const lowerCompanyName = (s.companyName || "").toLowerCase();
-            const lowerProduct = (s.productOrService || "").toLowerCase();
-            
-            // If the company name or product contains too many agro/industrial terms, skip it
-            const isTooBroad = forbiddenKeywords.filter(k => lowerCompanyName.includes(k) || lowerProduct.includes(k)).length >= 2;
-            
-            return !isTooBroad && 
-                   !lowerCompanyName.includes("hub") &&
-                   (lowerCompanyName.includes("jewel") || lowerProduct.includes("jewel") || lowerProduct.includes("ornament") || lowerProduct.includes("neck"));
-          })
-          .map((s, idx) => ({
-            _id: s._id || `jewel-${idx}`,
-            companyName: s.companyName || "Exquisite Jewels Hub",
-            name: s.name,
-            location: `${s.cityname || s.city || 'India'}, ${s.statename || s.state || ''}`,
-            productOrService: s.productOrService || "Jewellery Dealer",
-            mainProducts: s.productOrService || "Designer Jewellery & Ornaments",
-            description: s.description || "Premium manufacturer and wholesaler of high-quality imitation, gold, and silver jewelry. Specializing in traditional and modern designs.",
-            imgSrc: (s.images && s.images.length > 0) ? s.images[0] : jewelryAssets[idx % jewelryAssets.length],
-            rating: (4.4 + (idx % 7) * 0.1).toFixed(1),
-            years: (2 + (idx % 12)).toString() + " YRS",
-            isUserCard: true
-          }));
-
-        // Filter out fake "Hub" entries from static data
-        const cleanStatic = staticJewelryData.filter(item => !item.companyName.includes("Hub") || item.companyName.includes("Rajputana") || item.companyName.includes("Sparkle") || item.companyName.includes("Heritage"));
-
-        const combined = [...cleanStatic, ...mappedSellers];
+        const res = await axios.get(`${apiEndpoint}/products/category/Jewellery`);
+        const dbProducts = res.data || [];
+        
+        const combined = [...staticJewelryData, ...dbProducts];
         setAllData(combined);
         setFilteredData(combined);
       } catch (err) {
@@ -184,24 +178,28 @@ const JewelryDealers = () => {
     let result = [...allData];
 
     if (selectedCats.length > 0) {
-      result = result.filter(item => 
-        selectedCats.some(c => 
-          item.mainProducts.toLowerCase().includes(c.toLowerCase()) || 
-          (item.productOrService && item.productOrService.toLowerCase().includes(c.toLowerCase()))
-        )
-      );
+      result = result.filter(item => {
+        const text = [
+          item.mainProducts, 
+          item.productOrService, 
+          item.title
+        ].filter(Boolean).join(' ').toLowerCase();
+        return selectedCats.some(c => text.includes(c.toLowerCase()));
+      });
     }
 
     if (locationQuery) {
       const query = locationQuery.toLowerCase();
-      result = result.filter(item => 
-        item.location.toLowerCase().includes(query) ||
-        item.companyName.toLowerCase().includes(query)
-      );
-    }
-
-    if (sortBy === "Highest Rated") {
-      result.sort((a, b) => b.rating - a.rating);
+      result = result.filter(item => {
+        const locText = [
+          item.location, 
+          item.city, 
+          item.state,
+          item.seller?.cityname,
+          item.seller?.statename
+        ].filter(Boolean).join(' ').toLowerCase();
+        return locText.includes(query);
+      });
     }
 
     setFilteredData(result);
@@ -218,10 +216,15 @@ const JewelryDealers = () => {
   const handleCategoryChip = (cat) => {
     setActiveChip(cat);
     if (cat === "All") { resetFilters(); return; }
-    const result = allData.filter(item =>
-      item.mainProducts.toLowerCase().includes(cat.toLowerCase()) ||
-      item.productOrService.toLowerCase().includes(cat.toLowerCase())
-    );
+    const result = allData.filter(item => {
+      const text = [
+        item.mainProducts, 
+        item.productOrService, 
+        item.title,
+        item.category
+      ].filter(Boolean).join(' ').toLowerCase();
+      return text.includes(cat.toLowerCase());
+    });
     setFilteredData(result);
     setSearchContext(cat + " Jewelry");
   };

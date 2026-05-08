@@ -1,679 +1,543 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./common.css";
+import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faStar, 
+  faMapMarkerAlt, 
+  faCheckCircle, 
+  faSearch, 
+  faFilter,
+  faAngleRight
+} from "@fortawesome/free-solid-svg-icons";
+import "./MarketplacePremium.css";
+import FullPageSkeleton from "../Components/FullPageSkeleton";
 
-const classifiedData = [
+const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+
+const beautyData = [
   {
     _id: "adhvik-singh-jaipur-rajasthan",
     name: "Adhvik Singh",
     email: "venushnhc@gmail.com",
-    password: "RYOT9A24kk3211@VH#$",
-    mobileNumber: "7877926538",
     companyName: "Venus Herbal and Healthcare",
-    statename: "Rajasthan",
-    cityname: "Jaipur",
-    productOrService:
-      "Since 1890, we are working to Promote Health, Beauty & Wellness",
+    productOrService: "Since 1890, we are working to Promote Health, Beauty & Wellness",
     imgSrc: "/assets/herbal-beauty.jpg",
     mainProducts: "Health, Beauty & Wellness Products",
-    altText: "Venus Herbal and Healthcare - Jaipur",
     years: "1 YRS",
     location: "Jaipur, Rajasthan",
-    tooltipText: "Venus Herbal and Healthcare, Jaipur",
     rating: "4.8",
-    ratingPercent: "96%",
     ratingsCount: "320",
     responseRate: "92%",
-    whatsappConfirmed: true,
   },
   {
     name: "neha",
     email: "neha1234@gmail.com",
-    password: "neha12345",
-    mobileNumber: "8800705292",
     companyName: "Trnatva Beauty",
     productOrService: "Skincare, Haircare and Plant Based Make",
-    imgSrc: "/assets/beauty1.jpeg", // Provide the correct image path
-    altText: "Skincare Products - Trnatva Beauty",
+    imgSrc: "/assets/beauty1.jpeg",
     mainProducts: "Skincare, Haircare, Plant Based Makeup",
     years: "1 YRS",
     location: "Delhi, India",
-    tooltipText: "123 Beauty Lane, New Delhi, India",
     rating: "4.8",
-    ratingPercent: "96%",
     ratingsCount: "120",
     responseRate: "90%",
   },
   {
     name: "Jay",
     email: "jay123@gmail.com",
-    password: "jay12345",
-    mobileNumber: "9773843100",
     companyName: "Milap Cosmetics",
     productOrService: "Cosmetics",
-    imgSrc: "/assets/beauty7.jpeg", // Provide the correct image path
+    imgSrc: "/assets/beauty7.jpeg",
     mainProducts: "Lipsticks, Eyeliners, Foundation, Makeup Brushes",
-    altText: "Cosmetics - Milap Cosmetics",
     years: "1 YR",
     location: "Delhi, India",
-    tooltipText: "Location details not provided",
-    rating: "88%",
-    ratingPercent: "96%",
+    rating: "4.7",
     ratingsCount: "150",
     responseRate: "95%",
   },
   {
     name: "Dhiraj",
     email: "Dhiraj123@gmail.com",
-    password: "Dhiraj123",
-    mobileNumber: "9911555691",
     companyName: "Pink Root",
     productOrService: "Cosmetic & Skincare",
-    imgSrc: "/assets/beauty8.jpeg", // Provide the correct image path
+    imgSrc: "/assets/beauty8.jpeg",
     mainProducts: "Face Creams, Moisturizers, Serums, Face Masks",
-    altText: "Cosmetic & Skincare - Pink Root",
     years: "1 YR",
     location: "Mumbai, India",
-    tooltipText: "Location details not provided",
-    rating: "86%",
-    ratingPercent: "97%",
+    rating: "4.6",
     ratingsCount: "180",
     responseRate: "94%",
   },
   {
-    _id: "s345678901abcdef234571", // Random unique ID
+    _id: "s345678901abcdef234571",
     name: "Mahesh Patel",
     email: "maheshpatel@gmail.com",
-    password: "mahesh@123",
-    mobileNumber: "9725165308",
     companyName: "Ranchi Enterprise",
     productOrService: "Coating Powder & Aerosol Spray",
-    imgSrc: "/assets/spary.jpg", // Example image path
+    imgSrc: "/assets/spary.jpg",
     mainProducts: "Coating Powders, Aerosol Sprays",
-    altText: "Coating Powder & Aerosol Spray - Ranchi Enterprise",
     years: "1 YRS",
     location: "Ranchi, India",
-    tooltipText: "Unit 8, Industrial Estate, Ranchi, India",
     rating: "4.3",
-    ratingPercent: "86%",
     ratingsCount: "34",
     responseRate: "80%",
-    whatsappConfirmed: true,
   },
-
   {
     name: "Manoj",
     email: "manoj123@gmail.com",
-    password: "manoj123",
-    mobileNumber: "9711977631",
     companyName: "Skin Secrets",
     productOrService: "Cosmetic",
-    imgSrc: "/assets/beauty9.jpeg", // Provide the correct image path
+    imgSrc: "/assets/beauty9.jpeg",
     mainProducts: "Skincare Products, Makeup, Beauty Tools",
-    altText: "Cosmetic - Skin Secrets",
     years: "1 YR",
     location: "Delhi, India",
-    tooltipText: "Location details not provided",
-    rating: "87%",
-    ratingPercent: "95%",
+    rating: "4.5",
     ratingsCount: "160",
     responseRate: "93%",
   },
   {
     name: "Sandeep",
     email: "sandeep123@gmail.com",
-    password: "sandeep123",
-    mobileNumber: "8826956926",
     companyName: "RICH’N’PURE PROFESSIONALS",
     productOrService: "Cosmetic",
-    imgSrc: "/assets/beauty3.jpeg", // Provide the correct image path
+    imgSrc: "/assets/beauty3.jpeg",
     mainProducts: "Skincare, Haircare, Beauty Products",
-    altText: "Cosmetic - RICH’N’PURE PROFESSIONALS",
     years: "1 YR",
     location: "Delhi, India",
-    tooltipText: "Location details not provided",
-    rating: "82%",
-    ratingPercent: "93%",
+    rating: "4.2",
     ratingsCount: "110",
     responseRate: "88%",
   },
   {
     name: "Rohit Goyal",
     email: "Rohit123@gmail.com",
-    password: "Rohit123",
-    mobileNumber: "7669006909",
     companyName: "PALMIST HEALTHCARE Pvt. Ltd.",
     productOrService: "Cosmetic",
-    imgSrc: "/assets/beauty2.jpeg", // Provide the correct image path
+    imgSrc: "/assets/beauty2.jpeg",
     mainProducts: "Skincare Products, Haircare Products, Beauty Supplements",
-    altText: "Cosmetic - PALMIST HEALTHCARE Pvt. Ltd.",
     years: "1 YR",
     location: "Delhi, India",
-    tooltipText: "Location details not provided",
-    rating: "78%",
-    ratingPercent: "89%",
+    rating: "4.4",
     ratingsCount: "70",
     responseRate: "84%",
   },
   {
     name: "Aditi",
     email: "Aditi123@gmail.com",
-    password: "Aditi123",
-    mobileNumber: "9899283963",
     companyName: "Aditi Cosmetics",
     productOrService: "Cosmetic Manufacturer",
-    imgSrc: "/assets/beauty10.jpeg", // Provide the correct image path
+    imgSrc: "/assets/beauty10.jpeg",
     mainProducts: "Skincare, Makeup, Haircare",
-    altText: "Cosmetic Manufacturer - Aditi Cosmetics",
     years: "1 YRS",
     location: "Mumbai, India",
-    tooltipText: "Location details not provided",
-    rating: "88%",
-    ratingPercent: "90%",
+    rating: "4.6",
     ratingsCount: "120",
     responseRate: "89%",
   },
   {
-    name: "Jhankar",
-    email: "abc@gmail.com",
-    mobileNumber: "8112298427",
-    companyName: "Jhankar Bangles",
-    productOrService: "Bangles",
-    imgSrc: "/assets/bangle1.jpeg",
-    altText: "Bangles - Jhankar Bangles",
-    mainProducts:
-      "Gold Bangles, Silver Bangles, Custom Bangles, Traditional Bangles",
-    years: "1 YRS",
-    location: "Mumbai, India",
-    tooltipText: "789 Jewelry Street, Fashion District, Mumbai, India",
-    rating: "4.6",
-    ratingPercent: "92%",
-    ratingsCount: "270",
-    responseRate: "90%",
-  },
-
-  {
     name: "Sudheer",
     email: "sudheer123@gmail.com",
-    mobileNumber: "7530966614",
     companyName: "Florish Professional Pvt. Ltd.",
     productOrService: "Cosmetic Manufacturer",
-    imgSrc: "/assets/cosma.jpeg", // Provide the correct image path
+    imgSrc: "/assets/cosma.jpeg",
     mainProducts: "Skincare Products, Makeup, Haircare Products",
-    altText: "Cosmetic Manufacturer - Florish Professional Pvt. Ltd.",
     years: "1 YRS",
     location: "Bangalore, India",
-    tooltipText: "Location details not provided",
-    rating: "82%",
-    ratingPercent: "87%",
+    rating: "4.5",
     ratingsCount: "55",
     responseRate: "90%",
-    whatsappConfirmed: true,
-  },
-  {
-    name: "Aditi",
-    email: "Aditi123@gmail.com",
-    mobileNumber: "9899283963",
-    companyName: "Aditi Cosmetics",
-    productOrService: "Cosmetic Manufacturer",
-    imgSrc: "/assets/beauty11.jpeg", // Provide the correct image path
-    mainProducts: "Skincare Products, Makeup, Haircare Products",
-    altText: "Cosmetic Manufacturer - Aditi Cosmetics",
-    years: "1 YRS",
-    location: "Mumbai, India",
-    tooltipText: "Location details not provided",
-    rating: "88%",
-    ratingPercent: "92%",
-    ratingsCount: "110",
-    responseRate: "89%",
-  },
-  {
-    name: "Sudheer",
-    email: "sudheer123@gmail.com",
-    mobileNumber: "7530966614",
-    companyName: "Florish Profesional Pvt. Ltd.",
-    productOrService: "Cosmetic Manufacturer",
-    imgSrc: "/assets/cosma1.jpeg", // Provide the correct image path
-    mainProducts: "Skincare Products, Makeup, Haircare Products",
-    altText: "Cosmetic Manufacturer - Florish Profesional Pvt. Ltd.",
-    years: "1 YRS",
-    location: "Hyderabad, India",
-    tooltipText: "Location details not provided",
-    rating: "80%",
-    ratingPercent: "85%",
-    ratingsCount: "50",
-    responseRate: "82%",
   },
   {
     name: "Amit",
     email: "amit123@gmail.com",
-    mobileNumber: "9810443032",
     companyName: "Natural Aroma",
     productOrService: "Cosmetic Manufacturer",
-    imgSrc: "/assets/beauty12.jpeg", // Provide the correct image path
+    imgSrc: "/assets/beauty12.jpeg",
     mainProducts: "Skincare Products, Essential Oils, Body Care",
-    altText: "Cosmetic Manufacturer - Natural Aroma",
     years: "1 YRS",
     location: "Delhi, India",
-    tooltipText: "Location details not provided",
-    rating: "78%",
-    ratingPercent: "84%",
+    rating: "4.3",
     ratingsCount: "55",
     responseRate: "81%",
   },
   {
     name: "Hari Om",
     email: "Hariom123@gmail.com",
-    mobileNumber: "8570851605",
     companyName: "Captain Biotech - Ayurvedic & Herbal Products",
     productOrService: "Cosmetic Manufacturer",
-    imgSrc: "/assets/beauty13.jpeg", // Provide the correct image path
+    imgSrc: "/assets/beauty13.jpeg",
     mainProducts: "Herbal Skincare, Ayurvedic Cosmetics, Natural Remedies",
-    altText:
-      "Cosmetic Manufacturer - Captain Biotech - Ayurvedic & Herbal Products",
     years: "1 YRS",
     location: "Bangalore, India",
-    tooltipText: "Location details not provided",
-    rating: "80%",
-    ratingPercent: "85%",
+    rating: "4.4",
     ratingsCount: "50",
     responseRate: "82%",
   },
   {
-    _id: "p1234567890q012347",
-    name: "Nayyer",
-    email: "nayyerbangles@gmail.com",
-    password: "nayyerbangle",
-    mobileNumber: "9314928824",
-    companyName: "Nayyer Bangle Manufacturer",
-    productOrService: "Bangles",
-    imgSrc: "/assets/bangles1.jpeg",
-    mainProducts: "Gold Bangles, Silver Bangles, Traditional Bangles",
-    altText: "Bangles - Nayyer Bangle Manufacturer",
-    years: "1 YRS",
-    location: "Mumbai, Maharashtra, India",
-    tooltipText: "Sector 9, Jewelry Market, Mumbai, Maharashtra, India",
-    rating: "4.6",
-    ratingPercent: "92%",
-    ratingsCount: "60",
-    responseRate: "88%",
-    whatsappConfirmed: true,
-  },
-  {
     _id: "a1234567890wxyz5679",
     name: "Subhash Rashkar",
-    email: "subhashrashkar12@gmail.com",
-    password: "subhash rashkar",
-    mobileNumber: "7385244927",
     companyName: "Perfume Phafcially",
     productOrService: "Perfume",
     imgSrc: "/assets/perfume.jpeg",
     mainProducts: "Fragrances, Perfume Oils, Essential Oils",
-    altText: "Perfume Products - Perfume Phafcially",
     years: "1 YRS",
     location: "Mumbai, India",
-    tooltipText: "Perfume Phafcially, Mumbai, India",
     rating: "4.5",
-    ratingPercent: "90%",
     ratingsCount: "120",
     responseRate: "92%",
-    whatsappConfirmed: true,
   },
   {
     _id: "dsf-kannauj-oil-production",
     name: "Anand Kumar Shrivastava",
-    email: "abc@gmail.com",
-    password: "anand@123",
-    mobileNumber: "9140924863",
     companyName: "DSF Kannauj Oil Production",
     productOrService: "Ittar",
     imgSrc: "/assets/ittar.jpg",
     mainProducts: "Ittar (Fragrance Oil)",
-    altText: "DSF Kannauj Oil Production - Ittar",
     years: "1 YRS",
     location: "Kannauj, Uttar Pradesh, India",
-    tooltipText: "DSF Kannauj Oil Production, Ittar, Kannauj, UP",
     rating: "4.7",
-    ratingPercent: "93%",
     ratingsCount: "50",
     responseRate: "81%",
-    whatsappConfirmed: true,
-  },
-  {
-    _id: "ayush-jain-delhi",
-    name: "Ayush Jain",
-    email: "AyushJain@gmail.com",
-    password: "12345678",
-    mobileNumber: "9404160600",
-    companyName: "Ayush Jain",
-    statename: "",
-    cityname: "Delhi",
-    productOrService: "Cosmetics",
-    imgSrc: "/assets/cosmetic6.jpg",
-    mainProducts: "Cosmetics",
-    altText: "Ayush Jain - Delhi",
-    years: "1 YRS",
-    location: "Delhi",
-    tooltipText: "Ayush Jain, Delhi",
-    rating: "4.5",
-    ratingPercent: "90%",
-    ratingsCount: "150",
-    responseRate: "92%",
-    whatsappConfirmed: false,
-  },
-  {
-    name: "Devarajan",
-    email: "7598133213@gmail.com",
-    password: "7598133213",
-    mobileNumber: "7598133213",
-    companyName: "Perfume Phenyl",
-    productOrService: "Perfume Phenyl",
-    imgSrc: "/assets/perfume1.jpg",
-    mainProducts: "Perfume Phenyl, Air Fresheners, Cleaning Products",
-    altText: "Perfume Phenyl - Air Fresheners",
-    years: "1 YRS",
-    location: "Chennai, Tamil Nadu, India",
-    tooltipText: "Perfume Phenyl, Chennai",
-    rating: "4.4",
-    ratingPercent: "88%",
-    ratingsCount: "60",
-    responseRate: "85%",
-    whatsappConfirmed: true,
-  },
-  {
-    name: "Sandy",
-    email: "SebounnCosmetics@gmail.com",
-    password: "12345678",
-    mobileNumber: "9527432450",
-    companyName: "Sebounn Cosmetics",
-    productOrService: "Skin Care",
-    imgSrc: "/assets/skincare1.jpg",
-    mainProducts: "Face Creams, Moisturizers, Serums",
-    altText: "Sebounn Cosmetics - Skin Care",
-    years: "1 YRS",
-    location: "Pune, Maharashtra, India",
-    tooltipText: "Sebounn Cosmetics, Pune",
-    rating: "4.3",
-    ratingPercent: "86%",
-    ratingsCount: "120",
-    responseRate: "90%",
-    whatsappConfirmed: true,
-  },
-  {
-    name: "Sandy",
-    email: "Sebounncosmetics@gmail.com",
-    password: "SandySandy",
-    mobileNumber: "9527432450",
-    companyName: "Sebounn Cosmetics",
-    productOrService: "Cosmetics",
-    imgSrc: "/assets/cosmetics3.jpg",
-    mainProducts: "Skincare, Makeup, Beauty Products",
-    altText: "Sandy - Sebounn Cosmetics",
-    years: "1 YRS",
-    location: "Pune, Maharashtra, India",
-    tooltipText: "Sandy, Pune",
-    rating: "4.6",
-    ratingPercent: "92%",
-    ratingsCount: "78",
-    responseRate: "89%",
-    whatsappConfirmed: true,
   },
   {
     _id: "lavistahealthcare-vadodra",
     name: "Ashok Kumar Lakhlani",
-    email: "lavistahealthcare@gmail.com",
-    password: "Ashok Kumar Lakhlani",
-    mobileNumber: "8320259525",
     companyName: "lavistahealthcare",
-    statename: "Gujarat",
-    cityname: "Vadodara",
     productOrService: "Beauty and Cosmetics",
     imgSrc: "/assets/beauty14.jpg",
     mainProducts: "Beauty Products, Cosmetics, Skin Care, Hair Care",
-    altText: "lavistahealthcare - Beauty and Cosmetics",
     years: "1 YRS",
     location: "Vadodara, Gujarat, India",
-    tooltipText: "Lavista Healthcare - High-quality Beauty & Cosmetic Products",
     rating: "4.0",
-    ratingPercent: "85%",
     ratingsCount: "120",
     responseRate: "95%",
-    whatsappConfirmed: false,
-  },
+  }
+];
 
-  // Add more items if needed
+const INDIAN_STATES = [
+  "Maharashtra", "Gujarat", "Uttar Pradesh", "Punjab", "Haryana", "Andhra Pradesh",
+  "Tamil Nadu", "Karnataka", "West Bengal", "Bihar", "Rajasthan", "Madhya Pradesh",
+  "Delhi", "Kolkata", "Mumbai", "Pune", "Nashik", "Ahmedabad", "Surat", "Jaipur"
 ];
 
 const BeautyDealer = () => {
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [locationQuery, setLocationQuery] = useState("");
+  const [locationSuggestions, setLocationSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
+  const [dbProducts, setDbProducts] = useState([]);
+  const [activeChip, setActiveChip] = useState("All");
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    const fetchBeautyProducts = async () => {
+      try {
+        setLoading(true);
+        // Try fetching from database if endpoint exists
+        const res = await axios.get(`${apiEndpoint}/products/category/Beauty`);
+        setDbProducts(res.data);
+        setFilteredData([...beautyData, ...res.data]);
+      } catch (err) {
+        console.error("Failed to fetch beauty products:", err);
+        setFilteredData(beautyData);
+      } finally {
+        setTimeout(() => setLoading(false), 2000);
+      }
+    };
+    fetchBeautyProducts();
+  }, []);
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategories(prev => 
+      prev.includes(category) 
+        ? prev.filter(c => c !== category) 
+        : [...prev, category]
+    );
+  };
+
+  const handleApplyFilters = () => {
+    let result = [...beautyData, ...dbProducts];
+
+    if (selectedCategories.length > 0) {
+      result = result.filter(item => 
+        selectedCategories.some(cat => {
+            const text = [
+                item.mainProducts, 
+                item.productOrService, 
+                item.companyName,
+                item.category
+            ].filter(Boolean).join(' ').toLowerCase();
+            return text.includes(cat.toLowerCase());
+        })
+      );
+    }
+
+    if (locationQuery) {
+      const query = locationQuery.toLowerCase();
+      result = result.filter(item => {
+        const locText = [
+            item.location, 
+            item.state, 
+            item.city, 
+            item.seller?.statename, 
+            item.seller?.cityname
+        ].filter(Boolean).join(' ').toLowerCase();
+        
+        const compText = [
+            item.companyName, 
+            item.seller?.companyName, 
+            item.seller?.name
+        ].filter(Boolean).join(' ').toLowerCase();
+        
+        return locText.includes(query) || compText.includes(query);
+      });
+    }
+
+    setFilteredData(result);
+  };
+
+  const resetFilters = () => {
+    setSelectedCategories([]);
+    setLocationQuery("");
+    setFilteredData([...beautyData, ...dbProducts]);
+    setActiveChip("All");
+  };
+
+  const handleCategoryChip = (cat) => {
+    setActiveChip(cat);
+    if (cat === "All") { resetFilters(); return; }
+    const result = [...beautyData, ...dbProducts].filter(item => {
+        const text = [
+            item.mainProducts, 
+            item.productOrService, 
+            item.companyName,
+            item.category
+        ].filter(Boolean).join(' ').toLowerCase();
+        return text.includes(cat.toLowerCase());
+    });
+    setFilteredData(result);
+  };
+
+  const beautyCategories = [
+    { label: "All",        img: "/assets/beauty1.jpeg" },
+    { label: "Perfume",    img: "/assets/perfume.jpeg" },
+    { label: "Skincare",   img: "/assets/beauty2.jpeg" },
+    { label: "Makeup",     img: "/assets/beauty7.jpeg" },
+    { label: "Cosmetic",   img: "/assets/beauty9.jpeg" },
+  ];
+
+  if (loading) {
+    return (
+      <div className="marketplace-container">
+        <FullPageSkeleton />
+      </div>
+    );
+  }
+
   return (
-    <div className="main-box">
-      <aside>
-        <div className="flt-box-wrap">
-          <div className="flt-box mb-0 flt-head">Filters By</div>
-          <div className="flt-box bdrt-0">
-            <p className="flt-title">Related Categories</p>
-            <div className="flt-content">
-              <ul className="flt-list cust-scroll">
-                <li>
-                  <Link to="#">Skincare</Link>
-                </li>
-                <li>
-                  <Link to="#">Haircare</Link>
-                </li>
-                <li>
-                  <Link to="#">Makeup</Link>
-                </li>
-                <li>
-                  <Link to="#">Body Care</Link>
-                </li>
-                <li>
-                  <Link to="#">Fragrances</Link>
-                </li>
-              </ul>
+    <div className="marketplace-container">
+      <div className="marketplace-layout">
+        <aside className="filters-sidebar">
+          <div className="sidebar-header">
+            <div className="header-title">
+              <FontAwesomeIcon icon={faFilter} />
+              <h2>Filters</h2>
             </div>
+            <button className="reset-link" onClick={resetFilters}>Reset</button>
           </div>
-          <div className="flt-box">
-            <p className="flt-title">By State</p>
-            <div className="flt-content">
-              <div className="flt-search">
-                <input
-                  type="text"
-                  name="state_id"
-                  placeholder="Search State"
-                  id="state-search-input"
-                />
+
+          <div className="filter-group-container">
+            <div className="filter-group">
+              <label className="filter-label">Beauty Categories</label>
+              <div className="checkbox-group">
+                {["Perfume", "Skincare", "Makeup", "Cosmetic", "Haircare", "Herbal"].map(cat => (
+                  <label key={cat} className="checkbox-item">
+                    <input 
+                      type="checkbox" 
+                      checked={selectedCategories.includes(cat)}
+                      onChange={() => handleCategoryChange(cat)}
+                    /> <span>{cat}</span>
+                  </label>
+                ))}
               </div>
-              <ul className="flt-list cust-scroll" id="state-lists">
-                <li>
-                  <Link to="#">All India</Link>
-                </li>
-                <li>
-                  <Link to="#">Delhi</Link>
-                </li>
-                <li>
-                  <Link to="#">Maharashtra</Link>
-                </li>
-                <li>
-                  <Link to="#">Karnataka</Link>
-                </li>
-                <li>
-                  <Link to="#">Tamil Nadu</Link>
-                </li>
-                <li>
-                  <Link to="#">West Bengal</Link>
-                </li>
-              </ul>
             </div>
+
+            <div className="filter-group">
+              <label className="filter-label">Supplier Location</label>
+              <div className="search-input-wrapper" style={{ position: "relative" }}>
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="search-icon" />
+                <input 
+                  type="text" 
+                  placeholder="Search state or city..." 
+                  className="filter-search-input" 
+                  value={locationQuery}
+                  autoComplete="off"
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setLocationQuery(val);
+                    if (val.trim().length > 0) {
+                      const filtered = INDIAN_STATES.filter(s =>
+                        s.toLowerCase().includes(val.toLowerCase())
+                      );
+                      setLocationSuggestions(filtered);
+                      setShowSuggestions(true);
+                    } else {
+                      setShowSuggestions(false);
+                    }
+                  }}
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                />
+                {showSuggestions && locationSuggestions.length > 0 && (
+                  <ul className="location-suggestions-dropdown">
+                    {locationSuggestions.map((s) => (
+                      <li
+                        key={s}
+                        className="location-suggestion-item"
+                        onMouseDown={() => {
+                          setLocationQuery(s);
+                          setShowSuggestions(false);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faMapMarkerAlt} className="sugg-icon" />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+
+            <button className="apply-filters-btn" onClick={handleApplyFilters}>Apply Filters</button>
           </div>
-        </div>
-      </aside>
-      <main>
-        <section className="section">
-          <p className="sect-title">Explore by Categories</p>
-          <div className="horprd expcatg" id="expcatg">
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/beauty2.jpeg"
-                      width={55}
-                      height={55}
-                      alt="Skincare"
-                    />
-                  </figure>
-                  <p className="title">Skincare</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/beauty3.jpeg"
-                      width={55}
-                      height={55}
-                      alt="Haircare"
-                    />
-                  </figure>
-                  <p className="title">Haircare</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/beauty4.jpeg"
-                      width={55}
-                      height={55}
-                      alt="Makeup"
-                    />
-                  </figure>
-                  <p className="title">Makeup</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/beauty5.jpeg"
-                      width={55}
-                      height={55}
-                      alt="Body Care"
-                    />
-                  </figure>
-                  <p className="title">Body Care</p>
-                </div>
-              </Link>
-            </div>
-            <div className="item">
-              <Link to="#">
-                <div className="horprd-box">
-                  <figure>
-                    <img
-                      src="/assets/beauty6.jpeg"
-                      width={55}
-                      height={55}
-                      alt="Fragrances"
-                    />
-                  </figure>
-                  <p className="title">Fragrances</p>
-                </div>
-              </Link>
-            </div>
+
+          <div className="pro-ad-card">
+            <div className="pro-badge">BEAUTY PRO</div>
+            <h3>Premium Beauty Brands</h3>
+            <p>Get exclusive access to top-tier cosmetic manufacturers and perfume houses.</p>
+            <Link to="/packages" className="upgrade-link">Upgrade Now &gt;</Link>
           </div>
-        </section>
-        <ul className="classfied-wrap">
-          {classifiedData.map((item, index) => (
-            <li key={index}>
-              <div className="classified">
-                <div className="prd-info">
-                  <div className="prd-box">
-                    <img
-                      src={item.imgSrc}
-                      alt={item.altText}
-                      width={250}
-                      height={250}
-                    />
-                  </div>
+        </aside>
+
+        <main className="content-area">
+          <div className="category-chips-bar">
+            {beautyCategories.map((cat) => (
+              <button
+                key={cat.label}
+                className={`category-chip ${activeChip === cat.label ? "chip-active" : ""}`}
+                onClick={() => handleCategoryChip(cat.label)}
+              >
+                <div className="chip-img-ring">
+                  <img src={cat.img} alt={cat.label} onError={(e) => e.target.src="/assets/beauty1.jpeg"} />
                 </div>
-                <div className="cinfo">
-                  <div className="cbox">
-                    <figure>
-                      <span className="cmp-year">{item.years}</span>
-                    </figure>
-                    <div className="cboxr">
-                      <Link to="#" target="_blank">
-                        <h4 className="title">{item.companyName}</h4>
-                      </Link>
-                      <p className="cloc tooltip ellipsis">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width={16}
-                          height={16}
-                          fill="currentColor"
-                          className="bi-location"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                        </svg>
-                        {item.location}
-                        <span className="tooltiptext">{item.tooltipText}</span>
-                      </p>
-                      <div className="rating-wrap">
-                        <span className="rtbox">{item.rating}</span>
-                        <span
-                          className="crate"
-                          style={{ "--_score": item.ratingPercent }}
-                        />
-                        <span className="rate-text">
-                          {item.ratingsCount} Ratings
+                <span className="chip-label">{cat.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {filteredData.length > 0 ? (
+            <div className="product-grid">
+              {filteredData.map((item, index) => {
+                const sellerObj = item.userId && typeof item.userId === 'object' ? item.userId : (item.seller || {});
+                const hasCatalog = item.isCatalogActive || sellerObj.isCatalogActive || (sellerObj.featuredProductIds?.length > 0) || item.hasCatalog;
+                const catalogId = item.catalogId || sellerObj._id || (item.userId?._id || item.userId) || item._id;
+
+                const CardContent = (
+                  <>
+                    <div className="card-image-wrapper">
+                      <img src={item.imgSrc || (item.images && item.images[0]) || "/assets/beauty1.jpeg"} alt={item.companyName || item.title} className="product-img" />
+                      <div className="badge-overlay">
+                        <span className="verified-badge">
+                          <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED
                         </span>
                       </div>
+                      {hasCatalog && (
+                        <div className="catalog-badge-overlay" style={{
+                          position: 'absolute',
+                          bottom: '10px',
+                          left: '10px',
+                          background: 'rgba(21, 21, 125, 0.9)',
+                          color: '#fff',
+                          fontSize: '10px',
+                          fontWeight: '800',
+                          padding: '4px 10px',
+                          borderRadius: '4px',
+                          letterSpacing: '1px',
+                          zIndex: 2,
+                          boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+                        }}>
+                          <FontAwesomeIcon icon={faAngleRight} style={{ marginRight: '5px' }} /> VIEW CATALOG
+                        </div>
+                      )}
                     </div>
-                  </div>
-                  <div className="caddit">
-                    <div className="item">
-                      <div
-                        className="ca-box modal-btn"
-                        data-modal="motc"
-                        data-src={item.trustCertificateUrl}
-                      >
-                        <p>
-                          <i className="l3icon motc-icon" />
-                        </p>
+
+                    <div className="card-body">
+                      <h3 className="product-title">{item.mainProducts || item.title}</h3>
+                      
+                      <div className="supplier-section">
+                        <span className="supplier-label">SUPPLIED BY</span>
+                        
+                        <div className="supplier-brand-row">
+                          <div className="supplier-logo-placeholder">
+                            {(item.companyName || item.seller?.companyName || item.seller?.name || "B").charAt(0)}
+                          </div>
+                          <div className="supplier-info-stack">
+                            <h4 className="supplier-name">{item.companyName || item.seller?.companyName || item.seller?.name}</h4>
+                            <div className="rating-box">
+                              <FontAwesomeIcon icon={faStar} />
+                              <span>{item.rating || (4.5 + (index % 5) * 0.1).toFixed(1)}</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="supplier-meta-grid">
+                          <span className="location-tag">
+                            <FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location || `${item.seller?.cityname || item.city || ''}, ${item.seller?.statename || item.state || ''}`}
+                          </span>
+                          <span className="years-badge">
+                            <FontAwesomeIcon icon={faCheckCircle} /> {item.years || "1 YRS"} Experience
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="card-actions">
+                        <button className="btn-quick-quote" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href='/register-buyer'; }}>Quick Quote <FontAwesomeIcon icon={faAngleRight} /></button>
+                        <button className="btn-contact" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.location.href='/register-buyer'; }}>Contact</button>
                       </div>
                     </div>
-                    <div className="item">
-                      <div className="ca-box">
-                        <p>
-                          <i className="l3icon resp-icon" />
-                        </p>
-                        <p>
-                          <span>Response Rate</span> <b>{item.responseRate}</b>
-                        </p>
-                      </div>
-                      <p>
-                        <span>Main Products</span> <b>{item.mainProducts}</b>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="caction">
-                    <Link to={"/register-buyer"}>
-                      <p>Contact Supplier</p>
+                  </>
+                );
+
+                if (hasCatalog) {
+                  return (
+                    <Link 
+                      to={`/catalog/${catalogId}`} 
+                      className="product-card" 
+                      key={index}
+                      style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}
+                    >
+                      {CardContent}
                     </Link>
+                  );
+                }
+
+                return (
+                  <div className="product-card" key={index}>
+                    {CardContent}
                   </div>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </main>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="no-results">
+              <FontAwesomeIcon icon={faSearch} size="3x" />
+              <h3>No results found</h3>
+              <button className="btn-primary" onClick={resetFilters}>Clear Filters</button>
+            </div>
+          )}
+        </main>
+      </div>
     </div>
   );
 };

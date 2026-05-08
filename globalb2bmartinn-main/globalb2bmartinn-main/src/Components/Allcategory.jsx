@@ -800,7 +800,7 @@ const products = [
     image: "./assets/fruitspowder.png",
     items: ["Mango Powder", "Orange Powder", "Banana Powder", "Lemon Powder"],
     trustPoints: ["120+ Verified Suppliers", "ISO 9001:2015 Cert.", "Global Export Quality"],
-    path: "/bananapowder",
+    path: "/fruit-powder",
   },
   {
     id: 7,
@@ -873,6 +873,14 @@ const products = [
     items: ["Formal Shirts", "Casual Wear", "Cotton Shirts", "Slim Fit"],
     trustPoints: ["120+ Verified Suppliers", "ISO 9001:2015 Cert.", "Global Export Quality"],
     path: "/clothing-apparel-suppliers",
+  },
+  {
+    id: 19,
+    title: "Dresses & Garments",
+    image: "./assets/suits.jpeg",
+    items: ["Ethnic Wear", "Western Gowns", "Cotton Suits", "Designer Wear"],
+    trustPoints: ["150+ Verified Suppliers", "ISO Certified Hubs", "Wholesale Pricing"],
+    path: "/dresses-dealers",
   },
   {
     id: 15,

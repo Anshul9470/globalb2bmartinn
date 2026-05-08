@@ -1,0 +1,17 @@
+[build]
+  command = "cd globalb2bmartinn-main && npm run build"
+  publish = "globalb2bmartinn-main/build"
+
+[functions]
+  directory = "backend/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

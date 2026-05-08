@@ -7,12 +7,14 @@ import {
     faPhone, faEnvelope, faMapMarkerAlt, faBriefcase,
     faCrown, faDownload, faImage, faExclamationTriangle,
     faTrashAlt, faEdit, faTimes, faCheckCircle, faStar, faShieldHalved, faBuilding,
-    faCartPlus, faLayerGroup, faGem, faChartLine
+    faCartPlus, faLayerGroup, faGem, faChartLine, faShieldVirus
 } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.css';
 
 import { CATEGORIES, SUB_CATEGORIES, getCategorySuggestions, getSubCategorySuggestions } from '../services/categoryData';
 import { COUNTRIES, getStateSuggestions, INDIAN_STATES } from '../services/locationData';
+import DynamicSellerCatalog from '../Catalog/DynamicSellerCatalog';
+
 
 const AdminSellerDetail = () => {
     const { id, tab } = useParams();
@@ -40,10 +42,36 @@ const AdminSellerDetail = () => {
     const [productState, setProductState] = useState('');
     const [productCity, setProductCity] = useState('');
     const [productExperience, setProductExperience] = useState('');
+    const [productPrice, setProductPrice] = useState('');
+    const [productMoq, setProductMoq] = useState('');
+    const [productSpecs, setProductSpecs] = useState([]); // [{key, value}]
     const [stateSuggestions, setStateSuggestions] = useState([]);
     const [showStateSuggestions, setShowStateSuggestions] = useState(false);
     const [selectedImages, setSelectedImages] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    // Catalog Configuration States
+    const [catSubtitle, setCatSubtitle] = useState('');
+    const [catAbout, setCatAbout] = useState('');
+    const [catHeroTitle, setCatHeroTitle] = useState('');
+    const [catHeroDesc, setCatHeroDesc] = useState('');
+    const [catHeroImage, setCatHeroImage] = useState(null); // File object
+    const [sellerLogo, setSellerLogo] = useState(null); // File object
+    const [catVerification, setCatVerification] = useState('Verified');
+    const [catYears, setCatYears] = useState('');
+    const [catResponseRate, setCatResponseRate] = useState('');
+    const [catResponseTime, setCatResponseTime] = useState('');
+    const [catCerts, setCatCerts] = useState([]);
+    const [catFeaturedIds, setCatFeaturedIds] = useState([]);
+    const [catAboutImage, setCatAboutImage] = useState(null); // New state for About Section Image
+    const [isUpdatingCatalog, setIsUpdatingCatalog] = useState(false);
+    const [catalogConfigTab, setCatalogConfigTab] = useState('general');
+    const [catalogRefreshKey, setCatalogRefreshKey] = useState(0);
+
+    // Product Advanced States (for Add)
+    const [productStock, setProductStock] = useState('In Stock');
+    const [productTiered, setProductTiered] = useState([]);
+    const [productFeatures, setProductFeatures] = useState([]);
 
     // Form Handlers
     const handleCategoryChange = (val) => {
@@ -86,6 +114,96 @@ const AdminSellerDetail = () => {
         setShowStateSuggestions(false);
     };
 
+    const handleAddSpec = (isEdit = false) => {
+        if (isEdit) {
+            const newSpecs = [...(editingProduct.specifications || []), { key: '', value: '' }];
+            setEditingProduct({ ...editingProduct, specifications: newSpecs });
+        } else {
+            setProductSpecs([...productSpecs, { key: '', value: '' }]);
+        }
+    };
+
+    const handleRemoveSpec = (index, isEdit = false) => {
+        if (isEdit) {
+            const newSpecs = (editingProduct.specifications || []).filter((_, i) => i !== index);
+            setEditingProduct({ ...editingProduct, specifications: newSpecs });
+        } else {
+            setProductSpecs(productSpecs.filter((_, i) => i !== index));
+        }
+    };
+
+    const handleUpdateSpec = (index, field, value, isEdit = false) => {
+        if (isEdit) {
+            const newSpecs = [...(editingProduct.specifications || [])];
+            newSpecs[index][field] = value;
+            setEditingProduct({ ...editingProduct, specifications: newSpecs });
+        } else {
+            const newSpecs = [...productSpecs];
+            newSpecs[index][field] = value;
+            setProductSpecs(newSpecs);
+        }
+    };
+
+    const handleAddTier = (isEdit = false) => {
+        if (isEdit) {
+            const newTiers = [...(editingProduct.tieredPricing || []), { range: '', price: '' }];
+            setEditingProduct({ ...editingProduct, tieredPricing: newTiers });
+        } else {
+            setProductTiered([...productTiered, { range: '', price: '' }]);
+        }
+    };
+
+    const handleRemoveTier = (index, isEdit = false) => {
+        if (isEdit) {
+            const newTiers = (editingProduct.tieredPricing || []).filter((_, i) => i !== index);
+            setEditingProduct({ ...editingProduct, tieredPricing: newTiers });
+        } else {
+            setProductTiered(productTiered.filter((_, i) => i !== index));
+        }
+    };
+
+    const handleUpdateTier = (index, field, value, isEdit = false) => {
+        if (isEdit) {
+            const newTiers = [...(editingProduct.tieredPricing || [])];
+            newTiers[index][field] = value;
+            setEditingProduct({ ...editingProduct, tieredPricing: newTiers });
+        } else {
+            const newTiers = [...productTiered];
+            newTiers[index][field] = value;
+            setProductTiered(newTiers);
+        }
+    };
+
+    const handleAddFeature = (isEdit = false) => {
+        if (isEdit) {
+            const newFeats = [...(editingProduct.keyFeatures || []), ''];
+            setEditingProduct({ ...editingProduct, keyFeatures: newFeats });
+        } else {
+            setProductFeatures([...productFeatures, '']);
+        }
+    };
+
+    const handleRemoveFeature = (index, isEdit = false) => {
+        if (isEdit) {
+            const newFeats = (editingProduct.keyFeatures || []).filter((_, i) => i !== index);
+            setEditingProduct({ ...editingProduct, keyFeatures: newFeats });
+        } else {
+            setProductFeatures(productFeatures.filter((_, i) => i !== index));
+        }
+    };
+
+    const handleUpdateFeature = (index, value, isEdit = false) => {
+        if (isEdit) {
+            const newFeats = [...(editingProduct.keyFeatures || [])];
+            newFeats[index] = value;
+            setEditingProduct({ ...editingProduct, keyFeatures: newFeats });
+        } else {
+            const newFeats = [...productFeatures];
+            newFeats[index] = value;
+            setProductFeatures(newFeats);
+        }
+    };
+
     const handleProductSubmit = async (isPublished = false) => {
         if (!productTitle || selectedImages.length === 0) {
             return alert('Please provide Title and at least one image.');
@@ -101,6 +219,12 @@ const AdminSellerDetail = () => {
         formData.append('state', productState);
         formData.append('city', productCity);
         formData.append('experience', productExperience);
+        formData.append('price', productPrice);
+        formData.append('moq', productMoq);
+        formData.append('specifications', JSON.stringify(productSpecs));
+        formData.append('tieredPricing', JSON.stringify(productTiered));
+        formData.append('stockStatus', productStock);
+        formData.append('keyFeatures', JSON.stringify(productFeatures));
         formData.append('isPublished', isPublished);
         
         selectedImages.forEach((image) => {
@@ -150,6 +274,15 @@ const AdminSellerDetail = () => {
         danger: '#ef4444'
     };
 
+    const getImgUrl = (path) => {
+        if (!path) return null;
+        let actualPath = path;
+        while (Array.isArray(actualPath) && actualPath.length > 0) actualPath = actualPath[0];
+        if (!actualPath || typeof actualPath !== 'string') return null;
+        if (actualPath.startsWith('http')) return actualPath;
+        return `${apiEndpoint}${actualPath.startsWith('/') ? '' : '/'}${actualPath.replace(/\\/g, '/')}`;
+    };
+
     useEffect(() => {
         const fetchDetails = async () => {
             try {
@@ -182,6 +315,18 @@ const AdminSellerDetail = () => {
 
                 if (userData) {
                     setSeller(userData);
+                    setCatSubtitle(userData.catalogSubtitle || '');
+                    setCatAbout(userData.aboutUs || '');
+                    setCatHeroTitle(userData.catalogHeroTitle || '');
+                    setCatHeroDesc(userData.catalogHeroDescription || '');
+                    // Centralized contact info - no longer editable
+                    setCatVerification(userData.verificationStatus || 'Verified');
+                    setCatYears(userData.yearsInBusiness || '');
+                    setCatResponseRate(userData.responseRate || '');
+                    setCatResponseTime(userData.responseTime || '');
+                    setCatCerts(userData.certifications || []);
+                    setCatFeaturedIds(userData.featuredProductIds || []);
+                    setCatAboutImage(userData.aboutUsImage || null);
                     // Only fetch products/catalogs for sellers
                     if (userData.role === 'seller') {
                         const prodRes = await axios.get(`${apiEndpoint}/products/${id}`);
@@ -241,18 +386,60 @@ const AdminSellerDetail = () => {
                 description: Array.isArray(editingProduct.description) ? editingProduct.description[0] : editingProduct.description,
                 price: editingProduct.price,
                 moq: editingProduct.moq,
+                unit: editingProduct.unit,
+                specifications: editingProduct.specifications,
+                tieredPricing: editingProduct.tieredPricing,
+                keyFeatures: editingProduct.keyFeatures,
+                stockStatus: editingProduct.stockStatus || 'In Stock',
                 category: editingProduct.category,
                 subCategory: editingProduct.subCategory,
                 country: editingProduct.country,
                 state: editingProduct.state,
                 city: editingProduct.city,
+                isPublished: editingProduct.isPublished,
                 experience: editingProduct.experience
             });
             setProducts(products.map(p => p._id === editingProduct._id ? editingProduct : p));
+            setCatalogRefreshKey(prev => prev + 1);
             setEditingProduct(null);
             alert('Product updated successfully');
         } catch (err) {
             alert('Update failed');
+        }
+    };
+
+    const handleCatalogUpdate = async () => {
+        setIsUpdatingCatalog(true);
+        const formData = new FormData();
+        formData.append('isCatalogActive', 'true');
+        formData.append('catalogSubtitle', catSubtitle);
+        formData.append('aboutUs', catAbout);
+        formData.append('catalogHeroTitle', catHeroTitle);
+        formData.append('catalogHeroDescription', catHeroDesc);
+        // removed contact overrides
+        formData.append('verificationStatus', catVerification);
+        formData.append('yearsInBusiness', catYears);
+        formData.append('responseRate', catResponseRate);
+        formData.append('responseTime', catResponseTime);
+        formData.append('certifications', JSON.stringify(catCerts));
+        formData.append('featuredProductIds', JSON.stringify(catFeaturedIds));
+        
+        if (catHeroImage) formData.append('heroImage', catHeroImage);
+        if (catAboutImage && typeof catAboutImage !== 'string') formData.append('aboutImage', catAboutImage);
+        if (sellerLogo) formData.append('sellerLogo', sellerLogo);
+
+        try {
+            const response = await axios.put(`${apiEndpoint}/update/${id}`, formData);
+            if (response.status === 200) {
+                setSeller(response.data.user);
+                setCatalogRefreshKey(prev => prev + 1);
+                alert('Catalog Configuration Updated Successfully!');
+            }
+        } catch (error) {
+            console.error("Catalog update failed:", error);
+            alert('Failed to update catalog settings');
+        } finally {
+            setIsUpdatingCatalog(false);
         }
     };
 
@@ -310,6 +497,13 @@ const AdminSellerDetail = () => {
                                 <option value="Packaging">Packaging & Paper</option>
                                 <option value="Medical">Medical & Healthcare</option>
                                 <option value="Home">Home Decor & Furniture</option>
+                                <option value="Beauty">Perfumes and Skin Care</option>
+                                <option value="CNC Machines">CNC Machines</option>
+                                <option value="Mustard Oil">Mustard Oil</option>
+                                <option value="Fruits">Fruits Supplier</option>
+                                <option value="Fruit Powder">Fruit Powder Supplier</option>
+                                <option value="Jewellery">Jewellery Dealer</option>
+                                <option value="Dresses">Dresses & Garments</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
@@ -403,6 +597,75 @@ const AdminSellerDetail = () => {
                                 placeholder="Detail product specifications..."
                                 style={{ width: '100%', padding: '1rem', borderRadius: '15px', border: '1.5px solid #e2e8f0', outline: 'none', minHeight: '100px', resize: 'vertical' }}
                             />
+                        </div>
+
+                        <div style={{ gridColumn: 'span 1' }}>
+                            <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '900', color: palette.navy, marginBottom: '8px', textTransform: 'uppercase' }}>PRICE (₹)</label>
+                            <input type="text" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} placeholder="e.g. 500" style={{ width: '100%', padding: '1rem', borderRadius: '15px', border: '1.5px solid #e2e8f0' }} />
+                        </div>
+                        <div style={{ gridColumn: 'span 1' }}>
+                            <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '900', color: palette.navy, marginBottom: '8px', textTransform: 'uppercase' }}>MOQ</label>
+                            <input type="text" value={productMoq} onChange={(e) => setProductMoq(e.target.value)} placeholder="e.g. 100 Units" style={{ width: '100%', padding: '1rem', borderRadius: '15px', border: '1.5px solid #e2e8f0' }} />
+                        </div>
+
+                        <div style={{ gridColumn: 'span 2', padding: '1.5rem', background: '#f8fafc', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                                <h4 style={{ fontSize: '0.9rem', fontWeight: '900', color: palette.navy, margin: 0 }}>TIERED PRICING STRUCTURE</h4>
+                                <button type="button" onClick={() => handleAddTier(false)} style={{ padding: '0.5rem 1rem', background: palette.teal || '#00f5ff', color: palette.navy, border: 'none', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', cursor: 'pointer' }}>+ ADD TIER</button>
+                            </div>
+                            <div style={{ display: 'grid', gap: '0.8rem' }}>
+                                {productTiered.map((tier, idx) => (
+                                    <div key={idx} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                        <input type="text" value={tier.range} onChange={(e) => handleUpdateTier(idx, 'range', e.target.value, false)} placeholder="e.g. 100-500 Units" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                        <input type="text" value={tier.price} onChange={(e) => handleUpdateTier(idx, 'price', e.target.value, false)} placeholder="e.g. $45" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                        <button type="button" onClick={() => handleRemoveTier(idx, false)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', width: '30px', height: '30px', borderRadius: '5px', cursor: 'pointer' }}>✕</button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div style={{ gridColumn: 'span 2', padding: '1.5rem', background: '#f8fafc', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                                <h4 style={{ fontSize: '0.9rem', fontWeight: '900', color: palette.navy, margin: 0 }}>KEY PRODUCT FEATURES</h4>
+                                <button type="button" onClick={() => handleAddFeature(false)} style={{ padding: '0.5rem 1rem', background: palette.navy, color: '#fff', border: 'none', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', cursor: 'pointer' }}>+ ADD FEATURE</button>
+                            </div>
+                            <div style={{ display: 'grid', gap: '0.8rem' }}>
+                                {productFeatures.map((feat, idx) => (
+                                    <div key={idx} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                        <input type="text" value={feat} onChange={(e) => handleUpdateFeature(idx, e.target.value, false)} placeholder="e.g. High precision industrial grade" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                        <button type="button" onClick={() => handleRemoveFeature(idx, false)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', width: '30px', height: '30px', borderRadius: '5px', cursor: 'pointer' }}>✕</button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '900', color: palette.navy, marginBottom: '8px', textTransform: 'uppercase' }}>STOCK STATUS</label>
+                            <select 
+                                value={productStock} 
+                                onChange={(e) => setProductStock(e.target.value)}
+                                style={{ width: '100%', padding: '1rem', borderRadius: '15px', border: '1.5px solid #e2e8f0', outline: 'none', background: '#fff' }}
+                            >
+                                <option value="In Stock">In Stock</option>
+                                <option value="Out of Stock">Out of Stock</option>
+                                <option value="Contact for Availability">Contact for Availability</option>
+                            </select>
+                        </div>
+
+                        <div style={{ gridColumn: 'span 1', padding: '1.5rem', background: '#f8fafc', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                                <h4 style={{ fontSize: '0.9rem', fontWeight: '900', color: palette.navy, margin: 0 }}>TECHNICAL SPECIFICATIONS</h4>
+                                <button type="button" onClick={() => handleAddSpec(false)} style={{ padding: '0.5rem 1rem', background: palette.lightBlue, color: '#fff', border: 'none', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', cursor: 'pointer' }}>+ ADD SPEC</button>
+                            </div>
+                            <div style={{ display: 'grid', gap: '0.8rem' }}>
+                                {productSpecs.map((spec, idx) => (
+                                    <div key={idx} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                        <input type="text" value={spec.key} onChange={(e) => handleUpdateSpec(idx, 'key', e.target.value, false)} placeholder="e.g. Voltage" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                        <input type="text" value={spec.value} onChange={(e) => handleUpdateSpec(idx, 'value', e.target.value, false)} placeholder="e.g. 220V" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                        <button type="button" onClick={() => handleRemoveSpec(idx, false)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', width: '30px', height: '30px', borderRadius: '5px', cursor: 'pointer' }}>✕</button>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
                         <div style={{ gridColumn: 'span 2', display: 'flex', alignItems: 'center', gap: '15px', padding: '1rem', background: '#f0f9ff', borderRadius: '15px', border: '1px solid #bae6fd' }}>
@@ -523,6 +786,11 @@ const AdminSellerDetail = () => {
                                     <option value="Packaging">Packaging & Paper</option>
                                     <option value="Medical">Medical & Healthcare</option>
                                     <option value="Home">Home Decor & Furniture</option>
+                                    <option value="Beauty">Perfumes and Skin Care</option>
+                                    <option value="CNC Machines">CNC Machines</option>
+                                    <option value="Mustard Oil">Mustard Oil</option>
+                                    <option value="Fruits">Fruits Supplier</option>
+                                    <option value="Jewellery">Jewellery Dealer</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
@@ -552,7 +820,17 @@ const AdminSellerDetail = () => {
                                     type="text" 
                                     value={editingProduct.moq || ''} 
                                     onChange={(e) => setEditingProduct({...editingProduct, moq: e.target.value})}
-                                    placeholder="e.g. 100 Units"
+                                    placeholder="e.g. 100"
+                                    style={{ width: '100%', padding: '1rem', borderRadius: '15px', border: '1.5px solid #e2e8f0', outline: 'none' }}
+                                />
+                            </div>
+                            <div>
+                                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '900', color: palette.navy, marginBottom: '8px', textTransform: 'uppercase' }}>UNIT</label>
+                                <input 
+                                    type="text" 
+                                    value={editingProduct.unit || ''} 
+                                    onChange={(e) => setEditingProduct({...editingProduct, unit: e.target.value})}
+                                    placeholder="e.g. PCS, KG"
                                     style={{ width: '100%', padding: '1rem', borderRadius: '15px', border: '1.5px solid #e2e8f0', outline: 'none' }}
                                 />
                             </div>
@@ -605,6 +883,66 @@ const AdminSellerDetail = () => {
                                     placeholder="e.g. 5 Years"
                                     style={{ width: '100%', padding: '1rem', borderRadius: '15px', border: '1.5px solid #e2e8f0', outline: 'none' }}
                                 />
+                            </div>
+
+                            <div style={{ gridColumn: 'span 2', padding: '1.5rem', background: '#f8fafc', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                                    <h4 style={{ fontSize: '0.9rem', fontWeight: '900', color: palette.navy, margin: 0 }}>TIERED PRICING STRUCTURE</h4>
+                                    <button type="button" onClick={() => handleAddTier(true)} style={{ padding: '0.5rem 1rem', background: palette.teal || '#00f5ff', color: palette.navy, border: 'none', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', cursor: 'pointer' }}>+ ADD TIER</button>
+                                </div>
+                                <div style={{ display: 'grid', gap: '0.8rem' }}>
+                                    {(editingProduct.tieredPricing || []).map((tier, idx) => (
+                                        <div key={idx} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                            <input type="text" value={tier.range} onChange={(e) => handleUpdateTier(idx, 'range', e.target.value, true)} placeholder="e.g. 100-500 Units" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                            <input type="text" value={tier.price} onChange={(e) => handleUpdateTier(idx, 'price', e.target.value, true)} placeholder="e.g. $45" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                            <button type="button" onClick={() => handleRemoveTier(idx, true)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', width: '30px', height: '30px', borderRadius: '5px', cursor: 'pointer' }}>✕</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div style={{ gridColumn: 'span 2', padding: '1.5rem', background: '#f8fafc', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                                    <h4 style={{ fontSize: '0.9rem', fontWeight: '900', color: palette.navy, margin: 0 }}>KEY PRODUCT FEATURES</h4>
+                                    <button type="button" onClick={() => handleAddFeature(true)} style={{ padding: '0.5rem 1rem', background: palette.navy, color: '#fff', border: 'none', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', cursor: 'pointer' }}>+ ADD FEATURE</button>
+                                </div>
+                                <div style={{ display: 'grid', gap: '0.8rem' }}>
+                                    {(editingProduct.keyFeatures || []).map((feat, idx) => (
+                                        <div key={idx} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                            <input type="text" value={feat} onChange={(e) => handleUpdateFeature(idx, e.target.value, true)} placeholder="e.g. High precision industrial grade" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                            <button type="button" onClick={() => handleRemoveFeature(idx, true)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', width: '30px', height: '30px', borderRadius: '5px', cursor: 'pointer' }}>✕</button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div>
+                                <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '900', color: palette.navy, marginBottom: '8px', textTransform: 'uppercase' }}>STOCK STATUS</label>
+                                <select 
+                                    value={editingProduct.stockStatus || 'In Stock'} 
+                                    onChange={(e) => setEditingProduct({...editingProduct, stockStatus: e.target.value})}
+                                    style={{ width: '100%', padding: '1rem', borderRadius: '15px', border: '1.5px solid #e2e8f0', outline: 'none', background: '#fff' }}
+                                >
+                                    <option value="In Stock">In Stock</option>
+                                    <option value="Out of Stock">Out of Stock</option>
+                                    <option value="Contact for Availability">Contact for Availability</option>
+                                </select>
+                            </div>
+
+                            <div style={{ gridColumn: 'span 1', padding: '1.5rem', background: '#f8fafc', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                                    <h4 style={{ fontSize: '0.9rem', fontWeight: '900', color: palette.navy, margin: 0 }}>TECHNICAL SPECIFICATIONS</h4>
+                                    <button type="button" onClick={() => handleAddSpec(true)} style={{ padding: '0.5rem 1rem', background: palette.lightBlue, color: '#fff', border: 'none', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', cursor: 'pointer' }}>+ ADD SPEC</button>
+                                </div>
+                                <div style={{ display: 'grid', gap: '0.8rem' }}>
+                                    {(editingProduct.specifications || []).map((spec, idx) => (
+                                        <div key={idx} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                                            <input type="text" value={spec.key} onChange={(e) => handleUpdateSpec(idx, 'key', e.target.value, true)} placeholder="e.g. Power" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                            <input type="text" value={spec.value} onChange={(e) => handleUpdateSpec(idx, 'value', e.target.value, true)} placeholder="e.g. 5kW" style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid #e2e8f0' }} />
+                                            <button type="button" onClick={() => handleRemoveSpec(idx, true)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', width: '30px', height: '30px', borderRadius: '5px', cursor: 'pointer' }}>✕</button>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
@@ -889,7 +1227,7 @@ const AdminSellerDetail = () => {
                                                     {[1,2,3,4,5].map(i => <FontAwesomeIcon key={i} icon={faStar} />)}
                                                 </div>
                                                 <span style={{ fontSize: '0.85rem', color: palette.subText, fontWeight: '600' }}>(150+ Reviews)</span>
-                                                <div style={{ background: '#ecfdf5', color: '#059669', padding: '4px 12px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                                <div style={{ background: '#fffbeb', color: '#ff8000', padding: '4px 12px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '6px' }}>
                                                     <FontAwesomeIcon icon={faShieldHalved} /> {product.experience || '1 YRS'} EXP.
                                                 </div>
                                             </div>
@@ -939,6 +1277,13 @@ const AdminSellerDetail = () => {
                                                             <option value="Packaging">Packaging & Paper</option>
                                                             <option value="Medical">Medical & Healthcare</option>
                                                             <option value="Home">Home Decor & Furniture</option>
+                                                            <option value="Beauty">Perfumes and Skin Care</option>
+                                                            <option value="CNC Machines">CNC Machines</option>
+                                                            <option value="Mustard Oil">Mustard Oil</option>
+                                                            <option value="Fruits">Fruits Supplier</option>
+                                                            <option value="Fruit Powder">Fruit Powder Supplier</option>
+                                                            <option value="Jewellery">Jewellery Dealer</option>
+                                                            <option value="Dresses">Dresses & Garments</option>
                                                             <option value="Other">Other</option>
                                                         </select>
                                                     )}
@@ -989,110 +1334,394 @@ const AdminSellerDetail = () => {
                         )}
                     </div>
                 )}
-
                 {/* Catalog Section */}
                 {currentTab === 'catalog' && seller.role === 'seller' && (
-                    <div className="catalog-section">
-                        <h3 style={{ marginBottom: '2rem', fontSize: '1.5rem', color: palette.navy, fontWeight: '800', display: 'flex', alignItems: 'center', gap: '15px' }}>
-                            <FontAwesomeIcon icon={faFileAlt} /> BUSINESS CATALOG & DOCUMENTS
-                        </h3>
-                        <div className="glass-card" style={{ padding: '3rem', background: palette.cardBg, borderRadius: '30px', border: '1px solid #e2e8f0', boxShadow: '0 5px 20px rgba(0,0,0,0.02)' }}>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '2rem' }}>
-                                {seller.images && seller.images.length > 0 ? (
-                                    seller.images.map((img, idx) => (
-                                        <div key={idx} className="catalog-card" style={{ position: 'relative', borderRadius: '20px', overflow: 'hidden', border: '1px solid #f1f5f9' }}>
-                                            <img 
-                                                src={`${apiEndpoint}${encodeURI(img.replace(/\\/g, '/'))}`} 
-                                                alt={`Document ${idx}`} 
-                                                style={{ width: '100%', height: '300px', objectFit: 'cover' }}
-                                            />
-                                            <a 
-                                                href={`${apiEndpoint}${encodeURI(img.replace(/\\/g, '/'))}`} 
-                                                target="_blank" 
-                                                rel="noopener noreferrer"
-                                                style={{ 
-                                                    position: 'absolute', 
-                                                    inset: 0, 
-                                                    background: 'rgba(30,58,138,0.4)', 
-                                                    display: 'flex', 
-                                                    alignItems: 'center', 
-                                                    justifyContent: 'center', 
-                                                    opacity: 0, 
-                                                    transition: '0.3s',
-                                                    color: '#fff',
-                                                    fontSize: '1.8rem'
-                                                }}
-                                                onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
-                                                onMouseLeave={(e) => e.currentTarget.style.opacity = 0}
-                                            >
-                                                <FontAwesomeIcon icon={faDownload} />
-                                            </a>
+                    <div className="catalog-section" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                        
+                        {/* Catalog Configuration Tool */}
+                        <div style={{ background: '#fff', borderRadius: '30px', padding: '2.5rem', border: '1px solid #e2e8f0', boxShadow: '0 10px 40px rgba(0,0,0,0.03)' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                                <div>
+                                    <h3 style={{ margin: 0, fontSize: '1.5rem', color: palette.navy, fontWeight: '900' }}>
+                                        <FontAwesomeIcon icon={faFileAlt} style={{ marginRight: '15px', color: palette.lightBlue }} /> CATALOG CONFIGURATION
+                                    </h3>
+                                    <p style={{ margin: '5px 0 0 0', color: palette.subText, fontSize: '0.85rem', fontWeight: '600' }}>Customize the premium "Institutional Curator" display for this seller</p>
+                                </div>
+                                <button 
+                                    onClick={handleCatalogUpdate}
+                                    disabled={isUpdatingCatalog}
+                                    style={{ 
+                                        padding: '0.9rem 2.5rem', 
+                                        borderRadius: '15px', 
+                                        background: palette.lightBlue, 
+                                        color: '#fff', 
+                                        border: 'none', 
+                                        fontWeight: '900', 
+                                        fontSize: '0.85rem', 
+                                        cursor: 'pointer',
+                                        boxShadow: '0 10px 20px rgba(59,130,246,0.2)',
+                                        transition: 'all 0.3s'
+                                    }}
+                                >
+                                    {isUpdatingCatalog ? 'SAVING...' : 'SAVE CONFIGURATION'}
+                                </button>
+                            </div>
+
+                            {/* INTERNAL CATALOG CONFIG TABS */}
+                            <div style={{ display: 'flex', gap: '10px', marginBottom: '2.5rem', borderBottom: '1px solid #f1f5f9', paddingBottom: '1rem' }}>
+                                {[
+                                    { id: 'general', label: 'GENERAL', icon: faChartLine },
+                                    { id: 'home', label: 'HOME HERO', icon: faGem },
+                                    { id: 'about', label: 'ABOUT US', icon: faBuilding },
+                                    { id: 'products', label: 'PRODUCTS', icon: faBox }
+                                ].map(t => (
+                                    <button 
+                                        key={t.id}
+                                        onClick={() => setCatalogConfigTab(t.id)}
+                                        style={{ 
+                                            padding: '0.8rem 1.2rem', 
+                                            borderRadius: '12px', 
+                                            background: catalogConfigTab === t.id ? palette.lightBlue : 'transparent',
+                                            color: catalogConfigTab === t.id ? '#fff' : palette.subText,
+                                            border: 'none',
+                                            fontWeight: '800',
+                                            fontSize: '0.7rem',
+                                            cursor: 'pointer',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '8px',
+                                            transition: 'all 0.2s'
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={t.icon} /> {t.label}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <div style={{ minHeight: '400px' }}>
+                                {catalogConfigTab === 'general' && (
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                                        <div style={{ gridColumn: 'span 2' }}>
+                                            <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: '900', color: palette.navy, marginBottom: '8px' }}>CATALOG SUBTITLE</label>
+                                            <input type="text" value={catSubtitle} onChange={(e) => setCatSubtitle(e.target.value)} style={{ width: '100%', padding: '1rem', borderRadius: '12px', border: '1.5px solid #e2e8f0' }} />
                                         </div>
-                                    ))
-                                ) : (
-                                    <div style={{ gridColumn: '1 / -1', color: palette.subText, textAlign: 'center', padding: '2rem' }}>
-                                        No catalog documents uploaded.
+                                        <div style={{ padding: '1.2rem', background: '#f8fafc', borderRadius: '15px', border: '1px solid #e2e8f0' }}>
+                                            <h4 style={{ fontSize: '0.8rem', fontWeight: '900', color: palette.navy, marginBottom: '0.8rem' }}>COMPANY LOGO</h4>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                                                <div style={{ width: '60px', height: '60px', borderRadius: '12px', background: '#fff', border: '1px solid #e2e8f0', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                    {sellerLogo ? (
+                                                        <img src={typeof sellerLogo === 'string' ? getImgUrl(sellerLogo) : URL.createObjectURL(sellerLogo)} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                                    ) : <FontAwesomeIcon icon={faBuilding} style={{ color: '#cbd5e1' }} />}
+                                                </div>
+                                                <input type="file" onChange={(e) => setSellerLogo(e.target.files[0])} style={{ flex: 1, fontSize: '0.75rem' }} />
+                                            </div>
+                                        </div>
+                                        <div style={{ padding: '1.2rem', background: '#f8fafc', borderRadius: '15px', border: '1px solid #e2e8f0' }}>
+                                            <h4 style={{ fontSize: '0.8rem', fontWeight: '900', color: palette.navy, marginBottom: '0.8rem' }}>VERIFICATION</h4>
+                                            <select value={catVerification} onChange={(e) => setCatVerification(e.target.value)} style={{ width: '100%', padding: '0.7rem', borderRadius: '10px', border: '1px solid #e2e8f0' }}>
+                                                <option value="Verified">Verified</option>
+                                                <option value="Verified Gold">Verified Gold</option>
+                                                <option value="Premium Gold">Premium Gold</option>
+                                            </select>
+                                        </div>
+                                        <div style={{ gridColumn: 'span 2', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+                                            <div>
+                                                <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: '900', color: palette.subText }}>YEARS</label>
+                                                <input type="text" value={catYears} onChange={(e) => setCatYears(e.target.value)} style={{ width: '100%', padding: '0.7rem', borderRadius: '10px', border: '1px solid #e2e8f0' }} />
+                                            </div>
+                                            <div>
+                                                <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: '900', color: palette.subText }}>RESPONSE %</label>
+                                                <input type="text" value={catResponseRate} onChange={(e) => setCatResponseRate(e.target.value)} style={{ width: '100%', padding: '0.7rem', borderRadius: '10px', border: '1px solid #e2e8f0' }} />
+                                            </div>
+                                            <div>
+                                                <label style={{ display: 'block', fontSize: '0.65rem', fontWeight: '900', color: palette.subText }}>TIME</label>
+                                                <input type="text" value={catResponseTime} onChange={(e) => setCatResponseTime(e.target.value)} style={{ width: '100%', padding: '0.7rem', borderRadius: '10px', border: '1px solid #e2e8f0' }} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {catalogConfigTab === 'home' && (
+                                    <div style={{ display: 'grid', gap: '1.5rem' }}>
+                                        <div style={{ padding: '1.2rem', background: '#f8fafc', borderRadius: '15px', border: '1px solid #e2e8f0' }}>
+                                            <h4 style={{ fontSize: '0.8rem', fontWeight: '900', color: palette.navy, marginBottom: '0.8rem' }}>HERO IMAGE</h4>
+                                            <div style={{ width: '100%', height: '120px', borderRadius: '12px', background: '#fff', border: '1px solid #e2e8f0', overflow: 'hidden', marginBottom: '1rem', position: 'relative' }}>
+                                                {catHeroImage ? (
+                                                    <img src={typeof catHeroImage === 'string' ? getImgUrl(catHeroImage) : URL.createObjectURL(catHeroImage)} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                ) : <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1', fontSize: '0.8rem' }}>No Hero Image Set</div>}
+                                                <input type="file" onChange={(e) => setCatHeroImage(e.target.files[0])} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} />
+                                            </div>
+                                            <p style={{ fontSize: '0.65rem', color: palette.subText, margin: 0 }}>Click image to upload new banner</p>
+                                        </div>
+                                        <div style={{ padding: '1.2rem', background: '#f8fafc', borderRadius: '15px', border: '1px solid #e2e8f0' }}>
+                                            <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: '900', color: palette.navy, marginBottom: '5px' }}>HERO TITLE</label>
+                                            <input type="text" value={catHeroTitle} onChange={(e) => setCatHeroTitle(e.target.value)} style={{ width: '100%', padding: '0.7rem', borderRadius: '10px', border: '1px solid #e2e8f0', marginBottom: '1rem' }} />
+                                            <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: '900', color: palette.navy, marginBottom: '5px' }}>HERO DESCRIPTION</label>
+                                            <textarea value={catHeroDesc} onChange={(e) => setCatHeroDesc(e.target.value)} style={{ width: '100%', padding: '0.7rem', borderRadius: '10px', border: '1px solid #e2e8f0', minHeight: '80px' }} />
+                                        </div>
+                                    </div>
+                                )}
+
+                                {catalogConfigTab === 'about' && (
+                                    <div style={{ display: 'grid', gap: '1.5rem' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '1.5rem' }}>
+                                            <textarea 
+                                                value={catAbout} 
+                                                onChange={(e) => setCatAbout(e.target.value)} 
+                                                placeholder="Write a professional company overview for the catalog..." 
+                                                style={{ width: '100%', padding: '1.2rem', borderRadius: '15px', border: '1.5px solid #e2e8f0', minHeight: '280px', fontSize: '0.95rem', lineHeight: '1.6' }} 
+                                            />
+                                            <div style={{ padding: '1.5rem', background: '#f8fafc', borderRadius: '20px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                                <h4 style={{ fontSize: '0.85rem', fontWeight: '900', color: palette.navy, margin: 0 }}>ABOUT SECTION IMAGE</h4>
+                                                <p style={{ fontSize: '0.7rem', color: palette.subText, margin: 0 }}>Add an image of your factory, team, or infrastructure to make the "About" section visually stunning.</p>
+                                                <div style={{ flex: 1, border: '2px dashed #cbd5e1', borderRadius: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', background: '#fff' }}>
+                                                    {catAboutImage ? (
+                                                        <img 
+                                                            src={typeof catAboutImage === 'string' ? getImgUrl(catAboutImage) : URL.createObjectURL(catAboutImage)} 
+                                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                                                        />
+                                                    ) : (
+                                                        <FontAwesomeIcon icon={faImage} style={{ fontSize: '2rem', color: '#cbd5e1' }} />
+                                                    )}
+                                                    <input 
+                                                        type="file" 
+                                                        onChange={(e) => setCatAboutImage(e.target.files[0])} 
+                                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} 
+                                                    />
+                                                </div>
+                                                {seller.aboutUsImage && <button onClick={() => setCatAboutImage(null)} style={{ padding: '6px', fontSize: '0.65rem', background: '#fee2e2', color: '#ef4444', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>REMOVE IMAGE</button>}
+                                            </div>
+                                        </div>
+                                        
+                                        <div style={{ padding: '1.2rem', background: '#f8fafc', borderRadius: '15px', border: '1px solid #e2e8f0' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                                                <h4 style={{ fontSize: '0.8rem', fontWeight: '900', color: palette.navy }}>CERTIFICATIONS</h4>
+                                                <button onClick={() => setCatCerts([...catCerts, ''])} style={{ padding: '4px 8px', background: palette.navy, color: '#fff', border: 'none', borderRadius: '5px', fontSize: '0.6rem' }}>+ ADD</button>
+                                            </div>
+                                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                                {catCerts.map((c, i) => (
+                                                    <input key={i} type="text" value={c} onChange={(e) => {
+                                                        const n = [...catCerts]; n[i] = e.target.value; setCatCerts(n);
+                                                    }} style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.7rem' }} />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+
+
+                                {catalogConfigTab === 'products' && (
+                                    <div className="catalog-curator-view">
+                                        <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '20px' }}>
+                                            <div style={{ padding: '10px 15px', background: palette.navy, color: '#fff', borderRadius: '12px', fontWeight: '900', fontSize: '1.2rem' }}>02</div>
+                                            <div>
+                                                <h4 style={{ margin: 0, fontSize: '1.3rem', color: palette.navy, fontWeight: '900', letterSpacing: '-0.5px' }}>CURATE PRODUCT INVENTORY</h4>
+                                                <p style={{ color: palette.subText, fontSize: '0.85rem', margin: '2px 0 0 0' }}>Select institutional-grade products to feature in your premium storefront.</p>
+                                            </div>
+                                        </div>
+
+                                        {/* PREMIUM QUICK ADD FORM */}
+                                        <div style={{ 
+                                            marginBottom: '3rem', 
+                                            padding: '2rem', 
+                                            background: '#fff', 
+                                            borderRadius: '24px', 
+                                            borderLeft: `6px solid ${palette.navy}`,
+                                            boxShadow: '0 10px 30px rgba(15, 23, 42, 0.05)',
+                                            position: 'relative',
+                                            overflow: 'hidden'
+                                        }}>
+                                            <div style={{ position: 'absolute', top: '-10px', right: '20px', fontSize: '80px', color: '#f1f5f9', fontWeight: '900', zIndex: 0, opacity: 0.5 }}>NEW</div>
+                                            <div style={{ position: 'relative', zIndex: 1 }}>
+                                                <h5 style={{ margin: '0 0 1.5rem 0', fontSize: '0.9rem', color: palette.navy, fontWeight: '900', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                                                    <FontAwesomeIcon icon={faShieldVirus} style={{ marginRight: '10px', color: palette.lightBlue }} />
+                                                    PRO-FAST INVENTORY ADD
+                                                </h5>
+                                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'flex-end' }}>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', minWidth: '100px' }}>
+                                                        <label style={{ fontSize: '11px', fontWeight: '800', color: '#94a3b8' }}>PRODUCT IMAGE</label>
+                                                        <div style={{ 
+                                                            width: '100px', 
+                                                            height: '52px', 
+                                                            background: '#f8fafc', 
+                                                            border: '2px dashed #cbd5e1', 
+                                                            borderRadius: '12px', 
+                                                            display: 'flex', 
+                                                            alignItems: 'center', 
+                                                            justifyContent: 'center',
+                                                            position: 'relative',
+                                                            overflow: 'hidden',
+                                                            cursor: 'pointer'
+                                                        }}>
+                                                            <FontAwesomeIcon icon={faImage} style={{ color: '#94a3b8' }} />
+                                                            <input 
+                                                                type="file" 
+                                                                id="quickAddImage"
+                                                                onChange={(e) => {
+                                                                    const file = e.target.files[0];
+                                                                    if(file) {
+                                                                        const reader = new FileReader();
+                                                                        reader.onload = (re) => {
+                                                                            document.getElementById('quickPreview').src = re.target.result;
+                                                                            document.getElementById('quickPreview').style.display = 'block';
+                                                                        };
+                                                                        reader.readAsDataURL(file);
+                                                                    }
+                                                                }}
+                                                                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} 
+                                                            />
+                                                            <img id="quickPreview" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'none', pointerEvents: 'none' }} />
+                                                        </div>
+                                                    </div>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: '1 1 200px' }}>
+                                                        <label style={{ fontSize: '11px', fontWeight: '800', color: '#94a3b8' }}>PRODUCT TITLE</label>
+                                                        <input type="text" id="quickAddTitle" placeholder="e.g. Industrial Steel Beam" style={{ padding: '14px', borderRadius: '12px', border: '2px solid #f1f5f9', fontSize: '14px', fontWeight: '600', background: '#f8fafc', width: '100%' }} />
+                                                    </div>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: '2 1 300px' }}>
+                                                        <label style={{ fontSize: '11px', fontWeight: '800', color: '#94a3b8' }}>INSTITUTIONAL DESCRIPTION</label>
+                                                        <input type="text" id="quickAddDesc" placeholder="Enter high-level product specifications..." style={{ padding: '14px', borderRadius: '12px', border: '2px solid #f1f5f9', fontSize: '14px', fontWeight: '600', background: '#f8fafc', width: '100%' }} />
+                                                    </div>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100px' }}>
+                                                        <label style={{ fontSize: '11px', fontWeight: '800', color: '#94a3b8' }}>PRICE ($)</label>
+                                                        <input type="number" id="quickAddPrice" placeholder="142" style={{ padding: '14px', borderRadius: '12px', border: '2px solid #f1f5f9', fontSize: '14px', fontWeight: '600', background: '#f8fafc', width: '100%' }} />
+                                                    </div>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100px' }}>
+                                                        <label style={{ fontSize: '11px', fontWeight: '800', color: '#94a3b8' }}>MOQ</label>
+                                                        <input type="number" id="quickAddMoq" placeholder="10" style={{ padding: '14px', borderRadius: '12px', border: '2px solid #f1f5f9', fontSize: '14px', fontWeight: '600', background: '#f8fafc', width: '100%' }} />
+                                                    </div>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100px' }}>
+                                                        <label style={{ fontSize: '11px', fontWeight: '800', color: '#94a3b8' }}>UNIT</label>
+                                                        <input type="text" id="quickAddUnit" placeholder="PCS" style={{ padding: '14px', borderRadius: '12px', border: '2px solid #f1f5f9', fontSize: '14px', fontWeight: '600', background: '#f8fafc', width: '100%' }} />
+                                                    </div>
+                                                    <button 
+                                                        id="quickAddBtn"
+                                                        onClick={async (e) => {
+                                                            const btn = e.currentTarget;
+                                                            const originalText = btn.innerText;
+                                                            const t = document.getElementById('quickAddTitle').value;
+                                                            const d = document.getElementById('quickAddDesc').value;
+                                                            const p = document.getElementById('quickAddPrice').value;
+                                                            const m = document.getElementById('quickAddMoq').value;
+                                                            const u = document.getElementById('quickAddUnit').value;
+                                                            const iFile = document.getElementById('quickAddImage').files[0];
+
+                                                            if(!t || !d) {
+                                                                alert('Title and Description are required');
+                                                                return;
+                                                            }
+                                                            
+                                                            btn.innerText = 'ADDING...';
+                                                            btn.disabled = true;
+                                                            btn.style.opacity = '0.7';
+
+                                                            const f = new FormData(); 
+                                                            f.append('title', t); 
+                                                            f.append('description', d); 
+                                                            f.append('price', p || 0);
+                                                            f.append('moq', m || 1);
+                                                            f.append('unit', u || 'Units');
+                                                            f.append('category', 'Catalog Exclusive');
+                                                            if(iFile) f.append('images', iFile);
+                                                            
+                                                            try {
+                                                                const res = await fetch(`${apiEndpoint}/products/add/${id}`, { method: 'POST', body: f });
+                                                                if(res.ok) {
+                                                                    const pRes = await fetch(`${apiEndpoint}/products/${id}`); 
+                                                                    const pD = await pRes.json(); 
+                                                                    setProducts(pD.products);
+                                                                    setCatFeaturedIds([...(catFeaturedIds || []), pD.products[pD.products.length-1]._id]);
+                                                                    
+                                                                    // Clear fields
+                                                                    document.getElementById('quickAddTitle').value = ''; 
+                                                                    document.getElementById('quickAddDesc').value = '';
+                                                                    document.getElementById('quickAddPrice').value = '';
+                                                                    document.getElementById('quickAddMoq').value = '';
+                                                                    document.getElementById('quickAddUnit').value = '';
+                                                                    document.getElementById('quickAddImage').value = '';
+                                                                    document.getElementById('quickPreview').style.display = 'none';
+                                                                }
+                                                            } catch (err) {
+                                                                console.error(err);
+                                                            } finally {
+                                                                btn.innerText = originalText;
+                                                                btn.disabled = false;
+                                                                btn.style.opacity = '1';
+                                                            }
+                                                        }} 
+                                                        style={{ 
+                                                            padding: '14px 30px', 
+                                                            background: '#ff6b00', 
+                                                            color: '#fff', 
+                                                            border: 'none', 
+                                                            borderRadius: '12px', 
+                                                            fontWeight: '900',
+                                                            fontSize: '13px',
+                                                            cursor: 'pointer',
+                                                            boxShadow: '0 4px 15px rgba(255, 107, 0, 0.3)',
+                                                            transition: 'all 0.2s',
+                                                            flexShrink: 0
+                                                        }}
+                                                    >CREATE & FEATURE</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                                            {products.map(p => {
+                                                const isSelected = (catFeaturedIds || []).includes(p._id);
+                                                return (
+                                                    <div key={p._id} onClick={() => {
+                                                        const c = catFeaturedIds || [];
+                                                        setCatFeaturedIds(isSelected ? c.filter(x => x !== p._id) : [...c, p._id]);
+                                                    }} style={{ 
+                                                        padding: '1.2rem', 
+                                                        borderRadius: '24px', 
+                                                        border: isSelected ? `2px solid ${palette.navy}` : '2px solid #f1f5f9', 
+                                                        background: isSelected ? '#f8fafc' : '#fff', 
+                                                        cursor: 'pointer', 
+                                                        display: 'flex', 
+                                                        alignItems: 'center', 
+                                                        gap: '15px',
+                                                        transition: 'all 0.2s',
+                                                        transform: isSelected ? 'scale(1.02)' : 'none',
+                                                        boxShadow: isSelected ? '0 10px 20px rgba(0,0,0,0.05)' : 'none'
+                                                    }}>
+                                                        <div style={{ width: '55px', height: '55px', borderRadius: '14px', overflow: 'hidden', flexShrink: 0, border: '1px solid #f1f5f9' }}>
+                                                            <img src={p.images?.[0] ? `${apiEndpoint}/${encodeURI(p.images[0].replace(/\\/g, '/'))}` : 'https://via.placeholder.com/60'} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                        </div>
+                                                        <div style={{ overflow: 'hidden', flex: 1 }}>
+                                                            <div style={{ fontSize: '13px', fontWeight: '900', color: palette.navy, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textTransform: 'uppercase' }}>{Array.isArray(p.title) ? p.title[0] : p.title}</div>
+                                                            <div style={{ fontSize: '11px', color: isSelected ? '#ff6b00' : '#94a3b8', fontWeight: '800', marginTop: '4px' }}>
+                                                                {isSelected ? (
+                                                                    <span><FontAwesomeIcon icon={faShieldVirus} style={{ marginRight: '5px' }} /> FEATURED ON STOREFRONT</span>
+                                                                ) : (
+                                                                    'INVENTORY ITEM - CLICK TO ADD'
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                        {isSelected && <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff6b00' }}></div>}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
                                     </div>
                                 )}
                             </div>
                         </div>
 
-                        {/* New Catalogs Collection */}
-                        <div style={{ marginTop: '3rem' }}>
-                            <h4 style={{ marginBottom: '1.5rem', color: palette.lightBlue, fontWeight: '800' }}>PUBLISHED CATALOGS ({catalogs.length})</h4>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
-                                {catalogs.length > 0 ? (
-                                    catalogs.map((cat, idx) => (
-                                        <div key={idx} className="glass-card" style={{ padding: '1.5rem', background: palette.cardBg, borderRadius: '25px', border: '1px solid #e2e8f0' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                                                <h5 style={{ margin: 0, fontSize: '1.1rem', color: palette.navy }}>{cat.title}</h5>
-                                                <button 
-                                                    onClick={async () => {
-                                                        if(window.confirm('Delete this catalog document?')) {
-                                                            await axios.delete(`${apiEndpoint}/catalog/delete/${cat._id}`);
-                                                            setCatalogs(catalogs.filter(c => c._id !== cat._id));
-                                                        }
-                                                    }}
-                                                    style={{ background: 'none', border: 'none', color: palette.danger, cursor: 'pointer' }}
-                                                >
-                                                    <FontAwesomeIcon icon={faTrashAlt} />
-                                                </button>
-                                            </div>
-                                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                                {cat.files.map((file, fIdx) => (
-                                                    <a 
-                                                        key={fIdx}
-                                                        href={`${apiEndpoint}${encodeURI(file)}`} 
-                                                        target="_blank" 
-                                                        rel="noopener noreferrer"
-                                                        style={{ 
-                                                            width: '60px', 
-                                                            height: '60px', 
-                                                            borderRadius: '8px', 
-                                                            overflow: 'hidden', 
-                                                            border: '1px solid #e2e8f0',
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                            justifyContent: 'center',
-                                                            fontSize: '0.7rem',
-                                                            background: '#f8fafc',
-                                                            textDecoration: 'none',
-                                                            color: palette.subText
-                                                        }}
-                                                    >
-                                                        {file.endsWith('.pdf') ? 'PDF' : <img src={`${apiEndpoint}${encodeURI(file)}`} style={{width: '100%', height: '100%', objectFit: 'cover'}} />}
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <p style={{ color: palette.subText }}>No advanced catalogs published.</p>
-                                )}
-                            </div>
+                        {/* LIVE PREVIEW SECTION */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '0 1rem' }}>
+                            <div style={{ height: '2px', flex: 1, background: '#e2e8f0' }}></div>
+                            <span style={{ fontSize: '0.7rem', fontWeight: '900', color: palette.subText, textTransform: 'uppercase', letterSpacing: '2px' }}>Live Catalog Preview</span>
+                            <div style={{ height: '2px', flex: 1, background: '#e2e8f0' }}></div>
+                        </div>
+
+                        <div className="catalog-preview" style={{ background: '#fff', borderRadius: '30px', overflow: 'hidden', border: '1px solid #e2e8f0', boxShadow: '0 20px 50px rgba(0,0,0,0.05)' }}>
+                            <DynamicSellerCatalog sellerId={id} refreshKey={catalogRefreshKey} />
                         </div>
                     </div>
                 )}
+
             </div>
 
             <style>{`

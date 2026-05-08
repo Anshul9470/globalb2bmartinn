@@ -733,7 +733,7 @@ const AdminDashboard = () => {
                                         <div style={{ background: palette.navy + '11', color: palette.navy, width: '50px', height: '50px', borderRadius: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem' }}>
                                             <FontAwesomeIcon icon={faLayerGroup} />
                                         </div>
-                                        <div style={{ background: catProducts.length > 0 ? '#ecfdf5' : '#f1f5f9', color: catProducts.length > 0 ? '#059669' : palette.subText, padding: '5px 12px', borderRadius: '10px', fontSize: '0.7rem', fontWeight: '900' }}>
+                                        <div style={{ background: catProducts.length > 0 ? '#fffbeb' : '#f1f5f9', color: catProducts.length > 0 ? '#ff8000' : palette.subText, padding: '5px 12px', borderRadius: '10px', fontSize: '0.7rem', fontWeight: '900' }}>
                                             {catProducts.length} PRODUCTS
                                         </div>
                                     </div>
@@ -1162,7 +1162,7 @@ const AdminDashboard = () => {
                                                 {[1, 2, 3, 4, 5].map(i => <FontAwesomeIcon key={i} icon={faStar} />)}
                                             </div>
                                             <span style={{ fontSize: '0.85rem', color: palette.subText, fontWeight: '600' }}>(150+ Reviews)</span>
-                                            <div style={{ background: '#ecfdf5', color: '#059669', padding: '4px 12px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                            <div style={{ background: '#fffbeb', color: '#ff8000', padding: '4px 12px', borderRadius: '8px', fontSize: '0.75rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '6px' }}>
                                                 <FontAwesomeIcon icon={faShieldHalved} /> {product.experience || '1 YRS'} EXP.
                                             </div>
                                         </div>

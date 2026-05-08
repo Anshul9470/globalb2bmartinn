@@ -52,7 +52,24 @@ const productDetailSchema = new mongoose.Schema({
     isPublished: {
         type: Boolean,
         default: false
-    }
+    },
+    specifications: [
+        {
+            key: String,
+            value: String
+        }
+    ],
+    tieredPricing: [
+        {
+            range: String, // e.g. "10-49 Units"
+            price: String  // e.g. "$450.00"
+        }
+    ],
+    stockStatus: {
+        type: String,
+        default: 'In Stock'
+    },
+    keyFeatures: [String]
 });
 
 const productSchema = new mongoose.Schema({

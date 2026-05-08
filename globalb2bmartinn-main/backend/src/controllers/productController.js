@@ -128,6 +128,10 @@ exports.addProduct = async (req, res) => {
             price: price || '',
             unit: unit || 'kg',
             moq: moq || '',
+            stockStatus: req.body.stockStatus || 'In Stock',
+            specifications: req.body.specifications ? (typeof req.body.specifications === 'string' ? JSON.parse(req.body.specifications) : req.body.specifications) : [],
+            tieredPricing: req.body.tieredPricing ? (typeof req.body.tieredPricing === 'string' ? JSON.parse(req.body.tieredPricing) : req.body.tieredPricing) : [],
+            keyFeatures: req.body.keyFeatures ? (typeof req.body.keyFeatures === 'string' ? JSON.parse(req.body.keyFeatures) : req.body.keyFeatures) : [],
             isPublished
         };
 
@@ -206,7 +210,7 @@ exports.addProduct = async (req, res) => {
 
 exports.updateProduct = async (req, res) => {
     const { userId, productId } = req.params;
-    let { title, description, category, subCategory, country, state, city, experience, price, unit, moq } = req.body;
+    let { title, description, category, subCategory, country, state, city, experience, price, unit, moq, isPublished } = req.body;
 
     const ensureString = (val) => {
         if (Array.isArray(val)) {
@@ -278,19 +282,26 @@ exports.updateProduct = async (req, res) => {
         if (country) productToUpdate.country = ensureString(country);
         if (state) productToUpdate.state = ensureString(state);
         if (city) productToUpdate.city = ensureString(city);
-        if (experience) productToUpdate.experience = ensureString(experience);
-        productToUpdate.price = ensureString(price);
-        productToUpdate.unit = ensureString(unit);
-        productToUpdate.moq = ensureString(moq);
-        if (images.length > 0) productToUpdate.images = images;
+        if (experience) productToUpdate.experience = experience;
+        productToUpdate.price = price;
+        productToUpdate.unit = unit;
+        productToUpdate.moq = moq;
+        productToUpdate.isPublished = isPublished;
+        productToUpdate.stockStatus = req.body.stockStatus || productToUpdate.stockStatus;
+        productToUpdate.specifications = req.body.specifications ? (typeof req.body.specifications === 'string' ? JSON.parse(req.body.specifications) : req.body.specifications) : productToUpdate.specifications;
+        productToUpdate.tieredPricing = req.body.tieredPricing ? (typeof req.body.tieredPricing === 'string' ? JSON.parse(req.body.tieredPricing) : req.body.tieredPricing) : productToUpdate.tieredPricing;
+        productToUpdate.keyFeatures = req.body.keyFeatures ? (typeof req.body.keyFeatures === 'string' ? JSON.parse(req.body.keyFeatures) : req.body.keyFeatures) : productToUpdate.keyFeatures;
+        
+        if (images.length > 0) {
+            productToUpdate.images = images;
+        }
 
         try {
             await product.save();
-        } catch (err) {
-            console.error("Update Save Bypass:", err);
-            await product.save({ validateBeforeSave: false });
+            res.json(product);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
         }
-        res.json(product);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -320,7 +331,7 @@ exports.searchProducts = async (req, res) => {
                 { 'products.title': { $regex: query, $options: 'i' } },
                 { 'products.description': { $regex: query, $options: 'i' } }
             ]
-        }).populate('userId', 'name companyName email mobileNumber cityname statename role');
+        }).populate('userId', 'name companyName email mobileNumber cityname statename role featuredProductIds isCatalogActive');
 
         // Flatten the products array and filter matching products
         let results = [];
@@ -349,7 +360,7 @@ exports.getProductsByCategory = async (req, res) => {
     try {
         const products = await Product.find({
             'products.category': { $regex: new RegExp(`^${category}$`, 'i') }
-        }).populate('userId', 'name companyName email mobileNumber cityname statename role');
+        }).populate('userId', 'name companyName email mobileNumber cityname statename role featuredProductIds isCatalogActive');
 
         let results = [];
         products.forEach(productDoc => {
@@ -372,7 +383,7 @@ exports.getProductsByCategory = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
     try {
-        const productDocs = await Product.find().populate('userId', 'name companyName email mobileNumber cityname statename');
+        const productDocs = await Product.find().populate('userId', 'name companyName email mobileNumber cityname statename featuredProductIds isCatalogActive');
         // Flatten the products
         let allProducts = [];
         productDocs.forEach(doc => {
