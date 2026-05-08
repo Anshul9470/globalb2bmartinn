@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faStar, 
@@ -94,6 +95,8 @@ const INDIAN_STATES = [
   "Gujarat", "Maharashtra", "Uttar Pradesh", "Tamil Nadu", "Delhi", "West Bengal", "Rajasthan", "Punjab"
 ];
 
+const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:3005';
+
 const DressesDealer = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCats, setSelectedCats] = useState([]);
@@ -101,13 +104,39 @@ const DressesDealer = () => {
   const [locationSuggestions, setLocationSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [sortBy, setSortBy] = useState("Most Relevant");
-  const [filteredData, setFilteredData] = useState(classifiedData);
+  const [dbProducts, setDbProducts] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [activeChip, setActiveChip] = useState("All");
 
   useEffect(() => {
-    // Standard loading sequence
-    const timer = setTimeout(() => setLoading(false), 800);
-    return () => clearTimeout(timer);
+    const fetchDresses = async () => {
+      try {
+        const res = await axios.get(`${apiEndpoint}/products/category/Dresses`);
+        // Transform DB products to match classifiedData structure
+        const transformedDb = res.data.map(p => ({
+          _id: p._id,
+          name: p.seller?.name || "Verified Seller",
+          companyName: p.seller?.companyName || p.title || "Elite Fashion",
+          productOrService: p.description || p.subCategory || "Premium Dresses",
+          imgSrc: p.image || p.images?.[0] || "/assets/clothing.jpg",
+          mainProducts: p.title || p.mainProducts || "Designer Garments",
+          years: p.experience || "5 YRS",
+          location: p.location || p.seller?.cityname || "India",
+          rating: p.rating || (Math.random() * (5 - 4.5) + 4.5).toFixed(1),
+          isCatalogActive: p.isCatalogActive || p.hasCatalog || false,
+          catalogId: p.catalogId || p.seller?._id
+        }));
+
+        setDbProducts(transformedDb);
+        setFilteredData([...classifiedData, ...transformedDb]);
+        setLoading(false);
+      } catch (err) {
+        console.error("Failed to fetch dresses:", err);
+        setFilteredData(classifiedData);
+        setLoading(false);
+      }
+    };
+    fetchDresses();
   }, []);
 
   const handleCatChange = (cat) => {
@@ -117,7 +146,7 @@ const DressesDealer = () => {
   };
 
   const handleApplyFilters = () => {
-    let result = [...classifiedData];
+    let result = [...classifiedData, ...dbProducts];
 
     if (selectedCats.length > 0) {
       result = result.filter(item => 
@@ -141,14 +170,14 @@ const DressesDealer = () => {
   const resetFilters = () => {
     setSelectedCats([]);
     setLocationQuery("");
-    setFilteredData(classifiedData);
+    setFilteredData([...classifiedData, ...dbProducts]);
     setActiveChip("All");
   };
 
   const handleCategoryChip = (cat) => {
     setActiveChip(cat);
     if (cat === "All") { resetFilters(); return; }
-    const result = classifiedData.filter(item =>
+    const result = [...classifiedData, ...dbProducts].filter(item =>
       item.mainProducts.toLowerCase().includes(cat.toLowerCase()) ||
       item.productOrService.toLowerCase().includes(cat.toLowerCase())
     );
