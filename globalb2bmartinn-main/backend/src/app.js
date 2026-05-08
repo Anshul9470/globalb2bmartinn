@@ -154,12 +154,10 @@ app.get('/health', (req, res) => {
 });
 
 // Start server
-if (process.env.NODE_ENV !== 'production' && !process.env.NETLIFY) {
-  const PORT = process.env.PORT || 3005;
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
-}
+const PORT = process.env.PORT || 3005;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 module.exports = app;
 
