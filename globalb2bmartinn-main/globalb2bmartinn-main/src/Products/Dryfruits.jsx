@@ -114,8 +114,8 @@ const Dryfruits = () => {
         ]);
         
         const combinedRaw = [
-          ...(res1.data?.products || []),
-          ...(res2.data?.products || [])
+          ...(Array.isArray(res1.data) ? res1.data : (res1.data?.products || [])),
+          ...(Array.isArray(res2.data) ? res2.data : (res2.data?.products || []))
         ];
 
         // Remove duplicates by _id
