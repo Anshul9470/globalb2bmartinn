@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -6,8 +6,10 @@ import {
   faMapMarkerAlt, 
   faCheckCircle, 
   faSearch, 
-  faFilter
+  faFilter,
+  faBookOpen
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 import "./MarketplacePremium.css";
 
 const classifiedData = [
@@ -20,6 +22,8 @@ const classifiedData = [
     years: "1 YRS",
     location: "Srinagar, Jammu & Kashmir",
     rating: "4.8",
+    isCatalogActive: true,
+    catalogId: "adil-lidder"
   },
   {
     name: "Varad Ramesh Higmire",
@@ -93,8 +97,55 @@ const Dryfruits = () => {
   const [locationQuery, setLocationQuery] = useState("");
   const [locationSuggestions, setLocationSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [filteredData, setFilteredData] = useState(classifiedData);
+  const [dynamicProducts, setDynamicProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeChip, setActiveChip] = useState("All");
+
+  const apiEndpoint = process.env.REACT_APP_API_ENDPOINT || "https://globalb2bmart-backend.onrender.com";
+
+  useEffect(() => {
+    const fetchDryFruits = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`${apiEndpoint}/products/category/Dry Fruits`);
+        
+        const products = (response.data?.products || []).map(p => {
+          const imagePath = p.images && p.images.length > 0 ? p.images[0] : "";
+          const fullImgSrc = imagePath 
+            ? `${apiEndpoint}${encodeURI(imagePath.replace(/\\/g, '/'))}` 
+            : "/assets/dryfruits.jpeg";
+
+          const sellerObj = p.userId && typeof p.userId === 'object' ? p.userId : (p.seller || {});
+          const catalogId = p.catalogId || sellerObj._id || (p.userId?._id || p.userId) || p._id;
+          const isCatalogActive = p.isCatalogActive || sellerObj.isCatalogActive || (sellerObj.featuredProductIds?.length > 0) || p.hasCatalog || false;
+
+          return {
+            _id: p._id,
+            name: sellerObj.name || "Verified Seller",
+            companyName: sellerObj.companyName || p.title || "Premium Nut Store",
+            productOrService: p.description || p.subCategory || "Dry Fruits Supplier",
+            imgSrc: fullImgSrc,
+            mainProducts: p.title || p.mainProducts || "Premium Dry Fruits",
+            years: p.experience || "1 YRS",
+            location: p.location || sellerObj.cityname || "India",
+            rating: p.rating || (Math.random() * (5 - 4.2) + 4.2).toFixed(1),
+            isCatalogActive: isCatalogActive,
+            catalogId: catalogId
+          };
+        });
+
+        setDynamicProducts(products);
+      } catch (error) {
+        console.error("Error fetching dry fruits:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDryFruits();
+  }, [apiEndpoint]);
+
+  const allData = [...dynamicProducts, ...classifiedData];
 
   const handleCatChange = (cat) => {
     setSelectedCats(prev => 
@@ -102,8 +153,14 @@ const Dryfruits = () => {
     );
   };
 
-  const handleApplyFilters = () => {
-    let result = [...classifiedData];
+  const getFilteredData = () => {
+    let result = [...allData];
+
+    if (activeChip !== "All") {
+      result = result.filter(item =>
+        item.mainProducts.toLowerCase().includes(activeChip.toLowerCase())
+      );
+    }
 
     if (selectedCats.length > 0) {
       result = result.filter(item => 
@@ -120,23 +177,15 @@ const Dryfruits = () => {
       );
     }
 
-    setFilteredData(result);
+    return result;
   };
+
+  const filteredData = getFilteredData();
 
   const resetFilters = () => {
     setSelectedCats([]);
     setLocationQuery("");
-    setFilteredData(classifiedData);
     setActiveChip("All");
-  };
-
-  const handleCategoryChip = (cat) => {
-    setActiveChip(cat);
-    if (cat === "All") { resetFilters(); return; }
-    const result = classifiedData.filter(item =>
-      item.mainProducts.toLowerCase().includes(cat.toLowerCase())
-    );
-    setFilteredData(result);
   };
 
   const dryFruitCategories = [
@@ -219,7 +268,7 @@ const Dryfruits = () => {
               </div>
             </div>
 
-            <button className="apply-filters-btn" onClick={handleApplyFilters}>Apply Filters</button>
+            <button className="apply-filters-btn" onClick={() => {}}>Apply Filters</button>
           </div>
 
           <div className="pro-ad-card">
@@ -236,7 +285,7 @@ const Dryfruits = () => {
               <button
                 key={cat.label}
                 className={`category-chip ${activeChip === cat.label ? "chip-active" : ""}`}
-                onClick={() => handleCategoryChip(cat.label)}
+                onClick={() => setActiveChip(cat.label)}
               >
                 <div className="chip-img-ring">
                   <img src={cat.img} alt={cat.label} onError={(e) => e.target.src="/assets/dryfruits.jpeg"} />
@@ -246,7 +295,12 @@ const Dryfruits = () => {
             ))}
           </div>
 
-          {filteredData.length > 0 ? (
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '3rem' }}>
+              <div className="loader"></div>
+              <p>Loading Premium Suppliers...</p>
+            </div>
+          ) : filteredData.length > 0 ? (
             <div className="product-grid">
               {filteredData.map((item, index) => (
                 <div className="product-card" key={index}>
@@ -256,6 +310,28 @@ const Dryfruits = () => {
                       <span className="verified-badge">
                         <FontAwesomeIcon icon={faCheckCircle} /> VERIFIED SOURCE
                       </span>
+                      {item.isCatalogActive && (
+                        <Link 
+                          to={`/catalog/${item.catalogId}`} 
+                          className="catalog-badge-link"
+                          style={{
+                            background: "linear-gradient(135deg, #FFD700, #FFA500)",
+                            color: "#001f3f",
+                            padding: "6px 12px",
+                            borderRadius: "20px",
+                            fontSize: "0.7rem",
+                            fontWeight: "900",
+                            textDecoration: "none",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "5px",
+                            boxShadow: "0 4px 15px rgba(255, 215, 0, 0.3)",
+                            border: "1px solid rgba(255,255,255,0.2)"
+                          }}
+                        >
+                          <FontAwesomeIcon icon={faBookOpen} /> VIEW CATALOG
+                        </Link>
+                      )}
                     </div>
                   </div>
 
