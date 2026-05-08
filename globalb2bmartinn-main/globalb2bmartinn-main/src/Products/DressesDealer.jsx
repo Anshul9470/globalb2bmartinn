@@ -119,18 +119,22 @@ const DressesDealer = () => {
             ? `${apiEndpoint}${encodeURI(imagePath.replace(/\\/g, '/'))}`
             : "/assets/clothing.jpg";
 
+          const sellerObj = p.userId && typeof p.userId === 'object' ? p.userId : (p.seller || {});
+          const catalogId = p.catalogId || sellerObj._id || (p.userId?._id || p.userId) || p._id;
+          const isCatalogActive = p.isCatalogActive || sellerObj.isCatalogActive || (sellerObj.featuredProductIds?.length > 0) || p.hasCatalog || false;
+
           return {
             _id: p._id,
-            name: p.seller?.name || "Verified Seller",
-            companyName: p.seller?.companyName || p.title || "Elite Fashion",
+            name: sellerObj.name || "Verified Seller",
+            companyName: sellerObj.companyName || p.title || "Elite Fashion",
             productOrService: p.description || p.subCategory || "Premium Dresses",
             imgSrc: fullImgSrc,
             mainProducts: p.title || p.mainProducts || "Designer Garments",
             years: p.experience || "5 YRS",
-            location: p.location || p.seller?.cityname || "India",
+            location: p.location || sellerObj.cityname || "India",
             rating: p.rating || (Math.random() * (5 - 4.5) + 4.5).toFixed(1),
-            isCatalogActive: p.isCatalogActive || p.hasCatalog || false,
-            catalogId: p.catalogId || p.seller?._id
+            isCatalogActive: isCatalogActive,
+            catalogId: catalogId
           };
         });
 
