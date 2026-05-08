@@ -791,6 +791,7 @@ const AdminSellerDetail = () => {
                                     <option value="Mustard Oil">Mustard Oil</option>
                                     <option value="Fruits">Fruits Supplier</option>
                                     <option value="Jewellery">Jewellery Dealer</option>
+                                    <option value="Dresses">Dresses & Garments</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
